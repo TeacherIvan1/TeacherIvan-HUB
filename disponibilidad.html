@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilidad y Planes - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Colores y Tipografía Institucional */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* --- HEADER Y NAVEGACIÓN (IDÉNTICO A LAS OTRAS PÁGINAS) --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+
+        .logo-img { height: 60px; width: auto; object-fit: contain; }
+
+        nav ul {
+            list-style: none; display: flex; gap: 2.5rem; margin: 0; padding: 0;
+            font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        nav a:hover { color: var(--naranja-vibrante); }
+        .nav-active { color: var(--naranja-vibrante); }
+
+        .login-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve); color: var(--blanco-nieve);
+            padding: 0.5rem 1.5rem; font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .login-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        /* Contenedor Principal */
+        main { padding: 4rem; max-width: 1200px; margin: 0 auto; flex-grow: 1; width: 100%; box-sizing: border-box; }
+
+        /* Banner de Cabecera */
+        .content-header { text-align: center; margin-bottom: 4rem; }
+        .page-title { font-size: 3rem; font-weight: 800; color: var(--azul-primario); margin-bottom: 1rem; }
+        .page-title span { color: var(--naranja-vibrante); }
+        .page-subtitle { font-size: 1.1rem; opacity: 0.8; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+
+        /* --- TARJETAS DE PLANES (ACTUALIZADAS) --- */
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; margin-bottom: 5rem;
+        }
+
+        .price-card {
+            background: white; border-radius: 12px; padding: 2.5rem 1.5rem;
+            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #E8ECEF; transition: transform 0.3s ease;
+            display: flex; flex-direction: column; position: relative;
+        }
+
+        .price-card:hover { transform: translateY(-10px); border-color: var(--naranja-vibrante); box-shadow: 0 15px 40px rgba(245, 110, 30, 0.1); }
+
+        .price-card.featured { background: var(--azul-primario); color: white; overflow: hidden; border: none; }
+        .price-card.featured::before {
+            content: "RECOMENDADO"; position: absolute; top: 20px; right: -30px;
+            background: var(--naranja-vibrante); color: white; font-size: 0.7rem;
+            padding: 5px 40px; transform: rotate(45deg); font-weight: bold;
+        }
+
+        .price-card.premium { background: #1a1a1a; color: white; border: none; } /* Estilo especial para IELTS */
+
+        .price-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .price-tag { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--naranja-vibrante); }
+        .price-card.featured .price-tag { color: var(--azul-claro); }
+        .price-tag span { font-size: 1rem; font-weight: 400; color: inherit; opacity: 0.8; }
+
+        .features-list { list-style: none; padding: 0; margin: 0 0 2rem 0; flex-grow: 1; text-align: left; }
+        .features-list li { margin-bottom: 12px; font-size: 0.95rem; opacity: 0.9; padding-left: 1.5rem; position: relative; }
+        .features-list li::before { content: "✓"; position: absolute; left: 0; color: var(--naranja-vibrante); font-weight: bold; }
+        .price-card.featured .features-list li::before { color: var(--azul-claro); }
+
+        .cta-btn {
+            background: var(--naranja-vibrante); color: white; padding: 1rem;
+            border-radius: 6px; font-weight: 700; text-decoration: none; display: block;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .cta-btn:hover { background: #e05e15; }
+        .price-card.featured .cta-btn { background: white; color: var(--azul-primario); }
+        .price-card.featured .cta-btn:hover { background: var(--blanco-nieve); }
+
+        /* --- HORARIOS POR NIVEL (DISEÑO MODERNO) --- */
+        .schedule-section {
+            background: white; border-radius: 12px; padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+
+        .schedule-title { text-align: center; margin-bottom: 1rem; font-size: 2rem; color: var(--azul-primario); }
+        .schedule-subtitle { text-align: center; margin-bottom: 3rem; font-size: 1rem; opacity: 0.8; }
+
+        .level-schedule-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+        }
+
+        .level-card {
+            background: var(--blanco-nieve); border-radius: 8px; padding: 1.5rem;
+            display: flex; align-items: center; gap: 1.5rem;
+            border-left: 5px solid var(--azul-primario); transition: all 0.3s ease;
+        }
+        
+        .level-card:hover { transform: translateX(5px); background: #ffffff; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+
+        /* Colores dinámicos por nivel */
+        .card-a1 { border-left-color: #4CAF50; }
+        .card-a2 { border-left-color: #2196F3; }
+        .card-b1 { border-left-color: #FF9800; }
+        .card-b2 { border-left-color: #E91E63; }
+        .card-ielts { border-left-color: #9C27B0; background: #f8f0fc; }
+
+        .level-icon {
+            width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--gris-neutro); flex-shrink: 0;
+        }
+
+        .level-info { flex-grow: 1; }
+        .level-info h4 { margin: 0 0 0.3rem 0; font-size: 1.2rem; color: var(--azul-primario); }
+        .time-badge {
+            display: inline-block; background: var(--naranja-vibrante); color: white;
+            padding: 0.3rem 0.8rem; border-radius: 4px; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.5rem;
+        }
+        .days-text { margin: 0; font-size: 0.85rem; color: var(--gris-neutro); font-weight: 600; }
+
+        /* --- MODAL DE LOGIN (REUTILIZADO) --- */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(10, 70, 140, 0.85); backdrop-filter: blur(5px); animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: var(--blanco-nieve); margin: 10vh auto; padding: 3rem; border-radius: 8px; width: 90%; max-width: 400px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center; color: var(--azul-primario); }
+        .close-btn { position: absolute; top: 15px; right: 20px; color: var(--gris-neutro); font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-btn:hover { color: var(--naranja-vibrante); }
+        .login-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+        .login-form input { padding: 1rem; border: 1px solid var(--gris-neutro); border-radius: 4px; font-family: var(--font-cuerpo); font-size: 1rem; }
+        .login-form input:focus { outline: none; border-color: var(--naranja-vibrante); }
+        .submit-btn { background-color: var(--naranja-vibrante); color: var(--blanco-nieve); padding: 1rem; font-size: 1.1rem; font-weight: 600; border-radius: 4px; }
+
+        /* Footer */
+        .site-footer { background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center; padding: 1.5rem; margin-top: auto; font-size: 0.85rem; font-weight: 300; border-top: 4px solid var(--naranja-vibrante); }
+
+        @media (max-width: 900px) {
+            header { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            main { padding: 2rem 1.5rem; }
+            .schedule-section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="logo-img">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+                <li><a href="contenido.html">Contenido</a></li>
+                <li><a href="disponibilidad.html" class="nav-active">Disponibilidad</a></li>
+            </ul>
+        </nav>
+        <button class="login-btn" id="openLoginBtn">Login</button>
+    </header>
+
+    <main>
+        <div class="content-header">
+            <h1 class="page-title">ELIGE TU <span>PLAN DE ESTUDIO</span></h1>
+            <p class="page-subtitle">Ya sea que prefieras avanzar a tu propio ritmo con nuestra plataforma o tener un seguimiento directo y presencial, tenemos el modelo perfecto para ti.</p>
+        </div>
+
+        <div class="pricing-grid">
+            
+            <div class="price-card">
+                <h3>Digital HUB</h3>
+                <div class="price-tag">50 <span>Bs/mes</span></div>
+                <ul class="features-list">
+                    <li>Acceso 24/7 a la Plataforma</li>
+                    <li>250+ Lecciones Interactivas</li>
+                    <li>Material de Audio y Lectura</li>
+                    <li style="color: var(--gris-neutro);">Sin clases presenciales</li>
+                </ul>
+                <a href="pago.html" class="cta-btn">Suscribirme</a>
+            </div>
+
+            <div class="price-card">
+                <h3>Por Clase</h3>
+                <div class="price-tag">40 <span>Bs/sesión</span></div>
+                <ul class="features-list">
+                    <li>1 Sesión presencial de 50 min</li>
+                    <li>Material impreso incluido</li>
+                    <li>Acceso al HUB por 24h</li>
+                    <li>Ideal para dudas y refuerzo</li>
+                </ul>
+                <a href="pago.html" class="cta-btn">Reservar</a>
+            </div>
+
+            <div class="price-card featured">
+                <h3>Plan Mensual</h3>
+                <div class="price-tag">350 <span>Bs/mes</span></div>
+                <ul class="features-list">
+                    <li><strong>4 Clases presenciales/semana</strong></li>
+                    <li>Acceso Ilimitado al HUB</li>
+                    <li>Seguimiento personalizado</li>
+                    <li>Evaluaciones de progreso</li>
+                </ul>
+                <a href="pago.html" class="cta-btn">¡Inscribirme Ya!</a>
+            </div>
+
+            <div class="price-card premium">
+                <h3>IELTS Plan</h3>
+                <div class="price-tag">TBA <span>Precio Especial</span></div>
+                <ul class="features-list">
+                    <li>Preparación intensiva IELTS</li>
+                    <li><strong>Clases 100% Virtuales</strong></li>
+                    <li>Simulacros de examen real</li>
+                    <li>Grupos reducidos</li>
+                </ul>
+                <a href="pago.html" class="cta-btn" style="background: #9C27B0;">Solicitar Info</a>
+            </div>
+
+        </div>
+
+        <div class="schedule-section">
+            <h2 class="schedule-title">Horarios Presenciales por Nivel</h2>
+            <p class="schedule-subtitle">Las clases tienen una duración de 50 minutos para garantizar un aprendizaje enfocado y eficiente.</p>
+            
+            <div class="level-schedule-grid">
+                
+                <div class="level-card card-a1">
+                    <img src="https://i.imgur.com/auIesyF.jpeg" alt="A1" class="level-icon">
+                    <div class="level-info">
+                        <h4>Nivel A1 (Principiante)</h4>
+                        <div class="time-badge">17:00 - 17:50 hrs</div>
+                        <p class="days-text">Lunes, Martes, Miércoles y Viernes</p>
+                    </div>
+                </div>
+
+                <div class="level-card card-a2">
+                    <img src="https://i.imgur.com/kIndRod.jpeg" alt="A2" class="level-icon">
+                    <div class="level-info">
+                        <h4>Nivel A2 (Básico)</h4>
+                        <div class="time-badge">18:00 - 18:50 hrs</div>
+                        <p class="days-text">Lunes, Martes, Miércoles y Viernes</p>
+                    </div>
+                </div>
+
+                <div class="level-card card-b1">
+                    <img src="https://i.imgur.com/0BJu1kY.jpeg" alt="B1" class="level-icon">
+                    <div class="level-info">
+                        <h4>Nivel B1 (Intermedio)</h4>
+                        <div class="time-badge">19:00 - 19:50 hrs</div>
+                        <p class="days-text">Lunes, Martes, Miércoles y Viernes</p>
+                    </div>
+                </div>
+
+                <div class="level-card card-b2">
+                    <img src="https://i.imgur.com/7DdNdEz.jpeg" alt="B2" class="level-icon">
+                    <div class="level-info">
+                        <h4>Nivel B2 (Avanzado)</h4>
+                        <div class="time-badge">20:00 - 20:50 hrs</div>
+                        <p class="days-text">Lunes, Martes, Miércoles y Viernes</p>
+                    </div>
+                </div>
+
+                <div class="level-card card-ielts" style="grid-column: 1 / -1; justify-content: center; text-align: center; flex-direction: column; padding: 2rem;">
+                    <img src="https://i.imgur.com/xruH9IM.jpeg" alt="IELTS" class="level-icon" style="margin-bottom: 1rem;">
+                    <div class="level-info">
+                        <h4 style="color: #9C27B0;">IELTS PLAN - Sesiones Virtuales</h4>
+                        <div class="time-badge" style="background: #9C27B0;">Horarios Por Anunciar (TBA)</div>
+                        <p class="days-text" style="margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                            Este programa especial se organiza de manera remota según la disponibilidad de los estudiantes inscritos. Asegura tu plaza contactándonos.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Teacher Ivan HUB. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginBtn">×</span>
+            <h2>Bienvenido al HUB</h2>
+            <p>Ingresa tus datos para continuar tu aprendizaje.</p>
+            <form class="login-form">
+                <input type="email" placeholder="Correo Electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit" class="submit-btn">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    c<script>
+        const modal = document.getElementById("loginModal");
+        const openBtn = document.getElementById("openLoginBtn");
+        const closeBtn = document.getElementById("closeLoginBtn");
+        const loginForm = document.querySelector(".login-form");
+        const submitBtn = loginForm.querySelector('.submit-btn');
+
+        // IMPORTANTE: Reemplaza esto con la URL que te dio Google Apps Script
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
+
+        if (openBtn) openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+        if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) { modal.style.display = "none"; resetForm(); }
+        });
+
+        function resetForm() {
+            loginForm.reset();
+            submitBtn.innerText = "Iniciar Sesión";
+            submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = loginForm.querySelector('input[type="email"]');
+            const passInput = loginForm.querySelector('input[type="password"]');
+            
+            submitBtn.innerText = "Verificando...";
+            submitBtn.style.backgroundColor = "var(--gris-neutro)";
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ email: emailInput.value, password: passInput.value })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    submitBtn.innerText = "¡Acceso Concedido!";
+                    submitBtn.style.backgroundColor = "#4CAF50";
+                    localStorage.setItem('hub_user_name', result.name);
+                    localStorage.setItem('hub_user_status', 'Inscrito');
+                    
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                        alert(`¡Hola ${result.name}! Ya tienes acceso.`);
+                        if(window.location.pathname.includes('contenido.html')) {
+                            window.location.reload(); // Recarga para liberar candados si programamos esa lógica
+                        }
+                    }, 1500);
+                } else {
+                    submitBtn.innerText = "Error";
+                    submitBtn.style.backgroundColor = "#E91E63";
+                    alert(result.message);
+                    setTimeout(resetForm, 2000);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+                resetForm();
+            }
+        });
+    </script>
+
+</body>
+</html>

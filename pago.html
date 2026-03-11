@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción y Pago - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-primario: #0A468C; --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; --gris-neutro: #C8CDD2; --blanco-nieve: #FAFAF0; 
+            --font-titulares: 'Montserrat', sans-serif; --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+        body { margin: 0; padding: 0; font-family: var(--font-cuerpo); background-color: var(--blanco-nieve); color: var(--azul-primario); display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve); }
+        .logo-img { height: 60px; width: auto; object-fit: contain; }
+        nav ul { list-style: none; display: flex; gap: 2.5rem; margin: 0; padding: 0; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        nav a:hover { color: var(--naranja-vibrante); }
+        .login-btn { background-color: transparent; border: 1px solid var(--blanco-nieve); color: var(--blanco-nieve); padding: 0.5rem 1.5rem; font-size: 0.9rem; font-weight: 600; border-radius: 4px; }
+        
+        main { padding: 4rem; max-width: 1200px; margin: 0 auto; flex-grow: 1; width: 100%; box-sizing: border-box; }
+        .page-title { font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 3rem; }
+        .page-title span { color: var(--naranja-vibrante); }
+
+        .payment-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        .form-section h3, .qr-section h3 { margin-bottom: 1.5rem; color: var(--naranja-vibrante); border-bottom: 2px solid var(--gris-neutro); padding-bottom: 0.5rem; }
+        
+        .enroll-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group select { padding: 1rem; border: 1px solid var(--gris-neutro); border-radius: 6px; font-family: var(--font-cuerpo); font-size: 1rem; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--naranja-vibrante); }
+        
+        .qr-section { display: flex; flex-direction: column; align-items: center; text-align: center; background: #f9fafa; padding: 2rem; border-radius: 8px; border: 1px dashed var(--gris-neutro); }
+        
+        /* Estilo para la imagen real del QR */
+        .qr-image { width: 220px; height: 220px; object-fit: contain; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid white; }
+        
+        .submit-btn { background: var(--naranja-vibrante); color: white; padding: 1.2rem; font-size: 1.1rem; font-weight: 700; border-radius: 6px; margin-top: 1rem; text-transform: uppercase; }
+        .submit-btn:hover { background: #e05e15; transform: translateY(-2px); }
+
+        .site-footer { background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center; padding: 1.5rem; font-size: 0.85rem; font-weight: 300; border-top: 4px solid var(--naranja-vibrante); }
+
+        @media (max-width: 900px) {
+            header { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            main { padding: 2rem 1.5rem; }
+            .payment-container { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Logo" class="logo-img">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+                <li><a href="contenido.html">Contenido</a></li>
+                <li><a href="disponibilidad.html">Disponibilidad</a></li>
+            </ul>
+        </nav>
+        <button class="login-btn" onclick="alert('Usa el modal de otra página para iniciar sesión una vez registrado.')">Login</button>
+    </header>
+
+    <main>
+        <h1 class="page-title">FORMALIZA TU <span>INSCRIPCIÓN</span></h1>
+        
+        <div class="payment-container">
+            <div class="form-section">
+                <h3>1. Tus Datos</h3>
+                <form class="enroll-form" id="enrollForm">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" id="regName" placeholder="Ej. Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico (Será tu usuario)</label>
+                        <input type="email" id="regEmail" placeholder="juan@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Plan Elegido</label>
+                        <select id="regPlan" required>
+                            <option value="">Selecciona un plan...</option>
+                            <option value="digital">Digital HUB (50 Bs)</option>
+                            <option value="clase">Por Clase (40 Bs)</option>
+                            <option value="mensual">Plan Mensual (350 Bs)</option>
+                            <option value="ielts">IELTS Plan (TBA)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Transacción / Recibo</label>
+                        <input type="text" id="regTx" placeholder="Ingresa el N° de comprobante" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar y Confirmar</button>
+                </form>
+            </div>
+
+            <div class="qr-section">
+                <h3>2. Método de Pago</h3>
+                <p>Escanea el código QR desde tu aplicación bancaria o realiza una transferencia a los datos a continuación:</p>
+                
+                <img src="https://i.imgur.com/9H48twx.jpeg" alt="Código QR de Pago" class="qr-image">
+                
+                <div style="text-align: left; width: 100%; margin-top: 1rem;">
+                    <p><strong>Banco:</strong> Banco BISA</p>
+                    <p><strong>Cuenta:</strong> 0358864015</p>
+                    <p><strong>Titular:</strong> IVAN EZEQUIEL MANCILLA COPA</p>
+                </div>
+                
+                <p style="font-size: 0.85rem; color: var(--gris-neutro); margin-top: 2rem;">
+                    Una vez verificado el pago, recibirás un correo con tu contraseña temporal para acceder a todo el contenido.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Teacher Ivan HUB. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('enrollForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const plan = document.getElementById('regPlan').options[document.getElementById('regPlan').selectedIndex].text;
+            
+            const msg = `Hola Teacher Ivan! Acabo de llenar el formulario de inscripción.\n*Nombre:* ${name}\n*Plan:* ${plan}\n*N° Transacción:* ${document.getElementById('regTx').value}\n\nQuedo atento a mi acceso.`;
+            const url = `https://wa.me/59172878330?text=${encodeURIComponent(msg)}`;
+            
+            alert('Tus datos han sido registrados. Serás redirigido a WhatsApp para enviar una confirmación directa.');
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>

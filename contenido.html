@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Colores y Tipografía Institucional */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header Compacto */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 4rem;
+            background-color: var(--azul-primario);
+            color: var(--blanco-nieve);
+        }
+
+        .logo-img { height: 60px; width: auto; object-fit: contain; }
+
+        nav ul {
+            list-style: none; display: flex; gap: 2.5rem; margin: 0; padding: 0;
+            font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        nav a:hover { color: var(--naranja-vibrante); }
+        .nav-active { color: var(--naranja-vibrante); }
+
+        .login-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.5rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .login-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 4rem; max-width: 1200px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        /* Banner de Cabecera */
+        .content-header { text-align: center; margin-bottom: 4rem; }
+        .page-title { font-size: 3rem; font-weight: 800; color: var(--azul-primario); margin-bottom: 1rem; }
+        .page-title span { color: var(--naranja-vibrante); }
+        .page-subtitle { font-size: 1.1rem; opacity: 0.8; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+        
+        .locked-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background-color: rgba(245, 110, 30, 0.1); color: var(--naranja-vibrante);
+            padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 600;
+            margin-top: 1.5rem; font-size: 0.9rem; border: 1px solid rgba(245, 110, 30, 0.3);
+        }
+
+        /* Loading Spinner */
+        #loader { text-align: center; font-size: 1.2rem; color: var(--naranja-vibrante); font-weight: 600; margin: 3rem 0; }
+
+        /* Pestañas (Tabs) */
+        .tabs-container { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .tab-btn {
+            background-color: #E8ECEF; color: var(--azul-primario); padding: 1rem 2rem;
+            font-size: 1rem; font-weight: 700; border-radius: 8px; display: flex; align-items: center; gap: 0.8rem;
+        }
+        .tab-btn img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid var(--azul-primario); }
+        .tab-btn:hover { background-color: var(--azul-claro); color: var(--azul-primario); }
+        .tab-btn.active { background-color: var(--azul-primario); color: var(--blanco-nieve); box-shadow: 0 4px 15px rgba(10, 70, 140, 0.3); }
+        .tab-btn.active img { border-color: var(--naranja-vibrante); }
+
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+
+        /* Acordeones de Unidades */
+        .unit-accordion {
+            background-color: #ffffff; border-radius: 8px; margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #E8ECEF;
+        }
+        .accordion-header {
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 2rem; background-color: #ffffff; color: var(--azul-primario);
+            font-size: 1.2rem; font-weight: 700; text-align: left;
+        }
+        .accordion-header:hover { background-color: #f9fafa; }
+        .unit-title-group { display: flex; align-items: center; gap: 1rem; }
+        .unit-number {
+            background-color: var(--naranja-vibrante); color: var(--blanco-nieve);
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            border-radius: 4px; font-family: var(--font-titulares);
+        }
+        .accordion-icon { font-size: 1.5rem; transition: transform 0.3s ease; color: var(--gris-neutro); }
+        .unit-accordion.active .accordion-icon { transform: rotate(180deg); color: var(--naranja-vibrante); }
+        .unit-accordion.active .accordion-header { border-bottom: 1px solid #E8ECEF; }
+
+        .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background-color: var(--blanco-nieve); }
+        .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; padding: 2rem; }
+
+        /* Tarjetas de Lección */
+        .lesson-card {
+            background-color: #ffffff; border: 1px dashed var(--gris-neutro); border-radius: 6px;
+            padding: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; cursor: pointer;
+            transition: all 0.2s ease; position: relative;
+        }
+        .lesson-card:hover { border-color: var(--naranja-vibrante); background-color: rgba(245, 110, 30, 0.03); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(245, 110, 30, 0.1); }
+        .lesson-type { font-size: 0.75rem; font-weight: 700; color: var(--azul-claro); text-transform: uppercase; }
+        .lesson-title { font-size: 0.95rem; font-weight: 600; color: var(--azul-primario); line-height: 1.4; padding-right: 1.5rem; }
+        .lock-icon { position: absolute; top: 1.2rem; right: 1.2rem; color: var(--gris-neutro); font-size: 1.2rem; }
+        .lesson-card:hover .lock-icon { color: var(--naranja-vibrante); }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(10, 70, 140, 0.85); backdrop-filter: blur(5px); animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: var(--blanco-nieve); margin: 10vh auto; padding: 3rem; border-radius: 8px; width: 90%; max-width: 400px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center; }
+        .close-btn { position: absolute; top: 15px; right: 20px; color: var(--gris-neutro); font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-btn:hover { color: var(--naranja-vibrante); }
+        .login-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+        .login-form input { padding: 1rem; border: 1px solid var(--gris-neutro); border-radius: 4px; font-family: var(--font-cuerpo); font-size: 1rem; }
+        .login-form input:focus { outline: none; border-color: var(--naranja-vibrante); }
+        .submit-btn { background-color: var(--naranja-vibrante); color: var(--blanco-nieve); padding: 1rem; font-size: 1.1rem; font-weight: 600; border-radius: 4px; }
+        
+        /* Footer */
+        .site-footer { background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center; padding: 1.5rem; font-size: 0.85rem; font-weight: 300; border-top: 4px solid var(--naranja-vibrante); }
+
+        @media (max-width: 900px) {
+            header { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            main { padding: 2rem 1.5rem; }
+            .tabs-container { justify-content: flex-start; overflow-x: auto; padding-bottom: 1rem; flex-wrap: nowrap; }
+            .tab-btn { flex-shrink: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="logo-img">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+                <li><a href="contenido.html" class="nav-active">Contenido</a></li>
+                <li><a href="disponibilidad.html">Disponibilidad</a></li>
+            </ul>
+        </nav>
+        <button class="login-btn" id="openLoginBtn">Login</button>
+    </header>
+
+    <main>
+        <div class="content-header">
+            <h1 class="page-title">EXPLORA EL <span>CONTENIDO</span></h1>
+            <p class="page-subtitle">Un viaje de más de 250 lecciones interactivas creadas con código propio. Desde los fundamentos hasta el dominio absoluto del idioma. Selecciona tu nivel para ver el plan de estudios.</p>
+            <div class="locked-badge">
+                <span style="font-size: 1.2rem;">🔒</span> Contenido exclusivo para alumnos inscritos
+            </div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="openTab('nivel-a1')"><img src="https://i.imgur.com/auIesyF.jpeg" alt="A1"> A1 Principiante</button>
+            <button class="tab-btn" onclick="openTab('nivel-a2')"><img src="https://i.imgur.com/kIndRod.jpeg" alt="A2"> A2 Básico</button>
+            <button class="tab-btn" onclick="openTab('nivel-b1')"><img src="https://i.imgur.com/0BJu1kY.jpeg" alt="B1"> B1 Intermedio</button>
+            <button class="tab-btn" onclick="openTab('nivel-b2')"><img src="https://i.imgur.com/7DdNdEz.jpeg" alt="B2"> B2 Avanzado</button>
+            <button class="tab-btn" onclick="openTab('nivel-ielts')"><img src="https://i.imgur.com/xruH9IM.jpeg" alt="IELTS"> IELTS Prep</button>
+        </div>
+
+        <div id="loader">Cargando base de datos de lecciones... ⏳</div>
+
+        <div id="nivel-a1" class="tab-content active"></div>
+        <div id="nivel-a2" class="tab-content"></div>
+        <div id="nivel-b1" class="tab-content"></div>
+        <div id="nivel-b2" class="tab-content"></div>
+        <div id="nivel-ielts" class="tab-content"></div>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Teacher Ivan HUB. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginBtn">×</span>
+            <h2>ACCESO RESTRINGIDO</h2>
+            <p style="margin-top: 10px;">Para acceder a esta lección debes estar registrado y tener el status de <strong>"Inscrito"</strong> en nuestro sistema.</p>
+            <form class="login-form">
+                <input type="email" placeholder="Correo Electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit" class="submit-btn">Iniciar Sesión</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 0.8rem;">¿No eres alumno? <a href="https://wa.me/59172878330" target="_blank" style="color: var(--naranja-vibrante); font-weight: bold;">Contáctanos por WhatsApp</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 1. SISTEMA DE PESTAÑAS (TABS)
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // 2. FUNCIÓN PARA CARGAR EL CSV DE GOOGLE SHEETS
+        async function fetchLessons() {
+            const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuXiLCPWUTkOa_On1zm5TeKFa0EZISnxIKR4CaX_5NKD1gl6qI7iD0Moe4xvI2dKLPVFQnnN2siflp/pub?output=csv';
+            
+            try {
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                
+                // Ocultar Loader
+                document.getElementById('loader').style.display = 'none';
+                
+                // Parsear CSV (separado por comas)
+                const rows = data.split('\n').map(row => row.split(',').map(col => col.replace(/^"|"$/g, '').trim()));
+                
+                // Suponemos la estructura de tu CSV (Ajustar índices si tus columnas están en otro orden)
+                // [0] Nivel, [1] Unidad, [2] Título Unidad, [3] Tipo de Lección, [4] Título Lección
+                
+                // Eliminar encabezado
+                const lessons = rows.slice(1).filter(r => r.length >= 4);
+
+                // Agrupar por Niveles y luego por Unidades
+                const structure = {};
+                
+                lessons.forEach(row => {
+                    const levelRaw = row[0];
+                    // Normalizar ID del nivel (ej. "A1" -> "nivel-a1", "IELTS" -> "nivel-ielts")
+                    const levelId = 'nivel-' + levelRaw.toLowerCase().replace(' prep', '').trim();
+                    const unitNum = row[1];
+                    const unitTitle = row[2];
+                    const lessonType = row[3];
+                    const lessonTitle = row[4];
+
+                    if (!structure[levelId]) structure[levelId] = {};
+                    if (!structure[levelId][unitNum]) structure[levelId][unitNum] = { title: unitTitle, lessons: [] };
+                    
+                    structure[levelId][unitNum].lessons.push({ type: lessonType, title: lessonTitle });
+                });
+
+                // Renderizar en el HTML
+                for (const level in structure) {
+                    const levelContainer = document.getElementById(level);
+                    if (!levelContainer) continue; // Por si hay niveles en el CSV que no están en los tabs
+                    
+                    let htmlContenido = '';
+
+                    for (const unit in structure[level]) {
+                        const unitData = structure[level][unit];
+                        
+                        let lessonsHtml = '';
+                        unitData.lessons.forEach(lesson => {
+                            lessonsHtml += `
+                                <div class="lesson-card locked-lesson">
+                                    <span class="lock-icon">🔒</span>
+                                    <span class="lesson-type">${lesson.type || 'Lección'}</span>
+                                    <span class="lesson-title">${lesson.title || 'Contenido interactivo'}</span>
+                                </div>
+                            `;
+                        });
+
+                        htmlContenido += `
+                            <div class="unit-accordion">
+                                <button class="accordion-header">
+                                    <div class="unit-title-group">
+                                        <span class="unit-number">U${unit}</span>
+                                        <span>${unitData.title || 'Unidad ' + unit}</span>
+                                    </div>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-body">
+                                    <div class="lessons-grid">
+                                        ${lessonsHtml}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    levelContainer.innerHTML = htmlContenido;
+                }
+
+                // Volver a vincular los eventos de los Acordeones y los Modales para los nuevos elementos creados
+                bindInteractions();
+
+            } catch (error) {
+                console.error("Error cargando la base de datos:", error);
+                document.getElementById('loader').innerText = "Hubo un error cargando las lecciones. Revisa tu conexión.";
+            }
+        }
+
+        // 3. VINCULAR INTERACCIONES DINÁMICAS
+        function bindInteractions() {
+            // Acordeones
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    parent.classList.toggle('active');
+                    const body = this.nextElementSibling;
+                    if (parent.classList.contains('active')) {
+                        // Se le suma extra px para asegurar que todo el grid interno sea visible
+                        body.style.maxHeight = body.scrollHeight + 150 + "px"; 
+                    } else {
+                        body.style.maxHeight = null;
+                    }
+                });
+            });
+
+            // Abrir la primera unidad automáticamente
+            const firstAccordion = document.querySelector('.accordion-header');
+            if (firstAccordion) firstAccordion.click();
+
+            // Modales de Lección (Candados)
+            const modal = document.getElementById("loginModal");
+            const openModalBtns = document.querySelectorAll('.locked-lesson');
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', () => { modal.style.display = "block"; });
+            });
+        }
+
+    const modal = document.getElementById("loginModal");
+    const openBtn = document.getElementById("openLoginBtn");
+    const closeBtn = document.getElementById("closeLoginBtn");
+    
+    // El formulario del modal
+    const loginForm = document.querySelector(".login-form");
+    const emailInput = loginForm.querySelector('input[type="email"]');
+    const passInput = loginForm.querySelector('input[type="password"]');
+    const submitBtn = loginForm.querySelector('.submit-btn');
+
+    // PEGA AQUÍ LA URL DE TU APPS SCRIPT
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
+
+    openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+    closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) { modal.style.display = "none"; resetForm(); }
+    });
+
+    function resetForm() {
+        loginForm.reset();
+        submitBtn.innerText = "Iniciar Sesión";
+        submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Evita que la página se recargue
+
+        // Cambiar estado del botón a cargando
+        submitBtn.innerText = "Verificando...";
+        submitBtn.style.backgroundColor = "var(--gris-neutro)";
+
+        const credentials = {
+            email: emailInput.value,
+            password: passInput.value
+        };
+
+        try {
+            const response = await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(credentials)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                submitBtn.innerText = "¡Acceso Concedido!";
+                submitBtn.style.backgroundColor = "#4CAF50"; // Verde de éxito
+                
+                // Aquí guardamos la sesión en el navegador
+                localStorage.setItem('hub_user_name', result.name);
+                localStorage.setItem('hub_user_status', 'Inscrito');
+                localStorage.setItem('hub_user_level', result.level);
+
+                setTimeout(() => {
+                    modal.style.display = "none";
+                    alert(`¡Hola ${result.name}! Ya tienes acceso al contenido de tus lecciones.`);
+                    // Si estás en contenido.html, aquí podrías desbloquear las lecciones
+                    window.location.reload(); 
+                }, 1500);
+
+            } else {
+                submitBtn.innerText = "Error";
+                submitBtn.style.backgroundColor = "#E91E63"; // Rojo de error
+                alert(result.message);
+                
+                setTimeout(() => {
+                    submitBtn.innerText = "Intentar de nuevo";
+                    submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+                }, 2000);
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+            resetForm();
+        }
+    });
+
+    </script>
+</body>
+</html>

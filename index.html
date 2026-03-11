@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Ivan HUB - Domina el Inglés</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Colores y Tipografía de la Marca */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3, .logo-container { font-family: var(--font-titulares); margin: 0; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: transform 0.2s, background-color 0.3s; }
+        button:hover { transform: translateY(-2px); }
+
+        @keyframes logoReveal {
+            0% { opacity: 0; transform: scale(0.8) translateY(-20px); filter: blur(5px); }
+            70% { opacity: 1; transform: scale(1.05) translateY(0); filter: blur(0px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes logoShine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-start;
+            background-size: cover; background-position: center;
+            background-image: linear-gradient(rgba(10, 70, 140, 0.8), rgba(10, 70, 140, 0.95)), url('https://i.imgur.com/AIOtoMn.jpeg');
+            color: var(--blanco-nieve);
+        }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem;
+        }
+
+        .logo-container { position: relative; display: flex; align-items: center; animation: logoReveal 1.2s ease-out forwards; }
+        .logo-img { height: 120px; width: auto; object-fit: contain; }
+
+        .logo-container::after {
+            content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(250, 250, 240, 0.2), transparent);
+            animation: logoShine 3s infinite; animation-delay: 1s;
+        }
+
+        nav ul {
+            list-style: none; display: flex; gap: 2.5rem; margin: 0; padding: 0;
+            font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        nav a:hover { color: var(--naranja-vibrante); }
+        .nav-active { color: var(--naranja-vibrante); }
+
+        .login-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve); color: var(--blanco-nieve);
+            padding: 0.6rem 2rem; font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .login-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        .hero-content {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; flex-grow: 1; padding: 0 4rem;
+        }
+
+        .hero-title {
+            font-size: 5rem; font-weight: 800; line-height: 1.1; letter-spacing: -1px;
+            margin-bottom: 1.5rem; text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+        }
+        .hero-title::after { content: "*"; vertical-align: super; font-size: 3rem; color: var(--naranja-vibrante); }
+
+        .hero-subtitle {
+            font-size: 1.2rem; font-weight: 300; color: var(--blanco-nieve);
+            max-width: 700px; margin-bottom: 2.5rem; line-height: 1.6;
+        }
+
+        .cta-btn {
+            background-color: var(--naranja-vibrante); color: var(--blanco-nieve);
+            padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 600; display: flex;
+            align-items: center; gap: 1rem; border-radius: 4px; box-shadow: 0 4px 15px rgba(245, 110, 30, 0.3);
+        }
+        .cta-btn::after { content: "→"; font-size: 1.2rem; }
+
+        /* Main Content Section */
+        main { background-color: var(--blanco-nieve); padding: 6rem 4rem; position: relative; flex-grow: 1; }
+
+        .levels-section { display: flex; flex-direction: column; gap: 4rem; }
+        .section-header { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+        .section-marker {
+            font-size: 0.8rem; color: var(--gris-neutro); font-weight: 600; letter-spacing: 2px;
+            writing-mode: vertical-rl; transform: rotate(180deg); position: absolute;
+            left: 2rem; top: 6rem; text-transform: uppercase;
+        }
+
+        .section-title { font-size: 3rem; font-weight: 800; color: var(--azul-primario); margin-bottom: 1rem; }
+        .section-description { font-size: 1.1rem; color: var(--azul-primario); opacity: 0.8; line-height: 1.7; max-width: 800px; }
+
+        /* Carousel/Cards */
+        .carousel-container { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+        .levels-carousel { display: flex; gap: 2.5rem; overflow-x: auto; padding: 1rem 0 3rem 0; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; width: 100%; }
+        .levels-carousel::-webkit-scrollbar { display: none; }
+
+        .level-card {
+            background-color: var(--azul-primario); color: var(--blanco-nieve); border-radius: 8px;
+            padding: 3rem; width: 380px; flex-shrink: 0; position: relative; display: flex;
+            flex-direction: column; align-items: center; text-align: center; box-shadow: 0 10px 30px rgba(10, 70, 140, 0.15);
+            transition: transform 0.3s ease;
+        }
+        .level-card:hover { transform: translateY(-5px); }
+
+        .card-border {
+            position: absolute; bottom: -15px; left: 0; width: 100%; height: 30px;
+            background-color: var(--naranja-vibrante); border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; z-index: -1;
+        }
+
+        .level-number { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 700; color: var(--azul-claro); margin-bottom: 1.5rem; letter-spacing: 1px; }
+
+        .level-icon-frame {
+            width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--azul-claro);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;
+            overflow: hidden; background-color: var(--blanco-nieve);
+        }
+        .level-icon-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .level-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+        .units-list {
+            list-style: none; padding: 0; margin: 0; text-align: left; font-size: 0.95rem;
+            color: var(--blanco-nieve); opacity: 0.9; line-height: 1.7; width: 100%;
+        }
+        .units-list li { position: relative; padding-left: 1.2rem; margin-bottom: 0.5rem; }
+        .units-list li::before { content: "■"; font-size: 0.6rem; position: absolute; left: 0; top: 6px; color: var(--naranja-vibrante); }
+
+        .card-btn {
+            background-color: var(--naranja-vibrante); color: var(--blanco-nieve); padding: 0.8rem 2rem;
+            font-size: 0.9rem; font-weight: 600; margin-top: 2rem; width: 80%; border-radius: 4px; display: inline-block; box-sizing: border-box; text-align: center;
+        }
+        .card-btn:hover { background-color: #e05e15; }
+
+        .carousel-control {
+            background: transparent; color: var(--azul-primario); font-size: 2.5rem;
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+        }
+        .carousel-control.prev { left: -3rem; }
+        .carousel-control.next { right: -3rem; }
+        .carousel-control:hover { color: var(--naranja-vibrante); }
+
+        .coming-soon-marker {
+            position: absolute; bottom: 2rem; right: 4rem; writing-mode: vertical-rl;
+            transform: rotate(180deg); font-size: 0.8rem; color: var(--gris-neutro); font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center;
+            padding: 1.5rem; font-size: 0.85rem; font-weight: 300; border-top: 4px solid var(--naranja-vibrante);
+            width: 100%;
+        }
+
+        /* --- MODAL DE LOGIN --- */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(10, 70, 140, 0.85); backdrop-filter: blur(5px); animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: var(--blanco-nieve); margin: 10vh auto; padding: 3rem; border-radius: 8px; width: 90%; max-width: 400px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center; color: var(--azul-primario); }
+        .close-btn { position: absolute; top: 15px; right: 20px; color: var(--gris-neutro); font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-btn:hover { color: var(--naranja-vibrante); }
+        .login-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+        .login-form input { padding: 1rem; border: 1px solid var(--gris-neutro); border-radius: 4px; font-family: var(--font-cuerpo); font-size: 1rem; }
+        .login-form input:focus { outline: none; border-color: var(--naranja-vibrante); }
+        .submit-btn { background-color: var(--naranja-vibrante); color: var(--blanco-nieve); padding: 1rem; font-size: 1.1rem; font-weight: 600; border-radius: 4px; }
+
+        @media (max-width: 900px) {
+            header { flex-direction: column; padding: 1.5rem; gap: 1.5rem; }
+            .logo-img { height: 90px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 0.8rem; }
+            .hero-content { padding: 0 1.5rem; }
+            .hero-title { font-size: 3rem; }
+            .hero-title::after { font-size: 2rem; }
+            main { padding: 4rem 1.5rem; }
+            .section-marker, .coming-soon-marker, .carousel-control { display: none; }
+            .section-title { font-size: 2rem; }
+            .level-card { width: 280px; padding: 2rem; }
+            .level-icon-frame { width: 120px; height: 120px; }
+            .level-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <header>
+            <div class="logo-container">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="logo-img">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-active">Inicio</a></li>
+                    <li><a href="ubicacion.html">Ubicación</a></li>
+                    <li><a href="contenido.html">Contenido</a></li>
+                    <li><a href="disponibilidad.html">Disponibilidad</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn" id="openLoginBtn">Login</button>
+        </header>
+
+        <div class="hero-content">
+            <h1 class="hero-title">DOMINA EL<br>INGLÉS</h1>
+            <p class="hero-subtitle">Deja atrás los métodos tradicionales. Únete a una comunidad exclusiva, aprende a tu propio ritmo y alcanza la fluidez que siempre has soñado. Tu futuro bilingüe comienza hoy.</p>
+            <button class="cta-btn" onclick="window.location.href='disponibilidad.html'">Inscríbete Ahora</button>
+        </div>
+    </section>
+
+    <main>
+        <div class="section-marker">01 / NIVELES DE APRENDIZAJE</div>
+
+        <section class="levels-section">
+            <div class="section-header">
+                <h2 class="section-title">DESATA TU POTENCIAL</h2>
+                <p class="section-description">Un plan curricular estratégico, desde los fundamentos básicos hasta el dominio avanzado. Explora nuestro contenido exclusivo y descubre de lo que eres capaz.</p>
+            </div>
+
+            <div class="carousel-container">
+                <button class="carousel-control prev">&#10094;</button>
+                <div class="levels-carousel" id="carousel">
+                    
+                    <div class="level-card">
+                        <div class="level-number">01 - A1</div>
+                        <div class="level-icon-frame"><img src="https://i.imgur.com/auIesyF.jpeg" alt="Icono A1"></div>
+                        <h3 class="level-title">Principiante</h3>
+                        <ul class="units-list">
+                            <li>Unidad 1: Conoce a Teacher Ivan</li>
+                            <li>Unidad 2: Mi Rutina Diaria</li>
+                            <li>Unidad 3: Comida y Nutrición</li>
+                            <li>Unidad 4: Mi Entorno</li>
+                            <li>Unidad 5: Talentos y Habilidades</li>
+                        </ul>
+                        <button class="card-btn" onclick="window.location.href='contenido.html'">Explorar Contenido</button>
+                        <div class="card-border"></div>
+                    </div>
+
+                    <div class="level-card">
+                        <div class="level-number">02 - A2</div>
+                        <div class="level-icon-frame"><img src="https://i.imgur.com/kIndRod.jpeg" alt="Icono A2"></div>
+                        <h3 class="level-title">Básico</h3>
+                        <ul class="units-list">
+                            <li>Unidad 1: Experiencias Pasadas</li>
+                            <li>Unidad 2: Fitness y Hobbies Activos</li>
+                            <li>Unidad 3: Metas de Futuro</li>
+                            <li>Unidad 4: Estilos de Vida Comparados</li>
+                            <li>Unidad 5: Reglas y Consejos</li>
+                        </ul>
+                        <button class="card-btn" onclick="window.location.href='contenido.html'">Explorar Contenido</button>
+                        <div class="card-border"></div>
+                    </div>
+
+                    <div class="level-card">
+                        <div class="level-number">03 - B1</div>
+                        <div class="level-icon-frame"><img src="https://i.imgur.com/0BJu1kY.jpeg" alt="Icono B1"></div>
+                        <h3 class="level-title">Intermedio</h3>
+                        <ul class="units-list">
+                            <li>Unidad 1: Hábitos Saludables</li>
+                            <li>Unidad 2: Contando Historias</li>
+                            <li>Unidad 3: Tecnología e Innovación</li>
+                            <li>Unidad 4: El Medio Ambiente</li>
+                            <li>Unidad 5: Relaciones y Networking</li>
+                        </ul>
+                        <button class="card-btn" onclick="window.location.href='contenido.html'">Explorar Contenido</button>
+                        <div class="card-border"></div>
+                    </div>
+
+                    <div class="level-card">
+                        <div class="level-number">04 - B2</div>
+                        <div class="level-icon-frame"><img src="https://i.imgur.com/7DdNdEz.jpeg" alt="Icono B2"></div>
+                        <h3 class="level-title">Avanzado</h3>
+                        <ul class="units-list">
+                            <li>Unidad 1: Alto Rendimiento</li>
+                            <li>Unidad 2: Opiniones y Debates</li>
+                            <li>Unidad 3: Situaciones Hipotéticas</li>
+                            <li>Unidad 4: Medios y Noticias</li>
+                            <li>Unidad 5: Inmersión Cultural</li>
+                        </ul>
+                        <button class="card-btn" onclick="window.location.href='contenido.html'">Explorar Contenido</button>
+                        <div class="card-border"></div>
+                    </div>
+
+                    <div class="level-card">
+                        <div class="level-number">05 - IELTS Prep.</div>
+                        <div class="level-icon-frame"><img src="https://i.imgur.com/xruH9IM.jpeg" alt="Icono IELTS"></div>
+                        <h3 class="level-title">IELTS Prep.</h3>
+                        <ul class="units-list">
+                            <li>Unidad 1: Data Description</li>
+                            <li>Unidad 2: Essay Writing</li>
+                            <li>Unidad 3: Speaking Part 1 & 2</li>
+                            <li>Unidad 4: Reading Strategies</li>
+                            <li>Unidad 5: Listening & Speaking Part 3</li>
+                        </ul>
+                        <button class="card-btn" onclick="window.location.href='contenido.html'">Explorar Contenido</button>
+                        <div class="card-border"></div>
+                    </div>
+
+                </div>
+                <button class="carousel-control next">&#10095;</button>
+            </div>
+        </section>
+
+        <div class="coming-soon-marker">02 / PRÓXIMAMENTE</div>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Teacher Ivan HUB. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginBtn">×</span>
+            <h2>Bienvenido al HUB</h2>
+            <p>Ingresa tus datos para continuar tu aprendizaje.</p>
+            <form class="login-form">
+                <input type="email" placeholder="Correo Electrónico" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit" class="submit-btn">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- Lógica del Carrusel ---
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.querySelector('.carousel-control.prev');
+        const nextBtn = document.querySelector('.carousel-control.next');
+
+        const getCardWidth = () => {
+            const card = document.querySelector('.level-card');
+            const style = window.getComputedStyle(carousel);
+            const gap = parseFloat(style.gap) || 40;
+            return card.offsetWidth + gap;
+        };
+
+        prevBtn.addEventListener('click', () => { carousel.scrollLeft -= getCardWidth(); });
+        nextBtn.addEventListener('click', () => { carousel.scrollLeft += getCardWidth(); });
+
+        carousel.addEventListener('scroll', () => {
+            const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+            prevBtn.style.opacity = carousel.scrollLeft <= 0 ? '0' : '1';
+            nextBtn.style.opacity = carousel.scrollLeft >= maxScrollLeft - 10 ? '0' : '1';
+        });
+        setTimeout(() => carousel.dispatchEvent(new Event('scroll')), 100);
+
+
+        // --- Lógica del Modal de Login ---
+        const modal = document.getElementById("loginModal");
+        const openBtn = document.getElementById("openLoginBtn");
+        const closeBtn = document.getElementById("closeLoginBtn");
+        const loginForm = document.querySelector(".login-form");
+        const submitBtn = loginForm.querySelector('.submit-btn');
+
+        // TU NUEVA URL DE GOOGLE APPS SCRIPT
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
+
+        if (openBtn) openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+        if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) { modal.style.display = "none"; resetForm(); }
+        });
+
+        function resetForm() {
+            loginForm.reset();
+            submitBtn.innerText = "Iniciar Sesión";
+            submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = loginForm.querySelector('input[type="email"]');
+            const passInput = loginForm.querySelector('input[type="password"]');
+            
+            submitBtn.innerText = "Verificando...";
+            submitBtn.style.backgroundColor = "var(--gris-neutro)";
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ email: emailInput.value, password: passInput.value })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    submitBtn.innerText = "¡Acceso Concedido!";
+                    submitBtn.style.backgroundColor = "#4CAF50";
+                    localStorage.setItem('hub_user_name', result.name);
+                    localStorage.setItem('hub_user_status', 'Inscrito');
+                    
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                        alert(`¡Hola ${result.name}! Ya tienes acceso.`);
+                    }, 1500);
+                } else {
+                    submitBtn.innerText = "Error";
+                    submitBtn.style.backgroundColor = "#E91E63";
+                    alert(result.message);
+                    setTimeout(resetForm, 2000);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+                resetForm();
+            }
+        });
+    </script>
+
+</body>
+</html>
