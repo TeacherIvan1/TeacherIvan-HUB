@@ -180,93 +180,106 @@
             width: 100%;
         }
 
-        /* --- MODAL DE LOGIN --- */
         /* --- MODAL DE LOGIN REDISEÑADO (MOBILE-FRIENDLY) --- */
-.modal { 
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    left: 0; top: 0; 
-    width: 100%; height: 100%; 
-    background-color: rgba(10, 70, 140, 0.9); 
-    backdrop-filter: blur(8px); 
-    animation: fadeIn 0.3s ease; 
-}
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background-color: rgba(10, 70, 140, 0.9); 
+            backdrop-filter: blur(8px); 
+            animation: fadeIn 0.3s ease; 
+        }
 
-.modal-content { 
-    background-color: var(--blanco-nieve); 
-    margin: 15vh auto; 
-    padding: 2rem 1.5rem; 
-    border-radius: 12px; 
-    width: 85%; 
-    max-width: 350px; 
-    position: relative; 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
-    text-align: center; 
-    color: var(--azul-primario); 
-}
+        .modal-content { 
+            background-color: var(--blanco-nieve); 
+            margin: 15vh auto; 
+            padding: 2rem 1.5rem; 
+            border-radius: 12px; 
+            width: 85%; 
+            max-width: 350px; 
+            position: relative; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
+            text-align: center; 
+            color: var(--azul-primario); 
+        }
 
-.modal-content h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--azul-primario);
-    font-family: var(--font-titulares);
-}
+        .modal-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--azul-primario);
+            font-family: var(--font-titulares);
+        }
 
-.modal-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.8;
-}
+        .modal-content p {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
 
-.close-btn { 
-    position: absolute; 
-    top: 10px; right: 15px; 
-    color: var(--gris-neutro); 
-    font-size: 24px; 
-    cursor: pointer; 
-}
+        .close-btn { 
+            position: absolute; 
+            top: 10px; right: 15px; 
+            color: var(--gris-neutro); 
+            font-size: 24px; 
+            cursor: pointer; 
+        }
 
-.login-form { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 1rem; 
-}
+        .login-form { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+        }
 
-.login-form input { 
-    padding: 0.8rem; 
-    border: 1.5px solid var(--gris-neutro); 
-    border-radius: 8px; 
-    font-size: 1rem; 
-    font-family: var(--font-cuerpo);
-    outline: none;
-    box-sizing: border-box;
-}
+        .login-form input { 
+            padding: 0.8rem; 
+            border: 1.5px solid var(--gris-neutro); 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            font-family: var(--font-cuerpo);
+            outline: none;
+            box-sizing: border-box;
+        }
 
-.login-form input:focus { 
-    border-color: var(--naranja-vibrante); 
-    box-shadow: 0 0 0 3px rgba(245, 110, 30, 0.1);
-}
+        .login-form input:focus { 
+            border-color: var(--naranja-vibrante); 
+            box-shadow: 0 0 0 3px rgba(245, 110, 30, 0.1);
+        }
 
-.submit-btn { 
-    background-color: var(--naranja-vibrante); 
-    color: var(--blanco-nieve); 
-    padding: 0.9rem; 
-    font-size: 1rem; 
-    font-weight: 700; 
-    border-radius: 8px; 
-    margin-top: 0.5rem;
-    box-shadow: 0 4px 12px rgba(245, 110, 30, 0.3);
-    width: 100%;
-}
+        .submit-btn { 
+            background-color: var(--naranja-vibrante); 
+            color: var(--blanco-nieve); 
+            padding: 0.9rem; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            border-radius: 8px; 
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 12px rgba(245, 110, 30, 0.3);
+            width: 100%;
+        }
 
-@media (max-width: 400px) {
-    .modal-content {
-        width: 90%;
-        margin: 10vh auto;
-        padding: 1.5rem 1rem;
-    }
-}
+        @media (max-width: 400px) {
+            .modal-content {
+                width: 90%;
+                margin: 10vh auto;
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            header { flex-direction: column; padding: 1.5rem; gap: 1.5rem; }
+            .logo-img { height: 90px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 0.8rem; }
+            .hero-content { padding: 0 1.5rem; }
+            .hero-title { font-size: 3rem; }
+            .hero-title::after { font-size: 2rem; }
+            main { padding: 4rem 1.5rem; }
+            .section-marker, .coming-soon-marker, .carousel-control { display: none; }
+            .section-title { font-size: 2rem; }
+            .level-card { width: 280px; padding: 2rem; }
+            .level-icon-frame { width: 120px; height: 120px; }
+            .level-title { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -397,43 +410,19 @@
     </footer>
 
     <div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" id="closeLoginBtn">&times;</span>
-        <h2>HOLA DE NUEVO</h2>
-        <p>Ingresa al HUB para continuar tus lecciones</p>
-        <form class="login-form">
-            <input type="email" placeholder="Tu correo electrónico" required>
-            <input type="password" placeholder="Tu contraseña" required>
-            <button type="submit" class="submit-btn">ENTRAR AHORA</button>
-        </form>
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginBtn">&times;</span>
+            <h2>HOLA DE NUEVO</h2>
+            <p>Ingresa al HUB para continuar tus lecciones</p>
+            <form class="login-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <input type="password" placeholder="Tu contraseña" required>
+                <button type="submit" class="submit-btn">ENTRAR AHORA</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <script>
-    // VERIFICACIÓN DE SESIÓN GLOBAL PARA EL HEADER
-    const userStatus = localStorage.getItem('hub_user_status');
-    const userName = localStorage.getItem('hub_user_name');
-    const openBtn = document.getElementById("openLoginBtn");
-    
-    if (userStatus === 'Inscrito' && userName && openBtn) {
-        const primerNombre = userName.split(' ')[0];
-        openBtn.innerText = `👤 Hola, ${primerNombre}`;
-        openBtn.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-        
-        openBtn.addEventListener("click", () => {
-            if(confirm("¿Deseas cerrar sesión en el HUB?")) {
-                localStorage.removeItem('hub_user_name');
-                localStorage.removeItem('hub_user_status');
-                localStorage.removeItem('hub_user_level');
-                window.location.reload();
-            }
-        });
-    } else if (openBtn) {
-        // Comportamiento normal si no está logueado (abre el modal)
-        openBtn.addEventListener("click", () => { document.getElementById("loginModal").style.display = "block"; });
-    }
-
-    // (Aquí debajo mantienes tu código normal de cierre del modal y envío del formulario que ya tienes)
         // --- Lógica del Carrusel ---
         const carousel = document.getElementById('carousel');
         const prevBtn = document.querySelector('.carousel-control.prev');
@@ -446,80 +435,107 @@
             return card.offsetWidth + gap;
         };
 
-        prevBtn.addEventListener('click', () => { carousel.scrollLeft -= getCardWidth(); });
-        nextBtn.addEventListener('click', () => { carousel.scrollLeft += getCardWidth(); });
+        if (prevBtn && nextBtn && carousel) {
+            prevBtn.addEventListener('click', () => { carousel.scrollLeft -= getCardWidth(); });
+            nextBtn.addEventListener('click', () => { carousel.scrollLeft += getCardWidth(); });
 
-        carousel.addEventListener('scroll', () => {
-            const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-            prevBtn.style.opacity = carousel.scrollLeft <= 0 ? '0' : '1';
-            nextBtn.style.opacity = carousel.scrollLeft >= maxScrollLeft - 10 ? '0' : '1';
-        });
-        setTimeout(() => carousel.dispatchEvent(new Event('scroll')), 100);
+            carousel.addEventListener('scroll', () => {
+                const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+                prevBtn.style.opacity = carousel.scrollLeft <= 0 ? '0' : '1';
+                nextBtn.style.opacity = carousel.scrollLeft >= maxScrollLeft - 10 ? '0' : '1';
+            });
+            setTimeout(() => carousel.dispatchEvent(new Event('scroll')), 100);
+        }
 
-
-        // --- Lógica del Modal de Login ---
+        // --- Lógica del Modal de Login y Sesión ---
         const modal = document.getElementById("loginModal");
         const openBtn = document.getElementById("openLoginBtn");
         const closeBtn = document.getElementById("closeLoginBtn");
         const loginForm = document.querySelector(".login-form");
-        const submitBtn = loginForm.querySelector('.submit-btn');
+        const submitBtn = loginForm ? loginForm.querySelector('.submit-btn') : null;
 
-        // TU NUEVA URL DE GOOGLE APPS SCRIPT
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
 
-        if (openBtn) openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+        // Verificación de sesión global
+        const userStatus = localStorage.getItem('hub_user_status');
+        const userName = localStorage.getItem('hub_user_name');
+
+        if (userStatus === 'Inscrito' && userName && openBtn) {
+            const primerNombre = userName.split(' ')[0];
+            openBtn.innerText = `👤 Hola, ${primerNombre}`;
+            openBtn.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+            
+            openBtn.addEventListener("click", () => {
+                if(confirm("¿Deseas cerrar sesión en el HUB?")) {
+                    localStorage.removeItem('hub_user_name');
+                    localStorage.removeItem('hub_user_status');
+                    localStorage.removeItem('hub_user_level');
+                    window.location.reload();
+                }
+            });
+        } else if (openBtn) {
+            // Si no hay sesión iniciada, abrir el modal de login
+            openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+        }
+
+        // Funciones para cerrar modal
         if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
         window.addEventListener("click", (event) => {
             if (event.target === modal) { modal.style.display = "none"; resetForm(); }
         });
 
         function resetForm() {
-            loginForm.reset();
-            submitBtn.innerText = "Iniciar Sesión";
-            submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+            if(loginForm) loginForm.reset();
+            if(submitBtn) {
+                submitBtn.innerText = "ENTRAR AHORA";
+                submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+            }
         }
 
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const emailInput = loginForm.querySelector('input[type="email"]');
-            const passInput = loginForm.querySelector('input[type="password"]');
-            
-            submitBtn.innerText = "Verificando...";
-            submitBtn.style.backgroundColor = "var(--gris-neutro)";
+        // Evento de envío de formulario de Login
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const emailInput = loginForm.querySelector('input[type="email"]');
+                const passInput = loginForm.querySelector('input[type="password"]');
+                
+                submitBtn.innerText = "Verificando...";
+                submitBtn.style.backgroundColor = "var(--gris-neutro)";
 
-            try {
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({ email: emailInput.value, password: passInput.value })
-                });
+                try {
+                    const response = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({ email: emailInput.value, password: passInput.value })
+                    });
 
-                const result = await response.json();
+                    const result = await response.json();
 
-                if (result.success) {
-                    submitBtn.innerText = "¡Acceso Concedido!";
-                    submitBtn.style.backgroundColor = "#4CAF50";
-                    localStorage.setItem('hub_user_name', result.name);
-                    localStorage.setItem('hub_user_status', 'Inscrito');
-                    
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                        alert(`¡Hola ${result.name}! Ya tienes acceso.`);
-                    }, 1500);
-                } else {
-                    submitBtn.innerText = "Error";
-                    submitBtn.style.backgroundColor = "#E91E63";
-                    alert(result.message);
-                    setTimeout(resetForm, 2000);
+                    if (result.success) {
+                        submitBtn.innerText = "¡Acceso Concedido!";
+                        submitBtn.style.backgroundColor = "#4CAF50";
+                        localStorage.setItem('hub_user_name', result.name);
+                        localStorage.setItem('hub_user_status', 'Inscrito');
+                        localStorage.setItem('hub_user_level', result.level);
+                        
+                        setTimeout(() => {
+                            modal.style.display = "none";
+                            alert(`¡Hola ${result.name}! Ya tienes acceso.`);
+                            window.location.reload(); // Recarga la página para mostrar "Hola, Nombre"
+                        }, 1500);
+                    } else {
+                        submitBtn.innerText = "Error";
+                        submitBtn.style.backgroundColor = "#E91E63";
+                        alert(result.message);
+                        setTimeout(resetForm, 2000);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+                    resetForm();
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert("Hubo un problema de conexión. Inténtalo de nuevo.");
-                resetForm();
-            }
-        });
+            });
+        }
     </script>
 
 </body>
-
 </html>
-
