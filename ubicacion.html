@@ -155,22 +155,36 @@
             margin: 0;
         }
 
-        /* Estilos para el nuevo Botón Imagen de WhatsApp */
+        /* Contenedor para centrar el botón */
+        .contact-wrapper {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Animación "Latido" para el botón de WhatsApp */
+        @keyframes pulse-animation {
+            0% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(245, 110, 30, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        }
+
         .whatsapp-link-img {
             display: inline-block;
-            margin-top: 1rem;
-            transition: transform 0.2s ease;
+            animation: pulse-animation 2s infinite;
+            border-radius: 8px; /* Para que la sombra de la animación encaje bien */
         }
 
         .whatsapp-link-img:hover {
-            transform: scale(1.05) translateY(-3px);
+            animation: none; /* Se detiene al pasar el mouse */
+            transform: scale(1.08) translateY(-3px);
+            transition: transform 0.2s ease;
         }
 
         .whatsapp-img-btn {
-            width: 200px; /* Ajusta el tamaño de la imagen del botón */
+            width: 220px; /* Tamaño optimizado */
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: block; /* Elimina espacio inferior extra de las imágenes */
         }
 
         .map-panel { min-height: 400px; }
@@ -306,16 +320,16 @@
 
                 <div class="info-block">
                     <h3 class="info-title">CONTACTO</h3>
-                    <p class="info-text">Reserva tu espacio a través de la plataforma o contáctame directamente para coordinar tu entrevista de nivel.</p>
-                    
-                    <a href="https://wa.me/59172878330?text=Hola%20Teacher%20Ivan%2C%20me%20gustar%C3%ADa%20coordinar%20una%20entrevista%20de%20nivel%20para%20inscribirme%20en%20el%20HUB." target="_blank" class="whatsapp-link-img">
-                        <img src="https://i.imgur.com/AoHYdFu.png" alt="Contáctame por WhatsApp" class="whatsapp-img-btn">
-                    </a>
+                    <div class="contact-wrapper">
+                        <a href="https://wa.me/59172878330?text=Hola%20Teacher%20Ivan%2C%20me%20gustar%C3%ADa%20coordinar%20una%20entrevista%20de%20nivel%20para%20inscribirme%20en%20el%20HUB." target="_blank" class="whatsapp-link-img">
+                            <img src="https://i.imgur.com/AoHYdFu.png" alt="Contáctame por WhatsApp" class="whatsapp-img-btn">
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div class="map-panel">
-                <iframe src="https://maps.google.com/maps?q=Calle%20Abdon%20Jurado%20190,%20Sucre,%20Bolivia&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://maps.app.goo.gl/bdj4dkcUzpwUUajC8" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
@@ -374,7 +388,6 @@
         const loginForm = document.querySelector(".login-form");
         const submitBtn = loginForm ? loginForm.querySelector('.submit-btn') : null;
 
-        // TU URL DE GOOGLE APPS SCRIPT
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
 
         if (openBtn) openBtn.addEventListener("click", () => { modal.style.display = "block"; });
