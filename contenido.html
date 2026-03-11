@@ -30,7 +30,6 @@
         a { text-decoration: none; color: inherit; transition: color 0.3s; }
         button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
 
-        /* Header Compacto */
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 1.5rem 4rem;
@@ -60,7 +59,6 @@
             flex-grow: 1; width: 100%; box-sizing: border-box;
         }
 
-        /* Banner de Cabecera */
         .content-header { text-align: center; margin-bottom: 4rem; }
         .page-title { font-size: 3rem; font-weight: 800; color: var(--azul-primario); margin-bottom: 1rem; }
         .page-title span { color: var(--naranja-vibrante); }
@@ -73,10 +71,8 @@
             margin-top: 1.5rem; font-size: 0.9rem; border: 1px solid rgba(245, 110, 30, 0.3);
         }
 
-        /* Loading Spinner */
         #loader { text-align: center; font-size: 1.2rem; color: var(--naranja-vibrante); font-weight: 600; margin: 3rem 0; }
 
-        /* Pestañas (Tabs) */
         .tabs-container { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
         .tab-btn {
             background-color: #E8ECEF; color: var(--azul-primario); padding: 1rem 2rem;
@@ -90,7 +86,6 @@
         .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
 
-        /* Acordeones de Unidades */
         .unit-accordion {
             background-color: #ffffff; border-radius: 8px; margin-bottom: 1.5rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #E8ECEF;
@@ -118,103 +113,31 @@
         .lesson-card {
             background-color: #ffffff; border: 1px dashed var(--gris-neutro); border-radius: 6px;
             padding: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; cursor: pointer;
-            transition: all 0.2s ease; position: relative;
+            transition: all 0.2s ease; position: relative; text-decoration: none; color: inherit;
         }
         .lesson-card:hover { border-color: var(--naranja-vibrante); background-color: rgba(245, 110, 30, 0.03); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(245, 110, 30, 0.1); }
+        
+        /* Estilo para lecciones desbloqueadas */
+        a.unlocked-lesson { border: 1px solid var(--azul-claro); background-color: #fdfdfd; }
+        a.unlocked-lesson:hover { border-color: var(--naranja-vibrante); background-color: rgba(245, 110, 30, 0.05); }
+
         .lesson-type { font-size: 0.75rem; font-weight: 700; color: var(--azul-claro); text-transform: uppercase; }
         .lesson-title { font-size: 0.95rem; font-weight: 600; color: var(--azul-primario); line-height: 1.4; padding-right: 1.5rem; }
         .lock-icon { position: absolute; top: 1.2rem; right: 1.2rem; color: var(--gris-neutro); font-size: 1.2rem; }
         .lesson-card:hover .lock-icon { color: var(--naranja-vibrante); }
 
-        /* Modal */
-        /* --- MODAL DE LOGIN REDISEÑADO (MOBILE-FRIENDLY) --- */
-.modal { 
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    left: 0; top: 0; 
-    width: 100%; height: 100%; 
-    background-color: rgba(10, 70, 140, 0.9); 
-    backdrop-filter: blur(8px); 
-    animation: fadeIn 0.3s ease; 
-}
+        /* Modal Rediseñado */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(10, 70, 140, 0.9); backdrop-filter: blur(8px); animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: var(--blanco-nieve); margin: 15vh auto; padding: 2rem 1.5rem; border-radius: 12px; width: 85%; max-width: 350px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; color: var(--azul-primario); }
+        .modal-content h2 { font-size: 1.4rem; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+        .modal-content p { font-size: 0.9rem; margin-bottom: 1.5rem; opacity: 0.8; }
+        .close-btn { position: absolute; top: 10px; right: 15px; color: var(--gris-neutro); font-size: 24px; cursor: pointer; }
+        .login-form { display: flex; flex-direction: column; gap: 1rem; }
+        .login-form input { padding: 0.8rem; border: 1.5px solid var(--gris-neutro); border-radius: 8px; font-size: 1rem; font-family: var(--font-cuerpo); outline: none; box-sizing: border-box; }
+        .login-form input:focus { border-color: var(--naranja-vibrante); box-shadow: 0 0 0 3px rgba(245, 110, 30, 0.1); }
+        .submit-btn { background-color: var(--naranja-vibrante); color: var(--blanco-nieve); padding: 0.9rem; font-size: 1rem; font-weight: 700; border-radius: 8px; margin-top: 0.5rem; box-shadow: 0 4px 12px rgba(245, 110, 30, 0.3); width: 100%; }
 
-.modal-content { 
-    background-color: var(--blanco-nieve); 
-    margin: 15vh auto; 
-    padding: 2rem 1.5rem; 
-    border-radius: 12px; 
-    width: 85%; 
-    max-width: 350px; 
-    position: relative; 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
-    text-align: center; 
-    color: var(--azul-primario); 
-}
-
-.modal-content h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--azul-primario);
-    font-family: var(--font-titulares);
-}
-
-.modal-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.8;
-}
-
-.close-btn { 
-    position: absolute; 
-    top: 10px; right: 15px; 
-    color: var(--gris-neutro); 
-    font-size: 24px; 
-    cursor: pointer; 
-}
-
-.login-form { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 1rem; 
-}
-
-.login-form input { 
-    padding: 0.8rem; 
-    border: 1.5px solid var(--gris-neutro); 
-    border-radius: 8px; 
-    font-size: 1rem; 
-    font-family: var(--font-cuerpo);
-    outline: none;
-    box-sizing: border-box;
-}
-
-.login-form input:focus { 
-    border-color: var(--naranja-vibrante); 
-    box-shadow: 0 0 0 3px rgba(245, 110, 30, 0.1);
-}
-
-.submit-btn { 
-    background-color: var(--naranja-vibrante); 
-    color: var(--blanco-nieve); 
-    padding: 0.9rem; 
-    font-size: 1rem; 
-    font-weight: 700; 
-    border-radius: 8px; 
-    margin-top: 0.5rem;
-    box-shadow: 0 4px 12px rgba(245, 110, 30, 0.3);
-    width: 100%;
-}
-
-@media (max-width: 400px) {
-    .modal-content {
-        width: 90%;
-        margin: 10vh auto;
-        padding: 1.5rem 1rem;
-    }
-}
-        
-        /* Footer */
         .site-footer { background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center; padding: 1.5rem; font-size: 0.85rem; font-weight: 300; border-top: 4px solid var(--naranja-vibrante); }
 
         @media (max-width: 900px) {
@@ -246,8 +169,9 @@
     <main>
         <div class="content-header">
             <h1 class="page-title">EXPLORA EL <span>CONTENIDO</span></h1>
-            <p class="page-subtitle">Un viaje de más de 250 lecciones interactivas creadas con código propio. Desde los fundamentos hasta el dominio absoluto del idioma. Selecciona tu nivel para ver el plan de estudios.</p>
-            <div class="locked-badge">
+            <p class="page-subtitle">Un viaje de más de 250 lecciones interactivas creadas con código propio. Desde los fundamentos hasta el dominio absoluto del idioma.</p>
+            
+            <div class="locked-badge" id="lockedBadge">
                 <span style="font-size: 1.2rem;">🔒</span> Contenido exclusivo para alumnos inscritos
             </div>
         </div>
@@ -275,21 +199,47 @@
     </footer>
 
     <div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" id="closeLoginBtn">&times;</span>
-        <h2>HOLA DE NUEVO</h2>
-        <p>Ingresa al HUB para continuar tus lecciones</p>
-        <form class="login-form">
-            <input type="email" placeholder="Tu correo electrónico" required>
-            <input type="password" placeholder="Tu contraseña" required>
-            <button type="submit" class="submit-btn">ENTRAR AHORA</button>
-        </form>
-    </div>
-</div>
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginBtn">&times;</span>
+            <h2>HOLA DE NUEVO</h2>
+            <p>Ingresa al HUB para continuar tus lecciones</p>
+            <form class="login-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <input type="password" placeholder="Tu contraseña" required>
+                <button type="submit" class="submit-btn">ENTRAR AHORA</button>
+            </form>
+        </div>
     </div>
 
     <script>
-        // 1. SISTEMA DE PESTAÑAS (TABS)
+        // --- 1. VERIFICACIÓN DE SESIÓN (LOGIN STATE) ---
+        const userStatus = localStorage.getItem('hub_user_status');
+        const userName = localStorage.getItem('hub_user_name');
+        const isLoggedIn = (userStatus === 'Inscrito');
+
+        const openBtn = document.getElementById("openLoginBtn");
+        const badge = document.getElementById("lockedBadge");
+        
+        // Si el usuario está logueado, ajustamos la cabecera
+        if (isLoggedIn && userName) {
+            const primerNombre = userName.split(' ')[0];
+            openBtn.innerText = `👤 Hola, ${primerNombre}`;
+            openBtn.style.backgroundColor = "rgba(255, 255, 255, 0.1)"; // Le da un toque especial
+            
+            if (badge) badge.style.display = "none"; // Ocultamos el cartel de "Contenido Exclusivo"
+
+            // Convertimos el botón en un "Cerrar Sesión"
+            openBtn.addEventListener("click", () => {
+                if(confirm("¿Deseas cerrar sesión en el HUB?")) {
+                    localStorage.removeItem('hub_user_name');
+                    localStorage.removeItem('hub_user_status');
+                    localStorage.removeItem('hub_user_level');
+                    window.location.reload();
+                }
+            });
+        }
+
+        // --- 2. SISTEMA DE PESTAÑAS (TABS) ---
         function openTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -297,15 +247,11 @@
             event.currentTarget.classList.add('active');
         }
 
-        // Función robusta para leer CSV sin romper por comas dentro del texto
         function parseCSV(str) {
-            const arr = [];
-            let quote = false;
-            let row = 0, col = 0;
+            const arr = []; let quote = false; let row = 0, col = 0;
             for (let c = 0; c < str.length; c++) {
                 let cc = str[c], nc = str[c+1];
-                arr[row] = arr[row] || [];
-                arr[row][col] = arr[row][col] || '';
+                arr[row] = arr[row] || []; arr[row][col] = arr[row][col] || '';
                 if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
                 if (cc == '"') { quote = !quote; continue; }
                 if (cc == ',' && !quote) { ++col; continue; }
@@ -317,63 +263,66 @@
             return arr;
         }
 
-        // 2. FUNCIÓN PARA CARGAR EL CSV DE GOOGLE SHEETS
+        // --- 3. CARGA DE DATOS Y RENDERIZADO DINÁMICO ---
         async function fetchLessons() {
             const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuXiLCPWUTkOa_On1zm5TeKFa0EZISnxIKR4CaX_5NKD1gl6qI7iD0Moe4xvI2dKLPVFQnnN2siflp/pub?output=csv';
             
             try {
                 const response = await fetch(csvUrl);
                 const data = await response.text();
-                
-                // Ocultar Loader
                 document.getElementById('loader').style.display = 'none';
                 
-                // Parsear CSV asegurando el contenido real
                 const rows = parseCSV(data);
-                
-                // Ignoramos la fila 0 (encabezados)
                 const lessons = rows.slice(1).filter(r => r.length >= 3);
-
                 const structure = {};
                 
                 lessons.forEach(row => {
                     const levelRaw = row[0];
                     if(!levelRaw) return;
 
-                    // Formatear nivel
                     const levelId = 'nivel-' + levelRaw.toLowerCase().replace(' prep', '').trim();
-                    const unitNum = row[1]; // Unidad
-                    const lessonTitle = row[2]; // Topic (Nombre de la lección)
-                    const lessonType = row[4] || row[3] || 'Lección'; // Vocabulary Focus o Key Grammar
+                    const unitNum = row[1];
+                    const lessonTitle = row[2];
+                    const lessonType = row[4] || row[3] || 'Lección'; 
+                    // Obtenemos el link de la columna G (índice 6). Si está vacía, ponemos #
+                    const lessonUrl = row[6] ? row[6].trim() : '#'; 
                     
                     if (!structure[levelId]) structure[levelId] = {};
                     if (!structure[levelId][unitNum]) structure[levelId][unitNum] = { title: 'Unidad ' + unitNum, lessons: [] };
                     
-                    structure[levelId][unitNum].lessons.push({ type: lessonType, title: lessonTitle });
+                    structure[levelId][unitNum].lessons.push({ type: lessonType, title: lessonTitle, url: lessonUrl });
                 });
 
-                // Renderizar en el HTML
                 for (const level in structure) {
                     const levelContainer = document.getElementById(level);
                     if (!levelContainer) continue; 
                     
                     let htmlContenido = '';
-                    
-                    // Ordenar unidades numéricamente
                     const sortedUnits = Object.keys(structure[level]).sort((a,b) => parseInt(a) - parseInt(b));
 
                     for (const unit of sortedUnits) {
                         const unitData = structure[level][unit];
-                        
                         let lessonsHtml = '';
+                        
                         unitData.lessons.forEach(lesson => {
-                            lessonsHtml += `
-                                <div class="lesson-card locked-lesson">
-                                    <span class="lock-icon">🔒</span>
-                                    <span class="lesson-type">${lesson.type}</span>
-                                    <span class="lesson-title">${lesson.title}</span>
-                                </div>
-                            `;
+                            // MAGIA AQUÍ: Renderizamos botones con enlace si está logueado, candados si no.
+                            if (isLoggedIn) {
+                                lessonsHtml += `
+                                    <a href="${lesson.url}" class="lesson-card unlocked-lesson" target="_blank">
+                                        <span class="lock-icon" style="color: #4CAF50;">▶</span>
+                                        <span class="lesson-type">${lesson.type}</span>
+                                        <span class="lesson-title">${lesson.title}</span>
+                                    </a>
+                                `;
+                            } else {
+                                lessonsHtml += `
+                                    <div class="lesson-card locked-lesson">
+                                        <span class="lock-icon">🔒</span>
+                                        <span class="lesson-type">${lesson.type}</span>
+                                        <span class="lesson-title">${lesson.title}</span>
+                                    </div>
+                                `;
+                            }
                         });
 
                         htmlContenido += `
@@ -393,22 +342,19 @@
                             </div>
                         `;
                     }
-                    
                     levelContainer.innerHTML = htmlContenido;
                 }
 
-                // Volver a vincular los eventos de los Acordeones y los Modales
                 bindInteractions();
 
             } catch (error) {
-                console.error("Error cargando la base de datos:", error);
-                document.getElementById('loader').innerText = "Hubo un error cargando las lecciones. Revisa tu conexión.";
+                console.error("Error:", error);
+                document.getElementById('loader').innerText = "Error cargando las lecciones.";
             }
         }
 
-        // 3. VINCULAR INTERACCIONES DINÁMICAS
+        // --- 4. INTERACCIONES (ACORDEONES Y MODAL) ---
         function bindInteractions() {
-            // Acordeones
             const accordions = document.querySelectorAll('.accordion-header');
             accordions.forEach(acc => {
                 acc.addEventListener('click', function() {
@@ -423,37 +369,38 @@
                 });
             });
 
-            // Abrir la primera unidad automáticamente
             const firstAccordion = document.querySelector('.accordion-header');
             if (firstAccordion) firstAccordion.click();
 
-            // Modales de Lección (Candados)
-            const modal = document.getElementById("loginModal");
-            const openModalBtns = document.querySelectorAll('.locked-lesson');
-            openModalBtns.forEach(btn => {
-                btn.addEventListener('click', () => { modal.style.display = "block"; });
-            });
+            // Si NO está logueado, hacemos que los candados abran el modal de Login
+            if (!isLoggedIn) {
+                const openModalBtns = document.querySelectorAll('.locked-lesson');
+                openModalBtns.forEach(btn => {
+                    btn.addEventListener('click', () => { modal.style.display = "block"; });
+                });
+            }
         }
 
-        // LÓGICA DEL MODAL DE LOGIN
+        // --- 5. LÓGICA DEL MODAL DE LOGIN (API) ---
         const modal = document.getElementById("loginModal");
-        const openBtn = document.getElementById("openLoginBtn");
         const closeBtn = document.getElementById("closeLoginBtn");
         const loginForm = document.querySelector(".login-form");
         const submitBtn = loginForm.querySelector('.submit-btn');
-
-        // URL DE GOOGLE APPS SCRIPT
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
 
-        if (openBtn) openBtn.addEventListener("click", () => { modal.style.display = "block"; });
-        if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
+        // Solo el botón superior abre el modal si no estamos logueados
+        if (openBtn && !isLoggedIn) {
+            openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+        }
+
+        closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
         window.addEventListener("click", (event) => {
             if (event.target === modal) { modal.style.display = "none"; resetForm(); }
         });
 
         function resetForm() {
             loginForm.reset();
-            submitBtn.innerText = "Iniciar Sesión";
+            submitBtn.innerText = "ENTRAR AHORA";
             submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
         }
 
@@ -483,8 +430,8 @@
 
                     setTimeout(() => {
                         modal.style.display = "none";
-                        alert(`¡Hola ${result.name}! Ya tienes acceso al contenido de tus lecciones.`);
-                        window.location.reload(); 
+                        alert(`¡Hola ${result.name}! Ya tienes acceso al contenido.`);
+                        window.location.reload(); // Recarga y libera el contenido
                     }, 1500);
 
                 } else {
@@ -505,13 +452,7 @@
             }
         });
 
-        // EJECUTAR CARGA DE LA BASE DE DATOS AL CARGAR LA PÁGINA
-        window.onload = () => {
-            fetchLessons();
-        };
-
+        window.onload = () => { fetchLessons(); };
     </script>
 </body>
 </html>
-
-
