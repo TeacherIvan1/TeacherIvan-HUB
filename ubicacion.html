@@ -458,6 +458,30 @@
     </footer>
 
     <script>
+    // VERIFICACIÓN DE SESIÓN GLOBAL PARA EL HEADER
+    const userStatus = localStorage.getItem('hub_user_status');
+    const userName = localStorage.getItem('hub_user_name');
+    const openBtn = document.getElementById("openLoginBtn");
+    
+    if (userStatus === 'Inscrito' && userName && openBtn) {
+        const primerNombre = userName.split(' ')[0];
+        openBtn.innerText = `👤 Hola, ${primerNombre}`;
+        openBtn.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+        
+        openBtn.addEventListener("click", () => {
+            if(confirm("¿Deseas cerrar sesión en el HUB?")) {
+                localStorage.removeItem('hub_user_name');
+                localStorage.removeItem('hub_user_status');
+                localStorage.removeItem('hub_user_level');
+                window.location.reload();
+            }
+        });
+    } else if (openBtn) {
+        // Comportamiento normal si no está logueado (abre el modal)
+        openBtn.addEventListener("click", () => { document.getElementById("loginModal").style.display = "block"; });
+    }
+
+    // (Aquí debajo mantienes tu código normal de cierre del modal y envío del formulario que ya tienes)
         const modal = document.getElementById("loginModal");
         const openBtn = document.getElementById("openLoginBtn");
         const closeBtn = document.getElementById("closeLoginBtn");
@@ -522,4 +546,5 @@
 
 </body>
 </html>
+
 
