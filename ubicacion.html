@@ -155,19 +155,27 @@
             margin: 0;
         }
 
-        .whatsapp-link {
-            color: var(--azul-claro);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
+        /* Estilos para el nuevo Botón Imagen de WhatsApp */
+        .whatsapp-link-img {
+            display: inline-block;
+            margin-top: 1rem;
+            transition: transform 0.2s ease;
         }
 
-        .whatsapp-link:hover { color: var(--naranja-vibrante); }
+        .whatsapp-link-img:hover {
+            transform: scale(1.05) translateY(-3px);
+        }
+
+        .whatsapp-img-btn {
+            width: 200px; /* Ajusta el tamaño de la imagen del botón */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
 
         .map-panel { min-height: 400px; }
 
+        /* Estilos del iframe del mapa corregido */
         .map-panel iframe {
             width: 100%;
             height: 100%;
@@ -225,94 +233,6 @@
 
         .gallery-item:hover .gallery-caption { transform: translateY(0); }
 
-        /* --- ESTILOS DEL MODAL DE LOGIN --- */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(10, 70, 140, 0.85); /* Azul institucional con transparencia */
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: var(--blanco-nieve);
-            margin: 10vh auto;
-            padding: 3rem;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            text-align: center;
-            color: var(--azul-primario);
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: var(--gris-neutro);
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover { color: var(--naranja-vibrante); }
-
-        .modal h2 { margin-bottom: 0.5rem; }
-        .modal p { font-size: 0.9rem; color: var(--gris-neutro); margin-bottom: 2rem; }
-
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        .login-form input {
-            padding: 1rem;
-            border: 1px solid var(--gris-neutro);
-            border-radius: 4px;
-            font-family: var(--font-cuerpo);
-            font-size: 1rem;
-            background-color: #ffffff;
-            color: var(--azul-primario);
-        }
-
-        .login-form input:focus {
-            outline: none;
-            border-color: var(--naranja-vibrante);
-            box-shadow: 0 0 5px rgba(245, 110, 30, 0.3);
-        }
-
-        .submit-btn {
-            background-color: var(--naranja-vibrante);
-            color: var(--blanco-nieve);
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 4px;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover { background-color: #e05e15; }
-
         /* Footer */
         .site-footer {
             background-color: var(--azul-primario);
@@ -323,6 +243,17 @@
             font-weight: 300;
             border-top: 4px solid var(--naranja-vibrante);
         }
+
+        /* MODAL DE LOGIN (REUTILIZADO) */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(10, 70, 140, 0.85); backdrop-filter: blur(5px); animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: var(--blanco-nieve); margin: 10vh auto; padding: 3rem; border-radius: 8px; width: 90%; max-width: 400px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center; color: var(--azul-primario); }
+        .close-btn { position: absolute; top: 15px; right: 20px; color: var(--gris-neutro); font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-btn:hover { color: var(--naranja-vibrante); }
+        .login-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+        .login-form input { padding: 1rem; border: 1px solid var(--gris-neutro); border-radius: 4px; font-family: var(--font-cuerpo); font-size: 1rem; }
+        .login-form input:focus { outline: none; border-color: var(--naranja-vibrante); }
+        .submit-btn { background-color: var(--naranja-vibrante); color: var(--blanco-nieve); padding: 1rem; font-size: 1.1rem; font-weight: 600; border-radius: 4px; }
 
         /* Responsive Móvil */
         @media (max-width: 900px) {
@@ -362,64 +293,59 @@
             <div class="info-panel">
                 <div class="info-block">
                     <h3 class="info-title">DIRECCIÓN</h3>
-                    <p class="info-text">Calle Abdon Jurado #190</p>
+                    <p class="info-text">Calle Abdón Jurado #190<br>Sucre, Bolivia</p>
                 </div>
                 
                 <div class="info-block">
                     <h3 class="info-title">CLASES PARTICULARES</h3>
                     <p class="info-text">
+                        Lunes a Viernes<br>
                         <strong>17:00 - 21:00 hrs</strong><br>
                     </p>
                 </div>
 
                 <div class="info-block">
                     <h3 class="info-title">CONTACTO</h3>
-                    <p class="info-text">Reserva tu espacio a través de la plataforma o contáctame directamente.</p>
-                    <a href="https://wa.me/59172878330" target="_blank" class="whatsapp-link">
-                        WhatsApp: +591 72878330 ↗
+                    <p class="info-text">Reserva tu espacio a través de la plataforma o contáctame directamente para coordinar tu entrevista de nivel.</p>
+                    
+                    <a href="https://wa.me/59172878330?text=Hola%20Teacher%20Ivan%2C%20me%20gustar%C3%ADa%20coordinar%20una%20entrevista%20de%20nivel%20para%20inscribirme%20en%20el%20HUB." target="_blank" class="whatsapp-link-img">
+                        <img src="https://i.imgur.com/AoHYdFu.png" alt="Contáctame por WhatsApp" class="whatsapp-img-btn">
                     </a>
                 </div>
             </div>
 
             <div class="map-panel">
-                <iframe src="https://maps.app.goo.gl/XMiDuSGBLwRof2hG8" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://maps.google.com/maps?q=Calle%20Abdon%20Jurado%20190,%20Sucre,%20Bolivia&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
         <div class="gallery-section">
             <h2 class="section-title">NUESTRAS INSTALACIONES</h2>
             <div class="gallery-grid">
-                
                 <div class="gallery-item">
                     <img src="https://i.imgur.com/s986NDr.jpeg" alt="Salón de clases 1">
                     <div class="gallery-caption">Ambiente de estudio enfocado (Salón 1)</div>
                 </div>
-
                 <div class="gallery-item">
                     <img src="https://i.imgur.com/tdcxBBe.jpeg" alt="Salón de clases 2">
                     <div class="gallery-caption">Recursos y material interactivo (Salón 2)</div>
                 </div>
-
                 <div class="gallery-item">
                     <img src="https://i.imgur.com/TpqCWus.jpeg" alt="Salón de clases 3">
                     <div class="gallery-caption">Espacio para clases personalizadas (Salón 3)</div>
                 </div>
-
                 <div class="gallery-item">
                     <img src="https://i.imgur.com/wKZZ1BO.jpeg" alt="Acceso a la casa">
                     <div class="gallery-caption">Acceso principal a las instalaciones</div>
                 </div>
-
                 <div class="gallery-item">
                     <img src="https://i.imgur.com/1hV4Cwx.jpeg" alt="Vista exterior">
                     <div class="gallery-caption">Vista exterior de la casa</div>
                 </div>
-
                 <div class="gallery-item">
                     <img src="https://i.imgur.com/MxResSU.jpeg" alt="Perlita, mascota de la casa">
                     <div class="gallery-caption">Perlita, la gata mascota de la casa</div>
                 </div>
-
             </div>
         </div>
     </main>
@@ -430,7 +356,7 @@
 
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" id="closeLoginBtn">&times;</span>
+            <span class="close-btn" id="closeLoginBtn">×</span>
             <h2>Bienvenido al HUB</h2>
             <p>Ingresa tus datos para continuar tu aprendizaje.</p>
             <form class="login-form">
@@ -446,15 +372,15 @@
         const openBtn = document.getElementById("openLoginBtn");
         const closeBtn = document.getElementById("closeLoginBtn");
         const loginForm = document.querySelector(".login-form");
-        const submitBtn = loginForm.querySelector('.submit-btn');
+        const submitBtn = loginForm ? loginForm.querySelector('.submit-btn') : null;
 
-        // IMPORTANTE: Reemplaza esto con la URL que te dio Google Apps Script
+        // TU URL DE GOOGLE APPS SCRIPT
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
 
         if (openBtn) openBtn.addEventListener("click", () => { modal.style.display = "block"; });
-        if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
+        if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; if(loginForm) resetForm(); });
         window.addEventListener("click", (event) => {
-            if (event.target === modal) { modal.style.display = "none"; resetForm(); }
+            if (event.target === modal) { modal.style.display = "none"; if(loginForm) resetForm(); }
         });
 
         function resetForm() {
@@ -463,47 +389,46 @@
             submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
         }
 
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const emailInput = loginForm.querySelector('input[type="email"]');
-            const passInput = loginForm.querySelector('input[type="password"]');
-            
-            submitBtn.innerText = "Verificando...";
-            submitBtn.style.backgroundColor = "var(--gris-neutro)";
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const emailInput = loginForm.querySelector('input[type="email"]');
+                const passInput = loginForm.querySelector('input[type="password"]');
+                
+                submitBtn.innerText = "Verificando...";
+                submitBtn.style.backgroundColor = "var(--gris-neutro)";
 
-            try {
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({ email: emailInput.value, password: passInput.value })
-                });
+                try {
+                    const response = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({ email: emailInput.value, password: passInput.value })
+                    });
 
-                const result = await response.json();
+                    const result = await response.json();
 
-                if (result.success) {
-                    submitBtn.innerText = "¡Acceso Concedido!";
-                    submitBtn.style.backgroundColor = "#4CAF50";
-                    localStorage.setItem('hub_user_name', result.name);
-                    localStorage.setItem('hub_user_status', 'Inscrito');
-                    
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                        alert(`¡Hola ${result.name}! Ya tienes acceso.`);
-                        if(window.location.pathname.includes('contenido.html')) {
-                            window.location.reload(); // Recarga para liberar candados si programamos esa lógica
-                        }
-                    }, 1500);
-                } else {
-                    submitBtn.innerText = "Error";
-                    submitBtn.style.backgroundColor = "#E91E63";
-                    alert(result.message);
-                    setTimeout(resetForm, 2000);
+                    if (result.success) {
+                        submitBtn.innerText = "¡Acceso Concedido!";
+                        submitBtn.style.backgroundColor = "#4CAF50";
+                        localStorage.setItem('hub_user_name', result.name);
+                        localStorage.setItem('hub_user_status', 'Inscrito');
+                        
+                        setTimeout(() => {
+                            modal.style.display = "none";
+                            alert(`¡Hola ${result.name}! Ya tienes acceso.`);
+                        }, 1500);
+                    } else {
+                        submitBtn.innerText = "Error";
+                        submitBtn.style.backgroundColor = "#E91E63";
+                        alert(result.message);
+                        setTimeout(resetForm, 2000);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+                    resetForm();
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert("Hubo un problema de conexión. Inténtalo de nuevo.");
-                resetForm();
-            }
-        });
+            });
+        }
     </script>
 
 </body>
