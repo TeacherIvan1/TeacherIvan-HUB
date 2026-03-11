@@ -129,7 +129,7 @@
         /* Modal */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(10, 70, 140, 0.85); backdrop-filter: blur(5px); animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .modal-content { background-color: var(--blanco-nieve); margin: 10vh auto; padding: 3rem; border-radius: 8px; width: 90%; max-width: 400px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center; }
+        .modal-content { background-color: var(--blanco-nieve); margin: 10vh auto; padding: 3rem; border-radius: 8px; width: 90%; max-width: 400px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center; color: var(--azul-primario); }
         .close-btn { position: absolute; top: 15px; right: 20px; color: var(--gris-neutro); font-size: 28px; font-weight: bold; cursor: pointer; }
         .close-btn:hover { color: var(--naranja-vibrante); }
         .login-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
@@ -220,6 +220,26 @@
             event.currentTarget.classList.add('active');
         }
 
+        // Función robusta para leer CSV sin romper por comas dentro del texto
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            let row = 0, col = 0;
+            for (let c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
         // 2. FUNCIÓN PARA CARGAR EL CSV DE GOOGLE SHEETS
         async function fetchLessons() {
             const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuXiLCPWUTkOa_On1zm5TeKFa0EZISnxIKR4CaX_5NKD1gl6qI7iD0Moe4xvI2dKLPVFQnnN2siflp/pub?output=csv';
@@ -231,29 +251,26 @@
                 // Ocultar Loader
                 document.getElementById('loader').style.display = 'none';
                 
-                // Parsear CSV (separado por comas)
-                const rows = data.split('\n').map(row => row.split(',').map(col => col.replace(/^"|"$/g, '').trim()));
+                // Parsear CSV asegurando el contenido real
+                const rows = parseCSV(data);
                 
-                // Suponemos la estructura de tu CSV (Ajustar índices si tus columnas están en otro orden)
-                // [0] Nivel, [1] Unidad, [2] Título Unidad, [3] Tipo de Lección, [4] Título Lección
-                
-                // Eliminar encabezado
-                const lessons = rows.slice(1).filter(r => r.length >= 4);
+                // Ignoramos la fila 0 (encabezados)
+                const lessons = rows.slice(1).filter(r => r.length >= 3);
 
-                // Agrupar por Niveles y luego por Unidades
                 const structure = {};
                 
                 lessons.forEach(row => {
                     const levelRaw = row[0];
-                    // Normalizar ID del nivel (ej. "A1" -> "nivel-a1", "IELTS" -> "nivel-ielts")
-                    const levelId = 'nivel-' + levelRaw.toLowerCase().replace(' prep', '').trim();
-                    const unitNum = row[1];
-                    const unitTitle = row[2];
-                    const lessonType = row[3];
-                    const lessonTitle = row[4];
+                    if(!levelRaw) return;
 
+                    // Formatear nivel
+                    const levelId = 'nivel-' + levelRaw.toLowerCase().replace(' prep', '').trim();
+                    const unitNum = row[1]; // Unidad
+                    const lessonTitle = row[2]; // Topic (Nombre de la lección)
+                    const lessonType = row[4] || row[3] || 'Lección'; // Vocabulary Focus o Key Grammar
+                    
                     if (!structure[levelId]) structure[levelId] = {};
-                    if (!structure[levelId][unitNum]) structure[levelId][unitNum] = { title: unitTitle, lessons: [] };
+                    if (!structure[levelId][unitNum]) structure[levelId][unitNum] = { title: 'Unidad ' + unitNum, lessons: [] };
                     
                     structure[levelId][unitNum].lessons.push({ type: lessonType, title: lessonTitle });
                 });
@@ -261,11 +278,14 @@
                 // Renderizar en el HTML
                 for (const level in structure) {
                     const levelContainer = document.getElementById(level);
-                    if (!levelContainer) continue; // Por si hay niveles en el CSV que no están en los tabs
+                    if (!levelContainer) continue; 
                     
                     let htmlContenido = '';
+                    
+                    // Ordenar unidades numéricamente
+                    const sortedUnits = Object.keys(structure[level]).sort((a,b) => parseInt(a) - parseInt(b));
 
-                    for (const unit in structure[level]) {
+                    for (const unit of sortedUnits) {
                         const unitData = structure[level][unit];
                         
                         let lessonsHtml = '';
@@ -273,8 +293,8 @@
                             lessonsHtml += `
                                 <div class="lesson-card locked-lesson">
                                     <span class="lock-icon">🔒</span>
-                                    <span class="lesson-type">${lesson.type || 'Lección'}</span>
-                                    <span class="lesson-title">${lesson.title || 'Contenido interactivo'}</span>
+                                    <span class="lesson-type">${lesson.type}</span>
+                                    <span class="lesson-title">${lesson.title}</span>
                                 </div>
                             `;
                         });
@@ -284,7 +304,7 @@
                                 <button class="accordion-header">
                                     <div class="unit-title-group">
                                         <span class="unit-number">U${unit}</span>
-                                        <span>${unitData.title || 'Unidad ' + unit}</span>
+                                        <span>${unitData.title}</span>
                                     </div>
                                     <span class="accordion-icon">▼</span>
                                 </button>
@@ -300,7 +320,7 @@
                     levelContainer.innerHTML = htmlContenido;
                 }
 
-                // Volver a vincular los eventos de los Acordeones y los Modales para los nuevos elementos creados
+                // Volver a vincular los eventos de los Acordeones y los Modales
                 bindInteractions();
 
             } catch (error) {
@@ -319,7 +339,6 @@
                     parent.classList.toggle('active');
                     const body = this.nextElementSibling;
                     if (parent.classList.contains('active')) {
-                        // Se le suma extra px para asegurar que todo el grid interno sea visible
                         body.style.maxHeight = body.scrollHeight + 150 + "px"; 
                     } else {
                         body.style.maxHeight = null;
@@ -339,84 +358,80 @@
             });
         }
 
-    const modal = document.getElementById("loginModal");
-    const openBtn = document.getElementById("openLoginBtn");
-    const closeBtn = document.getElementById("closeLoginBtn");
-    
-    // El formulario del modal
-    const loginForm = document.querySelector(".login-form");
-    const emailInput = loginForm.querySelector('input[type="email"]');
-    const passInput = loginForm.querySelector('input[type="password"]');
-    const submitBtn = loginForm.querySelector('.submit-btn');
+        // LÓGICA DEL MODAL DE LOGIN
+        const modal = document.getElementById("loginModal");
+        const openBtn = document.getElementById("openLoginBtn");
+        const closeBtn = document.getElementById("closeLoginBtn");
+        const loginForm = document.querySelector(".login-form");
+        const submitBtn = loginForm.querySelector('.submit-btn');
 
-    // PEGA AQUÍ LA URL DE TU APPS SCRIPT
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
+        // URL DE GOOGLE APPS SCRIPT
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
 
-    openBtn.addEventListener("click", () => { modal.style.display = "block"; });
-    closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
-    window.addEventListener("click", (event) => {
-        if (event.target === modal) { modal.style.display = "none"; resetForm(); }
-    });
+        if (openBtn) openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+        if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetForm(); });
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) { modal.style.display = "none"; resetForm(); }
+        });
 
-    function resetForm() {
-        loginForm.reset();
-        submitBtn.innerText = "Iniciar Sesión";
-        submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
-    }
-
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Evita que la página se recargue
-
-        // Cambiar estado del botón a cargando
-        submitBtn.innerText = "Verificando...";
-        submitBtn.style.backgroundColor = "var(--gris-neutro)";
-
-        const credentials = {
-            email: emailInput.value,
-            password: passInput.value
-        };
-
-        try {
-            const response = await fetch(APPS_SCRIPT_URL, {
-                method: 'POST',
-                body: JSON.stringify(credentials)
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                submitBtn.innerText = "¡Acceso Concedido!";
-                submitBtn.style.backgroundColor = "#4CAF50"; // Verde de éxito
-                
-                // Aquí guardamos la sesión en el navegador
-                localStorage.setItem('hub_user_name', result.name);
-                localStorage.setItem('hub_user_status', 'Inscrito');
-                localStorage.setItem('hub_user_level', result.level);
-
-                setTimeout(() => {
-                    modal.style.display = "none";
-                    alert(`¡Hola ${result.name}! Ya tienes acceso al contenido de tus lecciones.`);
-                    // Si estás en contenido.html, aquí podrías desbloquear las lecciones
-                    window.location.reload(); 
-                }, 1500);
-
-            } else {
-                submitBtn.innerText = "Error";
-                submitBtn.style.backgroundColor = "#E91E63"; // Rojo de error
-                alert(result.message);
-                
-                setTimeout(() => {
-                    submitBtn.innerText = "Intentar de nuevo";
-                    submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
-                }, 2000);
-            }
-
-        } catch (error) {
-            console.error('Error:', error);
-            alert("Hubo un problema de conexión. Inténtalo de nuevo.");
-            resetForm();
+        function resetForm() {
+            loginForm.reset();
+            submitBtn.innerText = "Iniciar Sesión";
+            submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
         }
-    });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            submitBtn.innerText = "Verificando...";
+            submitBtn.style.backgroundColor = "var(--gris-neutro)";
+
+            const emailInput = loginForm.querySelector('input[type="email"]');
+            const passInput = loginForm.querySelector('input[type="password"]');
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ email: emailInput.value, password: passInput.value })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    submitBtn.innerText = "¡Acceso Concedido!";
+                    submitBtn.style.backgroundColor = "#4CAF50"; 
+                    
+                    localStorage.setItem('hub_user_name', result.name);
+                    localStorage.setItem('hub_user_status', 'Inscrito');
+                    localStorage.setItem('hub_user_level', result.level);
+
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                        alert(`¡Hola ${result.name}! Ya tienes acceso al contenido de tus lecciones.`);
+                        window.location.reload(); 
+                    }, 1500);
+
+                } else {
+                    submitBtn.innerText = "Error";
+                    submitBtn.style.backgroundColor = "#E91E63"; 
+                    alert(result.message);
+                    
+                    setTimeout(() => {
+                        submitBtn.innerText = "Intentar de nuevo";
+                        submitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+                    }, 2000);
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+                resetForm();
+            }
+        });
+
+        // EJECUTAR CARGA DE LA BASE DE DATOS AL CARGAR LA PÁGINA
+        window.onload = () => {
+            fetchLessons();
+        };
 
     </script>
 </body>
