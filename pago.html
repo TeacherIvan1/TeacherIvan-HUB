@@ -20,7 +20,10 @@
         .logo-img { height: 60px; width: auto; object-fit: contain; }
         nav ul { list-style: none; display: flex; gap: 2.5rem; margin: 0; padding: 0; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
         nav a:hover { color: var(--naranja-vibrante); }
+        .nav-active { color: var(--naranja-vibrante); }
+
         .login-btn { background-color: transparent; border: 1px solid var(--blanco-nieve); color: var(--blanco-nieve); padding: 0.5rem 1.5rem; font-size: 0.9rem; font-weight: 600; border-radius: 4px; }
+        .login-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
         
         main { padding: 4rem; max-width: 1200px; margin: 0 auto; flex-grow: 1; width: 100%; box-sizing: border-box; }
         .page-title { font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 3rem; }
@@ -38,19 +41,33 @@
         
         .qr-section { display: flex; flex-direction: column; align-items: center; text-align: center; background: #f9fafa; padding: 2rem; border-radius: 8px; border: 1px dashed var(--gris-neutro); }
         
-        /* Estilo para la imagen real del QR */
         .qr-image { width: 220px; height: 220px; object-fit: contain; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid white; }
         
-        .submit-btn { background: var(--naranja-vibrante); color: white; padding: 1.2rem; font-size: 1.1rem; font-weight: 700; border-radius: 6px; margin-top: 1rem; text-transform: uppercase; }
-        .submit-btn:hover { background: #e05e15; transform: translateY(-2px); }
+        .submit-btn, .register-btn { background: var(--naranja-vibrante); color: white; padding: 1.2rem; font-size: 1.1rem; font-weight: 700; border-radius: 6px; margin-top: 1rem; text-transform: uppercase; width: 100%; box-sizing: border-box;}
+        .submit-btn:hover, .register-btn:hover { background: #e05e15; transform: translateY(-2px); }
 
         .site-footer { background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center; padding: 1.5rem; font-size: 0.85rem; font-weight: 300; border-top: 4px solid var(--naranja-vibrante); }
+
+        /* MODAL DE LOGIN (Mobile-Friendly) */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(10, 70, 140, 0.9); backdrop-filter: blur(8px); animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: var(--blanco-nieve); margin: 15vh auto; padding: 2rem 1.5rem; border-radius: 12px; width: 85%; max-width: 350px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; color: var(--azul-primario); }
+        .modal-content h2 { font-size: 1.4rem; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+        .modal-content p { font-size: 0.9rem; margin-bottom: 1.5rem; opacity: 0.8; }
+        .close-btn { position: absolute; top: 10px; right: 15px; color: var(--gris-neutro); font-size: 24px; cursor: pointer; }
+        .login-form { display: flex; flex-direction: column; gap: 1rem; }
+        .login-form input { padding: 0.8rem; border: 1.5px solid var(--gris-neutro); border-radius: 8px; font-size: 1rem; font-family: var(--font-cuerpo); outline: none; box-sizing: border-box; }
+        .login-form input:focus { border-color: var(--naranja-vibrante); box-shadow: 0 0 0 3px rgba(245, 110, 30, 0.1); }
+        .submit-btn { padding: 0.9rem; font-size: 1rem; border-radius: 8px; margin-top: 0.5rem; box-shadow: 0 4px 12px rgba(245, 110, 30, 0.3); }
 
         @media (max-width: 900px) {
             header { flex-direction: column; padding: 1.5rem; gap: 1rem; }
             nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
             main { padding: 2rem 1.5rem; }
             .payment-container { grid-template-columns: 1fr; gap: 2rem; }
+        }
+        @media (max-width: 400px) {
+            .modal-content { width: 90%; margin: 10vh auto; padding: 1.5rem 1rem; }
         }
     </style>
 </head>
@@ -68,7 +85,7 @@
                 <li><a href="disponibilidad.html">Disponibilidad</a></li>
             </ul>
         </nav>
-        <button class="login-btn" onclick="alert('Usa el modal de otra página para iniciar sesión una vez registrado.')">Login</button>
+        <button class="login-btn" id="openLoginBtn">Login</button>
     </header>
 
     <main>
@@ -90,17 +107,17 @@
                         <label>Plan Elegido</label>
                         <select id="regPlan" required>
                             <option value="">Selecciona un plan...</option>
-                            <option value="digital">Digital HUB (50 Bs)</option>
-                            <option value="clase">Por Clase (40 Bs)</option>
-                            <option value="mensual">Plan Mensual (350 Bs)</option>
-                            <option value="ielts">IELTS Plan (TBA)</option>
+                            <option value="Digital HUB">Digital HUB (50 Bs)</option>
+                            <option value="Por Clase">Por Clase (40 Bs)</option>
+                            <option value="Plan Mensual">Plan Mensual (350 Bs)</option>
+                            <option value="IELTS Plan">IELTS Plan (TBA)</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Número de Transacción / Recibo</label>
                         <input type="text" id="regTx" placeholder="Ingresa el N° de comprobante" required>
                     </div>
-                    <button type="submit" class="submit-btn">Enviar y Confirmar</button>
+                    <button type="submit" class="register-btn" id="registerBtn">Enviar y Confirmar</button>
                 </form>
             </div>
 
@@ -117,7 +134,7 @@
                 </div>
                 
                 <p style="font-size: 0.85rem; color: var(--gris-neutro); margin-top: 2rem;">
-                    Una vez verificado el pago, recibirás un correo con tu contraseña temporal para acceder a todo el contenido.
+                    Una vez verificado el pago, recibirás tu acceso. Tu contraseña temporal por defecto será <strong>hub2026</strong>.
                 </p>
             </div>
         </div>
@@ -127,18 +144,161 @@
         <p>© 2026 Teacher Ivan HUB. Todos los derechos reservados.</p>
     </footer>
 
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginBtn">&times;</span>
+            <h2>HOLA DE NUEVO</h2>
+            <p>Ingresa al HUB para continuar tus lecciones</p>
+            <form class="login-form" id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Tu correo electrónico" required>
+                <input type="password" id="loginPass" placeholder="Tu contraseña" required>
+                <button type="submit" class="submit-btn" id="loginSubmitBtn">ENTRAR AHORA</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        document.getElementById('enrollForm').addEventListener('submit', function(e) {
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgyGoSVWXsHEv8pUmKc-togeRxBHPexjT57fPCZeOQDOqiPbDafQts2LAb0imIuD7t/exec';
+
+        // --- 1. LÓGICA DE REGISTRO DE PAGO ---
+        const enrollForm = document.getElementById('enrollForm');
+        const registerBtn = document.getElementById('registerBtn');
+
+        enrollForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            registerBtn.innerText = "Registrando...";
+            registerBtn.style.backgroundColor = "var(--gris-neutro)";
+
             const name = document.getElementById('regName').value;
-            const plan = document.getElementById('regPlan').options[document.getElementById('regPlan').selectedIndex].text;
-            
-            const msg = `Hola Teacher Ivan! Acabo de llenar el formulario de inscripción.\n*Nombre:* ${name}\n*Plan:* ${plan}\n*N° Transacción:* ${document.getElementById('regTx').value}\n\nQuedo atento a mi acceso.`;
-            const url = `https://wa.me/59172878330?text=${encodeURIComponent(msg)}`;
-            
-            alert('Tus datos han sido registrados. Serás redirigido a WhatsApp para enviar una confirmación directa.');
-            window.open(url, '_blank');
+            const email = document.getElementById('regEmail').value;
+            const plan = document.getElementById('regPlan').value;
+            const tx = document.getElementById('regTx').value;
+
+            try {
+                // Enviamos los datos al Spreadsheet indicando la acción "register"
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        action: 'register', 
+                        name: name, 
+                        email: email, 
+                        plan: plan, 
+                        tx: tx 
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    registerBtn.innerText = "¡Registro Exitoso!";
+                    registerBtn.style.backgroundColor = "#4CAF50";
+                    
+                    // Prepara el mensaje de WhatsApp
+                    const msg = `Hola Teacher Ivan! Acabo de llenar el formulario de inscripción en el HUB.\n*Nombre:* ${name}\n*Plan:* ${plan}\n*N° Transacción:* ${tx}\n\nQuedo atento a la activación de mi cuenta.`;
+                    const url = `https://wa.me/59172878330?text=${encodeURIComponent(msg)}`;
+                    
+                    alert('Tus datos han sido registrados en nuestra base de datos. Serás redirigido a WhatsApp para confirmar la activación.');
+                    window.open(url, '_blank');
+                    enrollForm.reset();
+                    
+                    setTimeout(() => {
+                        registerBtn.innerText = "Enviar y Confirmar";
+                        registerBtn.style.backgroundColor = "var(--naranja-vibrante)";
+                    }, 3000);
+                } else {
+                    throw new Error("Error en el registro");
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Hubo un problema registrando tus datos. Por favor, contáctanos directamente por WhatsApp.");
+                registerBtn.innerText = "Intentar de nuevo";
+                registerBtn.style.backgroundColor = "var(--naranja-vibrante)";
+            }
         });
+
+        // --- 2. LÓGICA DEL MODAL DE LOGIN (UNIFICADO) ---
+        const modal = document.getElementById("loginModal");
+        const openBtn = document.getElementById("openLoginBtn");
+        const closeBtn = document.getElementById("closeLoginBtn");
+        const loginForm = document.getElementById("loginForm");
+        const loginSubmitBtn = document.getElementById("loginSubmitBtn");
+
+        // Verificación de sesión global
+        const userStatus = localStorage.getItem('hub_user_status');
+        const userName = localStorage.getItem('hub_user_name');
+
+        if (userStatus === 'Inscrito' && userName && openBtn) {
+            const primerNombre = userName.split(' ')[0];
+            openBtn.innerText = `👤 Hola, ${primerNombre}`;
+            openBtn.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+            
+            openBtn.addEventListener("click", () => {
+                if(confirm("¿Deseas cerrar sesión en el HUB?")) {
+                    localStorage.removeItem('hub_user_name');
+                    localStorage.removeItem('hub_user_status');
+                    localStorage.removeItem('hub_user_level');
+                    window.location.reload();
+                }
+            });
+        } else if (openBtn) {
+            openBtn.addEventListener("click", () => { modal.style.display = "block"; });
+        }
+
+        if (closeBtn) closeBtn.addEventListener("click", () => { modal.style.display = "none"; resetLoginForm(); });
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) { modal.style.display = "none"; resetLoginForm(); }
+        });
+
+        function resetLoginForm() {
+            if(loginForm) loginForm.reset();
+            if(loginSubmitBtn) {
+                loginSubmitBtn.innerText = "ENTRAR AHORA";
+                loginSubmitBtn.style.backgroundColor = "var(--naranja-vibrante)";
+            }
+        }
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const emailInput = document.getElementById('loginEmail');
+                const passInput = document.getElementById('loginPass');
+                
+                loginSubmitBtn.innerText = "Verificando...";
+                loginSubmitBtn.style.backgroundColor = "var(--gris-neutro)";
+
+                try {
+                    const response = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({ email: emailInput.value, password: passInput.value })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        loginSubmitBtn.innerText = "¡Acceso Concedido!";
+                        loginSubmitBtn.style.backgroundColor = "#4CAF50";
+                        localStorage.setItem('hub_user_name', result.name);
+                        localStorage.setItem('hub_user_status', 'Inscrito');
+                        localStorage.setItem('hub_user_level', result.level);
+                        
+                        setTimeout(() => {
+                            modal.style.display = "none";
+                            alert(`¡Hola ${result.name}! Ya tienes acceso.`);
+                            window.location.reload(); 
+                        }, 1500);
+                    } else {
+                        loginSubmitBtn.innerText = "Error";
+                        loginSubmitBtn.style.backgroundColor = "#E91E63";
+                        alert(result.message);
+                        setTimeout(resetLoginForm, 2000);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+                    resetLoginForm();
+                }
+            });
+        }
     </script>
 </body>
 </html>
