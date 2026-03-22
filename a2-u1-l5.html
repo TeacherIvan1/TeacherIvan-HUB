@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: We didn't stay at home - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a2-color: #F56E1E; 
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a2-color); }
+
+        /* Vocabulario Extendido */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a2-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a2-color); }
+
+        /* Gramática y Hacks */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--a2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .grammar-rule-box {
+            background-color: #fff3e0; border: 2px dashed var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 8px; text-align: center; margin: 1.5rem 0;
+        }
+        .formula { font-size: 1.4rem; font-family: var(--font-titulares); color: var(--azul-primario); }
+        .formula span { color: var(--naranja-vibrante); font-weight: 800; }
+        
+        .alert-box {
+            background-color: #fdf3eb; border-left: 5px solid var(--a2-color);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #8a3c0e;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+        .wrong-text { text-decoration: line-through; margin-right: 1rem; font-weight: bold; color: #dc3545;}
+        .correct-text { font-weight: bold; color: #28a745;}
+
+        .highlight-irr { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--a2-color); color: white; border-color: var(--a2-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d65c15; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A2 • Unit 1 • Lesson 5</span>
+            <h1 class="lesson-title">We didn't stay at home</h1>
+            <p class="lesson-objective">Objective: Master the Negative Past Simple to talk about things you did not do.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Weekend Activities</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these common activities. Today we will talk about what we <strong>didn't</strong> do!</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏠</span>
+                    <span class="vocab-en">Stay at home</span>
+                    <span class="vocab-es">Quedarse en casa</span>
+                    <button class="audio-btn" onclick="playSound('Stay at home')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧹</span>
+                    <span class="vocab-en">Clean the house</span>
+                    <span class="vocab-es">Limpiar la casa</span>
+                    <button class="audio-btn" onclick="playSound('Clean the house')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⏰</span>
+                    <span class="vocab-en">Wake up early</span>
+                    <span class="vocab-es">Despertar temprano</span>
+                    <button class="audio-btn" onclick="playSound('Wake up early')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">👨‍🍳</span>
+                    <span class="vocab-en">Cook dinner</span>
+                    <span class="vocab-es">Cocinar la cena</span>
+                    <button class="audio-btn" onclick="playSound('Cook dinner')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🍿</span>
+                    <span class="vocab-en">Watch a movie</span>
+                    <span class="vocab-es">Ver una película</span>
+                    <button class="audio-btn" onclick="playSound('Watch a movie')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🐀</span>
+                    <span class="vocab-en">Catch a mouse</span>
+                    <span class="vocab-es">Atrapar un ratón (Perlita!)</span>
+                    <button class="audio-btn" onclick="playSound('Catch a mouse')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The Magic Eraser</h2>
+            
+            <div class="grammar-box">
+                <p>To make a negative sentence in the past, we use the auxiliary <strong>Did not</strong> (or the short form <strong>Didn't</strong>) for ALL pronouns.</p>
+                
+                <div class="grammar-rule-box">
+                    <div class="formula">Subject + <span>DIDN'T</span> + <span>Base Verb</span> (Normal)</div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🪄 THE MAGIC ERASER TRAP!</div>
+                <p>At Colegio Fielding, this is the #1 mistake in A2! Think of <strong>Didn't</strong> as a magic eraser. When you write <em>Didn't</em>, it <strong>erases</strong> the past tense of the main verb.</p>
+                <p style="margin-top: 1rem;">
+                    <span class="wrong-text">I didn't walked.</span> ➔ <span class="correct-text">I didn't WALK.</span><br>
+                    <span class="wrong-text">She didn't went.</span> ➔ <span class="correct-text">She didn't GO.</span><br>
+                    <span class="wrong-text">We didn't stayed.</span> ➔ <span class="correct-text">We didn't STAY.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>A Lazy Sunday in Sucre</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"Last Sunday was a very rainy day in Sucre. My girlfriend and I <span class="highlight-irr">didn't wake up</span> early. We <span class="highlight-irr">didn't go</span> to the CrossFit gym because of the weather. But we <span class="highlight-irr">didn't stay</span> at home all day, either! We went to the city center, but we <span class="highlight-irr">didn't walk</span>; we took a taxi. We ate some delicious salteñas, so we <span class="highlight-irr">didn't cook</span> dinner. And what about Perlita? She <span class="highlight-irr">didn't catch</span> any mice. She just slept on the sofa!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('Last Sunday was a very rainy day in Sucre. My girlfriend and I didn\'t wake up early. We didn\'t go to the CrossFit gym because of the weather. But we didn\'t stay at home all day, either! We went to the city center, but we didn\'t walk; we took a taxi. We ate some delicious salteñas, so we didn\'t cook dinner. And what about Perlita? She didn\'t catch any mice. She just slept on the sofa!')">🔊 Listen to the story</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--a2-color);">
+            <h2 class="section-title"><span>3.</span> Final Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Remember the Magic Eraser rule! You must score 5/5 to unlock Lesson 6.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Rule:</strong> After the auxiliary "didn't", the main verb must be in...</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="past" class="eval-radio"><label for="q1a" class="eval-label">the past tense (e.g., went).</label>
+                        <input type="radio" name="q1" id="q1b" value="base" class="eval-radio"><label for="q1b" class="eval-label">the base form (e.g., go).</label>
+                        <input type="radio" name="q1" id="q1c" value="ing" class="eval-radio"><label for="q1c" class="eval-label">the -ing form (e.g., going).</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Grammar:</strong> Choose the correct negative sentence.</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="wrong1" class="eval-radio"><label for="q2a" class="eval-label">My students didn't did the homework.</label>
+                        <input type="radio" name="q2" id="q2b" value="correct" class="eval-radio"><label for="q2b" class="eval-label">My students didn't do the homework.</label>
+                        <input type="radio" name="q2" id="q2c" value="wrong2" class="eval-radio"><label for="q2c" class="eval-label">My students don't did the homework.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>The Trap:</strong> "Yesterday, we _____ (not / stay) at the hotel."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="didntstayed" class="eval-radio"><label for="q3a" class="eval-label">didn't stayed</label>
+                        <input type="radio" name="q3" id="q3b" value="dontstay" class="eval-radio"><label for="q3b" class="eval-label">don't stay</label>
+                        <input type="radio" name="q3" id="q3c" value="didntstay" class="eval-radio"><label for="q3c" class="eval-label">didn't stay</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> Why didn't Teacher Ivan and his girlfriend walk to the city center?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="taxi" class="eval-radio"><label for="q4a" class="eval-label">Because they took a taxi.</label>
+                        <input type="radio" name="q4" id="q4b" value="tired" class="eval-radio"><label for="q4b" class="eval-label">Because they were tired.</label>
+                        <input type="radio" name="q4" id="q4c" value="crossfit" class="eval-radio"><label for="q4c" class="eval-label">Because they ran to the CrossFit gym.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> What DIDN'T Perlita do on Sunday?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="sleep" class="eval-radio"><label for="q5a" class="eval-label">She didn't sleep.</label>
+                        <input type="radio" name="q5" id="q5b" value="mouse" class="eval-radio"><label for="q5b" class="eval-label">She didn't catch any mice.</label>
+                        <input type="radio" name="q5" id="q5c" value="eat" class="eval-radio"><label for="q5c" class="eval-label">She didn't eat her food.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job using the Magic Eraser! Moving to Lesson 6.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'base', q2: 'correct', q3: 'didntstay', q4: 'taxi', q5: 'mouse' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully used the Magic Eraser. No more 'didn't went'!";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: DIDN'T erases the past tense! It is always 'didn't go', never 'didn't went'. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

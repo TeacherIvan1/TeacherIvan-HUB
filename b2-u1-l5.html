@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Tracking your diet - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b2-color: #6f42c1; /* Color B2 (Púrpura Amatista) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b2-color); }
+
+        /* Vocabulario B2 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b2-color); box-shadow: 0 5px 15px rgba(111, 66, 193, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b2-color); }
+
+        /* Gramática: Quantifiers */
+        .grammar-box {
+            background-color: rgba(111, 66, 193, 0.05); border-left: 5px solid var(--b2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 200px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-rule { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--b2-color); font-weight: 700; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #444; font-size: 0.95rem; margin-top: 0.8rem; padding-left: 10px; border-left: 3px solid var(--b2-color);}
+        
+        .badge-pos { background-color: #d4edda; color: #155724; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem;}
+        .badge-neg { background-color: #f8d7da; color: #721c24; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b2 { color: var(--b2-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b2-color); color: white; border-color: var(--b2-color); box-shadow: 0 3px 10px rgba(111, 66, 193, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #5a32a3; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B2 • Unit 1 • Lesson 5</span>
+            <h1 class="lesson-title">Tracking your diet</h1>
+            <p class="lesson-objective">Objective: Express precise quantities using Advanced Quantifiers and the "A" rule.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Macros & Diet</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">To talk about diets like a pro, you need these B2 Phrasal Verbs and Collocations.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🥩</span>
+                    <span class="vocab-en">Lean protein</span>
+                    <span class="vocab-es">Proteína magra</span>
+                    <button class="audio-btn" onclick="playSound('Lean protein')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">✂️</span>
+                    <span class="vocab-en">Cut down on...</span>
+                    <span class="vocab-es">Reducir el consumo de...</span>
+                    <button class="audio-btn" onclick="playSound('Cut down on sugar')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⚖️</span>
+                    <span class="vocab-en">Measure portions</span>
+                    <span class="vocab-es">Medir porciones</span>
+                    <button class="audio-btn" onclick="playSound('Measure portions')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🔥</span>
+                    <span class="vocab-en">Burn calories</span>
+                    <span class="vocab-es">Quemar calorías</span>
+                    <button class="audio-btn" onclick="playSound('Burn calories')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Advanced Quantifiers</h2>
+            
+            <div class="grammar-box">
+                <p>In B1, you learned "much" and "many". Now in B2, we need to express psychology and exact amounts. The most important rule is the <strong>Power of "A"</strong>. Adding the letter "A" changes the meaning from negative to positive!</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">A few / A little</div>
+                        <div class="comp-rule badge-pos">POSITIVE (Some / Enough)</div>
+                        <p style="font-size: 0.9rem; color: #555;">You have a small amount, but it is enough. You are happy.</p>
+                        <div class="comp-example">"I have <span class="highlight-b2">a few</span> almonds for a snack." (I'm okay).</div>
+                        <div class="comp-example">"I have <span class="highlight-b2">a little</span> energy left." (I can do one more rep).</div>
+                    </div>
+                    
+                    <div class="comp-card">
+                        <div class="comp-title">Few / Little</div>
+                        <div class="comp-rule badge-neg">NEGATIVE (Not enough)</div>
+                        <p style="font-size: 0.9rem; color: #555;">You have almost zero. It is not enough. You are sad/worried.</p>
+                        <div class="comp-example">"I have <span class="highlight-orange">few</span> almonds." (I am still starving!).</div>
+                        <div class="comp-example">"I have <span class="highlight-orange">little</span> energy left." (I need to stop now).</div>
+                    </div>
+                </div>
+
+                <h3 style="font-family: var(--font-titulares); color: var(--azul-primario); margin-top: 1.5rem;">More B2 Upgrades:</h3>
+                <ul style="line-height: 1.8; color: #444;">
+                    <li>Instead of "A lot of", use ➔ <strong>Plenty of</strong> (More than enough).</li>
+                    <li>Instead of "Almost zero", use ➔ <strong>Hardly any</strong> (Casi nada).</li>
+                </ul>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 The Countable Trap</div>
+                <p>Never mix them up! Use <strong>Few / A Few</strong> for things you can count with numbers (Calories, meals, almonds, reps). Use <strong>Little / A Little</strong> for uncountable concepts (Protein, water, time, energy, sugar).</p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The CrossFit Diet</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"When my girlfriend and I prepare for a CrossFit competition, tracking our diet is essential. We have to measure our portions carefully to make sure we get <span class="highlight-b2">plenty of</span> lean protein.</p>
+                <p>Living in Sucre, the altitude makes you dehydrated quickly, so we drink <span class="highlight-b2">a great deal of</span> water. I try to cut down on junk food, so I eat <span class="highlight-b2">hardly any</span> sugar during the week. Sometimes, I eat <span class="highlight-b2">a few</span> strawberries before training just to get <span class="highlight-b2">a little</span> extra energy.</p>
+                <p>Unfortunately, Perlita the cat doesn't understand macros. She burns very <span class="highlight-orange">few</span> calories because she just sleeps all day. She shows <span class="highlight-orange">little</span> interest in my healthy salads; she only wants her tuna!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('When my girlfriend and I prepare for a CrossFit competition, tracking our diet is essential. We have to measure our portions carefully to make sure we get plenty of lean protein. Living in Sucre, the altitude makes you dehydrated quickly, so we drink a great deal of water. I try to cut down on junk food, so I eat hardly any sugar during the week. Sometimes, I eat a few strawberries before training just to get a little extra energy. Unfortunately, Perlita the cat does not understand macros. She burns very few calories because she just sleeps all day. She shows little interest in my healthy salads; she only wants her tuna!')">🔊 Listen to the text</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b2-color);">
+            <h2 class="section-title"><span>3.</span> B2 Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Can you master the "A" rule and countability? Score 5/5 to unlock Lesson 6.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>The "A" Rule:</strong> "I'm so thirsty, and I have _____ water left. We need to buy more!" (Negative meaning).</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="alittle" class="eval-radio"><label for="q1a" class="eval-label">a little</label>
+                        <input type="radio" name="q1" id="q1b" value="little" class="eval-radio"><label for="q1b" class="eval-label">little</label>
+                        <input type="radio" name="q1" id="q1c" value="few" class="eval-radio"><label for="q1c" class="eval-label">few</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Countable vs Uncountable:</strong> "Ivan has _____ friends at the CrossFit gym." (Positive meaning).</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="afew" class="eval-radio"><label for="q2a" class="eval-label">a few</label>
+                        <input type="radio" name="q2" id="q2b" value="alittle" class="eval-radio"><label for="q2b" class="eval-label">a little</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>B2 Vocabulary:</strong> What does "Hardly any" mean?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="alot" class="eval-radio"><label for="q3a" class="eval-label">A lot of something</label>
+                        <input type="radio" name="q3" id="q3b" value="almostnone" class="eval-radio"><label for="q3b" class="eval-label">Almost zero / Casi nada</label>
+                        <input type="radio" name="q3" id="q3c" value="hard" class="eval-radio"><label for="q3c" class="eval-label">Something very difficult</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> Why does Ivan drink "a great deal of" water?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="altitude" class="eval-radio"><label for="q4a" class="eval-label">Because the altitude in Sucre makes you dehydrated.</label>
+                        <input type="radio" name="q4" id="q4b" value="sugar" class="eval-radio"><label for="q4b" class="eval-label">Because he eats hardly any sugar.</label>
+                        <input type="radio" name="q4" id="q4c" value="cat" class="eval-radio"><label for="q4c" class="eval-label">Because Perlita drinks all the milk.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>The "A" Rule:</strong> "Don't worry, we have _____ time before the class starts. We can grab a coffee."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="little" class="eval-radio"><label for="q5a" class="eval-label">little</label>
+                        <input type="radio" name="q5" id="q5b" value="few" class="eval-radio"><label for="q5b" class="eval-label">few</label>
+                        <input type="radio" name="q5" id="q5c" value="alittle" class="eval-radio"><label for="q5c" class="eval-label">a little</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job with your quantities! Moving to Lesson 6.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'little', q2: 'afew', q3: 'almostnone', q4: 'altitude', q5: 'alittle' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e6dcf5";
+                resultsDiv.style.color = "#4a2c82";
+                resultsDiv.style.border = "1px solid #c9b8e8";
+                resultsDiv.innerHTML = "🏆 DIET MASTER (5/5)! You completely understand the psychological difference between 'A little' and 'Little'.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: 'Little/Few' without the "A" means you are sad because it's not enough! Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>

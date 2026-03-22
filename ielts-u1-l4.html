@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Pie Charts - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales IELTS */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --ielts-color: #990000; /* Color IELTS (Rojo Carmesí Académico) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--ielts-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--ielts-color); }
+
+        /* Vocabulario Académico IELTS */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid #e0e0e0; border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--ielts-color); box-shadow: 0 5px 15px rgba(153, 0, 0, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--ielts-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: #333; }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        .vocab-synonym { font-size: 0.85rem; font-weight: 800; color: var(--ielts-color); background: #fdf0f0; padding: 0.2rem 0.6rem; border-radius: 4px; margin-top: 0.5rem;}
+        
+        .audio-btn {
+            background-color: #333; color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--ielts-color); }
+
+        /* Gramática: Pie Chart Strategies */
+        .grammar-box {
+            background-color: rgba(153, 0, 0, 0.03); border-left: 5px solid var(--ielts-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: #333; margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fdf0f0; color: var(--ielts-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #444; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--ielts-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        /* Reading Model Answer */
+        .reading-paper {
+            background-color: #fff; border: 1px solid #e0e0e0;
+            padding: 2.5rem; border-radius: 4px; line-height: 1.8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative;
+            color: #333;
+        }
+        .reading-paper::before {
+            content: 'Band 8.0 Model Answer';
+            position: absolute; top: 0; right: 0; background: var(--ielts-color); color: white; padding: 0.3rem 1rem; border-radius: 0 4px 0 8px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;
+        }
+        
+        .hl-red { color: var(--ielts-color); font-weight: 700; }
+        .hl-blue { color: var(--azul-primario); font-weight: 700; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem; color: #333;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff; color: #444;
+        }
+        .eval-label:hover { border-color: #999; background-color: #f9f9f9; }
+        .eval-radio:checked + .eval-label { background-color: var(--ielts-color); color: white; border-color: var(--ielts-color); box-shadow: 0 3px 10px rgba(153, 0, 0, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--ielts-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #660000; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--ielts-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">IELTS Academic • Writing • Lesson 4</span>
+            <h1 class="lesson-title">Pie Charts & Proportions</h1>
+            <p class="lesson-objective">Objective: Describe fractions, allocate data to categories, and master the "Respectively" rule.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Academic Vocabulary: Fractions</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">To score highly in Lexical Resource, do not repeat the word "percent". Use these fractions instead.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🍕</span>
+                    <span class="vocab-en">A quarter</span>
+                    <span class="vocab-es">Un cuarto (25%)</span>
+                    <span class="vocab-synonym">"Exactly a quarter of..."</span>
+                    <button class="audio-btn" onclick="playSound('A quarter')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📐</span>
+                    <span class="vocab-en">A third</span>
+                    <span class="vocab-es">Un tercio (≈33%)</span>
+                    <span class="vocab-synonym">"Roughly a third of..."</span>
+                    <button class="audio-btn" onclick="playSound('A third')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🌗</span>
+                    <span class="vocab-en">Exactly half</span>
+                    <span class="vocab-es">Exactamente la mitad (50%)</span>
+                    <span class="vocab-synonym">"Accounted for half of..."</span>
+                    <button class="audio-btn" onclick="playSound('Exactly half')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧩</span>
+                    <span class="vocab-en">The remaining portion</span>
+                    <span class="vocab-es">La porción restante</span>
+                    <span class="vocab-synonym">"The remainder..."</span>
+                    <button class="audio-btn" onclick="playSound('The remaining portion')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> The Language of Proportion</h2>
+            
+            <div class="grammar-box">
+                <p>When describing a Pie Chart, you need verbs that mean "representar" or "constituir". The best verbs for this are <strong>Account for</strong>, <strong>Make up</strong>, and <strong>Comprise</strong>.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">Describing a single slice</div>
+                        <div class="comp-formula">Subject + accounted for + [Fraction]</div>
+                        <p style="font-size: 0.9rem; color: #555;">Use this to present the data of one specific category.</p>
+                        <div class="comp-example">"Protein <span class="hl-red">accounted for a third</span> of the total diet."</div>
+                        <div class="comp-example">"Carbohydrates <span class="hl-red">made up exactly half</span>."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">The "Respectively" Rule</div>
+                        <div class="comp-formula">A and B were X and Y, respectively.</div>
+                        <p style="font-size: 0.9rem; color: #555;">A high-level technique to list two categories and two numbers efficiently in the same sentence.</p>
+                        <div class="comp-example">"Apples and Bananas made up 10% and 5% <span class="hl-blue">respectively</span>."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE TINY SLICES TRAP</div>
+                <p>If a pie chart has 8 different categories, DO NOT write a sentence for each one. The examiner will fall asleep and you will lose points. You must <strong>group the tiny slices</strong> together.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #28a745;">
+                    ✅ <span style="color: #28a745;">"The remaining 15% was comprised of smaller categories, including vitamins and minerals."</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Model Answer Analysis: <em>The Athlete vs. The Feline</em></h3>
+            <p style="color: #555; margin-bottom: 1rem;">Imagine two pie charts. They display the daily macronutrient intake (Carbohydrates, Protein, Fat) of Teacher Ivan during a CrossFit competition week, compared to the diet of his cat, Perlita.</p>
+
+            <div class="reading-paper">
+                <p>The two pie charts illustrate the daily macronutrient distribution in the diets of a human athlete, Teacher Ivan, and his domestic cat, Perlita.</p>
+                
+                <p>Overall, there is <span class="hl-blue">a striking difference</span> between the two diets. While the human relies heavily on carbohydrates for energy, the feline's nutritional intake is overwhelmingly dominated by fats.</p>
+                
+                <p>Looking specifically at the athlete’s chart, carbohydrates <span class="hl-red">accounted for exactly half</span> (50%) of his total daily intake, which is essential for demanding sports like CrossFit. Protein also <span class="hl-red">made up a significant proportion</span>, representing <span class="hl-blue">roughly a third</span> (30%) of the diet to aid muscle recovery. <span class="hl-blue">The remaining portion</span> consisted entirely of fats, which comprised 20%.</p>
+                
+                <p>In stark contrast, Perlita’s dietary breakdown shows an entirely different pattern. Fats, primarily derived from tuna and resting habits, constituted <span class="hl-blue">the vast majority</span> of her intake at an astonishing 70%. Protein and carbohydrates <span class="hl-red">made up</span> 25% and a mere 5% <span class="hl-red">respectively</span>. This demonstrates that while the cat consumed <span class="hl-blue">exactly a quarter</span> of her diet as protein, her need for energetic carbohydrates was almost non-existent.</p>
+                
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; margin-top: 1rem; background-color: #333;" onclick="playSound('Looking specifically at the athlete’s chart, carbohydrates accounted for exactly half of his total daily intake. Protein also made up a significant proportion, representing roughly a third of the diet to aid muscle recovery. In stark contrast, Perlita’s dietary breakdown shows an entirely different pattern. Fats constituted the vast majority of her intake at an astonishing 70 percent. Protein and carbohydrates made up 25 percent and a mere 5 percent respectively.')">🔊 Listen to the Body Paragraphs</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--ielts-color);">
+            <h2 class="section-title"><span>3.</span> IELTS Strategy Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Master the fractions and the vocabulary of proportion. Score 5/5 to unlock Lesson 5!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Vocabulary:</strong> What is the best academic synonym for "represents" or "is" when describing a pie slice?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="accountsfor" class="eval-radio"><label for="q1a" class="eval-label">Accounts for</label>
+                        <input type="radio" name="q1" id="q1b" value="does" class="eval-radio"><label for="q1b" class="eval-label">Does</label>
+                        <input type="radio" name="q1" id="q1c" value="has" class="eval-radio"><label for="q1c" class="eval-label">Has</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Lexical Resource:</strong> If a category represents exactly 33%, how should you write it to increase your score?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="thirtythree" class="eval-radio"><label for="q2a" class="eval-label">thirty-three percent</label>
+                        <input type="radio" name="q2" id="q2b" value="third" class="eval-radio"><label for="q2b" class="eval-label">a third</label>
+                        <input type="radio" name="q2" id="q2c" value="quarter" class="eval-radio"><label for="q2c" class="eval-label">a quarter</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>The "Respectively" Rule:</strong> What does this sentence mean? "Philosophy and Math accounted for 10% and 15% respectively."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="both" class="eval-radio"><label for="q3a" class="eval-label">Both subjects accounted for 25% together.</label>
+                        <input type="radio" name="q3" id="q3b" value="order" class="eval-radio"><label for="q3b" class="eval-label">Philosophy = 10%, and Math = 15%.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Strategy:</strong> If your pie chart has 3 large slices and 5 tiny slices (2% each), what should you do?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="list" class="eval-radio"><label for="q4a" class="eval-label">Write one sentence for every single tiny slice.</label>
+                        <input type="radio" name="q4" id="q4b" value="group" class="eval-radio"><label for="q4b" class="eval-label">Group the 5 tiny slices into "the remaining portion".</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> In the Model Answer, what fraction of Perlita's diet was Protein?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="half" class="eval-radio"><label for="q5a" class="eval-label">Exactly half</label>
+                        <input type="radio" name="q5" id="q5b" value="quarter" class="eval-radio"><label for="q5b" class="eval-label">Exactly a quarter</label>
+                        <input type="radio" name="q5" id="q5c" value="third" class="eval-radio"><label for="q5c" class="eval-label">Roughly a third</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Perfect data grouping! Moving to Lesson 5.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'accountsfor', q2: 'third', q3: 'order', q4: 'group', q5: 'quarter' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#990000";
+                resultsDiv.style.border = "1px solid #ffcccc";
+                resultsDiv.innerHTML = "🏆 BAND 8.0 STRATEGY! You know exactly how to use fractions and 'Respectively' to group data.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: 33% is 'a third', 25% is 'a quarter', and you must ALWAYS group tiny slices together! Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>

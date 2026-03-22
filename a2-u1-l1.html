@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: A Trip to Sucre - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a2-color: #F56E1E; /* Color A2 (Naranja Pre-Intermedio) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a2-color); }
+
+        /* Vocabulario */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a2-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a2-color); font-weight: bold;}
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a2-color); }
+
+        /* Gramática */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--a2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+        
+        .grammar-table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+        .grammar-table th, .grammar-table td { padding: 1rem; border: 1px solid var(--gris-neutro); text-align: left; }
+        .grammar-table th { background-color: var(--azul-primario); color: white; font-family: var(--font-titulares); }
+
+        .highlight-a2 { color: var(--a2-color); font-weight: bold; }
+        .highlight-blue { color: var(--azul-primario); font-weight: bold; }
+
+        .alert-box {
+            background-color: #fdf3eb; border-left: 5px solid var(--a2-color);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #8a3c0e;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+        
+        .time-markers { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; justify-content: center;}
+        .marker-badge { background: white; border: 2px solid var(--a2-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold; color: var(--a2-color);}
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 1.8rem; padding-bottom: 1.2rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; }
+        .eval-options { display: flex; gap: 1rem; margin-top: 0.8rem; flex-wrap: wrap; }
+        .eval-radio { display: none; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--a2-color); color: white; border-color: var(--a2-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        
+        .eval-submit-btn {
+            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 1rem;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d65c15; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro);
+            background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        
+        .footer-buttons { display: flex; gap: 1rem; align-items: center; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a2-color); color: white; }
+        .btn-primary:hover { background-color: #d65c15; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A2 • Unit 1 • Lesson 1</span>
+            <h1 class="lesson-title">A Trip to Sucre</h1>
+            <p class="lesson-objective">Objective: Describe past locations using the Past Simple of the verb To Be (Was/Were).</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Places in Town</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Let's learn some places you can visit in a beautiful historical city like Sucre.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏛️</span>
+                    <span class="vocab-en">Museum</span>
+                    <span class="vocab-es">Museo</span>
+                    <button class="audio-btn" onclick="playSound('Museum')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⛲</span>
+                    <span class="vocab-en">Main Square</span>
+                    <span class="vocab-es">Plaza Principal</span>
+                    <button class="audio-btn" onclick="playSound('Main Square')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⛪</span>
+                    <span class="vocab-en">Church</span>
+                    <span class="vocab-es">Iglesia</span>
+                    <button class="audio-btn" onclick="playSound('Church')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🛒</span>
+                    <span class="vocab-en">Central Market</span>
+                    <span class="vocab-es">Mercado Central</span>
+                    <button class="audio-btn" onclick="playSound('Central Market')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏙️</span>
+                    <span class="vocab-en">Historic Center</span>
+                    <span class="vocab-es">Centro Histórico</span>
+                    <button class="audio-btn" onclick="playSound('Historic Center')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Key Grammar: Past Simple (To Be)</h2>
+            
+            <div class="grammar-box">
+                <p>In Level A1, you learned "I am" and "You are" (Present). Now, we use <strong>Was</strong> and <strong>Were</strong> to talk about states or locations in the <strong>Past</strong>.</p>
+                
+                <table class="grammar-table">
+                    <tr><th>Pronouns</th><th>Affirmative (+)</th><th>Negative (-)</th><th>Question (?)</th></tr>
+                    <tr>
+                        <td>I / He / She / It</td>
+                        <td><span class="highlight-a2">was</span></td>
+                        <td><span class="highlight-a2">was not (wasn't)</span></td>
+                        <td><span class="highlight-a2">Was</span> he...?</td>
+                    </tr>
+                    <tr>
+                        <td>We / You / They</td>
+                        <td><span class="highlight-blue">were</span></td>
+                        <td><span class="highlight-blue">were not (weren't)</span></td>
+                        <td><span class="highlight-blue">Were</span> they...?</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🕰️ TIME MARKERS</div>
+                <p>When we talk about the past, we usually include specific "Time Markers" at the end of the sentence to show <em>when</em> it happened.</p>
+                <div class="time-markers">
+                    <div class="marker-badge">Yesterday (Ayer)</div>
+                    <div class="marker-badge">Last night (Anoche)</div>
+                    <div class="marker-badge">Last week (La semana pasada)</div>
+                    <div class="marker-badge">In 2020 (En el año 2020)</div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Let's see it in context: <em>A Sunday in the City</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--a2-color);">
+                <p><strong>Sarah:</strong> Teacher Ivan, where <span class="highlight-blue">were</span> you yesterday afternoon?</p>
+                <p><strong>Teacher Ivan:</strong> I <span class="highlight-a2">was</span> in the Historic Center of Sucre. The weather <span class="highlight-a2">was</span> beautiful!</p>
+                <p><strong>Sarah:</strong> <span class="highlight-blue">Were</span> you alone?</p>
+                <p><strong>Teacher Ivan:</strong> No, I <span class="highlight-a2">wasn't</span>. My girlfriend and I <span class="highlight-blue">were</span> at the Central Market buying some food, and then we <span class="highlight-blue">were</span> at the Main Square.</p>
+                <p><strong>Sarah:</strong> <span class="highlight-a2">Was</span> Perlita the cat with you?</p>
+                <p><strong>Teacher Ivan:</strong> No, she <span class="highlight-a2">wasn't</span>! She <span class="highlight-a2">was</span> at home, sleeping on my computer keyboard!</p>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>3.</span> Practice (Gatekeeper)</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Choose the correct past tense of the Verb To Be. You need 3/3 to unlock Lesson 2!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. "I _____ in Sucre last year."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="was" class="eval-radio"><label for="q1a" class="eval-label">was</label>
+                        <input type="radio" name="q1" id="q1b" value="were" class="eval-radio"><label for="q1b" class="eval-label">were</label>
+                        <input type="radio" name="q1" id="q1c" value="am" class="eval-radio"><label for="q1c" class="eval-label">am</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. "The museums _____ closed on Monday." (Plural: They)</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="wasnt" class="eval-radio"><label for="q2a" class="eval-label">wasn't</label>
+                        <input type="radio" name="q2" id="q2b" value="were" class="eval-radio"><label for="q2b" class="eval-label">were</label>
+                        <input type="radio" name="q2" id="q2c" value="was" class="eval-radio"><label for="q2c" class="eval-label">was</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. "_____ she at the Main Square yesterday?"</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="were" class="eval-radio"><label for="q3a" class="eval-label">Were</label>
+                        <input type="radio" name="q3" id="q3b" value="is" class="eval-radio"><label for="q3b" class="eval-label">Is</label>
+                        <input type="radio" name="q3" id="q3c" value="was" class="eval-radio"><label for="q3c" class="eval-label">Was</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Answers</button>
+            </form>
+
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great start in A2! Moving to Lesson 2.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas para el Nivel A2 - Lección 1
+            const answers = { q1: 'was', q2: 'were', q3: 'was' };
+            let score = 0;
+            let total = 3;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🎉 PERFECT SCORE (3/3)! Welcome to the past tense. Great job!";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 3/3 to pass. Remember: I, He, She, It use 'was'. We, You, They use 'were'. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

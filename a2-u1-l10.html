@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10: Project - My Best Trip - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a2-color: #F56E1E; /* Color A2 */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a2-color); }
+
+        /* Project Steps */
+        .project-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .step-card {
+            background: #fdf3eb; border-left: 5px solid var(--a2-color); padding: 1.5rem; border-radius: 0 8px 8px 0;
+        }
+        .step-title { font-family: var(--font-titulares); color: var(--azul-primario); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;}
+        
+        .example-box {
+            background-color: white; border: 1px solid var(--gris-neutro); padding: 1.5rem; border-radius: 8px; margin-top: 1rem; position: relative; line-height: 1.6;
+        }
+        .example-box::before { content: 'Teacher Ivan\'s Example'; position: absolute; top: -12px; left: 15px; background: var(--azul-primario); color: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold;}
+        
+        .highlight { font-weight: 700; color: var(--a2-color); }
+        .highlight-blue { font-weight: 700; color: var(--azul-primario); }
+
+        /* Text Area for Draft */
+        textarea {
+            width: 100%; height: 180px; padding: 1rem; border: 2px dashed var(--gris-neutro); border-radius: 8px;
+            font-family: var(--font-cuerpo); font-size: 1.05rem; resize: vertical; box-sizing: border-box; margin-top: 1rem; line-height: 1.5;
+        }
+        textarea:focus { outline: none; border-color: var(--a2-color); background-color: #fafafa; }
+
+        /* Checklist */
+        .checklist { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
+        .check-item { display: flex; align-items: center; gap: 0.8rem; font-size: 1.05rem; cursor: pointer; }
+        .check-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--a2-color); cursor: pointer;}
+        .check-item label { cursor: pointer; }
+
+        /* Submit Button */
+        .eval-submit-btn {
+            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 2rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s;
+        }
+        .eval-submit-btn:hover { background-color: #d65c15; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3);}
+        .eval-submit-btn:disabled { background-color: var(--gris-neutro); cursor: not-allowed; transform: none; box-shadow: none;}
+
+        #success-message { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;}
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro);
+            background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        
+        .footer-buttons { display: flex; gap: 1rem; align-items: center; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a2-color); color: var(--blanco-nieve); }
+        .btn-primary:hover { background-color: #d65c15; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A2 • Unit 1 • Final Project</span>
+            <h1 class="lesson-title">Project: My Best Trip</h1>
+            <p class="lesson-objective">Objective: Write a script and record a video/audio telling a story about a past holiday.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Your Mission 🚀</h2>
+            <p style="margin-bottom: 1rem; color: #555; line-height: 1.6;">
+                You survived the Past Simple! Now, it's time to prove it. Your final project is to create a 45-second presentation describing a trip you took in the past. You must use <strong>regular and irregular verbs</strong>, <strong>time expressions</strong>, and at least one <strong>negative sentence</strong>.
+            </p>
+            
+            <div class="project-steps">
+                <div class="step-card">
+                    <div class="step-title"><span>📝</span> Step 1: Write your story</div>
+                    <p style="margin: 0; color: #444;">Read Teacher Ivan's example below. Notice how the events are organized in chronological order.</p>
+                    
+                    <div class="example-box">
+                        "<span class="highlight-blue">Last month</span>, my girlfriend and I <span class="highlight">traveled</span> to La Paz. <span class="highlight-blue">First</span>, we <span class="highlight">went</span> to a big CrossFit competition. The altitude <span class="highlight">was</span> exhausting, but the event <span class="highlight">was</span> amazing! <span class="highlight-blue">Then</span>, we <span class="highlight">visited</span> some friends and <span class="highlight">ate</span> delicious food. We <span class="highlight">didn't stay</span> in a hotel; we <span class="highlight">slept</span> at a friend's house. <span class="highlight-blue">Finally</span>, we <span class="highlight">returned</span> to Sucre. Perlita the cat <span class="highlight">didn't travel</span> with us; she <span class="highlight">stayed</span> at home."
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title"><span>🗣️</span> Step 2: Pronunciation Check</div>
+                    <p style="margin: 0; color: #444;">Practice your reading out loud. Remember the pronunciation of your <em>-ed</em> endings and don't forget the "Magic Eraser" rule for your negative sentences!</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title"><span>🎥</span> Step 3: Record your experience</div>
+                    <p style="margin: 0; color: #444;">Use your phone to record a video or a voice note. Imagine you are telling this story to your classmates at Colegio Fielding.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> My Draft (Mi Borrador)</h2>
+            <p style="color: #555;">Write your story here. Organize your ideas before you start recording.</p>
+            
+            <textarea placeholder="Last year, I traveled to... First, we went to... Then, we..."></textarea>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--a2-color);">
+            <h2 class="section-title"><span>3.</span> Final Checklist & Submission</h2>
+            <p style="color: #666; font-weight: 600;">Before you submit your project, make sure you used the grammar correctly!</p>
+
+            <div class="checklist">
+                <div class="check-item">
+                    <input type="checkbox" id="chk1" onchange="checkReadiness()">
+                    <label for="chk1">I included a <strong>Time Expression</strong> (e.g., <em>Last year, two months ago</em>).</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk2" onchange="checkReadiness()">
+                    <label for="chk2">I used <strong>Sequencing Words</strong> (e.g., <em>First, Then, Finally</em>).</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk3" onchange="checkReadiness()">
+                    <label for="chk3">I used <strong>Irregular Verbs</strong> (e.g., <em>went, ate, saw</em>).</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk4" onchange="checkReadiness()">
+                    <label for="chk4">I included at least one <strong>Negative Sentence</strong> (e.g., <em>didn't stay</em>).</label>
+                </div>
+            </div>
+
+            <button type="button" id="submit-btn" class="eval-submit-btn" disabled onclick="submitProject()">Submit Project Link</button>
+
+            <div id="success-message">
+                🎉 OUTSTANDING JOB! You have successfully completed Unit 1 of Level A2. Send your video or audio file to the class WhatsApp group or upload it to your student folder. Be proud of your progress!
+            </div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Congratulations on mastering the Past Simple! Get ready for Level B1.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Finish Level A2 - Unit 1 🏆</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Habilitar botón solo cuando todo esté marcado
+        function checkReadiness() {
+            const chk1 = document.getElementById('chk1').checked;
+            const chk2 = document.getElementById('chk2').checked;
+            const chk3 = document.getElementById('chk3').checked;
+            const chk4 = document.getElementById('chk4').checked;
+            const submitBtn = document.getElementById('submit-btn');
+
+            if(chk1 && chk2 && chk3 && chk4) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        function submitProject() {
+            const successDiv = document.getElementById('success-message');
+            const submitBtn = document.getElementById('submit-btn');
+            const continueBtn = document.getElementById('continue-btn');
+
+            // Simular envío
+            submitBtn.style.display = "none";
+            successDiv.style.display = "block";
+            continueBtn.style.display = "block";
+            
+            // Congelar inputs
+            document.querySelectorAll('input[type="checkbox"]').forEach(chk => chk.disabled = true);
+            document.querySelector('textarea').disabled = true;
+        }
+    </script>
+</body>
+</html>

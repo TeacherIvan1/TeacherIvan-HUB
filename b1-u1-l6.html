@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Have you ever been to...? - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #008CBA; /* Color B1 */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario: Travel Prep */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(0, 140, 186, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.05rem; font-weight: 700; color: var(--azul-primario); line-height: 1.2;}
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        .vocab-v3 { font-size: 0.85rem; font-weight: 800; color: var(--b1-color); background: #e0f7fa; padding: 0.2rem 0.6rem; border-radius: 4px; margin-top: 0.5rem;}
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: Been vs Gone */
+        .grammar-box {
+            background-color: rgba(0, 140, 186, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px; text-align: center;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.5rem; color: var(--b1-color); margin-bottom: 0.5rem; font-weight: 800; }
+        .comp-icon { font-size: 3rem; margin: 1rem 0; }
+        .comp-desc { font-size: 0.95rem; color: #555; margin-bottom: 1rem; line-height: 1.5;}
+        .comp-example { font-weight: 700; color: var(--azul-primario); background: #f9f9f9; padding: 0.8rem; border-radius: 4px;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(0, 140, 186, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #007399; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 1 • Lesson 6</span>
+            <h1 class="lesson-title">Have you ever been to...?</h1>
+            <p class="lesson-objective">Objective: Distinguish between "Been" and "Gone" when talking about travel experiences.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Travel Prep</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Before we talk about your experiences, let's learn some travel vocabulary.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧳</span>
+                    <span class="vocab-en">Pack a suitcase</span>
+                    <span class="vocab-es">Hacer la maleta</span>
+                    <span class="vocab-v3">V3: Packed</span>
+                    <button class="audio-btn" onclick="playSound('Pack a suitcase. Packed.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">✈️</span>
+                    <span class="vocab-en">Book a flight</span>
+                    <span class="vocab-es">Reservar un vuelo</span>
+                    <span class="vocab-v3">V3: Booked</span>
+                    <button class="audio-btn" onclick="playSound('Book a flight. Booked.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🌍</span>
+                    <span class="vocab-en">Go abroad</span>
+                    <span class="vocab-es">Ir al extranjero</span>
+                    <span class="vocab-v3">V3: Gone abroad</span>
+                    <button class="audio-btn" onclick="playSound('Go abroad. Gone.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📸</span>
+                    <span class="vocab-en">Go sightseeing</span>
+                    <span class="vocab-es">Hacer turismo</span>
+                    <span class="vocab-v3">V3: Gone sightseeing</span>
+                    <button class="audio-btn" onclick="playSound('Go sightseeing. Gone.')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Been vs. Gone</h2>
+            
+            <div class="grammar-box">
+                <p>The verb <strong>"Go"</strong> is tricky in the Present Perfect. It has TWO past participles: <strong>Been</strong> and <strong>Gone</strong>. They mean completely different things. Think of them as plane tickets!</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card" style="border-color: var(--b1-color);">
+                        <div class="comp-title">BEEN</div>
+                        <div class="comp-icon">✈️ ➔ 🏠</div>
+                        <div class="comp-desc"><strong>The Return Ticket.</strong> You went to a place, and you came back. You are sharing an experience.</div>
+                        <div class="comp-example">"I <span class="highlight-b1">have been</span> to Argentina." <br><span style="font-size: 0.85rem; font-weight:normal; color:#666;">(I am in Sucre right now)</span></div>
+                    </div>
+                    <div class="comp-card" style="border-color: var(--naranja-vibrante);">
+                        <div class="comp-title">GONE</div>
+                        <div class="comp-icon">✈️ ➔ 🏖️</div>
+                        <div class="comp-desc"><strong>The One-Way Ticket.</strong> You went to a place, and you are STILL THERE. You haven't returned.</div>
+                        <div class="comp-example">"She <span class="highlight-orange">has gone</span> to the gym." <br><span style="font-size: 0.85rem; font-weight:normal; color:#666;">(She is not at home right now)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE PREPOSITION TRAP</div>
+                <p>When we ask about travel experiences, Spanish speakers often say "Have you ever been <strong>IN</strong> Europe?". This is a common mistake!</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #28a745;">
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">I have been IN Brazil.</span><br>
+                    ✅ <span style="color: #28a745;">I have been TO Brazil.</span> (Always use "TO" for travel experiences).
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>Where is everyone?</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p><strong>Sarah:</strong> Teacher Ivan, <span class="highlight-b1">have</span> you ever <span class="highlight-b1">been</span> to Europe?</p>
+                <p><strong>Teacher Ivan:</strong> No, I haven't. But I <span class="highlight-b1">have been</span> to Argentina. My girlfriend and I traveled there for a CrossFit tournament a few years ago.</p>
+                <p><strong>Sarah:</strong> That’s cool! Oh, I wanted to ask her something. Is your girlfriend here?</p>
+                <p><strong>Teacher Ivan:</strong> No, she <span class="highlight-orange">has gone</span> to the supermarket. She left ten minutes ago to buy some avocados for dinner.</p>
+                <p><strong>Sarah:</strong> And Perlita?</p>
+                <p><strong>Teacher Ivan:</strong> Perlita <span class="highlight-orange">has gone</span> to the garden. She is probably sleeping in the sun right now!</p>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Can you distinguish between a return ticket and a one-way ticket? Score 5/5 to pass!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Logic Check:</strong> "Carlos is not in the office right now. He has _____ to the bank."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="been" class="eval-radio"><label for="q1a" class="eval-label">been</label>
+                        <input type="radio" name="q1" id="q1b" value="gone" class="eval-radio"><label for="q1b" class="eval-label">gone</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Logic Check:</strong> "I love La Paz! I have _____ there three times in my life."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="gone" class="eval-radio"><label for="q2a" class="eval-label">gone</label>
+                        <input type="radio" name="q2" id="q2b" value="been" class="eval-radio"><label for="q2b" class="eval-label">been</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Preposition Trap:</strong> "Have you ever been _____ the United States?"</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="to" class="eval-radio"><label for="q3a" class="eval-label">to</label>
+                        <input type="radio" name="q3" id="q3b" value="in" class="eval-radio"><label for="q3b" class="eval-label">in</label>
+                        <input type="radio" name="q3" id="q3c" value="at" class="eval-radio"><label for="q3c" class="eval-label">at</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> Where is Ivan's girlfriend right now?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="argentina" class="eval-radio"><label for="q4a" class="eval-label">She is in Argentina.</label>
+                        <input type="radio" name="q4" id="q4b" value="supermarket" class="eval-radio"><label for="q4b" class="eval-label">She has gone to the supermarket.</label>
+                        <input type="radio" name="q4" id="q4c" value="garden" class="eval-radio"><label for="q4c" class="eval-label">She has gone to the garden.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Vocabulary:</strong> What do you do with your clothes before you travel?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="book" class="eval-radio"><label for="q5a" class="eval-label">Book a flight</label>
+                        <input type="radio" name="q5" id="q5b" value="pack" class="eval-radio"><label for="q5b" class="eval-label">Pack a suitcase</label>
+                        <input type="radio" name="q5" id="q5c" value="sightseeing" class="eval-radio"><label for="q5c" class="eval-label">Go sightseeing</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great! You know the difference between Been and Gone. Moving to Lesson 7.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'gone', q2: 'been', q3: 'to', q4: 'supermarket', q5: 'pack' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e0f7fa";
+                resultsDiv.style.color = "#006080";
+                resultsDiv.style.border = "1px solid #b2ebf2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You perfectly understand when to use Been (return ticket) and Gone (one-way ticket).";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember the logic: If the person is NOT here, use 'gone'. And always say 'been TO a place', never 'IN'. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

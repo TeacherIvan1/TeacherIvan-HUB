@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Unit 1 Review - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b2-color: #6f42c1; /* Color B2 (Púrpura Amatista) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b2-color); }
+
+        /* Reading Comprehension */
+        .reading-box {
+            background-color: rgba(111, 66, 193, 0.05); border-left: 5px solid var(--b2-color);
+            padding: 2.5rem 2rem 2rem 2rem; border-radius: 0 8px 8px 0; font-size: 1.05rem; line-height: 1.8;
+            margin-bottom: 2rem; position: relative;
+        }
+        .reading-box::before {
+            content: 'Teacher Ivan\'s Blog';
+            position: absolute; top: -12px; left: 15px; background: var(--b2-color); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .highlight { font-weight: 700; color: var(--azul-primario); background-color: rgba(111, 66, 193, 0.15); padding: 0 4px; border-radius: 3px; }
+
+        /* Summary Grid */
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+        .summary-card { border: 1px solid var(--gris-neutro); border-radius: 8px; padding: 1.5rem; position: relative; overflow: hidden; background: white;}
+        .summary-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--b2-color); }
+        .summary-title { font-family: var(--font-titulares); color: var(--azul-primario); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .summary-content { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .badge-sm { background: #f3f0f9; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; color: var(--b2-color);}
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-radio { display: none; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b2-color); color: white; border-color: var(--b2-color); box-shadow: 0 3px 10px rgba(111, 66, 193, 0.3); }
+        
+        .eval-submit-btn {
+            background-color: var(--b2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 1rem;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #5a32a3; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-success { background-color: #28a745; color: white; border: none; }
+        .btn-success:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B2 • Final Test</span>
+            <h1 class="lesson-title">Unit 1 Review</h1>
+            <p class="lesson-objective">Objective: Prove your Upper-Intermediate mastery by passing the ultimate B2 challenge.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Reading: The B2 Master Challenge</h2>
+            <p style="margin-bottom: 1rem; color: #555;">Read Teacher Ivan's post carefully. Can you identify all the advanced rules we learned in Unit 1?</p>
+            
+            <div class="reading-box">
+                "It is the end of March, and I am completely exhausted. I <span class="highlight">have been grading</span> Philosophy exams all day, so I have <span class="highlight">little</span> energy left. <span class="highlight">Ever since</span> I started teaching at Colegio Fielding, I <span class="highlight">have known</span> that exam season is tough!<br><br>
+                Before I came home today, I <span class="highlight">had been training</span> at the CrossFit gym for two hours. I <span class="highlight">tried to lift</span> a new personal record, but my muscles were too sore. I guess I need to <span class="highlight">try sleeping</span> more! I <span class="highlight">used to</span> sleep 8 hours, but lately, I am <span class="highlight">getting used to waking</span> up at 5:00 AM.<br><br>
+                <span class="highlight">By the end of this week</span>, I <span class="highlight">will have finished</span> the grading. I just need to <span class="highlight">remember to buy</span> tuna for Perlita. I just checked the sofa, and she <span class="highlight">has been sleeping</span> on my keyboard for three hours. The worst part? She <span class="highlight">has already deleted</span> <span class="highlight">a few</span> of my HTML files!"
+            </div>
+            
+            <button class="eval-submit-btn" style="background-color: var(--azul-primario); width: auto; font-size: 0.9rem; padding: 0.8rem 1.5rem;" onclick="playSound('It is the end of March, and I am completely exhausted. I have been grading Philosophy exams all day, so I have little energy left. Ever since I started teaching at Colegio Fielding, I have known that exam season is tough! Before I came home today, I had been training at the CrossFit gym for two hours. I tried to lift a new personal record, but my muscles were too sore. I guess I need to try sleeping more! I used to sleep 8 hours, but lately, I am getting used to waking up at 5:00 AM. By the end of this week, I will have finished the grading. I just need to remember to buy tuna for Perlita. I just checked the sofa, and she has been sleeping on my keyboard for three hours. The worst part? She has already deleted a few of my HTML files!')">🔊 Listen to the text</button>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> B2 Grammar Cheatsheet</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-title">The Perfect Tenses</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Pres. Perf. Continuous:</span> Duration/Sweat (have been + ing).<br>
+                        • <span class="badge-sm">Past Perfect:</span> The "Time Machine" before another past action (had + V3).<br>
+                        • <span class="badge-sm">Future Perfect:</span> Deadlines with BY (will have + V3).
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Habits & Adaptation</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Used to + Base:</span> A finished past habit.<br>
+                        • <span class="badge-sm">Get used to + ING:</span> The process of adaptation.<br>
+                        • <span class="badge-sm">Be used to + ING:</span> Normal, no longer a problem.
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">B2 Traps & Nuances</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">The "A" Rule:</span> "A few" is positive. "Few" is negative.<br>
+                        • <span class="badge-sm">Gerunds/Infinitives:</span> <em>Stop to smoke</em> (pause to do it) vs <em>Stop smoking</em> (quit).<br>
+                        • <span class="badge-sm">State Verbs:</span> <em>Know, like, want</em> NEVER take "-ing".
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b2-color);">
+            <h2 class="section-title"><span>3.</span> Unit 1 Final Master Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Dodge the B2 traps! You must score 5/5 to conquer Unit 1.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>State Verb Trap:</strong> "Ivan and his girlfriend _____ each other since 2022."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="haveknown" class="eval-radio"><label for="q1a" class="eval-label">have known</label>
+                        <input type="radio" name="q1" id="q1b" value="havebeenknowing" class="eval-radio"><label for="q1b" class="eval-label">have been knowing</label>
+                        <input type="radio" name="q1" id="q1c" value="knew" class="eval-radio"><label for="q1c" class="eval-label">knew</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Adaptation Trap:</strong> "It is difficult, but I am getting used to _____ heavy weights."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="lift" class="eval-radio"><label for="q2a" class="eval-label">lift</label>
+                        <input type="radio" name="q2" id="q2b" value="lifting" class="eval-radio"><label for="q2b" class="eval-label">lifting</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Meaning Check:</strong> "I stopped drinking coffee." What does this mean?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="pause" class="eval-radio"><label for="q3a" class="eval-label">I took a break to drink coffee.</label>
+                        <input type="radio" name="q3" id="q3b" value="quit" class="eval-radio"><label for="q3b" class="eval-label">I quit the habit of drinking coffee.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Future Deadlines:</strong> "By next Friday, Ivan _____ the Teacher Ivan app."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="willfinish" class="eval-radio"><label for="q4a" class="eval-label">will finish</label>
+                        <input type="radio" name="q4" id="q4b" value="willhavefinished" class="eval-radio"><label for="q4b" class="eval-label">will have finished</label>
+                        <input type="radio" name="q4" id="q4c" value="finishes" class="eval-radio"><label for="q4c" class="eval-label">finishes</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Quantifiers:</strong> "I have _____ patience left for Perlita's destruction. I am angry!" (Negative meaning).</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="alittle" class="eval-radio"><label for="q5a" class="eval-label">a little</label>
+                        <input type="radio" name="q5" id="q5b" value="little" class="eval-radio"><label for="q5b" class="eval-label">little</label>
+                        <input type="radio" name="q5" id="q5c" value="few" class="eval-radio"><label for="q5c" class="eval-radio"><label for="q5c" class="eval-label">few</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-success" onclick="alert('¡Felicidades, Teacher Ivan! Tus alumnos han superado la teoría del B2.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Finish Unit 1 🏆</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas para el Final Test B2 (5 preguntas)
+            const answers = { q1: 'haveknown', q2: 'lifting', q3: 'quit', q4: 'willhavefinished', q5: 'little' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 AMAZING! PERFECT SCORE (5/5)! You have dodged every B2 grammar trap and officially mastered Unit 1.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Check the B2 traps: 1) No ING for State Verbs. 2) Get used to + ING. 3) Little = Negative/Uncountable. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

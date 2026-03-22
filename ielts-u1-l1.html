@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Intro to Task 1 - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales IELTS */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --ielts-color: #990000; /* Color IELTS (Rojo Carmesí Académico) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--ielts-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--ielts-color); }
+
+        /* Vocabulario Académico IELTS */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid #e0e0e0; border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--ielts-color); box-shadow: 0 5px 15px rgba(153, 0, 0, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--ielts-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: #333; }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        .vocab-synonym { font-size: 0.85rem; font-weight: 800; color: var(--ielts-color); background: #fdf0f0; padding: 0.2rem 0.6rem; border-radius: 4px; margin-top: 0.5rem;}
+        
+        .audio-btn {
+            background-color: #333; color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--ielts-color); }
+
+        /* Gramática: IELTS Structure */
+        .grammar-box {
+            background-color: rgba(153, 0, 0, 0.03); border-left: 5px solid var(--ielts-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .structure-container {
+            display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;
+        }
+        .struct-card {
+            display: flex; align-items: stretch; background: white; border: 1px solid var(--gris-neutro); border-radius: 8px; overflow: hidden;
+        }
+        .struct-side {
+            background-color: var(--ielts-color); color: white; padding: 1.5rem; width: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .struct-side h3 { font-size: 1.2rem; margin: 0; }
+        .struct-side span { font-size: 0.85rem; opacity: 0.9; margin-top: 0.3rem; font-weight: 600;}
+        .struct-content { padding: 1.5rem; flex-grow: 1; }
+        .struct-desc { color: #555; margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.5;}
+        .struct-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--ielts-color);}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-ielts { color: var(--ielts-color); font-weight: 800; }
+
+        /* Reading Model Answer */
+        .reading-paper {
+            background-color: #fff; border: 1px solid #e0e0e0;
+            padding: 2.5rem; border-radius: 4px; line-height: 1.8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative;
+            color: #333;
+        }
+        .reading-paper::before {
+            content: 'Band 8.0 Model Answer';
+            position: absolute; top: 0; right: 0; background: var(--ielts-color); color: white; padding: 0.3rem 1rem; border-radius: 0 4px 0 8px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;
+        }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem; color: #333;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff; color: #444;
+        }
+        .eval-label:hover { border-color: #999; background-color: #f9f9f9; }
+        .eval-radio:checked + .eval-label { background-color: var(--ielts-color); color: white; border-color: var(--ielts-color); box-shadow: 0 3px 10px rgba(153, 0, 0, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--ielts-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #660000; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--ielts-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">IELTS Academic • Writing • Lesson 1</span>
+            <h1 class="lesson-title">Intro to Task 1: Describing Data</h1>
+            <p class="lesson-objective">Objective: Understand the core structure of an IELTS Task 1 report and master academic trend vocabulary.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Academic Vocabulary: Trend Verbs</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">In IELTS, you cannot just say "go up" or "go down". You need to use advanced, precise verbs to describe graphs.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🚀</span>
+                    <span class="vocab-en">Skyrocket</span>
+                    <span class="vocab-es">Dispararse (Subir rápido)</span>
+                    <span class="vocab-synonym">Synonym: Surge</span>
+                    <button class="audio-btn" onclick="playSound('Skyrocket. Surge.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📉</span>
+                    <span class="vocab-en">Plummet</span>
+                    <span class="vocab-es">Desplomarse (Bajar rápido)</span>
+                    <span class="vocab-synonym">Synonym: Plunge</span>
+                    <button class="audio-btn" onclick="playSound('Plummet. Plunge.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">〰️</span>
+                    <span class="vocab-en">Fluctuate</span>
+                    <span class="vocab-es">Fluctuar (Subir y bajar)</span>
+                    <span class="vocab-synonym">Synonym: Vary</span>
+                    <button class="audio-btn" onclick="playSound('Fluctuate. Vary.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">➖</span>
+                    <span class="vocab-en">Plateau</span>
+                    <span class="vocab-es">Estancarse / Nivelarse</span>
+                    <span class="vocab-synonym">Synonym: Remain stable</span>
+                    <button class="audio-btn" onclick="playSound('Plateau. Remain stable.')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> The 3-Part IELTS Structure</h2>
+            
+            <div class="grammar-box">
+                <p>Task 1 requires you to write a summary of at least <strong>150 words</strong> in 20 minutes. To get a high band score (7.0+), you must follow a strict, logical structure. Do not write a single continuous paragraph!</p>
+                
+                <div class="structure-container">
+                    <div class="struct-card">
+                        <div class="struct-side">
+                            <h3>Paragraph 1</h3>
+                            <span>Introduction</span>
+                        </div>
+                        <div class="struct-content">
+                            <div class="struct-desc"><strong>Paraphrase the prompt.</strong> Write exactly what the graph shows, but use your own words. Do not copy the instructions.</div>
+                            <div class="struct-example">"The provided line graph illustrates..." (Instead of: "The graph shows...")</div>
+                        </div>
+                    </div>
+
+                    <div class="struct-card">
+                        <div class="struct-side" style="background-color: #660000;">
+                            <h3>Paragraph 2</h3>
+                            <span>The Overview</span>
+                        </div>
+                        <div class="struct-content">
+                            <div class="struct-desc"><strong>The most important paragraph!</strong> Summarize the 2 or 3 main trends. <strong>NO NUMBERS HERE.</strong> Just the big picture.</div>
+                            <div class="struct-example">"Overall, it is clear that while X increased, Y experienced a downward trend."</div>
+                        </div>
+                    </div>
+
+                    <div class="struct-card">
+                        <div class="struct-side" style="background-color: #333333;">
+                            <h3>Paragraph 3 & 4</h3>
+                            <span>Body Paragraphs</span>
+                        </div>
+                        <div class="struct-content">
+                            <div class="struct-desc"><strong>Support with data.</strong> Now you must zoom in. Compare the categories and use specific numbers, percentages, and dates from the graph.</div>
+                            <div class="struct-example">"In 2024, the figure skyrocketed to exactly 50 hours, before plummeting to..."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE FATAL IELTS ERROR</div>
+                <p>Task 1 is a REPORT, not an essay. You must <strong>NEVER</strong> give your personal opinion, guess why a trend happened, or use the word "I".</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #28a745;">
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">I think sales plummeted because of the pandemic.</span> (Automatic Band 5.0!)<br>
+                    ✅ <span style="color: #28a745;">Sales plummeted significantly in 2020.</span> (Just report the data).
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Model Answer Analysis: <em>Energy vs. Sleep</em></h3>
+            <p style="color: #555; margin-bottom: 1rem;">Imagine a line graph comparing the hours Teacher Ivan spends doing CrossFit per week, versus the hours Perlita the cat spends sleeping. Read the Band 8.0 model below.</p>
+
+            <div class="reading-paper">
+                <p><span style="color: var(--ielts-color); font-weight: bold;">[Introduction]</span> The provided line graph illustrates the number of hours allocated to physical training by Teacher Ivan, compared to the sleeping hours of his cat, Perlita, over a one-week period in Sucre.</p>
+                
+                <p><span style="color: var(--ielts-color); font-weight: bold;">[Overview]</span> Overall, it is abundantly clear that the two subjects experienced opposite trends. While the human's activity levels fluctuated throughout the week, the feline's resting hours remained consistently high and eventually plateaued at a maximum level.</p>
+                
+                <p><span style="color: var(--ielts-color); font-weight: bold;">[Body Paragraph]</span> Looking at the details, Ivan began the week on Monday with a moderate 2 hours of CrossFit. This figure surged to a peak of 4 hours by Wednesday, likely due to a competition preparation. However, immediately after this peak, his training hours plummeted to zero on Thursday as he took a rest day. </p>
+                
+                <p><span style="color: var(--ielts-color); font-weight: bold;">[Body Paragraph]</span> Conversely, Perlita’s sleeping pattern showed almost no variation. She began the week sleeping for an astonishing 16 hours. Although there was a slight dip to 15 hours on Tuesday, her resting time quickly recovered and plateaued at exactly 17 hours from Friday to Sunday, showing a complete lack of physical exertion.</p>
+                
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; margin-top: 1rem; background-color: #333;" onclick="playSound('The provided line graph illustrates the number of hours allocated to physical training by Teacher Ivan, compared to the sleeping hours of his cat, Perlita, over a one-week period in Sucre. Overall, it is abundantly clear that the two subjects experienced opposite trends. While the human’s activity levels fluctuated throughout the week, the feline’s resting hours remained consistently high and eventually plateaued at a maximum level.')">🔊 Listen to Intro & Overview</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--ielts-color);">
+            <h2 class="section-title"><span>3.</span> IELTS Strategy Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Prove you understand the strict rules of Task 1. You must score 5/5!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Task Rules:</strong> What is strictly FORBIDDEN in an IELTS Task 1 report?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="numbers" class="eval-radio"><label for="q1a" class="eval-label">Using numbers and percentages.</label>
+                        <input type="radio" name="q1" id="q1b" value="opinion" class="eval-radio"><label for="q1b" class="eval-label">Giving your personal opinion or reasons.</label>
+                        <input type="radio" name="q1" id="q1c" value="paragraphs" class="eval-radio"><label for="q1c" class="eval-label">Writing more than one paragraph.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Paragraph Structure:</strong> What is the main rule for the "Overview" paragraph?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="nonumbers" class="eval-radio"><label for="q2a" class="eval-label">It must describe the general trends, with NO specific numbers.</label>
+                        <input type="radio" name="q2" id="q2b" value="allnumbers" class="eval-radio"><label for="q2b" class="eval-label">It must list every single number from the graph.</label>
+                        <input type="radio" name="q2" id="q2c" value="copy" class="eval-radio"><label for="q2c" class="eval-label">It must copy the prompt exactly.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Academic Vocabulary:</strong> Which word is the best academic synonym for "went down very fast"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="skyrocketed" class="eval-radio"><label for="q3a" class="eval-label">Skyrocketed</label>
+                        <input type="radio" name="q3" id="q3b" value="plateaued" class="eval-radio"><label for="q3b" class="eval-label">Plateaued</label>
+                        <input type="radio" name="q3" id="q3c" value="plummeted" class="eval-radio"><label for="q3c" class="eval-label">Plummeted</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Analysis:</strong> Look at the Model Answer. How did the author write the Introduction?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="paraphrased" class="eval-radio"><label for="q4a" class="eval-label">By paraphrasing (rewriting) what the graph illustrates.</label>
+                        <input type="radio" name="q4" id="q4b" value="opinion" class="eval-radio"><label for="q4b" class="eval-label">By explaining why CrossFit is good for health.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Vocabulary:</strong> If a trend goes up and down continuously like a wave, we say it...</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="surged" class="eval-radio"><label for="q5a" class="eval-label">Surged</label>
+                        <input type="radio" name="q5" id="q5b" value="fluctuated" class="eval-radio"><label for="q5b" class="eval-label">Fluctuated</label>
+                        <input type="radio" name="q5" id="q5c" value="plunged" class="eval-radio"><label for="q5c" class="eval-label">Plunged</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent! You understand the core of Task 1. Moving to Lesson 2.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'opinion', q2: 'nonumbers', q3: 'plummeted', q4: 'paraphrased', q5: 'fluctuated' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#990000";
+                resultsDiv.style.border = "1px solid #ffcccc";
+                resultsDiv.innerHTML = "🏆 BAND 8.0 POTENTIAL! You perfectly understand the strict structure and vocabulary rules for IELTS Task 1.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: NO personal opinions, and NO numbers in the Overview paragraph! Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>

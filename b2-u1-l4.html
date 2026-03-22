@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: The 5:30 AM Club - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b2-color: #6f42c1; /* Color B2 (Púrpura Amatista) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b2-color); }
+
+        /* Vocabulario B2 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b2-color); box-shadow: 0 5px 15px rgba(111, 66, 193, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b2-color); }
+
+        /* Gramática: Used To */
+        .grammar-box {
+            background-color: rgba(111, 66, 193, 0.05); border-left: 5px solid var(--b2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #f3f0f9; color: var(--b2-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-desc { font-size: 0.95rem; color: #555; margin-bottom: 1rem; line-height: 1.5;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--b2-color);}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b2 { color: var(--b2-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b2-color); color: white; border-color: var(--b2-color); box-shadow: 0 3px 10px rgba(111, 66, 193, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #5a32a3; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B2 • Unit 1 • Lesson 4</span>
+            <h1 class="lesson-title">The 5:30 AM Club</h1>
+            <p class="lesson-objective">Objective: Distinguish between past habits and the process of adapting to new routines.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Morning Struggles</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">These words describe the pain (and success) of waking up early.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">⏰</span>
+                    <span class="vocab-en">Set an alarm</span>
+                    <span class="vocab-es">Poner una alarma</span>
+                    <button class="audio-btn" onclick="playSound('Set an alarm')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🛌</span>
+                    <span class="vocab-en">Hit snooze</span>
+                    <span class="vocab-es">Posponer la alarma</span>
+                    <button class="audio-btn" onclick="playSound('Hit snooze')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧗‍♂️</span>
+                    <span class="vocab-en">Struggle</span>
+                    <span class="vocab-es">Costar trabajo / Luchar</span>
+                    <button class="audio-btn" onclick="playSound('Struggle')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🦉</span>
+                    <span class="vocab-en">Stay awake</span>
+                    <span class="vocab-es">Mantenerse despierto</span>
+                    <button class="audio-btn" onclick="playSound('Stay awake')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The "Used To" Triplets</h2>
+            
+            <div class="grammar-box">
+                <p>One of the biggest challenges in B2 is mastering the word <strong>"Used"</strong>. It changes its meaning completely depending on the verbs around it. Let's look at the three forms:</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">1. The Past Habit</div>
+                        <div class="comp-formula">Used to + BASE VERB</div>
+                        <div class="comp-desc">A habit or state in the past that is <strong>NO LONGER TRUE</strong> today. ("Solía...")</div>
+                        <div class="comp-example">"I <span class="highlight-orange">used to sleep</span> until 9:00 AM." <br><span style="font-size: 0.8rem; font-weight: normal;">(But not anymore).</span></div>
+                    </div>
+                    
+                    <div class="comp-card">
+                        <div class="comp-title">2. The Adaptation Process</div>
+                        <div class="comp-formula">Get used to + NOUN / ING</div>
+                        <div class="comp-desc">The process of something becoming normal. It is still a little difficult. ("Acostumbrándose a...")</div>
+                        <div class="comp-example">"I am <span class="highlight-b2">getting used to</span> waking up at 5:30 AM." <br><span style="font-size: 0.8rem; font-weight: normal;">(It is getting easier).</span></div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">3. The Present Normality</div>
+                        <div class="comp-formula">Be used to + NOUN / ING</div>
+                        <div class="comp-desc">The adaptation is complete. The action is 100% normal and easy for you now. ("Estar acostumbrado a...")</div>
+                        <div class="comp-example">"I <span class="highlight-b2">am used to</span> the cold mornings in Sucre." <br><span style="font-size: 0.8rem; font-weight: normal;">(It doesn't bother me).</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 The B2 "ING" Trap!</div>
+                <p>You were taught that after the preposition "TO", you must use the Base Verb (e.g., <em>I want to go</em>). But with "Be used to" and "Get used to", the word "to" acts as a connector to a noun/gerund.</p>
+                <p style="margin-top: 1rem; font-weight: bold;">
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">I am used to wake up early.</span><br>
+                    ✅ <span style="color: #28a745;">I am used to WAKING up early.</span> (Add -ING!)
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>Teacher Ivan's Morning Routine</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"When I was younger, I <span class="highlight-orange">used to hit snooze</span> on my alarm five times. I <span class="highlight-orange">used to hate</span> mornings! But now, my life is different. Because I teach at Colegio Fielding and train CrossFit, I have to wake up at 5:30 AM.</p>
+                <p>At first, it was a terrible struggle. I couldn't stay awake in the afternoons. I had to <span class="highlight-b2">get used to drinking</span> a lot of coffee. It took me months to <span class="highlight-b2">get used to the cold</span> weather in Sucre at that hour.</p>
+                <p>However, today, I <span class="highlight-b2">am used to waking</span> up in the dark. It feels completely normal. In fact, I love it! The only one who hasn't adapted is Perlita. She <span class="highlight-orange">used to wake</span> me up for food, but now she sleeps until 10:00 AM. She <span class="highlight-b2">will never get used to</span> the 5:30 AM Club!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('When I was younger, I used to hit snooze on my alarm five times. I used to hate mornings! But now, my life is different. Because I teach at Colegio Fielding and train CrossFit, I have to wake up at 5:30 AM. At first, it was a terrible struggle. I couldn\'t stay awake in the afternoons. I had to get used to drinking a lot of coffee. It took me months to get used to the cold weather in Sucre at that hour. However, today, I am used to waking up in the dark. It feels completely normal. In fact, I love it! The only one who hasn\'t adapted is Perlita. She used to wake me up for food, but now she sleeps until 10:00 AM. She will never get used to the 5:30 AM Club!')">🔊 Listen to the routine</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b2-color);">
+            <h2 class="section-title"><span>3.</span> B2 Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Don't fall for the ING trap! You must score 5/5 to unlock Lesson 5.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Form:</strong> "When I was at university, I _____ study late at night." (Past habit).</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="usedto" class="eval-radio"><label for="q1a" class="eval-label">used to</label>
+                        <input type="radio" name="q1" id="q1b" value="amusedto" class="eval-radio"><label for="q1b" class="eval-label">am used to</label>
+                        <input type="radio" name="q1" id="q1c" value="getusedto" class="eval-radio"><label for="q1c" class="eval-label">get used to</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>The Trap Check:</strong> "I moved to Sucre last month. I am getting used to _____ in the high altitude."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="live" class="eval-radio"><label for="q2a" class="eval-label">live</label>
+                        <input type="radio" name="q2" id="q2b" value="living" class="eval-radio"><label for="q2b" class="eval-label">living</label>
+                        <input type="radio" name="q2" id="q2c" value="lived" class="eval-radio"><label for="q2c" class="eval-label">lived</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Meaning Check:</strong> If I say "I am used to the noise in the city", it means...</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="past" class="eval-radio"><label for="q3a" class="eval-label">I liked the noise in the past.</label>
+                        <input type="radio" name="q3" id="q3b" value="process" class="eval-radio"><label for="q3b" class="eval-label">I am learning to live with the noise.</label>
+                        <input type="radio" name="q3" id="q3c" value="normal" class="eval-radio"><label for="q3c" class="eval-label">The noise is normal and doesn't bother me now.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> How does Teacher Ivan feel about waking up at 5:30 AM NOW?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="struggle" class="eval-radio"><label for="q4a" class="eval-label">He is still struggling to wake up.</label>
+                        <input type="radio" name="q4" id="q4b" value="normal" class="eval-radio"><label for="q4b" class="eval-label">He is used to it and it feels normal.</label>
+                        <input type="radio" name="q4" id="q4c" value="hate" class="eval-radio"><label for="q4c" class="eval-label">He used to hate it, and he still hates it.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Structure Choice:</strong> "My girlfriend is a CrossFit athlete. She _____ lifting heavy weights."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="usedto" class="eval-radio"><label for="q5a" class="eval-label">used to</label>
+                        <input type="radio" name="q5" id="q5b" value="isusedto" class="eval-radio"><label for="q5b" class="eval-label">is used to</label>
+                        <input type="radio" name="q5" id="q5c" value="getsused" class="eval-radio"><label for="q5c" class="eval-label">gets used</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job adapting to B2! Moving to Lesson 5.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'usedto', q2: 'living', q3: 'normal', q4: 'normal', q5: 'isusedto' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e6dcf5";
+                resultsDiv.style.color = "#4a2c82";
+                resultsDiv.style.border = "1px solid #c9b8e8";
+                resultsDiv.innerHTML = "🏆 AMAZING! PERFECT SCORE (5/5)! You didn't fall for the ING trap. You are definitely getting used to B2 grammar!";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember the trap: "Be used to" + ING (I am used to waking up). Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
