@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Bar Charts & Comparisons - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales IELTS */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --ielts-color: #990000; /* Color IELTS (Rojo Carmesí Académico) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--ielts-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--ielts-color); }
+
+        /* Vocabulario Académico IELTS */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid #e0e0e0; border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--ielts-color); box-shadow: 0 5px 15px rgba(153, 0, 0, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--ielts-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: #333; }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        .vocab-synonym { font-size: 0.85rem; font-weight: 800; color: var(--ielts-color); background: #fdf0f0; padding: 0.2rem 0.6rem; border-radius: 4px; margin-top: 0.5rem;}
+        
+        .audio-btn {
+            background-color: #333; color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--ielts-color); }
+
+        /* Gramática: Comparing */
+        .grammar-box {
+            background-color: rgba(153, 0, 0, 0.03); border-left: 5px solid var(--ielts-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: #333; margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fdf0f0; color: var(--ielts-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #444; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--ielts-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        /* Reading Model Answer */
+        .reading-paper {
+            background-color: #fff; border: 1px solid #e0e0e0;
+            padding: 2.5rem; border-radius: 4px; line-height: 1.8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative;
+            color: #333;
+        }
+        .reading-paper::before {
+            content: 'Band 8.0 Model Answer';
+            position: absolute; top: 0; right: 0; background: var(--ielts-color); color: white; padding: 0.3rem 1rem; border-radius: 0 4px 0 8px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;
+        }
+        
+        .hl-red { color: var(--ielts-color); font-weight: 700; }
+        .hl-blue { color: var(--azul-primario); font-weight: 700; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem; color: #333;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff; color: #444;
+        }
+        .eval-label:hover { border-color: #999; background-color: #f9f9f9; }
+        .eval-radio:checked + .eval-label { background-color: var(--ielts-color); color: white; border-color: var(--ielts-color); box-shadow: 0 3px 10px rgba(153, 0, 0, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--ielts-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #660000; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--ielts-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">IELTS Academic • Writing • Lesson 3</span>
+            <h1 class="lesson-title">Bar Charts & Comparisons</h1>
+            <p class="lesson-objective">Objective: Group data effectively and use advanced contrast language to describe Bar Charts.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Academic Vocabulary: Proportions</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Instead of just listing numbers (e.g., 80%, 5%), use these phrases to show proportions.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">👥</span>
+                    <span class="vocab-en">Outnumber</span>
+                    <span class="vocab-es">Superar en número a...</span>
+                    <span class="vocab-synonym">Formula: A outnumbered B</span>
+                    <button class="audio-btn" onclick="playSound('To outnumber')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🍰</span>
+                    <span class="vocab-en">A mere fraction</span>
+                    <span class="vocab-es">Una pequeña fracción</span>
+                    <span class="vocab-synonym">Meaning: Very small amount</span>
+                    <button class="audio-btn" onclick="playSound('A mere fraction')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📊</span>
+                    <span class="vocab-en">The vast majority</span>
+                    <span class="vocab-es">La gran mayoría</span>
+                    <span class="vocab-synonym">Meaning: Over 75%</span>
+                    <button class="audio-btn" onclick="playSound('The vast majority')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⚖️</span>
+                    <span class="vocab-en">A striking difference</span>
+                    <span class="vocab-es">Una diferencia notable</span>
+                    <span class="vocab-synonym">Synonym: A clear contrast</span>
+                    <button class="audio-btn" onclick="playSound('A striking difference')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> The Grouping Strategy & Connectors</h2>
+            
+            <div class="grammar-box">
+                <p>A Bar Chart usually has categories (e.g., Countries, Activities, Ages). The biggest mistake is describing Bar 1, then Bar 2, then Bar 3. <strong>You MUST group them!</strong> Group the highest numbers in one paragraph, and the lowest in another, linking them with contrast words.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">While / Whereas</div>
+                        <div class="comp-formula">While [Sentence A], [Sentence B].</div>
+                        <p style="font-size: 0.9rem; color: #555;">Used to contrast two ideas in the <strong>same</strong> sentence.</p>
+                        <div class="comp-example">"<span class="hl-red">Whereas</span> reading was popular, sports were ignored."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">In stark contrast,</div>
+                        <div class="comp-formula">[Sentence A]. In stark contrast, [Sentence B].</div>
+                        <p style="font-size: 0.9rem; color: #555;">Used at the beginning of a <strong>new</strong> sentence to introduce an opposite idea.</p>
+                        <div class="comp-example">"Gaming was at 80%. <span class="hl-red">In stark contrast,</span> studying was at 5%."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE FRAGMENT TRAP</div>
+                <p>Words like <em>While</em> and <em>Whereas</em> are conjunctions. They CANNOT stand alone as a sentence. If you put a period before the second idea, you will lose points for Grammar.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #28a745;">
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">While Ivan likes CrossFit. Perlita likes sleeping.</span> (Grammar Fragment!)<br>
+                    ✅ <span style="color: #28a745;">While Ivan likes CrossFit, Perlita likes sleeping.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Model Answer Analysis: <em>Weekend Habits</em></h3>
+            <p style="color: #555; margin-bottom: 1rem;">Imagine a Bar Chart comparing the preferred weekend activities of secondary students at Colegio Fielding in Sucre (March 2026). The categories are: Sleeping, Using Lifestyle Apps, CrossFit/Sports, and Studying Philosophy.</p>
+
+            <div class="reading-paper">
+                <p>The provided bar chart compares the percentage of secondary students at Colegio Fielding who engaged in four different weekend activities in March 2026.</p>
+                
+                <p>Overall, it is immediately apparent that passive activities were significantly more favored by the students. <span class="hl-red">While</span> resting and digital entertainment accounted for the highest figures, academic and physical pursuits were chosen by <span class="hl-blue">a mere fraction</span> of the demographic.</p>
+                
+                <p>Looking at the most popular choices, sleeping was the dominant weekend activity, chosen by <span class="hl-blue">the vast majority</span> (85%) of the students, perhaps adopting habits similar to local pets like Perlita the cat. Using mobile apps, such as the newly released 'Teacher Ivan - Lifestyle', followed closely behind, capturing 70% of the students' preference.</p>
+                
+                <p><span class="hl-red">In stark contrast</span>, active and academic hobbies recorded strikingly low numbers. Engaging in sports like CrossFit appealed to only 15% of the secondary students. Furthermore, studying Philosophy was the least popular activity overall at a minimal 5%. Consequently, the preference for sleeping <span class="hl-blue">outnumbered</span> the preference for studying Philosophy by a ratio of seventeen to one.</p>
+                
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; margin-top: 1rem; background-color: #333;" onclick="playSound('Looking at the most popular choices, sleeping was the dominant weekend activity, chosen by the vast majority of the students. Using mobile apps, such as the newly released Teacher Ivan Lifestyle, followed closely behind. In stark contrast, active and academic hobbies recorded strikingly low numbers. Engaging in sports like CrossFit appealed to only 15 percent of the secondary students. Furthermore, studying Philosophy was the least popular activity overall at a minimal 5 percent.')">🔊 Listen to the Body Paragraphs</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--ielts-color);">
+            <h2 class="section-title"><span>3.</span> IELTS Strategy Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Prove you can group data and compare. You must score 5/5 to unlock Lesson 4.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>IELTS Strategy:</strong> When analyzing a Bar Chart with 4 categories, how should you structure your Body Paragraphs?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="list" class="eval-radio"><label for="q1a" class="eval-label">Describe Category 1, then 2, then 3, then 4.</label>
+                        <input type="radio" name="q1" id="q1b" value="compare" class="eval-radio"><label for="q1b" class="eval-label">Group the highest numbers in one paragraph, and the lowest in the next paragraph.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>The Fragment Trap:</strong> Which sentence is grammatically correct?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="twosentences" class="eval-radio"><label for="q2a" class="eval-label">Whereas sleeping was at 85%. Studying was at 5%.</label>
+                        <input type="radio" name="q2" id="q2b" value="onesentence" class="eval-radio"><label for="q2b" class="eval-label">Whereas sleeping was at 85%, studying was at 5%.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Academic Vocabulary:</strong> What does "A mere fraction" mean?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="small" class="eval-radio"><label for="q3a" class="eval-label">A very small amount.</label>
+                        <input type="radio" name="q3" id="q3b" value="large" class="eval-radio"><label for="q3b" class="eval-label">More than 75%.</label>
+                        <input type="radio" name="q3" id="q3c" value="broken" class="eval-radio"><label for="q3c" class="eval-label">Something that is broken.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> According to the model answer, what was the LEAST popular activity among Colegio Fielding students?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="apps" class="eval-radio"><label for="q4a" class="eval-label">Using Lifestyle apps.</label>
+                        <input type="radio" name="q4" id="q4b" value="crossfit" class="eval-radio"><label for="q4b" class="eval-label">Doing CrossFit.</label>
+                        <input type="radio" name="q4" id="q4c" value="philosophy" class="eval-radio"><label for="q4c" class="eval-label">Studying Philosophy.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Vocabulary Use:</strong> "In Colegio Fielding, the students who play sports _____ the students who study." (Sports = 100 students, Study = 10 students).</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="outnumber" class="eval-radio"><label for="q5a" class="eval-label">outnumber</label>
+                        <input type="radio" name="q5" id="q5b" value="plateau" class="eval-radio"><label for="q5b" class="eval-label">plateau</label>
+                        <input type="radio" name="q5" id="q5c" value="fluctuate" class="eval-radio"><label for="q5c" class="eval-label">fluctuate</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Brilliant grouping skills! Moving to Lesson 4.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'compare', q2: 'onesentence', q3: 'small', q4: 'philosophy', q5: 'outnumber' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#990000";
+                resultsDiv.style.border = "1px solid #ffcccc";
+                resultsDiv.innerHTML = "🏆 BAND 8.0 STRATEGY! You know how to group data effectively and avoid fragmentation.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: "Whereas" connects two ideas in ONE single sentence. Do not put a period in the middle! Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>

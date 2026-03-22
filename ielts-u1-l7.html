@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Map Comparisons - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales IELTS */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --ielts-color: #990000; /* Color IELTS (Rojo Carmesí Académico) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--ielts-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--ielts-color); }
+
+        /* Vocabulario Académico IELTS */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid #e0e0e0; border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--ielts-color); box-shadow: 0 5px 15px rgba(153, 0, 0, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--ielts-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: #333; }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        .vocab-synonym { font-size: 0.85rem; font-weight: 800; color: var(--ielts-color); background: #fdf0f0; padding: 0.2rem 0.6rem; border-radius: 4px; margin-top: 0.5rem;}
+        
+        .audio-btn {
+            background-color: #333; color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--ielts-color); }
+
+        /* Gramática: Map Transformations */
+        .grammar-box {
+            background-color: rgba(153, 0, 0, 0.03); border-left: 5px solid var(--ielts-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: #333; margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fdf0f0; color: var(--ielts-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #444; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--ielts-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        /* Reading Model Answer */
+        .reading-paper {
+            background-color: #fff; border: 1px solid #e0e0e0;
+            padding: 2.5rem; border-radius: 4px; line-height: 1.8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative;
+            color: #333;
+        }
+        .reading-paper::before {
+            content: 'Band 8.0 Model Answer';
+            position: absolute; top: 0; right: 0; background: var(--ielts-color); color: white; padding: 0.3rem 1rem; border-radius: 0 4px 0 8px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;
+        }
+        
+        .hl-red { color: var(--ielts-color); font-weight: 700; }
+        .hl-blue { color: var(--azul-primario); font-weight: 700; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem; color: #333;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff; color: #444;
+        }
+        .eval-label:hover { border-color: #999; background-color: #f9f9f9; }
+        .eval-radio:checked + .eval-label { background-color: var(--ielts-color); color: white; border-color: var(--ielts-color); box-shadow: 0 3px 10px rgba(153, 0, 0, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--ielts-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #660000; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--ielts-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">IELTS Academic • Writing • Lesson 7</span>
+            <h1 class="lesson-title">Map Comparisons</h1>
+            <p class="lesson-objective">Objective: Describe urban and architectural transformations using the Passive Voice and spatial prepositions.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Academic Vocabulary: Verbs of Transformation</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">When a map changes, buildings don't just "go away" or "appear". You must use precise architectural verbs in the Passive Voice.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏗️</span>
+                    <span class="vocab-en">Constructed</span>
+                    <span class="vocab-es">Construido (Edificios nuevos)</span>
+                    <span class="vocab-synonym">Synonyms: Built / Erected</span>
+                    <button class="audio-btn" onclick="playSound('A new gym was constructed.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">💥</span>
+                    <span class="vocab-en">Demolished</span>
+                    <span class="vocab-es">Demolido (Destruido)</span>
+                    <span class="vocab-synonym">Synonyms: Knocked down / Torn down</span>
+                    <button class="audio-btn" onclick="playSound('The old library was demolished.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🔄</span>
+                    <span class="vocab-en">Converted into</span>
+                    <span class="vocab-es">Convertido en (Cambio de uso)</span>
+                    <span class="vocab-synonym">Synonym: Transformed into</span>
+                    <button class="audio-btn" onclick="playSound('The room was converted into a lab.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🌲</span>
+                    <span class="vocab-en">Cleared</span>
+                    <span class="vocab-es">Despejado (Árboles/Bosques)</span>
+                    <span class="vocab-synonym">Synonym: Cut down</span>
+                    <button class="audio-btn" onclick="playSound('The forest was cleared to make way.')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Spatial Language & Map Grammar</h2>
+            
+            <div class="grammar-box">
+                <p>To score highly on maps, you must master two things: 1) <strong>Compass Directions</strong> (North, South, East, West) and 2) <strong>The "A became B" structure</strong>.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">Structure: Replaced By</div>
+                        <div class="comp-formula">[Old Thing] + was demolished and replaced by + [New Thing]</div>
+                        <p style="font-size: 0.9rem; color: #555;">Use this when an old building is destroyed to put a new one in its exact place.</p>
+                        <div class="comp-example">"The cafeteria <span class="hl-red">was demolished and replaced by</span> a gym."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">Structure: To make way for</div>
+                        <div class="comp-formula">[Old Thing] + was knocked down to make way for + [New Thing]</div>
+                        <p style="font-size: 0.9rem; color: #555;">Use this to explain the *reason* why something was destroyed.</p>
+                        <div class="comp-example">"The trees <span class="hl-red">were cleared to make way for</span> a parking lot."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE PREPOSITION TRAP (Location)</div>
+                <p>Students constantly lose points by using the wrong prepositions for compass directions. Memorize these rules:</p>
+                <ul style="margin-top: 1rem; font-weight: bold; line-height: 1.8;">
+                    <li><span style="color: #28a745;">IN the north OF the town:</span> It is inside the town's borders.</li>
+                    <li><span style="color: #28a745;">TO the north OF the town:</span> It is outside, pointing north from the town.</li>
+                    <li><span style="color: #28a745;">ON the north side:</span> Bordering the northern edge.</li>
+                </ul>
+            </div>
+            
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Model Answer Analysis: <em>Colegio Fielding (2021 vs 2026)</em></h3>
+            <p style="color: #555; margin-bottom: 1rem;">Imagine two maps of the Colegio Fielding campus in Sucre. Map 1 shows the campus as it was in 2021. Map 2 shows the campus today in 2026.</p>
+
+            <div class="reading-paper">
+                <p>The provided maps illustrate the development of the Colegio Fielding campus in Sucre over a five-year period, from 2021 to 2026.</p>
+                
+                <p>Overall, the campus underwent a significant transformation, evolving from a strictly traditional academic facility into a modernized space prioritizing technology and physical fitness, with several older buildings being <span class="hl-red">demolished to make way for</span> new student amenities.</p>
+                
+                <p>Looking at the northern section of the campus, the former traditional library <span class="hl-blue">was completely demolished</span>. In its place, a new Technology Hub <span class="hl-blue">was constructed</span>, specifically designed for students to utilize the newly launched 'Teacher Ivan - Lifestyle' application. Adjacent to this, in the north-east corner, the small cafeteria <span class="hl-blue">was expanded</span> significantly to accommodate healthier dietary options for the students.</p>
+                
+                <p>In the south-western corner, the most striking change occurred. The old, unused concrete courtyard <span class="hl-red">was converted into</span> a state-of-the-art CrossFit arena. Furthermore, the main Philosophy classroom in the center of the campus <span class="hl-blue">remained relatively unchanged</span>. However, a small, dedicated resting area <span class="hl-red">was erected</span> just outside its doors. According to the map, this new structure is currently occupied by Perlita the cat for her daily naps.</p>
+                
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; margin-top: 1rem; background-color: #333;" onclick="playSound('Looking at the northern section of the campus, the former traditional library was completely demolished. In its place, a new Technology Hub was constructed. In the south-western corner, the most striking change occurred. The old, unused concrete courtyard was converted into a state-of-the-art CrossFit arena. Furthermore, the main Philosophy classroom in the center of the campus remained relatively unchanged.')">🔊 Listen to the Body Paragraphs</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--ielts-color);">
+            <h2 class="section-title"><span>3.</span> IELTS Strategy Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Prove you can navigate maps academically. Score 5/5 to unlock Lesson 8.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Academic Vocabulary:</strong> What is the best verb to use when a building is completely destroyed?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="broken" class="eval-radio"><label for="q1a" class="eval-label">Broken down</label>
+                        <input type="radio" name="q1" id="q1b" value="demolished" class="eval-radio"><label for="q1b" class="eval-label">Demolished</label>
+                        <input type="radio" name="q1" id="q1c" value="cleared" class="eval-radio"><label for="q1c" class="eval-label">Cleared</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Map Grammar:</strong> "The old gym was knocked down _____ a new swimming pool."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="tomakewayfor" class="eval-radio"><label for="q2a" class="eval-label">to make way for</label>
+                        <input type="radio" name="q2" id="q2b" value="tobuild" class="eval-radio"><label for="q2b" class="eval-label">to build</label>
+                        <input type="radio" name="q2" id="q2c" value="for" class="eval-radio"><label for="q2c" class="eval-label">for</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Location Trap:</strong> If a park is located INSIDE the city limits, at the top of the map, you say it is...</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="to" class="eval-radio"><label for="q3a" class="eval-label">to the north of the city</label>
+                        <input type="radio" name="q3" id="q3b" value="in" class="eval-radio"><label for="q3b" class="eval-label">in the north of the city</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> According to the model answer, what happened to the old concrete courtyard?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="demolished" class="eval-radio"><label for="q4a" class="eval-label">It was demolished to make way for a library.</label>
+                        <input type="radio" name="q4" id="q4b" value="converted" class="eval-radio"><label for="q4b" class="eval-label">It was converted into a CrossFit arena.</label>
+                        <input type="radio" name="q4" id="q4c" value="unchanged" class="eval-radio"><label for="q4c" class="eval-label">It remained relatively unchanged.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Vocabulary Use:</strong> If a building did NOT change at all over the years, we say it...</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="remained" class="eval-radio"><label for="q5a" class="eval-label">remained unchanged</label>
+                        <input type="radio" name="q5" id="q5b" value="wasnttouched" class="eval-radio"><label for="q5b" class="eval-label">wasn't touched</label>
+                        <input type="radio" name="q5" id="q5c" value="stayedsame" class="eval-radio"><label for="q5c" class="eval-label">stayed the same</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent spatial awareness! Moving to Lesson 8.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'demolished', q2: 'tomakewayfor', q3: 'in', q4: 'converted', q5: 'remained' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#990000";
+                resultsDiv.style.border = "1px solid #ffcccc";
+                resultsDiv.innerHTML = "🏆 BAND 8.0 STRATEGY! You know exactly how to use transformation verbs and spatial prepositions for IELTS Maps.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember the prepositions: "IN the north" is inside the town, "TO the north" is outside the town. Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>

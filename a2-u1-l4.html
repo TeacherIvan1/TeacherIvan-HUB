@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: I went to the museum - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a2-color: #F56E1E; 
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a2-color); }
+
+        /* Vocabulario Extendido */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a2-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        .vocab-past { font-size: 1.05rem; font-weight: 800; color: var(--a2-color); background: #fdf3eb; padding: 0.3rem 0.8rem; border-radius: 4px; margin-top: 0.5rem;}
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a2-color); }
+
+        /* Gramática y Memory Hacks */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--a2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+        
+        .alert-box {
+            background-color: #fdf3eb; border-left: 5px solid var(--a2-color);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #8a3c0e;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+
+        .memory-hacks { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .hack-card { background: white; border: 2px dashed var(--a2-color); padding: 1.5rem; border-radius: 8px; flex: 1; min-width: 200px;}
+        .hack-title { font-family: var(--font-titulares); font-weight: 800; font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem;}
+        .hack-desc { font-size: 0.95rem; color: #555; line-height: 1.5;}
+
+        .highlight-irr { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--a2-color); color: white; border-color: var(--a2-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d65c15; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A2 • Unit 1 • Lesson 4</span>
+            <h1 class="lesson-title">I went to the museum</h1>
+            <p class="lesson-objective">Objective: Master the top 8 Irregular Verbs in the Past Simple to tell stories.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> The "Rebel" Verbs (Top 8)</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">These verbs don't follow rules. They are rebels! You use them in 80% of your daily conversations.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🚶‍♂️</span>
+                    <span class="vocab-en">Go</span>
+                    <span class="vocab-es">Ir</span>
+                    <span class="vocab-past">Went</span>
+                    <button class="audio-btn" onclick="playSound('Go. Went.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">👀</span>
+                    <span class="vocab-en">See</span>
+                    <span class="vocab-es">Ver</span>
+                    <span class="vocab-past">Saw</span>
+                    <button class="audio-btn" onclick="playSound('See. Saw.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🍽️</span>
+                    <span class="vocab-en">Eat</span>
+                    <span class="vocab-es">Comer</span>
+                    <span class="vocab-past">Ate</span>
+                    <button class="audio-btn" onclick="playSound('Eat. Ate.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">☕</span>
+                    <span class="vocab-en">Drink</span>
+                    <span class="vocab-es">Beber</span>
+                    <span class="vocab-past">Drank</span>
+                    <button class="audio-btn" onclick="playSound('Drink. Drank.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🛍️</span>
+                    <span class="vocab-en">Buy</span>
+                    <span class="vocab-es">Comprar</span>
+                    <span class="vocab-past">Bought</span>
+                    <button class="audio-btn" onclick="playSound('Buy. Bought.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🎁</span>
+                    <span class="vocab-en">Have</span>
+                    <span class="vocab-es">Tener</span>
+                    <span class="vocab-past">Had</span>
+                    <button class="audio-btn" onclick="playSound('Have. Had.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🚕</span>
+                    <span class="vocab-en">Take</span>
+                    <span class="vocab-es">Tomar (un taxi/foto)</span>
+                    <span class="vocab-past">Took</span>
+                    <button class="audio-btn" onclick="playSound('Take. Took.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🤝</span>
+                    <span class="vocab-en">Meet</span>
+                    <span class="vocab-es">Conocer/Encontrarse</span>
+                    <span class="vocab-past">Met</span>
+                    <button class="audio-btn" onclick="playSound('Meet. Met.')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Memory Hacks & Pronunciation</h2>
+            
+            <div class="alert-box">
+                <div class="alert-title">🧠 NO RULES, JUST MEMORY</div>
+                <p>You cannot add "-ed" to these verbs. If you say "I goed to the park" or "I eated pizza", people will not understand you. You must memorize their past form.</p>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Teacher Ivan's Memory Tricks</h3>
+            <div class="memory-hacks">
+                <div class="hack-card">
+                    <div class="hack-title">The "Number 8" Trick</div>
+                    <div class="hack-desc">The past tense of EAT is <strong>ATE</strong>. It is pronounced exactly the same as the number <strong>EIGHT</strong> (8)!</div>
+                </div>
+                <div class="hack-card">
+                    <div class="hack-title">The "Silent GH" Trick</div>
+                    <div class="hack-desc">The past tense of BUY is <strong>BOUGHT</strong>. Ignore the "gh". Just pronounce it like "Bot" (/bɔːt/).</div>
+                </div>
+                <div class="hack-card">
+                    <div class="hack-title">The Twin Verbs</div>
+                    <div class="hack-desc">Some verbs just drop one letter. MEET becomes <strong>MET</strong>. It's short and fast!</div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>A Saturday at the Museum</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"Last Saturday, my girlfriend and I <span class="highlight-irr">went</span> to the ASUR Textile Museum. We <span class="highlight-irr">saw</span> beautiful indigenous weavings from Sucre. After the tour, we <span class="highlight-irr">had</span> a big appetite! We <span class="highlight-irr">ate</span> a traditional 'mondongo' and <span class="highlight-irr">drank</span> some fresh api. Later, I <span class="highlight-irr">bought</span> a small souvenir for my desk. On our way home, we <span class="highlight-irr">met</span> some students from Colegio Fielding. Finally, we <span class="highlight-irr">took</span> a taxi back to our house because Perlita the cat <span class="highlight-irr">had</span> no food!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('Last Saturday, my girlfriend and I went to the ASUR Textile Museum. We saw beautiful indigenous weavings from Sucre. After the tour, we had a big appetite! We ate a traditional mondongo and drank some fresh api. Later, I bought a small souvenir for my desk. On our way home, we met some students from Colegio Fielding. Finally, we took a taxi back to our house because Perlita the cat had no food!')">🔊 Listen to the story</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--a2-color);">
+            <h2 class="section-title"><span>3.</span> Final Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">You must score 5/5 to prove you master these Irregular Verbs!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar:</strong> What is the correct past tense of the verb <strong>BUY</strong>?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="buyed" class="eval-radio"><label for="q1a" class="eval-label">buyed</label>
+                        <input type="radio" name="q1" id="q1b" value="bought" class="eval-radio"><label for="q1b" class="eval-label">bought</label>
+                        <input type="radio" name="q1" id="q1c" value="bot" class="eval-radio"><label for="q1c" class="eval-label">bot</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Grammar:</strong> "Yesterday, I _____ a delicious pizza."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="eated" class="eval-radio"><label for="q2a" class="eval-label">eated</label>
+                        <input type="radio" name="q2" id="q2b" value="eat" class="eval-radio"><label for="q2b" class="eval-label">eat</label>
+                        <input type="radio" name="q2" id="q2c" value="ate" class="eval-radio"><label for="q2c" class="eval-label">ate</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>The Trap:</strong> "My girlfriend and I _____ to the Central Market."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="went" class="eval-radio"><label for="q3a" class="eval-label">went</label>
+                        <input type="radio" name="q3" id="q3b" value="goed" class="eval-radio"><label for="q3b" class="eval-label">goed</label>
+                        <input type="radio" name="q3" id="q3c" value="gone" class="eval-radio"><label for="q3c" class="eval-label">gone</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> According to the story, what did Teacher Ivan DRINK?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="water" class="eval-radio"><label for="q4a" class="eval-label">He drank water.</label>
+                        <input type="radio" name="q4" id="q4b" value="drank" class="eval-radio"><label for="q4b" class="eval-label">He drank fresh api.</label>
+                        <input type="radio" name="q4" id="q4c" value="coffee" class="eval-radio"><label for="q4c" class="eval-label">He drank coffee.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> Who did they MEET on the way home?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="met" class="eval-radio"><label for="q5a" class="eval-label">They met students from Colegio Fielding.</label>
+                        <input type="radio" name="q5" id="q5b" value="perlita" class="eval-radio"><label for="q5b" class="eval-label">They met Perlita.</label>
+                        <input type="radio" name="q5" id="q5c" value="guide" class="eval-radio"><label for="q5c" class="eval-label">They met a museum guide.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job memorizing the rebels! Moving to Lesson 5.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'bought', q2: 'ate', q3: 'went', q4: 'drank', q5: 'met' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You conquered the Irregular Verbs. Amazing work!";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: 'Go' becomes 'Went', and 'Buy' becomes 'Bought'. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

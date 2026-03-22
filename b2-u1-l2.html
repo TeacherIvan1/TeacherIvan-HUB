@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Training for a Competition - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b2-color: #6f42c1; /* Color B2 (Púrpura Amatista) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b2-color); }
+
+        /* Vocabulario B2 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b2-color); box-shadow: 0 5px 15px rgba(111, 66, 193, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b2-color); }
+
+        /* Gramática: Past Perfect */
+        .grammar-box {
+            background-color: rgba(111, 66, 193, 0.05); border-left: 5px solid var(--b2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .timeline-container { margin: 2rem 0; padding: 1.5rem; border: 2px solid #eee; border-radius: 8px; background: white;}
+        .timeline-header { font-family: var(--font-titulares); color: var(--b2-color); font-size: 1.2rem; margin-bottom: 1rem; text-align: center;}
+        
+        .timeline-graphic { display: flex; align-items: center; justify-content: space-between; position: relative; margin-top: 2rem; padding-bottom: 1rem;}
+        .timeline-line { position: absolute; top: 15px; left: 10%; right: 10%; height: 4px; background-color: var(--gris-neutro); z-index: 1;}
+        .timeline-point { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; width: 30%; text-align: center;}
+        .point-dot { width: 24px; height: 24px; border-radius: 50%; background-color: white; border: 4px solid var(--gris-neutro); margin-bottom: 0.8rem;}
+        
+        .point-past-perfect .point-dot { border-color: var(--b2-color); background-color: #f3f0f9;}
+        .point-past-simple .point-dot { border-color: var(--naranja-vibrante); background-color: #fdf3eb;}
+        .point-now .point-dot { border-color: var(--azul-primario); background-color: #e6f0fa;}
+        
+        .point-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.3rem;}
+        .point-desc { font-size: 0.85rem; color: #666; font-style: italic;}
+
+        .grammar-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+        .grammar-table th, .grammar-table td { padding: 1rem; border: 1px solid var(--gris-neutro); text-align: left; }
+        .grammar-table th { background-color: var(--azul-primario); color: white; font-family: var(--font-titulares); }
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b2 { color: var(--b2-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b2-color); color: white; border-color: var(--b2-color); box-shadow: 0 3px 10px rgba(111, 66, 193, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #5a32a3; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B2 • Unit 1 • Lesson 2</span>
+            <h1 class="lesson-title">Training for a Competition</h1>
+            <p class="lesson-objective">Objective: Tell complex stories using the Past Perfect to sequence background events.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Competition Prep</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">To talk about events like a CrossFit tournament, you need these B2 level phrases.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏅</span>
+                    <span class="vocab-en">Qualify for...</span>
+                    <span class="vocab-es">Clasificar para...</span>
+                    <button class="audio-btn" onclick="playSound('Qualify for the finals')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧗‍♂️</span>
+                    <span class="vocab-en">Overcome an obstacle</span>
+                    <span class="vocab-es">Superar un obstáculo</span>
+                    <button class="audio-btn" onclick="playSound('Overcome an obstacle')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📋</span>
+                    <span class="vocab-en">Stick to a routine</span>
+                    <span class="vocab-es">Apegarse a una rutina</span>
+                    <button class="audio-btn" onclick="playSound('Stick to a routine')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🚀</span>
+                    <span class="vocab-en">Push your limits</span>
+                    <span class="vocab-es">Superar tus límites</span>
+                    <button class="audio-btn" onclick="playSound('Push your limits')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The Time Machine (Past Perfect)</h2>
+            
+            <div class="grammar-box">
+                <p>When you tell a story, you usually establish a "main event" in the <strong>Past Simple</strong>. But what if you need to explain the background story? What happened <em>before</em> that main event?</p>
+                <p>You need a Time Machine! The <strong>Past Perfect</strong> (`had + V3`) and <strong>Past Perfect Continuous</strong> (`had been + V-ing`) allow you to jump further back in time.</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline-header">The Narrative Timeline</div>
+                    <div class="timeline-graphic">
+                        <div class="timeline-line"></div>
+                        <div class="timeline-point point-past-perfect">
+                            <div class="point-dot"></div>
+                            <div class="point-title" style="color: var(--b2-color);">Past Perfect</div>
+                            <div class="point-desc">The preparation<br>(Before the event)</div>
+                        </div>
+                        <div class="timeline-point point-past-simple">
+                            <div class="point-dot"></div>
+                            <div class="point-title" style="color: var(--naranja-vibrante);">Past Simple</div>
+                            <div class="point-desc">The Main Event<br>(Yesterday / In 2024)</div>
+                        </div>
+                        <div class="timeline-point point-now">
+                            <div class="point-dot"></div>
+                            <div class="point-title" style="color: var(--azul-primario);">Now</div>
+                            <div class="point-desc">Present moment<br>(You telling the story)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="grammar-table">
+                    <tr><th>Tense</th><th>Formula</th><th>Use</th></tr>
+                    <tr>
+                        <td><strong>Past Perfect Simple</strong></td>
+                        <td><span class="highlight-b2">had + V3</span></td>
+                        <td>A completed action that happened before another past action. <br><em>(I <span class="highlight-b2">had packed</span> my bag before we left).</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Past Perfect Continuous</strong></td>
+                        <td><span class="highlight-b2">had been + V-ing</span></td>
+                        <td>Focuses on the <strong>duration</strong> of an action leading up to a past event. <br><em>(I <span class="highlight-b2">had been training</span> for 6 months).</em></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 The "And Then" Trap</div>
+                <p>In B1, students tell stories like a robot: "I woke up, and then I ate, and then I went to the gym." In B2, you must sound natural by changing the sequence!</p>
+                <p style="margin-top: 1rem; font-weight: bold;">
+                    ✅ <span style="color: #28a745;">"When I <span style="color:var(--naranja-vibrante);">arrived</span> at the gym, the competition <span style="color:var(--b2-color);">had already started</span>."</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The Big Competition</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"<span class="highlight-orange">Last weekend</span>, my girlfriend and I <span class="highlight-orange">went</span> to La Paz for a major CrossFit competition. We <span class="highlight-orange">felt</span> very confident because we <span class="highlight-b2">had been training</span> hard for six months. We <span class="highlight-b2">had stuck</span> to a strict routine every single day in Sucre.</p>
+                <p>However, when we <span class="highlight-orange">arrived</span> at our hotel, I <span class="highlight-orange">realized</span> there was a problem. I <span class="highlight-orange">opened</span> my gym bag and <span class="highlight-orange">saw</span> my lifting belt. It was ruined! Perlita the cat <span class="highlight-b2">had scratched</span> it the night before while I was sleeping!</p>
+                <p>Despite that obstacle, we <span class="highlight-orange">did</span> a great job. By the time the event <span class="highlight-orange">finished</span>, we <span class="highlight-b2">had pushed</span> our limits completely."</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('Last weekend, my girlfriend and I went to La Paz for a major CrossFit competition. We felt very confident because we had been training hard for six months. We had stuck to a strict routine every single day in Sucre. However, when we arrived at our hotel, I realized there was a problem. I opened my gym bag and saw my lifting belt. It was ruined! Perlita the cat had scratched it the night before while I was sleeping! Despite that obstacle, we did a great job. By the time the event finished, we had pushed our limits completely.')">🔊 Listen to the story</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b2-color);">
+            <h2 class="section-title"><span>3.</span> B2 Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Prove you can use the Time Machine! You must score 5/5 to unlock Lesson 3.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Concept:</strong> We use the Past Perfect to talk about...</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="past" class="eval-radio"><label for="q1a" class="eval-label">an action that happened at a specific time yesterday.</label>
+                        <input type="radio" name="q1" id="q1b" value="before" class="eval-radio"><label for="q1b" class="eval-label">an action that happened BEFORE another action in the past.</label>
+                        <input type="radio" name="q1" id="q1c" value="now" class="eval-radio"><label for="q1c" class="eval-label">an action that started in the past and continues now.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Structure Choice:</strong> "When I got to the classroom, the students _____ the exam."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="hadalreadyfinished" class="eval-radio"><label for="q2a" class="eval-label">had already finished</label>
+                        <input type="radio" name="q2" id="q2b" value="havealreadyfinished" class="eval-radio"><label for="q2b" class="eval-label">have already finished</label>
+                        <input type="radio" name="q2" id="q2c" value="alreadyfinished" class="eval-radio"><label for="q2c" class="eval-label">already finished</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Past Perfect Continuous:</strong> "Ivan was very fit because he _____ CrossFit for years."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="hasbeendoing" class="eval-radio"><label for="q3a" class="eval-label">has been doing</label>
+                        <input type="radio" name="q3" id="q3b" value="hadbeendoing" class="eval-radio"><label for="q3b" class="eval-label">had been doing</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> Why did Ivan and his girlfriend feel confident before the competition?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="belt" class="eval-radio"><label for="q4a" class="eval-label">Because they had a new lifting belt.</label>
+                        <input type="radio" name="q4" id="q4b" value="training" class="eval-radio"><label for="q4b" class="eval-label">Because they had been training hard for 6 months.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Story Sequencing:</strong> What happened FIRST chronologically in the story?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="hotel" class="eval-radio"><label for="q5a" class="eval-label">Ivan opened his bag at the hotel.</label>
+                        <input type="radio" name="q5" id="q5b" value="cat" class="eval-radio"><label for="q5b" class="eval-label">Perlita scratched the lifting belt.</label>
+                        <input type="radio" name="q5" id="q5c" value="arrived" class="eval-radio"><label for="q5c" class="eval-label">They arrived in La Paz.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent storytelling! Moving to Lesson 3.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'before', q2: 'hadalreadyfinished', q3: 'hadbeendoing', q4: 'training', q5: 'cat' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e6dcf5";
+                resultsDiv.style.color = "#4a2c82";
+                resultsDiv.style.border = "1px solid #c9b8e8";
+                resultsDiv.innerHTML = "🏆 MASTER STORYTELLER (5/5)! You perfectly understand how to sequence background events in the past.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: The Past Perfect (`had done`) always happens BEFORE the Past Simple (`did`). Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: Hitting a Plateau - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b2-color: #6f42c1; /* Color B2 (Púrpura Amatista) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b2-color); }
+
+        /* Vocabulario B2 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b2-color); box-shadow: 0 5px 15px rgba(111, 66, 193, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b2-color); }
+
+        /* Gramática: Gerunds vs Infinitives */
+        .grammar-box {
+            background-color: rgba(111, 66, 193, 0.05); border-left: 5px solid var(--b2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; flex-direction: column; gap: 1.5rem; margin: 1.5rem 0;
+        }
+        .comp-row {
+            display: flex; gap: 1rem; align-items: stretch; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.3rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; text-align: center;}
+        
+        .rule-box { margin-top: 1rem; padding: 1rem; border-radius: 6px; }
+        .rule-box.ing { background-color: #f3f0f9; border-left: 4px solid var(--b2-color); }
+        .rule-box.to { background-color: #fdf3eb; border-left: 4px solid var(--naranja-vibrante); }
+        
+        .rule-header { font-weight: 800; margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .rule-header.ing { color: var(--b2-color); }
+        .rule-header.to { color: var(--naranja-vibrante); }
+        
+        .rule-desc { font-size: 0.9rem; color: #555; margin-bottom: 0.5rem;}
+        .rule-example { font-style: italic; font-weight: 600; color: var(--azul-primario); font-size: 0.95rem;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b2 { color: var(--b2-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b2-color); color: white; border-color: var(--b2-color); box-shadow: 0 3px 10px rgba(111, 66, 193, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #5a32a3; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B2 • Unit 1 • Lesson 8</span>
+            <h1 class="lesson-title">Hitting a Plateau</h1>
+            <p class="lesson-objective">Objective: Master verbs that change meaning depending on Gerunds (-ING) or Infinitives (TO).</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Stagnation & Progress</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these advanced collocations to describe when progress stops, and how to fix it.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧱</span>
+                    <span class="vocab-en">Hit a plateau</span>
+                    <span class="vocab-es">Estancarse / Llegar a una meseta</span>
+                    <button class="audio-btn" onclick="playSound('Hit a plateau')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🔨</span>
+                    <span class="vocab-en">Break through</span>
+                    <span class="vocab-es">Superar (un límite)</span>
+                    <button class="audio-btn" onclick="playSound('Break through a barrier')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⚙️</span>
+                    <span class="vocab-en">Tweak a routine</span>
+                    <span class="vocab-es">Hacer pequeños ajustes a una rutina</span>
+                    <button class="audio-btn" onclick="playSound('Tweak a routine')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">😩</span>
+                    <span class="vocab-en">Burnout</span>
+                    <span class="vocab-es">Agotamiento mental/físico</span>
+                    <button class="audio-btn" onclick="playSound('Experience burnout')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The Chameleon Verbs</h2>
+            
+            <div class="grammar-box">
+                <p>In English, there are three "Chameleon Verbs". If you follow them with an <strong>-ING</strong> verb, they mean one thing. If you follow them with a <strong>TO</strong> verb, they mean something completely different. Pay close attention!</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">The Verb: TRY</div>
+                        <div class="comp-row" style="margin-top: 1rem;">
+                            <div class="rule-box ing" style="flex:1;">
+                                <div class="rule-header ing">Try + ING</div>
+                                <div class="rule-desc">To experiment to see if something works or solves a problem.</div>
+                                <div class="rule-example">"If you are tired, <span class="highlight-b2">try drinking</span> more water."</div>
+                            </div>
+                            <div class="rule-box to" style="flex:1;">
+                                <div class="rule-header to">Try + TO</div>
+                                <div class="rule-desc">To attempt something very difficult. You make an effort, but might fail.</div>
+                                <div class="rule-example">"I <span class="highlight-orange">tried to lift</span> 100kg, but it was too heavy."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">The Verb: STOP</div>
+                        <div class="comp-row" style="margin-top: 1rem;">
+                            <div class="rule-box ing" style="flex:1;">
+                                <div class="rule-header ing">Stop + ING</div>
+                                <div class="rule-desc">To quit an action completely. You don't do it anymore.</div>
+                                <div class="rule-example">"I <span class="highlight-b2">stopped eating</span> junk food last year."</div>
+                            </div>
+                            <div class="rule-box to" style="flex:1;">
+                                <div class="rule-header to">Stop + TO</div>
+                                <div class="rule-desc">To interrupt what you are doing in order to do something else.</div>
+                                <div class="rule-example">"I was driving, and I <span class="highlight-orange">stopped to answer</span> my phone."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">The Verb: REMEMBER</div>
+                        <div class="comp-row" style="margin-top: 1rem;">
+                            <div class="rule-box ing" style="flex:1;">
+                                <div class="rule-header ing">Remember + ING</div>
+                                <div class="rule-desc">A memory of the past. You did the action, and now you recall it.</div>
+                                <div class="rule-example">"I <span class="highlight-b2">remember winning</span> my first medal."</div>
+                            </div>
+                            <div class="rule-box to" style="flex:1;">
+                                <div class="rule-header to">Remember + TO</div>
+                                <div class="rule-desc">A task you must not forget to do in the future/present.</div>
+                                <div class="rule-example">"Please, <span class="highlight-orange">remember to lock</span> the door."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Reading Context: <em>Breaking the Wall</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"Recently, my girlfriend and I <span class="highlight-b2">hit a plateau</span> in our CrossFit training. We weren't getting any stronger, and we started feeling burnout. I <span class="highlight-orange">tried to lift</span> my personal best, but I couldn't move the bar. It was so frustrating!"</p>
+                <p>"Our coach gave us some advice. He told us to <span class="highlight-b2">try tweaking</span> our diet. So, we <span class="highlight-b2">stopped eating</span> heavy meals before training. Also, during the workouts, we <span class="highlight-orange">stopped to drink</span> water more often to stay hydrated."</p>
+                <p>"It worked! We <span class="highlight-b2">broke through</span> the plateau. I will always <span class="highlight-b2">remember feeling</span> so happy when I finally lifted that weight. Now, I always <span class="highlight-orange">remember to stretch</span> before I start."</p>
+                <p>"Perlita the cat, however, never hits a plateau. She <span class="highlight-orange">tries to sleep</span> 16 hours a day, and she always succeeds!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('Recently, my girlfriend and I hit a plateau in our CrossFit training. We weren\'t getting any stronger, and we started feeling burnout. I tried to lift my personal best, but I couldn\'t move the bar. It was so frustrating! Our coach gave us some advice. He told us to try tweaking our diet. So, we stopped eating heavy meals before training. Also, during the workouts, we stopped to drink water more often to stay hydrated. It worked! We broke through the plateau. I will always remember feeling so happy when I finally lifted that weight. Now, I always remember to stretch before I start. Perlita the cat, however, never hits a plateau. She tries to sleep 16 hours a day, and she always succeeds!')">🔊 Listen to the story</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b2-color);">
+            <h2 class="section-title"><span>3.</span> B2 Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Choose the correct meaning! A small mistake changes everything. Score 5/5 to advance.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Check (TRY):</strong> "I have a terrible headache." ➔ "You should _____ an aspirin to see if it helps."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="trytotake" class="eval-radio"><label for="q1a" class="eval-label">try to take</label>
+                        <input type="radio" name="q1" id="q1b" value="trytaking" class="eval-radio"><label for="q1b" class="eval-label">try taking</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Grammar Check (STOP):</strong> "Ivan is very healthy now because he _____ smoking five years ago."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="stoppedtosmoke" class="eval-radio"><label for="q2a" class="eval-label">stopped to smoke</label>
+                        <input type="radio" name="q2" id="q2b" value="stoppedsmoking" class="eval-radio"><label for="q2b" class="eval-label">stopped smoking</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Grammar Check (REMEMBER):</strong> "I clearly _____ the door. Why is it open now?" (You have the memory of doing it).</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="rememberlocking" class="eval-radio"><label for="q3a" class="eval-label">remember locking</label>
+                        <input type="radio" name="q3" id="q3b" value="remembertolock" class="eval-radio"><label for="q3b" class="eval-label">remember to lock</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> How did Ivan and his girlfriend break through their plateau?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="stopdrinking" class="eval-radio"><label for="q4a" class="eval-label">They stopped drinking water.</label>
+                        <input type="radio" name="q4" id="q4b" value="tweak" class="eval-radio"><label for="q4b" class="eval-label">They tried tweaking their diet.</label>
+                        <input type="radio" name="q4" id="q4c" value="sleep" class="eval-radio"><label for="q4c" class="eval-label">They tried to sleep like Perlita.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Meaning Check:</strong> If I say "We stopped to drink water", what does it mean?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="quit" class="eval-radio"><label for="q5a" class="eval-label">We quit drinking water forever.</label>
+                        <input type="radio" name="q5" id="q5b" value="interrupt" class="eval-radio"><label for="q5b" class="eval-label">We paused our workout in order to drink water.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent precision! Moving to Lesson 9.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'trytaking', q2: 'stoppedsmoking', q3: 'rememberlocking', q4: 'tweak', q5: 'interrupt' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e6dcf5";
+                resultsDiv.style.color = "#4a2c82";
+                resultsDiv.style.border = "1px solid #c9b8e8";
+                resultsDiv.innerHTML = "🏆 MASTER LEVEL (5/5)! You perfectly understand how the meaning changes between Gerunds and Infinitives.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember the trap: "Stop smoking" means quitting a habit, "Stop TO smoke" means taking a break to do it! Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

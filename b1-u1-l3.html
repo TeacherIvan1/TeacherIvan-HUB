@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Past Simple vs Present Perfect - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #008CBA; /* Color B1 */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario: Life Milestones */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(0, 140, 186, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        .vocab-v3 { font-size: 0.85rem; font-weight: 800; color: var(--azul-primario); background: #e0f7fa; padding: 0.2rem 0.5rem; border-radius: 4px; margin-top: 0.5rem;}
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: The Zoom In Technique */
+        .grammar-box {
+            background-color: rgba(0, 140, 186, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .zoom-container {
+            display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;
+        }
+        .zoom-step {
+            display: flex; align-items: stretch; background: white; border: 1px solid var(--gris-neutro); border-radius: 8px; overflow: hidden;
+        }
+        .zoom-icon {
+            background-color: var(--b1-color); color: white; padding: 1.5rem; font-size: 2rem; display: flex; align-items: center; justify-content: center;
+        }
+        .zoom-icon.detail { background-color: var(--naranja-vibrante); }
+        .zoom-content { padding: 1.5rem; flex-grow: 1; }
+        .zoom-title { font-family: var(--font-titulares); font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--azul-primario); }
+        .zoom-example { background: #f9f9f9; padding: 0.8rem; border-left: 3px solid var(--gris-neutro); margin-top: 0.5rem; font-style: italic; font-weight: 600;}
+
+        .alert-box {
+            background-color: #fdf3eb; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #8a3c0e;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(0, 140, 186, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #007399; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 1 • Lesson 3</span>
+            <h1 class="lesson-title">Past Simple vs Present Perfect</h1>
+            <p class="lesson-objective">Objective: Combine both tenses correctly to share general news and specific details.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Life Milestones</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these verbs to talk about big projects and important moments in your life.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">📱</span>
+                    <span class="vocab-en">Develop an app</span>
+                    <span class="vocab-es">Desarrollar una app</span>
+                    <span class="vocab-v3">Past: Developed / V3: Developed</span>
+                    <button class="audio-btn" onclick="playSound('Develop. Developed.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏫</span>
+                    <span class="vocab-en">Teach classes</span>
+                    <span class="vocab-es">Dar clases</span>
+                    <span class="vocab-v3">Past: Taught / V3: Taught</span>
+                    <button class="audio-btn" onclick="playSound('Teach. Taught.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🥇</span>
+                    <span class="vocab-en">Compete</span>
+                    <span class="vocab-es">Competir</span>
+                    <span class="vocab-v3">Past: Competed / V3: Competed</span>
+                    <button class="audio-btn" onclick="playSound('Compete. Competed.')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🐾</span>
+                    <span class="vocab-en">Adopt a pet</span>
+                    <span class="vocab-es">Adoptar una mascota</span>
+                    <span class="vocab-v3">Past: Adopted / V3: Adopted</span>
+                    <button class="audio-btn" onclick="playSound('Adopt. Adopted.')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The "Zoom In" Technique</h2>
+            
+            <div class="grammar-box">
+                <p>Native speakers do not use just one tense. They mix them! We use the <strong>Present Perfect</strong> to announce the "Big News" (the general experience), and then we <strong>Zoom In</strong> using the <strong>Past Simple</strong> to give the specific details (when, where, who).</p>
+                
+                <div class="zoom-container">
+                    <div class="zoom-step">
+                        <div class="zoom-icon">🌍</div>
+                        <div class="zoom-content">
+                            <div class="zoom-title">Step 1: The Big Picture (Present Perfect)</div>
+                            <p>Introduce the general life experience. No specific time.</p>
+                            <div class="zoom-example">"I <span class="highlight-b1">have traveled</span> to many cities in Bolivia."</div>
+                        </div>
+                    </div>
+                    <div class="zoom-step">
+                        <div class="zoom-icon detail">🔍</div>
+                        <div class="zoom-content">
+                            <div class="zoom-title">Step 2: Zoom In for Details (Past Simple)</div>
+                            <p>Give the specific details. Use time markers like <em>yesterday, last year, in 2024</em>.</p>
+                            <div class="zoom-example">"For example, I <span class="highlight-orange">went</span> to La Paz <span class="highlight-orange">last year</span> for a CrossFit competition."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE FATAL ERROR</div>
+                <p>NEVER use the Present Perfect with specific finished time words. They are enemies!</p>
+                <p style="margin-top: 0.5rem; font-weight: bold;">
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">I have developed an app in 2025.</span><br>
+                    ✅ <span style="color: #28a745;">I DEVELOPED an app in 2025.</span> (Specific time = Past Simple)
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>An Interview with Teacher Ivan</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p><strong>Interviewer:</strong> Ivan, you are a very active person! <span class="highlight-b1">Have</span> you <span class="highlight-b1">taught</span> at Colegio Fielding for a long time?</p>
+                <p><strong>Teacher Ivan:</strong> Yes, I <span class="highlight-b1">have taught</span> English and Philosophy here for a few years. I <span class="highlight-orange">started</span> my journey in 2021. It <span class="highlight-orange">was</span> a great decision.</p>
+                <p><strong>Interviewer:</strong> I heard you are also a programmer. Is that true?</p>
+                <p><strong>Teacher Ivan:</strong> Yes! I <span class="highlight-b1">have developed</span> an app for the school called 'Teacher Ivan - Lifestyle'. Actually, I <span class="highlight-orange">wrote</span> the final HTML code <span class="highlight-orange">yesterday morning</span>.</p>
+                <p><strong>Interviewer:</strong> Amazing! And what about your free time?</p>
+                <p><strong>Teacher Ivan:</strong> I <span class="highlight-b1">have competed</span> in many CrossFit events with my girlfriend. We <span class="highlight-orange">won</span> a medal <span class="highlight-orange">two months ago</span>. And of course, we spend time with Perlita. We <span class="highlight-orange">adopted</span> her <span class="highlight-orange">last year</span>!</p>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Can you master the "Zoom In" technique? Score 5/5 to pass!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Rules:</strong> If the sentence has a specific finished time (like <em>in 2022</em> or <em>yesterday</em>), which tense MUST you use?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="past" class="eval-radio"><label for="q1a" class="eval-label">Past Simple</label>
+                        <input type="radio" name="q1" id="q1b" value="present" class="eval-radio"><label for="q1b" class="eval-label">Present Perfect</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>The Zoom In Technique:</strong> "I _____ to Sucre many times. In fact, I _____ there last summer."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="went1" class="eval-radio"><label for="q2a" class="eval-label">went / have gone</label>
+                        <input type="radio" name="q2" id="q2b" value="havegone" class="eval-radio"><label for="q2b" class="eval-label">have gone / went</label>
+                        <input type="radio" name="q2" id="q2c" value="went2" class="eval-radio"><label for="q2c" class="eval-label">went / went</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Fatal Error Check:</strong> Which sentence is mathematically WRONG in English?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="wrong" class="eval-radio"><label for="q3a" class="eval-label">I have adopted a cat last year.</label>
+                        <input type="radio" name="q3" id="q3b" value="correct1" class="eval-radio"><label for="q3b" class="eval-label">I adopted a cat last year.</label>
+                        <input type="radio" name="q3" id="q3c" value="correct2" class="eval-radio"><label for="q3c" class="eval-label">I have adopted a cat.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> When did Ivan start teaching at Colegio Fielding?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="yesterday" class="eval-radio"><label for="q4a" class="eval-label">Yesterday</label>
+                        <input type="radio" name="q4" id="q4b" value="2021" class="eval-radio"><label for="q4b" class="eval-label">In 2021</label>
+                        <input type="radio" name="q4" id="q4c" value="never" class="eval-radio"><label for="q4c" class="eval-label">He has never taught there.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Context:</strong> "_____ you ever competed in CrossFit? Yes, I _____ a medal two months ago."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="didwon" class="eval-radio"><label for="q5a" class="eval-label">Did / have won</label>
+                        <input type="radio" name="q5" id="q5b" value="havedid" class="eval-radio"><label for="q5b" class="eval-label">Have / win</label>
+                        <input type="radio" name="q5" id="q5c" value="havewon" class="eval-radio"><label for="q5c" class="eval-label">Have / won</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent! You mastered the Zoom In technique. Moving to Lesson 4.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'past', q2: 'havegone', q3: 'wrong', q4: '2021', q5: 'havewon' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e0f7fa";
+                resultsDiv.style.color = "#006080";
+                resultsDiv.style.border = "1px solid #b2ebf2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You perfectly understand when to use the 'Big Picture' and when to 'Zoom In' for details.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember the Fatal Error: NEVER use Present Perfect with specific past times (like 'last year' or 'in 2021'). Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

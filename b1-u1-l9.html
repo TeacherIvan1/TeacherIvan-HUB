@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Unit 1 Review - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #008CBA; /* Color B1 */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Reading Comprehension */
+        .reading-box {
+            background-color: rgba(0, 140, 186, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 2.5rem 2rem 2rem 2rem; border-radius: 0 8px 8px 0; font-size: 1.05rem; line-height: 1.8;
+            margin-bottom: 2rem; position: relative;
+        }
+        .reading-box::before {
+            content: 'Teacher Ivan\'s Blog';
+            position: absolute; top: -12px; left: 15px; background: var(--b1-color); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .highlight { font-weight: 700; color: var(--azul-primario); background-color: rgba(0, 140, 186, 0.15); padding: 0 4px; border-radius: 3px; }
+
+        /* Summary Grid */
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+        .summary-card { border: 1px solid var(--gris-neutro); border-radius: 8px; padding: 1.5rem; position: relative; overflow: hidden; background: white;}
+        .summary-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--b1-color); }
+        .summary-title { font-family: var(--font-titulares); color: var(--azul-primario); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .summary-content { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .badge-sm { background: #e0f7fa; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; color: var(--b1-color);}
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-radio { display: none; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(0, 140, 186, 0.3); }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 1rem;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #007399; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-success { background-color: #28a745; color: white; border: none; }
+        .btn-success:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Final Test</span>
+            <h1 class="lesson-title">Unit 1 Review</h1>
+            <p class="lesson-objective">Objective: Review all B1 grammar structures and pass the final master assessment.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Reading: The B1 Challenge</h2>
+            <p style="margin-bottom: 1rem; color: #555;">Read Teacher Ivan's post carefully. Can you identify all the rules we learned in Unit 1?</p>
+            
+            <div class="reading-box">
+                "Hello, students! It <span class="highlight">has been</span> a fantastic month in Sucre. <span class="highlight">Have you ever tried</span> to do a million things at once? Well, I have! <br><br>
+                First, I <span class="highlight">have taught</span> Philosophy at Colegio Fielding <span class="highlight">for</span> many years. But this week, the students <span class="highlight">were given</span> a very difficult exam. They <span class="highlight">had to</span> study a lot! I <span class="highlight">have already graded</span> all the tests, but I haven't uploaded the grades to the system <span class="highlight">yet</span>. They <span class="highlight">should</span> be patient!<br><br>
+                Also, my girlfriend <span class="highlight">has gone</span> to La Paz for a CrossFit competition. She <span class="highlight">went</span> there yesterday. So, I am alone at home. Perlita the cat <span class="highlight">has just eaten</span> her food, and now she is sleeping. I <span class="highlight">must</span> go to the gym now. See you in Unit 2!"
+            </div>
+            
+            <button class="eval-submit-btn" style="background-color: var(--azul-primario); width: auto; font-size: 0.9rem; padding: 0.8rem 1.5rem;" onclick="playSound('Hello, students! It has been a fantastic month in Sucre. Have you ever tried to do a million things at once? Well, I have! First, I have taught Philosophy at Colegio Fielding for many years. But this week, the students were given a very difficult exam. They had to study a lot! I have already graded all the tests, but I haven\'t uploaded the grades to the system yet. They should be patient! Also, my girlfriend has gone to La Paz for a CrossFit competition. She went there yesterday. So, I am alone at home. Perlita the cat has just eaten her food, and now she is sleeping. I must go to the gym now. See you in Unit 2!')">🔊 Listen to the text</button>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar Quick Review</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-title">Present Perfect Rules</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Unfinished Time:</span> Have/Has + V3. (Today, this week).<br>
+                        • <span class="badge-sm">Experiences:</span> Have you <em>ever</em>...? I have <em>never</em>...<br>
+                        • <span class="badge-sm">Zoom In:</span> Use Present Perfect for the general idea, and Past Simple for specific details.
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">The Power Words</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">For vs Since:</span> <em>For</em> + Number (for 3 days). <em>Since</em> + Date (since 2021).<br>
+                        • <span class="badge-sm">Position:</span> <em>Just</em> / <em>Already</em> go in the middle. <em>Yet</em> goes at the END.<br>
+                        • <span class="badge-sm">Tickets:</span> <em>Been</em> = Return. <em>Gone</em> = One-way.
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Passive Voice & Modals</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Passive:</span> Verb To Be + V3. Focus on the object (The games <em>were held</em>).<br>
+                        • <span class="badge-sm">Modals:</span> <em>Should</em> (advice), <em>Must</em> (strong rule), <em>Have to</em> (external obligation). NEVER use "to" after Should/Must.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> Unit 1 Final Master Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Prove your B1 mastery! You must score 5/5 to complete the unit.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>For vs Since:</strong> "I have trained CrossFit _____ 5 years."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="for" class="eval-radio"><label for="q1a" class="eval-label">for</label>
+                        <input type="radio" name="q1" id="q1b" value="since" class="eval-radio"><label for="q1b" class="eval-label">since</label>
+                        <input type="radio" name="q1" id="q1c" value="ago" class="eval-radio"><label for="q1c" class="eval-label">ago</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Been vs Gone:</strong> "I can't find Ivan. He has _____ to the school."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="been" class="eval-radio"><label for="q2a" class="eval-label">been</label>
+                        <input type="radio" name="q2" id="q2b" value="gone" class="eval-radio"><label for="q2b" class="eval-label">gone</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Passive Voice:</strong> "The first CrossFit gym _____ in the year 2000."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="invented" class="eval-radio"><label for="q3a" class="eval-label">invented</label>
+                        <input type="radio" name="q3" id="q3b" value="wasinvented" class="eval-radio"><label for="q3b" class="eval-label">was invented</label>
+                        <input type="radio" name="q3" id="q3c" value="hasinvented" class="eval-radio"><label for="q3c" class="eval-label">has invented</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Position of Yet:</strong> Choose the correct sentence.</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="wrong" class="eval-radio"><label for="q4a" class="eval-label">I haven't yet finished the exam.</label>
+                        <input type="radio" name="q4" id="q4b" value="yet" class="eval-radio"><label for="q4b" class="eval-label">I haven't finished the exam yet.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>The Zoom In Technique:</strong> "I _____ to La Paz many times. In fact, I _____ there last week."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="wenthavebeen" class="eval-radio"><label for="q5a" class="eval-label">went / have been</label>
+                        <input type="radio" name="q5" id="q5b" value="havebeenhavebeen" class="eval-radio"><label for="q5b" class="eval-label">have been / have been</label>
+                        <input type="radio" name="q5" id="q5c" value="havebeenwent" class="eval-radio"><label for="q5c" class="eval-label">have been / went</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-success" onclick="alert('¡Felicidades, Teacher Ivan! Tus alumnos han superado el núcleo del B1.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Finish Unit 1 🏆</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas para el Final Test B1 (5 preguntas)
+            const answers = { q1: 'for', q2: 'gone', q3: 'wasinvented', q4: 'yet', q5: 'havebeenwent' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 AMAZING! PERFECT SCORE (5/5)! You have officially mastered the core grammar of Level B1.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Review the rules carefully: 1) Number=For, 2) Not here=Gone, 3) Passive needs To Be, 4) Yet goes at the end, 5) Specific time=Past Simple. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

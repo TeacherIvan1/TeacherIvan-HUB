@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Unit 1 Review - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales IELTS */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --ielts-color: #990000; /* Color IELTS (Rojo Carmesí Académico) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--ielts-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--ielts-color); }
+
+        /* Reading Comprehension */
+        .reading-box {
+            background-color: rgba(153, 0, 0, 0.03); border-left: 5px solid var(--ielts-color);
+            padding: 2.5rem 2rem 2rem 2rem; border-radius: 0 8px 8px 0; font-size: 1.05rem; line-height: 1.8;
+            margin-bottom: 2rem; position: relative; color: #333;
+        }
+        .reading-box::before {
+            content: 'Teacher Ivan\'s Exam Report';
+            position: absolute; top: -12px; left: 15px; background: var(--ielts-color); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .highlight { font-weight: 700; color: var(--ielts-color); background-color: rgba(153, 0, 0, 0.1); padding: 0 4px; border-radius: 3px; }
+        .highlight-blue { font-weight: 700; color: var(--azul-primario); background-color: rgba(10, 70, 140, 0.1); padding: 0 4px; border-radius: 3px; }
+
+        /* Summary Grid */
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+        .summary-card { border: 1px solid var(--gris-neutro); border-radius: 8px; padding: 1.5rem; position: relative; overflow: hidden; background: white;}
+        .summary-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--ielts-color); }
+        .summary-title { font-family: var(--font-titulares); color: var(--azul-primario); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .summary-content { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .badge-sm { background: #fdf0f0; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; color: var(--ielts-color);}
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem; color: #333;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-radio { display: none; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff; color: #444;
+        }
+        .eval-label:hover { border-color: #999; background-color: #f9f9f9; }
+        .eval-radio:checked + .eval-label { background-color: var(--ielts-color); color: white; border-color: var(--ielts-color); box-shadow: 0 3px 10px rgba(153, 0, 0, 0.3); }
+        
+        .eval-submit-btn {
+            background-color: var(--ielts-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 1rem;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #660000; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-success { background-color: #28a745; color: white; border: none; }
+        .btn-success:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">IELTS Academic • Final Test</span>
+            <h1 class="lesson-title">Unit 1 Review: Task 1 Mastery</h1>
+            <p class="lesson-objective">Objective: Review all graph types, vocabulary, and strict IELTS rules to pass the final Task 1 assessment.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Reading: The Examiner's Perspective</h2>
+            <p style="margin-bottom: 1rem; color: #555;">Read Teacher Ivan's feedback on his students' mock exams. Can you identify the grammar rules and IELTS traps he mentions?</p>
+            
+            <div class="reading-box">
+                "It is late March 2026, and I have just finished grading the IELTS Mock Exams at Colegio Fielding. <span class="highlight">Overall, it is clear that</span> most students improved, but some fell into classic traps! <br><br>
+                First, the positive news: When analyzing the line graphs, many students remembered to <span class="highlight-blue">paraphrase the prompt</span>. They also showed great grammar shifts, writing both '<span class="highlight">sales plummeted</span>' and 'there was a <span class="highlight">sharp decrease in</span> sales'. Their scores <span class="highlight">skyrocketed</span>! <br><br>
+                However, I found several fatal errors. In the Bar Charts, some students wrote a 'shopping list' instead of grouping the data. In the Pie Charts, some forgot to use fractions like '<span class="highlight-blue">exactly a quarter</span>', and instead just repeated percentages. For the Process diagram, a few students used the Active voice instead of the <span class="highlight">Present Simple Passive</span>! <br><br>
+                Right now, I am exhausted from grading. My energy levels have <span class="highlight">plateaued</span> at zero. Meanwhile, Perlita the cat <span class="highlight-blue">accounts for exactly half</span> of the noise in the house because she wants tuna. It's time to rest!"
+            </div>
+            
+            <button class="eval-submit-btn" style="background-color: #333; width: auto; font-size: 0.9rem; padding: 0.8rem 1.5rem;" onclick="playSound('It is late March 2026, and I have just finished grading the IELTS Mock Exams at Colegio Fielding. Overall, it is clear that most students improved, but some fell into classic traps! First, the positive news: When analyzing the line graphs, many students remembered to paraphrase the prompt. They also showed great grammar shifts, writing both sales plummeted and there was a sharp decrease in sales. Their scores skyrocketed! However, I found several fatal errors. In the Bar Charts, some students wrote a shopping list instead of grouping the data. In the Pie Charts, some forgot to use fractions. For the Process diagram, a few students used the Active voice instead of the Present Simple Passive!')">🔊 Listen to the feedback</button>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> The Task 1 Ultimate Cheatsheet</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-title">Structure & Rules</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Paraphrase:</span> NEVER copy the prompt. Use synonym surgery.<br>
+                        • <span class="badge-sm">The Overview:</span> Summarize main trends. NO NUMBERS ALLOWED.<br>
+                        • <span class="badge-sm">No Opinions:</span> This is a report. Never guess *why* a trend happened.
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Data & Trends</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Grammar Shift:</span> Alternate between <em>Verb+Adv</em> (fell sharply) and <em>Adj+Noun</em> (a sharp fall IN).<br>
+                        • <span class="badge-sm">Fractions:</span> Use <em>a third, a quarter, the vast majority</em>.<br>
+                        • <span class="badge-sm">Tables/Bars:</span> Find the extremes (highest/lowest). Avoid "shopping lists".
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Maps & Processes</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Processes:</span> Use <em>Present Simple Passive</em> (is constructed, are evaluated) + Sequencers (Subsequently).<br>
+                        • <span class="badge-sm">Maps:</span> Use <em>demolished, converted into</em>, and <em>to make way for</em>. Watch your prepositions (in/to the north).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--ielts-color);">
+            <h2 class="section-title"><span>3.</span> Unit 1 Final Master Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Prove your Band 8.0 readiness! You must score 5/5 to complete the unit.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>The Fatal Rule:</strong> What happens if you include specific numbers (e.g., "sales reached 50%") in your Overview paragraph?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="bonus" class="eval-radio"><label for="q1a" class="eval-label">You get a higher score for precision.</label>
+                        <input type="radio" name="q1" id="q1b" value="penalty" class="eval-radio"><label for="q1b" class="eval-label">You lose points because the Overview is only for general trends.</label>
+                        <input type="radio" name="q1" id="q1c" value="nothing" class="eval-radio"><label for="q1c" class="eval-label">It is totally acceptable.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Grammar Shift:</strong> Choose the grammatically perfect transformation of "Downloads increased steadily".</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="of" class="eval-radio"><label for="q2a" class="eval-label">There was a steady increase of downloads.</label>
+                        <input type="radio" name="q2" id="q2b" value="in" class="eval-radio"><label for="q2b" class="eval-label">There was a steady increase in downloads.</label>
+                        <input type="radio" name="q2" id="q2c" value="steadyincrease" class="eval-radio"><label for="q2c" class="eval-label">There was a steady increase downloads.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Process Diagram:</strong> "Once the coffee beans are picked, they _____ in the sun."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="aredried" class="eval-radio"><label for="q3a" class="eval-label">are dried</label>
+                        <input type="radio" name="q3" id="q3b" value="dry" class="eval-radio"><label for="q3b" class="eval-label">dry</label>
+                        <input type="radio" name="q3" id="q3c" value="isdried" class="eval-radio"><label for="q3c" class="eval-label">is dried</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Map Vocabulary:</strong> "The old parking lot was destroyed _____ a new hospital."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="replaced" class="eval-radio"><label for="q4a" class="eval-label">and replaced</label>
+                        <input type="radio" name="q4" id="q4b" value="tomakewayfor" class="eval-radio"><label for="q4b" class="eval-label">to make way for</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Grouping Strategy:</strong> Why did Teacher Ivan criticize the "shopping list" method in Bar Charts?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="noskill" class="eval-radio"><label for="q5a" class="eval-label">Because it shows no analytical skill; data must be grouped and compared.</label>
+                        <input type="radio" name="q5" id="q5b" value="long" class="eval-radio"><label for="q5b" class="eval-label">Because it takes too long to write.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-success" onclick="alert('¡Felicidades, Teacher Ivan! Tus alumnos están listos para destrozar el Writing Task 1 del IELTS.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Finish Unit 1 🏆</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas para el Final Test IELTS (5 preguntas)
+            const answers = { q1: 'penalty', q2: 'in', q3: 'aredried', q4: 'tomakewayfor', q5: 'noskill' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 BAND 8.0 ACCOMPLISHED! PERFECT SCORE (5/5)! You have mastered every rule, trap, and structure of the IELTS Writing Task 1.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Review the traps: 1) NO numbers in the Overview. 2) Increase IN. 3) Plural passive = ARE dried. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

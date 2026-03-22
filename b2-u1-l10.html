@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10: Project - The Consistency Challenge - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b2-color: #6f42c1; /* Color B2 (Púrpura Amatista) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b2-color); }
+
+        /* Project Steps */
+        .project-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .step-card {
+            background: #f3f0f9; border-left: 5px solid var(--b2-color); padding: 1.5rem; border-radius: 0 8px 8px 0;
+        }
+        .step-title { font-family: var(--font-titulares); color: var(--azul-primario); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;}
+        
+        .example-box {
+            background-color: white; border: 1px solid var(--gris-neutro); padding: 2rem 1.8rem 1.8rem 1.8rem; border-radius: 8px; margin-top: 1.5rem; position: relative; line-height: 1.8; font-size: 1.05rem; color: #333;
+        }
+        .example-box::before { content: 'The B2 Master Template'; position: absolute; top: -12px; left: 15px; background: var(--azul-primario); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* Highlighters para la Master Template */
+        .hl-cont { font-weight: 700; color: var(--b2-color); background: rgba(111, 66, 193, 0.1); padding: 0 4px; border-radius: 3px; } /* Perfect Continuous */
+        .hl-past { font-weight: 700; color: var(--naranja-vibrante); border-bottom: 2px solid var(--naranja-vibrante);} /* Past Perfect */
+        .hl-fut { font-weight: 700; color: #28a745; text-decoration: underline; text-decoration-color: #28a745; text-decoration-thickness: 2px;} /* Future Perfect */
+        .hl-hab { font-weight: 800; color: var(--azul-primario); } /* Used to / Get used to */
+
+        /* Legend */
+        .legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 600; }
+        .leg-item { display: flex; align-items: center; gap: 0.4rem; }
+        .leg-box { width: 12px; height: 12px; border-radius: 2px; }
+
+        /* Text Area for Draft */
+        textarea {
+            width: 100%; height: 220px; padding: 1.5rem; border: 2px dashed var(--gris-neutro); border-radius: 8px;
+            font-family: var(--font-cuerpo); font-size: 1.1rem; resize: vertical; box-sizing: border-box; margin-top: 1rem; line-height: 1.6; color: var(--azul-primario);
+        }
+        textarea:focus { outline: none; border-color: var(--b2-color); background-color: #fcfbfd; box-shadow: 0 0 10px rgba(111, 66, 193, 0.1); }
+
+        /* Checklist */
+        .checklist { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+        .check-item { display: flex; align-items: flex-start; gap: 1rem; font-size: 1.05rem; cursor: pointer; padding: 0.8rem; border-radius: 6px; transition: background-color 0.2s; border: 1px solid transparent;}
+        .check-item:hover { background-color: #f9f9f9; border-color: #eee;}
+        .check-item input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--b2-color); cursor: pointer; margin-top: 0.2rem;}
+        .check-item label { cursor: pointer; flex-grow: 1; line-height: 1.5;}
+        .check-note { display: block; font-size: 0.85rem; color: #666; margin-top: 0.3rem;}
+
+        /* Submit Button */
+        .eval-submit-btn {
+            background-color: var(--b2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 2.5rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s;
+        }
+        .eval-submit-btn:hover { background-color: #5a32a3; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(111, 66, 193, 0.3);}
+        .eval-submit-btn:disabled { background-color: var(--gris-neutro); cursor: not-allowed; transform: none; box-shadow: none;}
+
+        #success-message { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;}
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro);
+            background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        
+        .footer-buttons { display: flex; gap: 1rem; align-items: center; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b2-color); color: white; }
+        .btn-primary:hover { background-color: #5a32a3; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B2 • Unit 1 • Final Project</span>
+            <h1 class="lesson-title">Project: The Consistency Challenge</h1>
+            <p class="lesson-objective">Objective: Combine advanced perfect tenses, adaptation habits, and quantifiers in a cohesive presentation.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Your B2 Mission 🚀</h2>
+            <p style="margin-bottom: 1.5rem; color: #555; line-height: 1.6; font-size: 1.05rem;">
+                A true B2 speaker can talk about a long-term goal or challenge with precision. Your mission is to write and record a 90-second presentation about something you are highly committed to (a sport, learning English, a career goal). You must demonstrate control over the complex grammar from Unit 1.
+            </p>
+            
+            <div class="project-steps">
+                <div class="step-card">
+                    <div class="step-title"><span>🔍</span> Step 1: Analyze the Master Template</div>
+                    <p style="margin-bottom: 1rem; color: #444;">Read my story below. Notice how the grammar rules weave together to create a natural, native-sounding narrative.</p>
+                    
+                    <div class="legend">
+                        <div class="leg-item"><div class="leg-box" style="background: rgba(111, 66, 193, 0.3);"></div> Pres. Perf. Continuous</div>
+                        <div class="leg-item"><div class="leg-box" style="background: var(--naranja-vibrante);"></div> Past Perfect</div>
+                        <div class="leg-item"><div class="leg-box" style="background: #28a745;"></div> Future Perfect</div>
+                        <div class="leg-item"><div class="leg-box" style="background: var(--azul-primario);"></div> Adaptation Habits</div>
+                    </div>
+
+                    <div class="example-box">
+                        "For as long as I can remember, I <span class="hl-cont">have been trying</span> to push my physical limits. <span class="hl-hab">I used to</span> be very tired in the mornings, but ever since I started CrossFit, I <span class="hl-cont">have been building</span> my endurance. Before my first competition in La Paz, I <span class="hl-past">had trained</span> for six months! <br><br>
+                        
+                        At first, it was hard to <span class="hl-hab">get used to waking</span> up at 5:30 AM, but now I <span class="hl-hab">am used to it</span>. I also stopped eating junk food because I realized I had <span class="hl-past">hardly any</span> energy. <br><br>
+                        
+                        <span class="hl-fut">By December of this year</span>, my girlfriend and I <span class="hl-fut">will have been competing</span> for a long time. You <span class="hl-hab">must try</span> finding a sport you love! Unless you are like my cat Perlita. She is <span class="hl-hab">used to sleeping</span> on the sofa, and <span class="hl-fut">by tomorrow</span>, she <span class="hl-fut">will have slept</span> another 16 hours!"
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title"><span>✍️</span> Step 2: Draft your Narrative</div>
+                    <p style="margin: 0; color: #444;">Use the text area below to write your script. Do not just copy my text; use it as a structural guide to tell <strong>your</strong> own story of consistency.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title"><span>🎙️</span> Step 3: Record the Challenge</div>
+                    <p style="margin: 0; color: #444;">Record an audio or video of your presentation. Pay special attention to your pronunciation of the V3 (Past Participles) and the `-ing` endings!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> My Master Draft</h2>
+            <p style="color: #555;">Write your presentation here. Structure it logically: 1. The Goal, 2. The Past Struggle, 3. The Adaptation, 4. The Future Projection.</p>
+            
+            <textarea placeholder="Ever since I was young, I have been... Before I started this journey, I had... At first, it was hard to get used to..."></textarea>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b2-color);">
+            <h2 class="section-title"><span>3.</span> The B2 Audit & Submission</h2>
+            <p style="color: #666; font-weight: 600;">You are an Upper-Intermediate student now. Audit your own text rigorously before submitting!</p>
+
+            <div class="checklist">
+                <div class="check-item">
+                    <input type="checkbox" id="chk1" onchange="checkReadiness()">
+                    <label for="chk1">
+                        <strong>The Duration Check:</strong> I used the Present Perfect Continuous (have been + ing) to talk about my ongoing consistency.
+                        <span class="check-note">Example: "I have been studying English for years."</span>
+                    </label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk2" onchange="checkReadiness()">
+                    <label for="chk2">
+                        <strong>The Time Machine Check:</strong> I used the Past Perfect (had + V3) to explain an action that happened before my main story.
+                        <span class="check-note">Example: "Before I passed the A2 exam, I had studied very hard."</span>
+                    </label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk3" onchange="checkReadiness()">
+                    <label for="chk3">
+                        <strong>The Adaptation Check:</strong> I used "Get used to" or "Be used to" correctly followed by an <strong>-ING</strong> verb or a noun.
+                        <span class="check-note">Example: "I am getting used to speaking in public."</span>
+                    </label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk4" onchange="checkReadiness()">
+                    <label for="chk4">
+                        <strong>The Future Deadline Check:</strong> I used the Future Perfect with the word <strong>"By"</strong> to project my success.
+                        <span class="check-note">Example: "By 2027, I will have reached my goal."</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="button" id="submit-btn" class="eval-submit-btn" disabled onclick="submitProject()">Submit Project to Teacher Ivan</button>
+
+            <div id="success-message">
+                🎉 OUTSTANDING B2 ACHIEVEMENT! You have successfully passed Unit 1 of the Upper-Intermediate level. Your grammar is becoming complex, precise, and native-like. Send your recording to the class group or upload it to your student folder. Be very proud!
+            </div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Congratulations! You conquered Level B2 - Unit 1.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Finish Level B2 - Unit 1 🏆</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Habilitar botón solo cuando todo el checklist B2 esté marcado
+        function checkReadiness() {
+            const chk1 = document.getElementById('chk1').checked;
+            const chk2 = document.getElementById('chk2').checked;
+            const chk3 = document.getElementById('chk3').checked;
+            const chk4 = document.getElementById('chk4').checked;
+            const submitBtn = document.getElementById('submit-btn');
+
+            if(chk1 && chk2 && chk3 && chk4) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        function submitProject() {
+            const successDiv = document.getElementById('success-message');
+            const submitBtn = document.getElementById('submit-btn');
+            const continueBtn = document.getElementById('continue-btn');
+
+            // Simular envío
+            submitBtn.style.display = "none";
+            successDiv.style.display = "block";
+            continueBtn.style.display = "block";
+            
+            // Congelar inputs para dar sensación de finalización
+            document.querySelectorAll('input[type="checkbox"]').forEach(chk => chk.disabled = true);
+            document.querySelector('textarea').disabled = true;
+        }
+    </script>
+</body>
+</html>

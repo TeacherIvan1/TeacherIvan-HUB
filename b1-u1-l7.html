@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: A Healthy Mind - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #008CBA; /* Color B1 */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario: Mental Health */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(0, 140, 186, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.05rem; font-weight: 700; color: var(--azul-primario); line-height: 1.2;}
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: Modals */
+        .grammar-box {
+            background-color: rgba(0, 140, 186, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .modal-container {
+            display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;
+        }
+        .modal-card {
+            display: flex; align-items: stretch; background: white; border: 1px solid var(--gris-neutro); border-radius: 8px; overflow: hidden;
+        }
+        .modal-side {
+            background-color: var(--b1-color); color: white; padding: 1.5rem; width: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .modal-side h3 { font-size: 1.4rem; margin: 0; }
+        .modal-side span { font-size: 0.85rem; opacity: 0.9; margin-top: 0.3rem; font-weight: 600;}
+        .modal-content { padding: 1.5rem; flex-grow: 1; }
+        .modal-desc { color: #555; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .modal-example { font-style: italic; color: var(--azul-primario); font-weight: 600; margin-top: 0.5rem;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(0, 140, 186, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #007399; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 1 • Lesson 7</span>
+            <h1 class="lesson-title">A Healthy Mind</h1>
+            <p class="lesson-objective">Objective: Give advice and express obligations using Modal Verbs.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Mental Well-being</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">These verbs will help you talk about stress and relaxation.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">😮‍💨</span>
+                    <span class="vocab-en">Breathe deeply</span>
+                    <span class="vocab-es">Respirar profundamente</span>
+                    <button class="audio-btn" onclick="playSound('Breathe deeply')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧠</span>
+                    <span class="vocab-en">Overthink</span>
+                    <span class="vocab-es">Pensar demasiado</span>
+                    <button class="audio-btn" onclick="playSound('Overthink')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">☕</span>
+                    <span class="vocab-en">Take a break</span>
+                    <span class="vocab-es">Tomar un descanso</span>
+                    <button class="audio-btn" onclick="playSound('Take a break')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">💆‍♂️</span>
+                    <span class="vocab-en">Relieve stress</span>
+                    <span class="vocab-es">Aliviar el estrés</span>
+                    <button class="audio-btn" onclick="playSound('Relieve stress')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Modals of Advice & Obligation</h2>
+            
+            <div class="grammar-box">
+                <p>When someone is stressed, we give them advice or tell them the rules they need to follow. We use <strong>Modal Verbs</strong> before the main verb.</p>
+                
+                <div class="modal-container">
+                    <div class="modal-card">
+                        <div class="modal-side">
+                            <h3>SHOULD</h3>
+                            <span>Good Idea<br>(Consejo)</span>
+                        </div>
+                        <div class="modal-content">
+                            <div class="modal-desc">Use this to give friendly advice. It is a recommendation, not a rule.</div>
+                            <div class="modal-example">"You <span class="highlight-b1">should take</span> a break. You look tired."</div>
+                        </div>
+                    </div>
+
+                    <div class="modal-card">
+                        <div class="modal-side" style="background-color: var(--naranja-vibrante);">
+                            <h3>MUST</h3>
+                            <span>Strong Advice / Internal Rule</span>
+                        </div>
+                        <div class="modal-content">
+                            <div class="modal-desc">Use this when you strongly believe it is necessary, or for personal rules.</div>
+                            <div class="modal-example">"I am very stressed. I <span class="highlight-orange">must sleep</span> more tonight."</div>
+                        </div>
+                    </div>
+
+                    <div class="modal-card">
+                        <div class="modal-side" style="background-color: #6c757d;">
+                            <h3>HAVE TO</h3>
+                            <span>External Obligation</span>
+                        </div>
+                        <div class="modal-content">
+                            <div class="modal-desc">Use this for rules made by other people (school, work, doctors).</div>
+                            <div class="modal-example">"Students <span class="highlight-b1">have to pass</span> the English exam."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE "TO" TRAP</div>
+                <p>Modal verbs are strong! They NEVER use the word "to" before the main action verb. (Exception: <em>Have to</em>, because "to" is part of its name).</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #28a745;">
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">You should to meditate.</span><br>
+                    ✅ <span style="color: #28a745;">You should meditate.</span><br>
+                    ✅ <span style="color: #28a745;">You must breathe.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>Exam Season at Colegio Fielding</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>It is exam season at Colegio Fielding. The students are very nervous. As a Philosophy teacher, I always give them this advice:</p>
+                <p>"You <span class="highlight-b1">have to</span> study hard, but you <span class="highlight-b1">mustn't</span> panic. If you feel anxious, you <span class="highlight-b1">should</span> breathe deeply and take a break. You <span class="highlight-orange">must</span> remember that mental health is more important than a grade. You <span class="highlight-b1">shouldn't</span> overthink every question."</p>
+                <p>"To relieve my own stress, I <span class="highlight-b1">have to</span> go to my CrossFit classes. Or sometimes, I just sit on the sofa and pet Perlita. You <span class="highlight-b1">should</span> try petting a cat; it's very relaxing!"</p>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> Mastery Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Can you give good advice? You must score 5/5 to unlock Lesson 8.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Giving Advice:</strong> "You look very tired. I think you _____ take a break."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="must" class="eval-radio"><label for="q1a" class="eval-label">must</label>
+                        <input type="radio" name="q1" id="q1b" value="should" class="eval-radio"><label for="q1b" class="eval-label">should</label>
+                        <input type="radio" name="q1" id="q1c" value="haveto" class="eval-radio"><label for="q1c" class="eval-label">have to</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Strong Internal Obligation:</strong> "My head hurts. I _____ stop overthinking right now!"</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="must" class="eval-radio"><label for="q2a" class="eval-label">must</label>
+                        <input type="radio" name="q2" id="q2b" value="should" class="eval-radio"><label for="q2b" class="eval-label">should</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Prohibition:</strong> Which word means "it is a bad idea / it is forbidden"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="dont" class="eval-radio"><label for="q3a" class="eval-label">don't have to</label>
+                        <input type="radio" name="q3" id="q3b" value="mustnt" class="eval-radio"><label for="q3b" class="eval-label">mustn't</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>The Trap Check:</strong> Choose the correct sentence.</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="to" class="eval-radio"><label for="q4a" class="eval-label">You should breathe deeply.</label>
+                        <input type="radio" name="q4" id="q4b" value="wrong" class="eval-radio"><label for="q4b" class="eval-label">You should to breathe deeply.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> According to Teacher Ivan, what SHOULD students do if they feel anxious?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="crossfit" class="eval-radio"><label for="q5a" class="eval-label">They should do CrossFit.</label>
+                        <input type="radio" name="q5" id="q5b" value="breathe" class="eval-radio"><label for="q5b" class="eval-label">They should breathe deeply and take a break.</label>
+                        <input type="radio" name="q5" id="q5c" value="panic" class="eval-radio"><label for="q5c" class="eval-label">They should panic.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great advice! Moving to Lesson 8.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'should', q2: 'must', q3: 'mustnt', q4: 'to', q5: 'breathe' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e0f7fa";
+                resultsDiv.style.color = "#006080";
+                resultsDiv.style.border = "1px solid #b2ebf2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You perfectly understand how to give advice and express obligations.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: Never use 'to' after 'should' or 'must'. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
