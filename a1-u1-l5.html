@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: How old are you? - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--naranja-vibrante);
+            color: var(--blanco-nieve); padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--naranja-vibrante); }
+
+        /* Vocabulario (Números) */
+        .numbers-container { display: flex; flex-direction: column; gap: 1.5rem; }
+        .number-group { 
+            border: 1px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem;
+            background-color: rgba(150, 200, 230, 0.05); position: relative;
+        }
+        .group-title { font-family: var(--font-titulares); color: var(--naranja-vibrante); margin-bottom: 1rem; font-size: 1.2rem; }
+        .number-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; }
+        .num-item { font-size: 1.1rem; font-weight: 600; }
+        .num-digit { color: var(--azul-primario); display: inline-block; width: 30px; font-weight: 800; }
+        .num-word { color: #555; }
+        
+        .play-group-btn {
+            position: absolute; top: 1.5rem; right: 1.5rem;
+            background-color: var(--azul-primario); color: white; border-radius: 50px;
+            padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600;
+        }
+        .play-group-btn:hover { background-color: var(--naranja-vibrante); }
+
+        /* Advertencia y Gramática */
+        .alert-box {
+            background-color: #fff3cd; border-left: 5px solid #ffc107;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem;
+        }
+        .alert-title { color: #856404; font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); }
+        
+        .grammar-box {
+            background-color: rgba(10, 70, 140, 0.05); border-left: 5px solid var(--azul-primario);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+        .highlight { color: var(--naranja-vibrante); font-weight: bold; }
+        .wrong-text { color: #dc3545; text-decoration: line-through; margin-right: 1rem; }
+        .correct-text { color: #28a745; font-weight: bold; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; }
+        .eval-options { display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .eval-radio { display: none; }
+        .eval-label {
+            padding: 0.8rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 150px;
+        }
+        .eval-radio:checked + .eval-label { background-color: var(--azul-primario); color: white; border-color: var(--azul-primario); }
+        
+        .eval-submit-btn {
+            background-color: var(--azul-primario); color: white; padding: 1rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 1rem;
+        }
+        .eval-submit-btn:hover { background-color: #083366; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--gris-neutro);
+        }
+        .footer-logo { display: flex; align-items: center; font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); }
+        .footer-logo img { height: 40px; margin-right: 10px; }
+        .footer-buttons { display: flex; gap: 1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--naranja-vibrante); color: var(--blanco-nieve); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800;">TEACHER IVAN HUB</div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Unit 1 • Lesson 5</span>
+            <h1 class="lesson-title">How old are you?</h1>
+            <p class="lesson-objective">Objective: Learn numbers 1-100 and express age correctly in English.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Numbers 1 - 100</h2>
+            
+            <div class="numbers-container">
+                <div class="number-group">
+                    <div class="group-title">The Basics (1-10)</div>
+                    <button class="play-group-btn" onclick="playSound('One, two, three, four, five, six, seven, eight, nine, ten')">Listen 🔊</button>
+                    <div class="number-list">
+                        <div class="num-item"><span class="num-digit">1</span> <span class="num-word">One</span></div>
+                        <div class="num-item"><span class="num-digit">2</span> <span class="num-word">Two</span></div>
+                        <div class="num-item"><span class="num-digit">3</span> <span class="num-word">Three</span></div>
+                        <div class="num-item"><span class="num-digit">4</span> <span class="num-word">Four</span></div>
+                        <div class="num-item"><span class="num-digit">5</span> <span class="num-word">Five</span></div>
+                    </div>
+                </div>
+
+                <div class="number-group">
+                    <div class="group-title">The "Teens" (13-19)</div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: -0.5rem; margin-bottom: 1rem;">Stress the end of the word: thir-<strong>TEEN</strong>.</p>
+                    <button class="play-group-btn" onclick="playSound('Eleven, twelve, thirteen, fourteen, fifteen, sixteen')">Listen 🔊</button>
+                    <div class="number-list">
+                        <div class="num-item"><span class="num-digit">11</span> <span class="num-word">Eleven</span></div>
+                        <div class="num-item"><span class="num-digit">12</span> <span class="num-word">Twelve</span></div>
+                        <div class="num-item"><span class="num-digit">13</span> <span class="num-word">Thirteen</span></div>
+                        <div class="num-item"><span class="num-digit">14</span> <span class="num-word">Fourteen</span></div>
+                        <div class="num-item"><span class="num-digit">15</span> <span class="num-word">Fifteen</span></div>
+                    </div>
+                </div>
+
+                <div class="number-group">
+                    <div class="group-title">The "Tens" (20, 30, 40...)</div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: -0.5rem; margin-bottom: 1rem;">Stress the beginning: <strong>THIR</strong>-ty. Don't confuse 15 (fifteen) with 50 (fifty).</p>
+                    <button class="play-group-btn" onclick="playSound('Twenty, thirty, forty, fifty, sixty, one hundred')">Listen 🔊</button>
+                    <div class="number-list">
+                        <div class="num-item"><span class="num-digit">20</span> <span class="num-word">Twenty</span></div>
+                        <div class="num-item"><span class="num-digit">30</span> <span class="num-word">Thirty</span></div>
+                        <div class="num-item"><span class="num-digit">40</span> <span class="num-word">Forty</span></div>
+                        <div class="num-item"><span class="num-digit">50</span> <span class="num-word">Fifty</span></div>
+                        <div class="num-item"><span class="num-digit">100</span> <span class="num-word">One Hundred</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Key Grammar: Expressing Age</h2>
+            
+            <div class="alert-box">
+                <div class="alert-title">⚠️ COMMON MISTAKE ALERT</div>
+                <p>In Spanish, we "have" years (Tengo 20 años). In English, we DO NOT use the verb "to have". In English, we use the verb <strong>"To Be"</strong> (I am, You are, He is...).</p>
+                <p style="margin-top: 1rem;">
+                    <span class="wrong-text">I have 20 years.</span> ➔ <span class="correct-text">I am 20 years old.</span>
+                </p>
+            </div>
+
+            <div class="grammar-box">
+                <p>To ask about age, we say: <br><strong style="font-size: 1.2rem; color: var(--azul-primario);">"How old are you?"</strong> (¿Qué edad tienes?)</p>
+            </div>
+            
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Let's see it in context:</h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--naranja-vibrante);">
+                <p><strong>Teacher Ivan:</strong> Welcome to the class. <span class="highlight">How old are you?</span></p>
+                <p><strong>Student:</strong> <span class="highlight">I am fifteen</span> years old. And you, teacher?</p>
+                <p><strong>Teacher Ivan:</strong> <span class="highlight">I am thirty</span> years old.</p>
+                <p><strong>Student:</strong> And how old is my classmate, Sarah?</p>
+                <p><strong>Teacher Ivan:</strong> <span class="highlight">She is sixteen.</span></p>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>3.</span> Final Assessment (Gatekeeper)</h2>
+            <p style="margin-bottom: 2rem; color: #666;">Prove your knowledge to unlock the next lesson. You need 3/3!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. How do you say the number <strong>50</strong>?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="fifteen" class="eval-radio"><label for="q1a" class="eval-label">Fifteen</label>
+                        <input type="radio" name="q1" id="q1b" value="fifty" class="eval-radio"><label for="q1b" class="eval-label">Fifty</label>
+                        <input type="radio" name="q1" id="q1c" value="five" class="eval-radio"><label for="q1c" class="eval-label">Five</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. Translate to English: <em>"Tengo 18 años"</em></p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="have" class="eval-radio"><label for="q2a" class="eval-label">I have 18 years</label>
+                        <input type="radio" name="q2" id="q2b" value="am" class="eval-radio"><label for="q2b" class="eval-label">I am 18 years old</label>
+                        <input type="radio" name="q2" id="q2c" value="has" class="eval-radio"><label for="q2c" class="eval-label">I has 18 years</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. What is the correct question to ask someone's age?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="howmany" class="eval-radio"><label for="q3a" class="eval-label">How many years you have?</label>
+                        <input type="radio" name="q3" id="q3b" value="what" class="eval-radio"><label for="q3b" class="eval-label">What is your age?</label>
+                        <input type="radio" name="q3" id="q3c" value="howold" class="eval-radio"><label for="q3c" class="eval-label">How old are you?</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Answers</button>
+            </form>
+
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo">
+                <img src="ruta/a/tu/logo.png" alt="Logo">
+                Teacher Ivan
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85; 
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas para la Lección 5
+            const answers = { q1: 'fifty', q2: 'am', q3: 'howold' };
+            let score = 0;
+            let total = 3;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🎉 Perfect Score (3/3)! You avoided the 'I have' trap. Excellent job!";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 3/3 to pass. Remember: Never use "have" for age in English. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Spelling Names - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--naranja-vibrante);
+            color: var(--blanco-nieve); padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--naranja-vibrante); }
+
+        /* Gramática & Diálogo */
+        .grammar-box {
+            background-color: rgba(10, 70, 140, 0.05); border-left: 5px solid var(--azul-primario);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+        .highlight { color: var(--naranja-vibrante); font-weight: bold; }
+
+        /* Vocabulario (Alfabeto) */
+        .alphabet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .letter-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1rem 0.5rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            background: white;
+        }
+        .letter-card.vowel { border-color: var(--naranja-vibrante); background-color: rgba(245, 110, 30, 0.05); }
+        .letter-big { font-family: var(--font-titulares); font-size: 2rem; font-weight: 800; color: var(--azul-primario); }
+        .letter-pronunciation { font-size: 0.9rem; color: #666; font-style: italic; }
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 30px; height: 30px; border-radius: 50%; font-size: 0.8rem; margin-top: 0.2rem;
+        }
+        .audio-btn:hover { background-color: var(--naranja-vibrante); }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; }
+        .eval-options { display: flex; gap: 1rem; margin-top: 0.5rem; }
+        .eval-radio { display: none; }
+        .eval-label {
+            padding: 0.8rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center;
+        }
+        .eval-radio:checked + .eval-label { background-color: var(--azul-primario); color: white; border-color: var(--azul-primario); }
+        
+        .eval-submit-btn {
+            background-color: var(--azul-primario); color: white; padding: 1rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 1rem;
+        }
+        .eval-submit-btn:hover { background-color: #083366; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--gris-neutro);
+        }
+        .footer-logo { display: flex; align-items: center; font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); }
+        .footer-logo img { height: 40px; margin-right: 10px; }
+        .footer-buttons { display: flex; gap: 1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--naranja-vibrante); color: var(--blanco-nieve); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800;">TEACHER IVAN HUB</div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Unit 1 • Lesson 4</span>
+            <h1 class="lesson-title">Spelling Names</h1>
+            <p class="lesson-objective">Objective: Master the English alphabet and learn how to spell your name correctly.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> The Alphabet: Tricky Sounds</h2>
+            <p style="margin-bottom: 1.5rem;">Pay special attention to the vowels (in orange) and some consonants that sound different in English.</p>
+            
+            <div class="alphabet-grid">
+                <div class="letter-card vowel"><span class="letter-big">A</span><span class="letter-pronunciation">/ei/</span><button class="audio-btn" onclick="playSound('A')">▶</button></div>
+                <div class="letter-card vowel"><span class="letter-big">E</span><span class="letter-pronunciation">/i/</span><button class="audio-btn" onclick="playSound('E')">▶</button></div>
+                <div class="letter-card vowel"><span class="letter-big">I</span><span class="letter-pronunciation">/ai/</span><button class="audio-btn" onclick="playSound('I')">▶</button></div>
+                <div class="letter-card vowel"><span class="letter-big">O</span><span class="letter-pronunciation">/ou/</span><button class="audio-btn" onclick="playSound('O')">▶</button></div>
+                <div class="letter-card vowel"><span class="letter-big">U</span><span class="letter-pronunciation">/iu/</span><button class="audio-btn" onclick="playSound('U')">▶</button></div>
+                
+                <div class="letter-card"><span class="letter-big">C</span><span class="letter-pronunciation">/si/</span><button class="audio-btn" onclick="playSound('C')">▶</button></div>
+                <div class="letter-card"><span class="letter-big">G</span><span class="letter-pronunciation">/yi/</span><button class="audio-btn" onclick="playSound('G')">▶</button></div>
+                <div class="letter-card"><span class="letter-big">J</span><span class="letter-pronunciation">/yei/</span><button class="audio-btn" onclick="playSound('J')">▶</button></div>
+                <div class="letter-card"><span class="letter-big">R</span><span class="letter-pronunciation">/ar/</span><button class="audio-btn" onclick="playSound('R')">▶</button></div>
+                <div class="letter-card"><span class="letter-big">Y</span><span class="letter-pronunciation">/uai/</span><button class="audio-btn" onclick="playSound('Y')">▶</button></div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 1rem;">
+                <button class="eval-submit-btn" style="width: auto; padding: 0.8rem 1.5rem;" onclick="playSound('A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z')">Listen to the full alphabet 🔊</button>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> In Context: "How do you spell that?"</h2>
+            <div class="grammar-box">
+                <p>When someone doesn't understand your name, they will ask: <br><strong>"How do you spell your name?"</strong> or <strong>"How do you spell that?"</strong></p>
+                <p>To answer, you say the letters one by one.</p>
+            </div>
+            
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Let's see it in context:</h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--naranja-vibrante);">
+                <p><strong>Secretary:</strong> Welcome to Colegio Fielding! What is your name?</p>
+                <p><strong>Student:</strong> My name is Mateo Quiroga.</p>
+                <p><strong>Secretary:</strong> <span class="highlight">How do you spell</span> your last name?</p>
+                <p><strong>Student:</strong> It is <span class="highlight">Q - U - I - R - O - G - A</span>.</p>
+                <p><strong>Secretary:</strong> Thank you, Mateo. And who is your teacher?</p>
+                <p><strong>Student:</strong> Teacher Ivan. <span class="highlight">I - V - A - N</span>.</p>
+            </div>
+            <button class="audio-btn" style="width: 100%; border-radius: 6px; padding: 0.5rem;" onclick="playSound('Q. U. I. R. O. G. A.')">🔊 Listen to the spelling</button>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>3.</span> Final Assessment (Gatekeeper)</h2>
+            <p style="margin-bottom: 2rem; color: #666;">Prove your knowledge to unlock the next lesson. You need 3/3!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. Which letter is pronounced as <strong>/i/</strong> in English?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="i" class="eval-radio"><label for="q1a" class="eval-label">Letter I</label>
+                        <input type="radio" name="q1" id="q1b" value="e" class="eval-radio"><label for="q1b" class="eval-label">Letter E</label>
+                        <input type="radio" name="q1" id="q1c" value="a" class="eval-radio"><label for="q1c" class="eval-label">Letter A</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. What is the correct question to ask when you don't know how to write a name?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="spell" class="eval-radio"><label for="q2a" class="eval-label">How do you spell that?</label>
+                        <input type="radio" name="q2" id="q2b" value="what" class="eval-radio"><label for="q2b" class="eval-label">What do you spell?</label>
+                        <input type="radio" name="q2" id="q2c" value="who" class="eval-radio"><label for="q2c" class="eval-label">Who do you spell?</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. How do you spell the name <strong>IVAN</strong>?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="wrong1" class="eval-radio"><label for="q3a" class="eval-label">E - V - A - N</label>
+                        <input type="radio" name="q3" id="q3b" value="wrong2" class="eval-radio"><label for="q3b" class="eval-label">I - B - A - N</label>
+                        <input type="radio" name="q3" id="q3c" value="correct" class="eval-radio"><label for="q3c" class="eval-label">I - V - A - N</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Answers</button>
+            </form>
+
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo">
+                <img src="ruta/a/tu/logo.png" alt="Logo">
+                Teacher Ivan
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            // Reducir un poco la velocidad para que se escuchen claras las letras
+            utterance.rate = 0.8; 
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas para la Lección 4
+            const answers = { q1: 'e', q2: 'spell', q3: 'correct' };
+            let score = 0;
+            let total = 3;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🎉 Perfect Score (3/3)! Excellent job. You can now spell words in English.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 3/3 to pass. Remember that the letter 'E' sounds like /i/. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
