@@ -102,16 +102,16 @@
         }
         .cta-btn::after { content: "→"; font-size: 1.2rem; }
 
-        /* Main Content Section */
-        main { background-color: var(--blanco-nieve); padding: 6rem 4rem; position: relative; flex-grow: 1; }
+        /* --- Main Content Section (Optimizado) --- */
+        main { background-color: var(--blanco-nieve); padding: 0; position: relative; flex-grow: 1; } /* padding vertical eliminado para secciones full-width */
 
-        .levels-section { display: flex; flex-direction: column; gap: 4rem; }
+        .levels-section { display: flex; flex-direction: column; gap: 4rem; padding: 6rem 4rem;} /* padding vertical reubicado */
         .section-header { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
         .section-marker {
             font-size: 0.8rem; color: var(--gris-neutro); font-weight: 600; letter-spacing: 2px;
             writing-mode: vertical-rl; transform: rotate(180deg); position: absolute;
-            left: 2rem; top: 6rem; text-transform: uppercase;
+            left: 2rem; top: 12rem; text-transform: uppercase; z-index: 5;
         }
 
         .section-title { font-size: 3rem; font-weight: 800; color: var(--azul-primario); margin-bottom: 1rem; }
@@ -173,6 +173,125 @@
             letter-spacing: 2px; text-transform: uppercase;
         }
 
+        /* --- SECCIÓN DE CALIDAD Y ESTÁNDARES INTERNACIONALES (REDESIGNADA PARA MÁXIMO IMPACTO) --- */
+        .trust-section {
+            position: relative;
+            padding: 10rem 4rem; /* Prominente padding vertical */
+            background: linear-gradient(135deg, rgba(10, 70, 140, 0.95), rgba(10, 70, 140, 0.85));
+            color: var(--blanco-nieve);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            min-height: 80vh; /* Ocupa una gran parte de la pantalla */
+            z-index: 10;
+        }
+
+        .global-map-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTYwMCA5MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgOTAwTDgwMCAwTDE2MDAgOTAwWiIgZmlsbD0icmdiYSgyNTAsMjUwLDI0MCwwLjA1KSIvPjwvc3ZnPg==');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .trust-section .content-header {
+            margin-bottom: 6rem;
+            max-width: 900px;
+        }
+
+        .trust-section .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--blanco-nieve);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .trust-section .section-title span {
+            color: var(--naranja-vibrante);
+        }
+
+        .trust-section .section-description {
+            font-size: 1.2rem;
+            color: var(--blanco-nieve);
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Pilares Visuales */
+        .trust-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .trust-pillar {
+            background: rgba(250, 250, 240, 0.1);
+            border: 2px solid rgba(250, 250, 240, 0.2);
+            border-radius: 12px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: pillarSlideIn 0.8s ease forwards;
+        }
+
+        @keyframes pillarSlideIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cefr-pillar { animation-delay: 0.2s; }
+        .efset-pillar { animation-delay: 0.4s; }
+        .innovation-pillar { animation-delay: 0.6s; border-bottom: 5px solid var(--naranja-vibrante); }
+
+        .trust-pillar:hover {
+            transform: translateY(-8px);
+            border-color: var(--naranja-vibrante);
+            background: rgba(250, 250, 240, 0.15);
+            box-shadow: 0 15px 40px rgba(245, 110, 30, 0.2);
+        }
+
+        /* SVGs de Pilares */
+        .pillar-visual {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--blanco-nieve);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .pillar-svg {
+            width: 60%;
+            height: 60%;
+        }
+
+        .pillar-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--blanco-nieve);
+        }
+
+        .pillar-text p {
+            font-size: 0.95rem;
+            color: var(--blanco-nieve);
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
         /* --- Footer --- */
         .site-footer {
             background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center;
@@ -180,7 +299,7 @@
             width: 100%;
         }
 
-        /* --- MODAL DE LOGIN REDISEÑADO (MOBILE-FRIENDLY) --- */
+        /* --- MODAL DE LOGIN (Mobile-Friendly) --- */
         .modal { 
             display: none; 
             position: fixed; 
@@ -280,60 +399,11 @@
             .level-card { width: 280px; padding: 2rem; }
             .level-icon-frame { width: 120px; height: 120px; }
             .level-title { font-size: 1.5rem; }
-            /* --- SECCIÓN DE RESPALDO INTERNACIONAL --- */
-.trust-section {
-    padding: 6rem 4rem;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.trust-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
-    max-width: 1100px;
-    margin-top: 3rem;
-}
-
-.trust-item {
-    padding: 2rem;
-    border-radius: 12px;
-    background: var(--blanco-nieve);
-    border: 1px solid #E8ECEF;
-    transition: all 0.3s ease;
-}
-
-.trust-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(10, 70, 140, 0.05);
-}
-
-.trust-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.trust-item h3 {
-    color: var(--azul-primario);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.trust-item p {
-    font-size: 0.95rem;
-    color: var(--azul-primario);
-    opacity: 0.8;
-    line-height: 1.6;
-}
-
-@media (max-width: 900px) {
-    .trust-section { padding: 4rem 1.5rem; }
-    .trust-grid { gap: 1.5rem; }
-}
+            .trust-section { padding: 6rem 1.5rem; min-height: auto; }
+            .trust-section .section-title { font-size: 2.2rem; }
+            .trust-pillars { gap: 1.5rem; }
+            .trust-pillar { padding: 2rem 1.5rem; }
+            .pillar-visual { width: 100px; height: 100px; margin-bottom: 1.5rem; }
         }
     </style>
 </head>
@@ -363,7 +433,71 @@
     </section>
 
     <main>
-        <div class="section-marker">01 / NIVELES DE APRENDIZAJE</div>
+        <section class="trust-section">
+            <div class="global-map-overlay"></div>
+
+            <div class="content-header">
+                <h2 class="section-title">NUESTROS CIMIENTOS: <span>CALIDAD CON RESPALDO GLOBAL</span></h2>
+                <p class="section-description">
+                    En Teacher Ivan HUB, la excelencia académica no es una promesa, es nuestra base. Nuestra metodología está meticulosamente alineada con los estándares internacionales más rigurosos, proporcionando un aprendizaje serio, transparente y competitivo a nivel mundial.
+                </p>
+            </div>
+
+            <div class="trust-pillars">
+                <div class="trust-pillar cefr-pillar">
+                    <div class="pillar-visual">
+                        <svg class="pillar-svg globe-cert" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="48" stroke="#FAFAF0" stroke-width="2"/>
+                            <path d="M25 50 C25 25, 75 25, 75 50" stroke="#FAFAF0" stroke-width="2"/>
+                            <path d="M25 50 C25 75, 75 75, 75 50" stroke="#FAFAF0" stroke-width="2"/>
+                            <line x1="2" y1="50" x2="98" y2="50" stroke="#FAFAF0" stroke-width="2"/>
+                            <line x1="50" y1="2" x2="50" y2="98" stroke="#FAFAF0" stroke-width="2"/>
+                            <rect x="55" y="55" width="40" height="40" rx="4" fill="#F56E1E"/>
+                            <path d="M65 65 L85 85 M85 65 L65 85" stroke="#FAFAF0" stroke-width="4"/>
+                        </svg>
+                    </div>
+                    <div class="pillar-text">
+                        <h3>Estándar MCER</h3>
+                        <p>Cumplimos estrictamente con el <strong>Marco Común Europeo de Referencia para las Lenguas (MCER)</strong>. Tu nivel es reconocido internacionalmente.</p>
+                    </div>
+                </div>
+
+                <div class="trust-pillar efset-pillar">
+                    <div class="pillar-visual">
+                        <svg class="pillar-svg graph-check" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 90 L30 60 L50 75 L70 30 L90 10" stroke="#FAFAF0" stroke-width="3"/>
+                            <circle cx="10" cy="90" r="4" fill="#F56E1E"/>
+                            <circle cx="30" cy="60" r="4" fill="#F56E1E"/>
+                            <circle cx="50" cy="75" r="4" fill="#F56E1E"/>
+                            <circle cx="70" cy="30" r="4" fill="#F56E1E"/>
+                            <circle cx="90" cy="10" r="4" fill="#F56E1E"/>
+                            <path d="M10 10 L40 40 L90 10" stroke="#F56E1E" stroke-width="6" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="pillar-text">
+                        <h3>Resultados Validados</h3>
+                        <p>Medimos tu progreso con herramientas estandarizadas como el <strong>EF SET</strong>. Garantizamos transparencia en cada etapa de aprendizaje.</p>
+                    </div>
+                </div>
+
+                <div class="trust-pillar innovation-pillar">
+                    <div class="pillar-visual">
+                        <svg class="pillar-svg light-code" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 8 C30 8, 20 28, 20 45 C20 60, 35 68, 35 78 L65 78 C65 68, 80 60, 80 45 C80 28, 70 8, 50 8 Z" fill="#F56E1E"/>
+                            <path d="M38 78 L38 88 C38 92, 42 96, 50 96 C58 96, 62 92, 62 88 L62 78 Z" fill="#96C8E6"/>
+                            <path d="M10 50 L30 70 L10 90" stroke="#FAFAF0" stroke-width="4"/>
+                            <path d="M90 50 L70 70 L90 90" stroke="#FAFAF0" stroke-width="4"/>
+                        </svg>
+                    </div>
+                    <div class="pillar-text">
+                        <h3>Metodología Innovadora</h3>
+                        <p>Nuestra plataforma propia integra la pedagogía moderna con tecnología interactiva, asegurando resultados competitivos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-marker">02 / NIVELES DE APRENDIZAJE</div>
 
         <section class="levels-section">
             <div class="section-header">
@@ -455,35 +589,8 @@
             </div>
         </section>
 
-        <div class="coming-soon-marker">02 / PRÓXIMAMENTE</div>
-<section class="trust-section">
-    <div class="section-header">
-        <h2 class="section-title">CALIDAD CON <span>RESPALDO GLOBAL</span></h2>
-        <p class="section-description">
-            En Teacher Ivan HUB, la excelencia no es opcional. Nuestra metodología está diseñada para cumplir con los estándares internacionales más rigurosos, garantizando un aprendizaje real y competitivo.
-        </p>
-    </div>
+        <div class="coming-soon-marker">03 / PRÓXIMAMENTE</div>
 
-    <div class="trust-grid">
-        <div class="trust-item">
-            <span class="trust-icon">🌍</span>
-            <h3>Estándar MCER</h3>
-            <p>Todo nuestro contenido está estrictamente alineado con el <strong>Marco Común Europeo de Referencia para las Lenguas (MCER)</strong>. Esto garantiza que tu nivel sea reconocido en cualquier parte del mundo.</p>
-        </div>
-
-        <div class="trust-item">
-            <span class="trust-icon">📊</span>
-            <h3>Resultados Validados</h3>
-            <p>Utilizamos herramientas de evaluación estandarizadas como el <strong>EF SET</strong>. Esto permite a padres y alumnos monitorear un progreso tangible, transparente y basado en datos reales.</p>
-        </div>
-
-        <div class="trust-item" style="border-bottom: 4px solid var(--naranja-vibrante);">
-            <span class="trust-icon">💡</span>
-            <h3>Garantía Académica</h3>
-            <p>Nuestra plataforma combina la pedagogía tradicional con tecnología de vanguardia, asegurando que el estudiante desarrolle las 4 habilidades: <em>Speaking, Listening, Reading y Writing</em>.</p>
-        </div>
-    </div>
-</section>
     </main>
 
     <footer class="site-footer">
