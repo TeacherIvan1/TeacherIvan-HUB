@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Evaluativo - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --azul-primario: #0A468C; --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; --gris-neutro: #C8CDD2; --blanco-nieve: #FAFAF0; 
+            --font-titulares: 'Montserrat', sans-serif; --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body { margin: 0; padding: 0; font-family: var(--font-cuerpo); background-color: var(--blanco-nieve); color: var(--azul-primario); display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve); }
+        .logo-img { height: 60px; width: auto; object-fit: contain; }
+        nav ul { list-style: none; display: flex; gap: 2.5rem; margin: 0; padding: 0; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; }
+        nav a:hover { color: var(--naranja-vibrante); }
+
+        main { padding: 4rem 2rem; max-width: 800px; margin: 0 auto; flex-grow: 1; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
+
+        /* Contenedores de las pantallas del Test */
+        .screen { display: none; width: 100%; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; box-sizing: border-box;}
+        .screen.active { display: block; animation: fadeIn 0.4s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Pantalla Inicio */
+        .start-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .input-name { width: 100%; max-width: 300px; padding: 1rem; margin: 1.5rem 0; border: 2px solid var(--gris-neutro); border-radius: 8px; font-size: 1rem; font-family: var(--font-cuerpo); text-align: center;}
+        .input-name:focus { border-color: var(--naranja-vibrante); outline: none; }
+        .btn-main { background: var(--naranja-vibrante); color: white; padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 700; border-radius: 8px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(245, 110, 30, 0.3); }
+        .btn-main:hover { background: #e05e15; transform: translateY(-2px); }
+        .btn-main:disabled { background: var(--gris-neutro); cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* Pantalla Test */
+        .progress-bar { width: 100%; height: 8px; background: #eee; border-radius: 4px; margin-bottom: 2rem; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--naranja-vibrante); width: 0%; transition: width 0.3s ease; }
+        .question-number { font-size: 0.9rem; color: var(--gris-neutro); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase;}
+        .question-text { font-size: 1.4rem; font-weight: 600; color: var(--azul-primario); margin-bottom: 2rem; }
+        
+        .options-grid { display: flex; flex-direction: column; gap: 1rem; }
+        .option-btn { background: #f9fafa; border: 2px solid #E8ECEF; padding: 1.2rem; border-radius: 8px; font-size: 1rem; font-weight: 600; color: var(--azul-primario); text-align: left; transition: all 0.2s; }
+        .option-btn:hover { border-color: var(--azul-claro); background: #f0f7fb; }
+        .option-btn.selected { background: var(--azul-primario); color: white; border-color: var(--azul-primario); }
+
+        /* Pantalla Resultados */
+        .result-level { font-size: 5rem; font-family: var(--font-titulares); font-weight: 800; color: var(--naranja-vibrante); margin: 1rem 0; line-height: 1; }
+        .result-score { font-size: 1.2rem; color: var(--azul-primario); font-weight: 600; margin-bottom: 2rem; }
+        .result-desc { font-size: 1rem; line-height: 1.6; opacity: 0.9; margin-bottom: 2rem; padding: 0 2rem;}
+
+        /* Contenedor Oculto para Generar PDF */
+        #pdf-template { display: none; padding: 40px; background: white; color: #0A468C; font-family: 'Open Sans', sans-serif; }
+        .pdf-header { text-align: center; border-bottom: 3px solid #F56E1E; padding-bottom: 20px; margin-bottom: 30px; }
+        .pdf-header img { height: 60px; margin-bottom: 10px; }
+        .pdf-title { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold; text-transform: uppercase; margin: 0;}
+        .pdf-body { text-align: left; }
+        .pdf-data { font-size: 16px; margin-bottom: 10px; }
+        .pdf-result-box { background: #f0f7fb; border: 2px solid #0A468C; padding: 20px; border-radius: 8px; text-align: center; margin: 30px 0; }
+        .pdf-level { font-size: 40px; font-weight: bold; color: #F56E1E; margin: 10px 0; font-family: 'Montserrat', sans-serif;}
+        .pdf-footer { text-align: center; font-size: 12px; color: #777; margin-top: 50px; border-top: 1px solid #ccc; padding-top: 20px;}
+
+        .site-footer { background-color: var(--azul-primario); color: var(--blanco-nieve); text-align: center; padding: 1.5rem; font-size: 0.85rem; font-weight: 300; border-top: 4px solid var(--naranja-vibrante); margin-top: auto;}
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .screen { padding: 2rem 1.5rem; }
+            .question-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="logo-img">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+                <li><a href="contenido.html">Contenido</a></li>
+                <li><a href="disponibilidad.html">Disponibilidad</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="screen-start" class="screen active">
+            <div class="start-icon">🎯</div>
+            <h2>Prueba de Ubicación</h2>
+            <p style="margin-top: 10px; color: var(--gris-neutro);">Descubre tu nivel real en 50 preguntas. Mide tu gramática y vocabulario para encontrar el plan perfecto en el HUB.</p>
+            <input type="text" id="studentName" class="input-name" placeholder="Tu Nombre Completo" autocomplete="off">
+            <br>
+            <button class="btn-main" id="btnStart" onclick="startTest()">Comenzar Evaluación</button>
+        </div>
+
+        <div id="screen-quiz" class="screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="question-number" id="questionNumber">Pregunta 1 de 50</div>
+            <div class="question-text" id="questionText">Cargando...</div>
+            <div class="options-grid" id="optionsGrid">
+                </div>
+            <button class="btn-main" id="btnNext" style="margin-top: 2rem; display: none;" onclick="nextQuestion()">Siguiente Pregunta</button>
+        </div>
+
+        <div id="screen-result" class="screen">
+            <h2>Evaluación Completada</h2>
+            <p>Felicidades <strong id="resName"></strong>, aquí están tus resultados:</p>
+            
+            <div class="result-level" id="resLevel">B1</div>
+            <div class="result-score" id="resScore">Obtuviste 35 de 50 aciertos</div>
+            
+            <div class="result-desc" id="resDesc">
+                Tu nivel es Intermedio. Tienes una buena base, pero es momento de pulir la gramática avanzada y la fluidez.
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-main" onclick="generatePDF()">📄 Descargar PDF Oficial</button>
+                <button class="btn-main" style="background: var(--azul-primario);" onclick="window.location.href='disponibilidad.html'">Ver Planes Recomendados</button>
+            </div>
+        </div>
+
+        <div id="pdf-template">
+            <div class="pdf-header">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Logo">
+                <h2 class="pdf-title">Reporte de Evaluación de Nivel</h2>
+            </div>
+            <div class="pdf-body">
+                <div class="pdf-data"><strong>Estudiante:</strong> <span id="pdfName"></span></div>
+                <div class="pdf-data"><strong>Fecha de Evaluación:</strong> <span id="pdfDate"></span></div>
+                <div class="pdf-data"><strong>Puntaje Obtenido:</strong> <span id="pdfScore"></span> / 50</div>
+                
+                <div class="pdf-result-box">
+                    <div>NIVEL RECOMENDADO (CEFR)</div>
+                    <div class="pdf-level" id="pdfLevel">A1</div>
+                    <div id="pdfDesc" style="font-size: 14px; color: #333; margin-top: 10px;">Descripción detallada del nivel...</div>
+                </div>
+            </div>
+            <div class="pdf-footer">
+                Documento generado automáticamente por el sistema de evaluación de Teacher Ivan HUB.<br>
+                Válido como referencia interna para la asignación de planes de estudio.<br>
+                www.teacherivan.com
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Teacher Ivan HUB. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // --- BASE DE DATOS DE 50 PREGUNTAS (Graduadas de A1 a C1) ---
+        const quizData = [
+            // Básicas (A1)
+            { q: "1. Hello, I ___ Maria.", options: ["am", "is", "are", "be"], ans: 0 },
+            { q: "2. ___ you from Bolivia?", options: ["Is", "Am", "Are", "Do"], ans: 2 },
+            { q: "3. My sister ___ a car.", options: ["have", "has", "having", "is have"], ans: 1 },
+            { q: "4. They ___ like apples.", options: ["doesn't", "don't", "not", "aren't"], ans: 1 },
+            { q: "5. What time ___ he wake up?", options: ["do", "is", "does", "are"], ans: 2 },
+            { q: "6. Look! The dog ___ in the garden.", options: ["plays", "playing", "is playing", "play"], ans: 2 },
+            { q: "7. I usually ___ coffee in the morning.", options: ["drink", "drinks", "drinking", "am drinking"], ans: 0 },
+            { q: "8. ___ there a bank near here?", options: ["Are", "Do", "Is", "Does"], ans: 2 },
+            { q: "9. This is ___ book.", options: ["me", "mine", "my", "I"], ans: 2 },
+            { q: "10. We went to the cinema ___ Saturday.", options: ["in", "on", "at", "by"], ans: 1 },
+            
+            // Básico-Intermedio (A2)
+            { q: "11. Yesterday, I ___ my grandmother.", options: ["visit", "visiting", "visited", "visits"], ans: 2 },
+            { q: "12. She ___ studying when the phone rang.", options: ["is", "were", "was", "did"], ans: 2 },
+            { q: "13. A cheetah is ___ than a dog.", options: ["fast", "faster", "more fast", "fastest"], ans: 1 },
+            { q: "14. Did you ___ the movie?", options: ["liked", "likes", "like", "liking"], ans: 2 },
+            { q: "15. I am going to ___ my homework later.", options: ["did", "do", "doing", "does"], ans: 1 },
+            { q: "16. You ___ eat vegetables, they are good for you.", options: ["should", "would", "could", "might"], ans: 0 },
+            { q: "17. There isn't ___ milk in the fridge.", options: ["some", "many", "any", "a"], ans: 2 },
+            { q: "18. Have you ever ___ to London?", options: ["go", "went", "been", "going"], ans: 2 },
+            { q: "19. If it rains, I ___ stay at home.", options: ["would", "am", "will", "do"], ans: 2 },
+            { q: "20. She sings very ___.", options: ["good", "well", "nice", "beautiful"], ans: 1 },
+            
+            // Intermedio (B1)
+            { q: "21. I have lived here ___ 5 years.", options: ["since", "for", "during", "in"], ans: 1 },
+            { q: "22. The letter ___ yesterday.", options: ["was sent", "sent", "is sent", "has sent"], ans: 0 },
+            { q: "23. If I ___ you, I would study more.", options: ["am", "was", "were", "been"], ans: 2 },
+            { q: "24. He asked me what time ___.", options: ["was it", "it was", "is it", "it is"], ans: 1 },
+            { q: "25. I look forward ___ you soon.", options: ["to see", "see", "to seeing", "seeing"], ans: 2 },
+            { q: "26. She is used to ___ up early.", options: ["get", "got", "getting", "gets"], ans: 2 },
+            { q: "27. You don't have to come unless you ___ to.", options: ["want", "will want", "don't want", "wanted"], ans: 0 },
+            { q: "28. By the time we arrived, the movie ___.", options: ["started", "has started", "had started", "was started"], ans: 2 },
+            { q: "29. It’s no use ___ about it now.", options: ["worry", "to worry", "worrying", "worried"], ans: 2 },
+            { q: "30. He is the man ___ car was stolen.", options: ["who", "which", "whose", "whom"], ans: 2 },
+            
+            // Avanzado (B2)
+            { q: "31. I'd rather you ___ smoke in here.", options: ["don't", "didn't", "won't", "not"], ans: 1 },
+            { q: "32. Hardly ___ out of the house when it started raining.", options: ["I had stepped", "had I stepped", "I stepped", "did I step"], ans: 1 },
+            { q: "33. Despite ___ hard, he failed the exam.", options: ["he studied", "study", "studying", "of studying"], ans: 2 },
+            { q: "34. I wish I ___ a bigger house.", options: ["have", "had", "will have", "am having"], ans: 1 },
+            { q: "35. If she had known, she ___.", options: ["would help", "will help", "would have helped", "helped"], ans: 2 },
+            { q: "36. The project is expected ___ next week.", options: ["to complete", "completing", "to be completed", "completed"], ans: 2 },
+            { q: "37. Not only ___ late, but he also forgot his books.", options: ["was he", "he was", "he is", "is he"], ans: 0 },
+            { q: "38. It's high time we ___ home.", options: ["go", "are going", "went", "will go"], ans: 2 },
+            { q: "39. The company is on the verge of ___ bankrupt.", options: ["go", "going", "to go", "gone"], ans: 1 },
+            { q: "40. Let's wrap this meeting ___, shall we?", options: ["up", "out", "over", "in"], ans: 0 },
+            
+            // Experto (C1)
+            { q: "41. ___ you change your mind, let me know.", options: ["Should", "Would", "If", "Unless"], ans: 0 },
+            { q: "42. She succeeded by dint ___ hard work.", options: ["for", "of", "with", "in"], ans: 1 },
+            { q: "43. He was completely taken ___ by her story.", options: ["up", "out", "in", "over"], ans: 2 },
+            { q: "44. But for his help, I ___ my job.", options: ["lost", "would lose", "will lose", "would have lost"], ans: 3 },
+            { q: "45. They took exception ___ the way they were treated.", options: ["to", "at", "with", "for"], ans: 0 },
+            { q: "46. It is imperative that she ___ present at the meeting.", options: ["is", "be", "was", "will be"], ans: 1 },
+            { q: "47. No sooner ___ than the lights went out.", options: ["they arrived", "had they arrived", "did they arrived", "they had arrived"], ans: 1 },
+            { q: "48. He has a ___ for languages.", options: ["flair", "flare", "flour", "flyer"], ans: 0 },
+            { q: "49. By next year, I ___ working here for a decade.", options: ["will have been", "will be", "am", "have been"], ans: 0 },
+            { q: "50. To all intents and ___, the project is dead.", options: ["purposes", "goals", "aims", "objectives"], ans: 0 }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userName = "";
+        let selectedOption = null;
+
+        const screenStart = document.getElementById('screen-start');
+        const screenQuiz = document.getElementById('screen-quiz');
+        const screenResult = document.getElementById('screen-result');
+        const inputName = document.getElementById('studentName');
+        const btnStart = document.getElementById('btnStart');
+        const btnNext = document.getElementById('btnNext');
+
+        // Validar que ingrese nombre
+        inputName.addEventListener('input', () => {
+            btnStart.disabled = inputName.value.trim() === "";
+        });
+
+        function startTest() {
+            userName = inputName.value.trim();
+            if(!userName) return;
+            screenStart.classList.remove('active');
+            screenQuiz.classList.add('active');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            selectedOption = null;
+            btnNext.style.display = "none";
+            
+            const qData = quizData[currentQuestion];
+            document.getElementById('questionNumber').innerText = `Pregunta ${currentQuestion + 1} de ${quizData.length}`;
+            document.getElementById('questionText').innerText = qData.q;
+            
+            // Actualizar barra
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+
+            const optionsGrid = document.getElementById('optionsGrid');
+            optionsGrid.innerHTML = ""; // Limpiar
+            
+            qData.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn";
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(btn, index);
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        function selectOption(btn, index) {
+            // Quitar clase selected de todos
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(b => b.classList.remove('selected'));
+            
+            // Marcar el actual
+            btn.classList.add('selected');
+            selectedOption = index;
+            btnNext.style.display = "block";
+        }
+
+        function nextQuestion() {
+            if (selectedOption === quizData[currentQuestion].ans) {
+                score++;
+            }
+            
+            currentQuestion++;
+            
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                finishTest();
+            }
+        }
+
+        function finishTest() {
+            screenQuiz.classList.remove('active');
+            screenResult.classList.add('active');
+            
+            let level = "";
+            let desc = "";
+
+            // LÓGICA DE NIVELES (Sobre 50)
+            if (score <= 15) {
+                level = "A1";
+                desc = "Nivel Principiante. Tienes nociones muy básicas del idioma. El plan Digital HUB o empezar con clases personalizadas desde cero será perfecto para construir tu base sólida.";
+            } else if (score <= 25) {
+                level = "A2";
+                desc = "Nivel Básico. Conoces estructuras simples y vocabulario cotidiano. Necesitas enfocarte en ganar confianza y comprender los tiempos verbales del pasado y futuro.";
+            } else if (score <= 35) {
+                level = "B1";
+                desc = "Nivel Intermedio. Puedes comunicarte en la mayoría de situaciones cotidianas. El objetivo ahora es adquirir vocabulario complejo y entender estructuras condicionales y perfectas.";
+            } else if (score <= 45) {
+                level = "B2";
+                desc = "Nivel Avanzado. Tienes un dominio fuerte del idioma y puedes argumentar tus ideas con fluidez. Estás listo para perfeccionar tu inglés técnico o iniciar el IELTS Plan.";
+            } else {
+                level = "C1";
+                desc = "Nivel Experto. Tu precisión gramatical y vocabulario son excelentes. Tu enfoque debe ser la práctica conversacional inmersiva y el uso de modismos nativos.";
+            }
+
+            // Llenar interfaz visual
+            document.getElementById('resName').innerText = userName;
+            document.getElementById('resScore').innerText = `Obtuviste ${score} de 50 aciertos`;
+            document.getElementById('resLevel').innerText = level;
+            document.getElementById('resDesc').innerText = desc;
+
+            // Llenar datos ocultos para PDF
+            const dateStr = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('pdfName').innerText = userName;
+            document.getElementById('pdfDate').innerText = dateStr;
+            document.getElementById('pdfScore').innerText = score;
+            document.getElementById('pdfLevel').innerText = level;
+            document.getElementById('pdfDesc').innerText = desc;
+        }
+
+        // --- FUNCIÓN PARA GENERAR EL PDF CON HTML2PDF ---
+        function generatePDF() {
+            const element = document.getElementById('pdf-template');
+            element.style.display = "block"; // Mostrar temporalmente para capturar
+
+            const opt = {
+                margin:       1,
+                filename:     `TeacherIvan_Test_${userName.replace(/\s+/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            // Generar y luego volver a ocultar
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.display = "none";
+            });
+        }
+    </script>
+</body>
+</html>
