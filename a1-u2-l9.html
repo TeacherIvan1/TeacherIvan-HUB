@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Unit 2 Review - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a1-color: #28a745; /* Color A1 (Verde Esmeralda) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a1-color); }
+
+        /* Reading Comprehension */
+        .reading-box {
+            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a1-color);
+            padding: 2.5rem 2rem 2rem 2rem; border-radius: 0 8px 8px 0; font-size: 1.05rem; line-height: 1.8;
+            margin-bottom: 2rem; position: relative; color: #333;
+        }
+        .reading-box::before {
+            content: 'Teacher Ivan\'s Life';
+            position: absolute; top: -12px; left: 15px; background: var(--a1-color); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .highlight { font-weight: 700; color: var(--a1-color); background-color: rgba(40, 167, 69, 0.15); padding: 0 4px; border-radius: 3px; }
+        .highlight-blue { font-weight: 700; color: var(--azul-primario); background-color: rgba(10, 70, 140, 0.1); padding: 0 4px; border-radius: 3px; }
+        .highlight-orange { font-weight: 700; color: var(--naranja-vibrante); background-color: rgba(245, 110, 30, 0.1); padding: 0 4px; border-radius: 3px; }
+
+        /* Summary Grid */
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+        .summary-card { border: 1px solid var(--gris-neutro); border-radius: 8px; padding: 1.5rem; position: relative; overflow: hidden; background: white;}
+        .summary-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--a1-color); }
+        .summary-title { font-family: var(--font-titulares); color: var(--azul-primario); margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .summary-content { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .badge-sm { background: #e8f5e9; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; color: var(--a1-color);}
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem; color: #333;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-radio { display: none; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff; color: #444;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--a1-color); color: white; border-color: var(--a1-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
+        
+        .eval-submit-btn {
+            background-color: var(--a1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 1rem;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #218838; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-success { background-color: #28a745; color: white; border: none; }
+        .btn-success:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A1 • Final Test</span>
+            <h1 class="lesson-title">Unit 2 Review</h1>
+            <p class="lesson-objective">Objective: Prove your basic mastery of time, routines, frequency, and future plans.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Reading: The Routine Challenge</h2>
+            <p style="margin-bottom: 1rem; color: #555;">Read Teacher Ivan's text carefully. Can you identify all the grammar rules we learned in Unit 2?</p>
+            
+            <div class="reading-box">
+                "Hello! Welcome to my life in Sucre. I have a very busy routine. <span class="highlight">On Mondays</span>, I <span class="highlight-blue">always wake up</span> <span class="highlight">at 6:00 AM</span>. I take a shower and I eat breakfast. Then, I go to Colegio Fielding to teach English. But I <span class="highlight-orange">don't work</span> there <span class="highlight">on Thursdays</span>! <span class="highlight">On Thursdays</span>, I go running and I give private classes.<br><br>
+                <span class="highlight-blue">Do you run</span> every day? I do! <span class="highlight-blue">Does my girlfriend run</span> with me? Yes, <span class="highlight-blue">she does</span>! We love CrossFit. But <span class="highlight-orange">does Perlita the cat like</span> CrossFit? No, <span class="highlight-orange">she doesn't</span>. She <span class="highlight-orange">never exercises</span>. She <span class="highlight-blue">is always</span> tired. She <span class="highlight">sleeps in the morning</span> and <span class="highlight">at night</span>.<br><br>
+                What are my plans for the future? Well, it is April, and this weekend, I <span class="highlight">am going to write</span> HTML code for my app, and Perlita <span class="highlight">is going to eat</span> tuna!"
+            </div>
+            
+            <button class="eval-submit-btn" style="background-color: var(--azul-primario); width: auto; font-size: 0.9rem; padding: 0.8rem 1.5rem;" onclick="playSound('Hello! Welcome to my life in Sucre. I have a very busy routine. On Mondays, I always wake up at 6:00 AM. I take a shower and I eat breakfast. Then, I go to Colegio Fielding to teach English. But I do not work there on Thursdays! On Thursdays, I go running and I give private classes. Do you run every day? I do! Does my girlfriend run with me? Yes, she does! We love CrossFit. But does Perlita the cat like CrossFit? No, she does not. She never exercises. She is always tired. She sleeps in the morning and at night. What are my plans for the future? Well, it is April, and this weekend, I am going to write HTML code for my app, and Perlita is going to eat tuna!')">🔊 Listen to the text</button>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> A1 Grammar Cheatsheet</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-title">Time & Days</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">AT:</span> For clock times (<em>at 8:00</em>) and night (<em>at night</em>).<br>
+                        • <span class="badge-sm">ON:</span> For days of the week (<em>on Monday</em>).<br>
+                        • <span class="badge-sm">IN:</span> For parts of the day (<em>in the morning</em>).
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Present Simple</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">I / You / We / They:</span> I play, I don't play, Do you play?<br>
+                        • <span class="badge-sm">He / She / It:</span> She play<strong>s</strong>, She <strong>doesn't</strong> play, <strong>Does</strong> she play?<br>
+                        • <span style="color: #dc3545; font-weight: bold;">Trap:</span> Never use two "S"s! (<em>Does she play?</em>)
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Frequency & Future</div>
+                    <div class="summary-content">
+                        • <span class="badge-sm">Adverbs:</span> Go BEFORE the verb (<em>I always eat</em>), but AFTER 'To Be' (<em>She is always happy</em>).<br>
+                        • <span class="badge-sm">Future Plans:</span> Use <em>am/is/are + going to + verb</em> (I am going to study).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--a1-color);">
+            <h2 class="section-title"><span>3.</span> Unit 2 Final Master Test</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Dodge the A1 traps! You must score 5/5 to conquer Unit 2.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Prepositions:</strong> Complete the sentence: "_____ Friday, I relax."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="in" class="eval-radio"><label for="q1a" class="eval-label">In</label>
+                        <input type="radio" name="q1" id="q1b" value="the" class="eval-radio"><label for="q1b" class="eval-label">The</label>
+                        <input type="radio" name="q1" id="q1c" value="on" class="eval-radio"><label for="q1c" class="eval-label">On</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>The "S" Trap:</strong> Complete the question: "Does Perlita _____ early?"</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="wakeups" class="eval-radio"><label for="q2a" class="eval-label">wake ups</label>
+                        <input type="radio" name="q2" id="q2b" value="wakeup" class="eval-radio"><label for="q2b" class="eval-label">wake up</label>
+                        <input type="radio" name="q2" id="q2c" value="wakesup" class="eval-radio"><label for="q2c" class="eval-label">wakes up</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Parts of the day:</strong> "I sleep _____ night."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="at" class="eval-radio"><label for="q3a" class="eval-label">at</label>
+                        <input type="radio" name="q3" id="q3b" value="in" class="eval-radio"><label for="q3b" class="eval-label">in the</label>
+                        <input type="radio" name="q3" id="q3c" value="on" class="eval-radio"><label for="q3c" class="eval-label">on the</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Frequency Adverbs:</strong> Which sentence is CORRECT?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="alwaysis" class="eval-radio"><label for="q4a" class="eval-label">She always is late.</label>
+                        <input type="radio" name="q4" id="q4b" value="isalways" class="eval-radio"><label for="q4b" class="eval-label">She is always late.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Future Plans:</strong> "Tomorrow, I _____ play soccer."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="goingto" class="eval-radio"><label for="q5a" class="eval-label">going to</label>
+                        <input type="radio" name="q5" id="q5b" value="amgoingto" class="eval-radio"><label for="q5b" class="eval-label">am going to</label>
+                        <input type="radio" name="q5" id="q5c" value="amgo" class="eval-radio"><label for="q5c" class="eval-label">am go to</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Submit Final Exam</button>
+            </form>
+
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-success" onclick="alert('¡Felicidades, Teacher Ivan! Tus alumnos han superado la teoría de la Unidad 2.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Finish Unit 2 🏆</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas para el Final Test A1 U2 (5 preguntas)
+            const answers = { q1: 'on', q2: 'wakeup', q3: 'at', q4: 'isalways', q5: 'amgoingto' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 AMAZING! PERFECT SCORE (5/5)! You have dodged every A1 trap and officially mastered Unit 2.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Check the A1 traps: 1) ON Friday. 2) Does = no 'S' on the verb. 3) AT night. 4) Always goes AFTER the verb To Be. 5) Don't forget 'am' before 'going to'. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

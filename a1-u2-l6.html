@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Always and Never - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a1-color: #28a745; /* Color A1 (Verde Esmeralda) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a1-color); }
+
+        /* Vocabulario A1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff; position: relative; overflow: hidden;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a1-color); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15); }
+        
+        .percentage-bar { position: absolute; bottom: 0; left: 0; height: 6px; background-color: var(--a1-color); }
+        .pct-100 { width: 100%; background-color: var(--a1-color);}
+        .pct-80 { width: 80%; background-color: #5cb85c;}
+        .pct-50 { width: 50%; background-color: var(--naranja-vibrante);}
+        .pct-0 { width: 10%; background-color: #dc3545;} /* Just a sliver to show 0% concept */
+
+        .vocab-icon { font-size: 2rem; margin-bottom: 0.5rem; color: var(--azul-primario); font-weight: 800; font-family: monospace; }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a1-color); }
+
+        /* Gramática: Adverbs of Frequency */
+        .grammar-box {
+            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #e8f5e9; color: var(--a1-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--a1-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-a1 { color: var(--a1-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--a1-color); color: white; border-color: var(--a1-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #218838; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A1 • Unit 2 • Lesson 6</span>
+            <h1 class="lesson-title">Always and Never</h1>
+            <p class="lesson-objective">Objective: Talk about how often you do things using Adverbs of Frequency.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Frequency</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">These words answer the question "How often?" (¿Con qué frecuencia?).</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">100%</span>
+                    <span class="vocab-en">Always</span>
+                    <span class="vocab-es">Siempre</span>
+                    <button class="audio-btn" onclick="playSound('Always')">▶</button>
+                    <div class="percentage-bar pct-100"></div>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">80%</span>
+                    <span class="vocab-en">Usually</span>
+                    <span class="vocab-es">Usualmente / Normalmente</span>
+                    <button class="audio-btn" onclick="playSound('Usually')">▶</button>
+                    <div class="percentage-bar pct-80"></div>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">50%</span>
+                    <span class="vocab-en">Sometimes</span>
+                    <span class="vocab-es">A veces</span>
+                    <button class="audio-btn" onclick="playSound('Sometimes')">▶</button>
+                    <div class="percentage-bar pct-50"></div>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">0%</span>
+                    <span class="vocab-en">Never</span>
+                    <span class="vocab-es">Nunca</span>
+                    <button class="audio-btn" onclick="playSound('Never')">▶</button>
+                    <div class="percentage-bar pct-0"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Where do I put the word?</h2>
+            
+            <div class="grammar-box">
+                <p>In English, the position of the adverb is very strict. It must go <strong>BEFORE</strong> the main verb (action).</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card" style="min-width: 100%;">
+                        <div class="comp-title">The Standard Rule</div>
+                        <div class="comp-formula">Subject + Adverb + Verb</div>
+                        <p style="font-size: 0.9rem; color: #555;">Put the frequency word between the person and the action.</p>
+                        <div class="comp-example">"I <span class="highlight-a1">always wake up</span> early." (Yo siempre despierto temprano).</div>
+                        <div class="comp-example">"He <span class="highlight-orange">never eats</span> pizza." (Él nunca come pizza).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 The "To Be" Exception</div>
+                <p>The verb "To Be" (am / is / are) is special. It does not follow the normal rules. If you use the verb "To Be", the adverb must go <strong>AFTER</strong> it.</p>
+                <div style="background: white; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+                    <strong>Formula:</strong> Subject + AM/IS/ARE + Adverb<br><br>
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">She always is happy.</span><br>
+                    ✅ <span style="color: #28a745;">She IS always happy.</span>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>Good and Bad Habits</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"I am a very disciplined person. I <span class="highlight-a1">always wake up</span> at 5:30 AM to run. I <span class="highlight-a1">usually go</span> to the CrossFit gym on Mondays and Wednesdays. I <span class="highlight-a1">sometimes eat</span> a hamburger on the weekend, but I <span class="highlight-orange">never eat</span> sugar before a class."</p>
+                <p>"My students at Colegio Fielding are good students. They <span class="highlight-a1">usually do</span> their homework. They are <span class="highlight-a1">always happy</span> in my Philosophy class."</p>
+                <p>"But Perlita is different. She <span class="highlight-orange">is never</span> active. She <span class="highlight-orange">never runs</span>. She <span class="highlight-a1">sometimes plays</span> with a toy, but she <span class="highlight-a1">usually sleeps</span>. She <span class="highlight-a1">is always</span> tired!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('I am a very disciplined person. I always wake up at 5:30 AM to run. I usually go to the CrossFit gym on Mondays and Wednesdays. I sometimes eat a hamburger on the weekend, but I never eat sugar before a class. My students at Colegio Fielding are good students. They usually do their homework. They are always happy in my Philosophy class. But Perlita is different. She is never active. She never runs. She sometimes plays with a toy, but she usually sleeps. She is always tired!')">🔊 Listen to the habits</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--a1-color);">
+            <h2 class="section-title"><span>3.</span> A1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Can you position the adverbs correctly? Score 5/5 to unlock Lesson 7!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Position:</strong> Which sentence is CORRECT?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="bad1" class="eval-radio"><label for="q1a" class="eval-label">I eat always breakfast.</label>
+                        <input type="radio" name="q1" id="q1b" value="good" class="eval-radio"><label for="q1b" class="eval-label">I always eat breakfast.</label>
+                        <input type="radio" name="q1" id="q1c" value="bad2" class="eval-radio"><label for="q1c" class="eval-label">Always I eat breakfast.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>The "To Be" Exception:</strong> Which sentence is CORRECT?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="bad" class="eval-radio"><label for="q2a" class="eval-label">Perlita always is tired.</label>
+                        <input type="radio" name="q2" id="q2b" value="good" class="eval-radio"><label for="q2b" class="eval-label">Perlita is always tired.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Vocabulary:</strong> What does "Sometimes" mean?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="always" class="eval-radio"><label for="q3a" class="eval-label">100% of the time (Siempre)</label>
+                        <input type="radio" name="q3" id="q3b" value="never" class="eval-radio"><label for="q3b" class="eval-label">0% of the time (Nunca)</label>
+                        <input type="radio" name="q3" id="q3c" value="half" class="eval-radio"><label for="q3c" class="eval-label">50% of the time (A veces)</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> How often does Teacher Ivan eat sugar before a class?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="always" class="eval-radio"><label for="q4a" class="eval-label">Always</label>
+                        <input type="radio" name="q4" id="q4b" value="never" class="eval-radio"><label for="q4b" class="eval-label">Never</label>
+                        <input type="radio" name="q4" id="q4c" value="sometimes" class="eval-radio"><label for="q4c" class="eval-label">Sometimes</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> What does Perlita <em>usually</em> do?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="runs" class="eval-radio"><label for="q5a" class="eval-label">She runs.</label>
+                        <input type="radio" name="q5" id="q5b" value="sleeps" class="eval-radio"><label for="q5b" class="eval-label">She sleeps.</label>
+                        <input type="radio" name="q5" id="q5c" value="studies" class="eval-radio"><label for="q5c" class="eval-label">She studies.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent! You mastered frequency. Moving to Lesson 7.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'good', q2: 'good', q3: 'half', q4: 'never', q5: 'sleeps' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You know exactly where to place Adverbs of Frequency.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: Adverbs go BEFORE normal verbs, but AFTER the verb To Be. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>

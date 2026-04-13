@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Do you train today? - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a1-color: #28a745; /* Color A1 (Verde Esmeralda) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a1-color); }
+
+        /* Vocabulario A1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a1-color); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a1-color); }
+
+        /* Gramática: Questions */
+        .grammar-box {
+            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #e8f5e9; color: var(--a1-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--a1-color); margin-bottom: 0.5rem;}
+        
+        .answer-box { background-color: #fdf3eb; border-left: 3px solid var(--naranja-vibrante); padding: 0.8rem; margin-top: 1rem; font-size: 0.9rem; font-weight: bold;}
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-a1 { color: var(--a1-color); font-weight: 800; }
+        .highlight-orange { color: var(--naranja-vibrante); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--a1-color); color: white; border-color: var(--a1-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #218838; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A1 • Unit 2 • Lesson 5</span>
+            <h1 class="lesson-title">Do you train today?</h1>
+            <p class="lesson-objective">Objective: Ask questions and give short answers about routines using Do and Does.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Fitness & Routine</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn the verbs to talk about your physical activity.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🏋️‍♂️</span>
+                    <span class="vocab-en">Train</span>
+                    <span class="vocab-es">Entrenar</span>
+                    <button class="audio-btn" onclick="playSound('Train')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🧘‍♂️</span>
+                    <span class="vocab-en">Rest</span>
+                    <span class="vocab-es">Descansar</span>
+                    <button class="audio-btn" onclick="playSound('Rest')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">💪</span>
+                    <span class="vocab-en">Work out</span>
+                    <span class="vocab-es">Hacer ejercicio</span>
+                    <button class="audio-btn" onclick="playSound('Work out')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⏰</span>
+                    <span class="vocab-en">Early</span>
+                    <span class="vocab-es">Temprano</span>
+                    <button class="audio-btn" onclick="playSound('Early')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Questions & Short Answers</h2>
+            
+            <div class="grammar-box">
+                <p>To ask a question in English, you CANNOT just change your voice. You must put a magic word at the beginning of the sentence: <strong>DO</strong> or <strong>DOES</strong>.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">DO (I / You / We / They)</div>
+                        <div class="comp-formula">DO + Subject + Verb + ?</div>
+                        <div class="comp-example">"<span class="highlight-a1">Do you</span> train today?"</div>
+                        <div class="answer-box">
+                            <span style="color: var(--a1-color);">✅ Yes, I do.</span> <br>
+                            <span style="color: var(--naranja-vibrante);">❌ No, I don't.</span>
+                        </div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">DOES (He / She / It)</div>
+                        <div class="comp-formula">DOES + Subject + Verb + ?</div>
+                        <div class="comp-example">"<span class="highlight-a1">Does she</span> train today?"</div>
+                        <div class="answer-box">
+                            <span style="color: var(--a1-color);">✅ Yes, she does.</span> <br>
+                            <span style="color: var(--naranja-vibrante);">❌ No, she doesn't.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 The "Invisible DO" Trap</div>
+                <p>In Spanish, we say: "¿Tú entrenas?". In English, if you say "You train?", people will not understand it is a question. You MUST start with <strong>DO</strong> or <strong>DOES</strong>.</p>
+                <p style="margin-top: 1rem; border-top: 1px solid #ffcc80; padding-top: 1rem;">
+                    <strong>Also, remember the "S" rule:</strong> In questions with DOES, the verb loses the "S"!<br>
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">Does he trains?</span><br>
+                    ✅ <span style="color: #28a745;">Does he TRAIN?</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The Gym Interview</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p><strong>Interviewer:</strong> Hello Ivan! <span class="highlight-a1">Do you train</span> today?</p>
+                <p><strong>Ivan:</strong> <span class="highlight-a1">Yes, I do.</span> I love CrossFit.</p>
+                <p><strong>Interviewer:</strong> And your girlfriend? <span class="highlight-a1">Does she work out</span> with you?</p>
+                <p><strong>Ivan:</strong> <span class="highlight-a1">Yes, she does.</span> We go to the gym together early in the morning.</p>
+                <p><strong>Interviewer:</strong> That is great! I have one more question. <span class="highlight-a1">Does Perlita go</span> to the gym?</p>
+                <p><strong>Ivan:</strong> Haha! <span class="highlight-orange">No, she doesn't.</span> Perlita is a cat. She doesn't train. She rests on the sofa all day!</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('Interviewer: Hello Ivan! Do you train today? Ivan: Yes, I do. I love CrossFit. Interviewer: And your girlfriend? Does she work out with you? Ivan: Yes, she does. We go to the gym together early in the morning. Interviewer: That is great! I have one more question. Does Perlita go to the gym? Ivan: Haha! No, she does not. Perlita is a cat. She does not train. She rests on the sofa all day!')">🔊 Listen to the interview</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--a1-color);">
+            <h2 class="section-title"><span>3.</span> A1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Do you know how to ask? Score 5/5 to unlock Lesson 6!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Trap:</strong> How do you ask "¿Tú trabajas?" in English?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="youtrain" class="eval-radio"><label for="q1a" class="eval-label">You work?</label>
+                        <input type="radio" name="q1" id="q1b" value="dowork" class="eval-radio"><label for="q1b" class="eval-label">Do you work?</label>
+                        <input type="radio" name="q1" id="q1c" value="arework" class="eval-radio"><label for="q1c" class="eval-label">Are you work?</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>He/She/It Questions:</strong> Complete the question: "_____ Teacher Ivan run early?"</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="do" class="eval-radio"><label for="q2a" class="eval-label">Do</label>
+                        <input type="radio" name="q2" id="q2b" value="is" class="eval-radio"><label for="q2b" class="eval-label">Is</label>
+                        <input type="radio" name="q2" id="q2c" value="does" class="eval-radio"><label for="q2c" class="eval-label">Does</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>The "S" Trap:</strong> Which question is CORRECT?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="bad" class="eval-radio"><label for="q3a" class="eval-label">Does Perlita sleeps?</label>
+                        <input type="radio" name="q3" id="q3b" value="good" class="eval-radio"><label for="q3b" class="eval-label">Does Perlita sleep?</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> Does Perlita the cat go to the gym?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="yes" class="eval-radio"><label for="q4a" class="eval-label">Yes, she does.</label>
+                        <input type="radio" name="q4" id="q4b" value="no" class="eval-radio"><label for="q4b" class="eval-label">No, she doesn't.</label>
+                        <input type="radio" name="q4" id="q4c" value="sometimes" class="eval-radio"><label for="q4c" class="eval-label">Yes, she goes early.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Short Answers:</strong> Answer this question: "Do you study English?"</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="yesiam" class="eval-radio"><label for="q5a" class="eval-label">Yes, I am.</label>
+                        <input type="radio" name="q5" id="q5b" value="yesido" class="eval-radio"><label for="q5b" class="eval-label">Yes, I do.</label>
+                        <input type="radio" name="q5" id="q5c" value="yesstudy" class="eval-radio"><label for="q5c" class="eval-label">Yes, I study.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent! You can now ask questions. Moving to Lesson 6.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'dowork', q2: 'does', q3: 'good', q4: 'no', q5: 'yesido' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You know how to ask questions with Do and Does.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: Start your questions with DO or DOES. And never answer "Yes, I am"! Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>

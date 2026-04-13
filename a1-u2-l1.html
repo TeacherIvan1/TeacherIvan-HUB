@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: What time is it? - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a1-color: #28a745; /* Color A1 (Verde Esmeralda) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a1-color); }
+
+        /* Vocabulario A1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a1-color); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a1-color); }
+
+        /* Gramática: Telling Time */
+        .grammar-box {
+            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .time-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap; justify-content: center;
+        }
+        .time-card {
+            flex: 1; padding: 1rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 200px; text-align: center;
+        }
+        .time-clock { font-size: 2rem; font-weight: 800; color: var(--a1-color); font-family: monospace; margin-bottom: 0.5rem;}
+        .time-text { font-size: 1.1rem; font-weight: 600; color: var(--azul-primario); }
+
+        .alert-box {
+            background-color: #fff3e0; border-left: 5px solid var(--naranja-vibrante);
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #e65100;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-a1 { color: var(--a1-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--a1-color); color: white; border-color: var(--a1-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #218838; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A1 • Unit 2 • Lesson 1</span>
+            <h1 class="lesson-title">What time is it?</h1>
+            <p class="lesson-objective">Objective: Learn to tell the time and describe your daily schedule.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: The Clock</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn the key words to read the clock in English.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🕛</span>
+                    <span class="vocab-en">O'clock</span>
+                    <span class="vocab-es">En punto (Ej: 12:00)</span>
+                    <button class="audio-btn" onclick="playSound('O clock')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🕧</span>
+                    <span class="vocab-en">Half past</span>
+                    <span class="vocab-es">Y media (Ej: 12:30)</span>
+                    <button class="audio-btn" onclick="playSound('Half past')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🕒</span>
+                    <span class="vocab-en">Quarter past</span>
+                    <span class="vocab-es">Y cuarto (Ej: 3:15)</span>
+                    <button class="audio-btn" onclick="playSound('Quarter past')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🕤</span>
+                    <span class="vocab-en">Quarter to</span>
+                    <span class="vocab-es">Menos cuarto (Ej: 9:45)</span>
+                    <button class="audio-btn" onclick="playSound('Quarter to')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Telling the Time</h2>
+            
+            <div class="grammar-box">
+                <p>When someone asks you <strong>"What time is it?"</strong>, you always answer with <strong>"It is..."</strong>.</p>
+                
+                <div class="time-container">
+                    <div class="time-card">
+                        <div class="time-clock">07:00</div>
+                        <div class="time-text">It is seven <span class="highlight-a1">o'clock</span>.</div>
+                    </div>
+                    <div class="time-card">
+                        <div class="time-clock">07:15</div>
+                        <div class="time-text">It is <span class="highlight-a1">quarter past</span> seven.</div>
+                    </div>
+                    <div class="time-card">
+                        <div class="time-clock">07:30</div>
+                        <div class="time-text">It is <span class="highlight-a1">half past</span> seven.</div>
+                    </div>
+                    <div class="time-card">
+                        <div class="time-clock">07:45</div>
+                        <div class="time-text">It is <span class="highlight-a1">quarter to</span> eight.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 The Magic Preposition: "AT"</div>
+                <p>In Spanish, we say "Yo como a las 8:00". In English, NEVER translate "a las". For times on the clock, we always use the preposition <strong>AT</strong>.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #28a745;">
+                    ❌ <span style="text-decoration: line-through; color: #dc3545;">I eat breakfast to the 8:00.</span><br>
+                    ✅ <span style="color: #28a745;">I eat breakfast AT 8:00.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>Thursday Morning Routine</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"Today is Thursday in Sucre. What time is it? <span class="highlight-blue">It is half past five</span> in the morning (5:30 AM). My alarm rings. I wake up early because I go for a running session!"</p>
+                <p>"After my run, I am hungry. I eat breakfast <span class="highlight-a1">at quarter past seven</span> (7:15 AM). I eat eggs, oats, and avocado. It is healthy food. Then, <span class="highlight-a1">at eight o'clock</span> (8:00 AM), I arrive at Colegio Fielding to teach English to my students."</p>
+                <p>"And what about Perlita the cat? <span class="highlight-blue">It is nine o'clock</span> (9:00 AM) and she is still in bed. She wakes up <span class="highlight-a1">at half past eleven</span> (11:30 AM). She is very lazy!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('Today is Thursday in Sucre. What time is it? It is half past five in the morning. My alarm rings. I wake up early because I go for a running session! After my run, I am hungry. I eat breakfast at quarter past seven. I eat eggs, oats, and avocado. It is healthy food. Then, at eight o clock, I arrive at Colegio Fielding to teach English to my students. And what about Perlita the cat? It is nine o clock and she is still in bed. She wakes up at half past eleven. She is very lazy!')">🔊 Listen to the text</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--a1-color);">
+            <h2 class="section-title"><span>3.</span> A1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Can you read the clock? Score 5/5 to unlock Lesson 2!</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Time Reading:</strong> How do you say <strong>03:30</strong>?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="halfpast" class="eval-radio"><label for="q1a" class="eval-label">Half past three</label>
+                        <input type="radio" name="q1" id="q1b" value="quarterpast" class="eval-radio"><label for="q1b" class="eval-label">Quarter past three</label>
+                        <input type="radio" name="q1" id="q1c" value="oclock" class="eval-radio"><label for="q1c" class="eval-label">Three o'clock</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Grammar Rule:</strong> Complete the sentence: "I study English _____ 4:00 PM."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="in" class="eval-radio"><label for="q2a" class="eval-label">in</label>
+                        <input type="radio" name="q2" id="q2b" value="to" class="eval-radio"><label for="q2b" class="eval-label">to the</label>
+                        <input type="radio" name="q2" id="q2c" value="at" class="eval-radio"><label for="q2c" class="eval-label">at</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Time Reading:</strong> How do you say <strong>08:15</strong>?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="quarterto" class="eval-radio"><label for="q3a" class="eval-label">Quarter to eight</label>
+                        <input type="radio" name="q3" id="q3b" value="quarterpast" class="eval-radio"><label for="q3b" class="eval-label">Quarter past eight</label>
+                        <input type="radio" name="q3" id="q3c" value="halfpast" class="eval-radio"><label for="q3c" class="eval-label">Half past eight</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> What does Teacher Ivan do at 5:30 AM on Thursdays?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="eat" class="eval-radio"><label for="q4a" class="eval-label">He eats breakfast.</label>
+                        <input type="radio" name="q4" id="q4b" value="run" class="eval-radio"><label for="q4b" class="eval-label">He goes for a run.</label>
+                        <input type="radio" name="q4" id="q4c" value="teach" class="eval-radio"><label for="q4c" class="eval-label">He teaches English.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> What time does Perlita wake up?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="1130" class="eval-radio"><label for="q5a" class="eval-label">At half past eleven (11:30)</label>
+                        <input type="radio" name="q5" id="q5b" value="0900" class="eval-radio"><label for="q5b" class="eval-label">At nine o'clock (9:00)</label>
+                        <input type="radio" name="q5" id="q5c" value="0715" class="eval-radio"><label for="q5c" class="eval-label">At quarter past seven (7:15)</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job! Moving to Lesson 2.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'halfpast', q2: 'at', q3: 'quarterpast', q4: 'run', q5: '1130' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You know how to tell the time correctly in English.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#f8d7da";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember to use "AT" for times (e.g., at 8:00). Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
