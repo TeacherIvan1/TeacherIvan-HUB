@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: While I was running... - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #F56E1E; /* Color B1 (Naranja Vibrante) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario B1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: Past Continuous vs Past Simple */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fff3e0; color: var(--b1-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--b1-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d85c13; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 2 • Lesson 1</span>
+            <h1 class="lesson-title">While I was running...</h1>
+            <p class="lesson-objective">Objective: Learn to describe interrupted actions using the Past Continuous and Past Simple.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Sudden Interruptions</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these verbs to describe short, sudden actions that interrupt your routine.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🌧️</span>
+                    <span class="vocab-en">Start to rain</span>
+                    <span class="vocab-es">Empezar a llover</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">Past: Started</span>
+                    <button class="audio-btn" onclick="playSound('Start to rain')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📱</span>
+                    <span class="vocab-en">Ring</span>
+                    <span class="vocab-es">Sonar (el teléfono)</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">Past: Rang</span>
+                    <button class="audio-btn" onclick="playSound('Ring. Past: Rang')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🦶</span>
+                    <span class="vocab-en">Trip and fall</span>
+                    <span class="vocab-es">Tropezar y caer</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">Past: Tripped and fell</span>
+                    <button class="audio-btn" onclick="playSound('Trip and fall. Past: Tripped and fell')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">💥</span>
+                    <span class="vocab-en">Drop</span>
+                    <span class="vocab-es">Dejar caer</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">Past: Dropped</span>
+                    <button class="audio-btn" onclick="playSound('Drop. Past: Dropped')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: When vs. While</h2>
+            
+            <div class="grammar-box">
+                <p>To tell a good story in English, we often mix two past tenses. We use the <strong>Past Continuous</strong> for a long action in progress, and the <strong>Past Simple</strong> for a short, sudden action that interrupts it.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">The Long Action (While)</div>
+                        <div class="comp-formula">While + Subject + was/were + V-ing</div>
+                        <p style="font-size: 0.9rem; color: #555;"><strong>While</strong> means "Mientras". Use it for actions that take time.</p>
+                        <div class="comp-example">"<span class="highlight-b1">While I was running</span> in Sucre..."</div>
+                        <div class="comp-example">"<span class="highlight-b1">While she was sleeping</span>..."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">The Short Action (When)</div>
+                        <div class="comp-formula">When + Subject + Past Simple Verb</div>
+                        <p style="font-size: 0.9rem; color: #555;"><strong>When</strong> means "Cuando". Use it for the sudden interruption.</p>
+                        <div class="comp-example">"...<span class="highlight-blue">when the phone rang.</span>"</div>
+                        <div class="comp-example">"...<span class="highlight-blue">when it started to rain.</span>"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE FATAL MIX-UP</div>
+                <p>Never use "While" for a short, sudden action. You cannot say "mientras el teléfono sonó" in English.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">I was taking a shower <strong>while</strong> the phone rang.</span><br>
+                    ✅ <span style="color: #155724;">I was taking a shower <strong>WHEN</strong> the phone rang.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>A Crazy Thursday Morning</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"Yesterday was Thursday. <span class="highlight-b1">While I was running</span> at 5:30 AM in Sucre, the weather changed. I was feeling great, but suddenly, <span class="highlight-blue">it started to rain</span> very hard! I ran back home immediately."</p>
+                <p>"Later, <span class="highlight-b1">while I was taking a shower</span>, my phone <span class="highlight-blue">rang</span>. I ran out of the shower wet. It was a student from Colegio Fielding asking about the Philosophy homework!"</p>
+                <p>"And it gets worse. <span class="highlight-b1">While I was talking</span> on the phone with the student, Perlita jumped on the table. <span class="highlight-blue">When she jumped</span>, she <span class="highlight-blue">dropped</span> my glass of water on my HTML coding notes. What a crazy morning!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('Yesterday was Thursday. While I was running at 5:30 AM in Sucre, the weather changed. I was feeling great, but suddenly, it started to rain very hard! I ran back home immediately. Later, while I was taking a shower, my phone rang. I ran out of the shower wet. It was a student from Colegio Fielding asking about the Philosophy homework! And it gets worse. While I was talking on the phone with the student, Perlita jumped on the table. When she jumped, she dropped my glass of water on my HTML coding notes. What a crazy morning!')">🔊 Listen to the story</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> B1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Prove you can combine past tenses! You must score 5/5 to unlock Lesson 2.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Rule:</strong> I ____________ (run) in the park when it started to rain.</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="ran" class="eval-radio"><label for="q1a" class="eval-label">ran</label>
+                        <input type="radio" name="q1" id="q1b" value="wasrunning" class="eval-radio"><label for="q1b" class="eval-label">was running</label>
+                        <input type="radio" name="q1" id="q1c" value="amrunning" class="eval-radio"><label for="q1c" class="eval-label">am running</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Connector Choice:</strong> "__________ we were sleeping, the phone rang."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="when" class="eval-radio"><label for="q2a" class="eval-label">When</label>
+                        <input type="radio" name="q2" id="q2b" value="while" class="eval-radio"><label for="q2b" class="eval-label">While</label>
+                        <input type="radio" name="q2" id="q2c" value="because" class="eval-radio"><label for="q2c" class="eval-label">Because</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>The Trap Check:</strong> Which sentence is CORRECT?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="bad" class="eval-radio"><label for="q3a" class="eval-label">I was eating while he knocked on the door.</label>
+                        <input type="radio" name="q3" id="q3b" value="good" class="eval-radio"><label for="q3b" class="eval-label">I was eating when he knocked on the door.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> What did Perlita do while Teacher Ivan was on the phone?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="dropped" class="eval-radio"><label for="q4a" class="eval-label">She dropped a glass of water.</label>
+                        <input type="radio" name="q4" id="q4b" value="slept" class="eval-radio"><label for="q4b" class="eval-label">She slept on the table.</label>
+                        <input type="radio" name="q4" id="q4c" value="tripped" class="eval-radio"><label for="q4c" class="eval-label">She tripped and fell.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Irregular Verbs:</strong> What is the simple past of the verb "Ring"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="ringed" class="eval-radio"><label for="q5a" class="eval-label">Ringed</label>
+                        <input type="radio" name="q5" id="q5b" value="rang" class="eval-radio"><label for="q5b" class="eval-label">Rang</label>
+                        <input type="radio" name="q5" id="q5c" value="rung" class="eval-radio"><label for="q5c" class="eval-label">Rung</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job with the Past Continuous! Moving to Lesson 2.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'wasrunning', q2: 'while', q3: 'good', q4: 'dropped', q5: 'rang' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fff3e0";
+                resultsDiv.style.color = "#d85c13";
+                resultsDiv.style.border = "1px solid #ffe0b2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully mastered When and While in the Past Continuous.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: "While" is for long actions (running), "When" is for short interruptions (rang). Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
