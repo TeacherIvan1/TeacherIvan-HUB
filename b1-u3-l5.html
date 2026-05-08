@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Unless and Provided that - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #F56E1E; /* Color B1 (Naranja Vibrante) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario B1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: Unless & Provided that */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fff3e0; color: var(--b1-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--b1-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d85c13; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 3 • Lesson 5</span>
+            <h1 class="lesson-title">Unless and Provided that</h1>
+            <p class="lesson-objective">Objective: Set strict rules and conditions using formal conditional connectors.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Model United Nations (MUN)</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these words to speak formally in a debate or academic environment.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">👔</span>
+                    <span class="vocab-en">Delegate</span>
+                    <span class="vocab-es">Delegado/a (Representante)</span>
+                    <button class="audio-btn" onclick="playSound('Delegate')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🗣️</span>
+                    <span class="vocab-en">Debate</span>
+                    <span class="vocab-es">Debatir / El debate</span>
+                    <button class="audio-btn" onclick="playSound('Debate')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📚</span>
+                    <span class="vocab-en">Research</span>
+                    <span class="vocab-es">Investigar / Investigación</span>
+                    <button class="audio-btn" onclick="playSound('Research')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">✅</span>
+                    <span class="vocab-en">Attend</span>
+                    <span class="vocab-es">Asistir (a un evento o clase)</span>
+                    <button class="audio-btn" onclick="playSound('Attend')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Formal Conditionals</h2>
+            
+            <div class="grammar-box">
+                <p>When you are in a formal situation (like a Model United Nations), saying "If" or "As long as" can sound too casual. Let's upgrade our conditionals.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">Provided that</div>
+                        <div class="comp-formula">Provided that + Condition, Result</div>
+                        <p style="font-size: 0.9rem; color: #555;">It means exactly the same as <em>"As long as"</em> or <em>"Only if"</em>, but it is much more formal. It sets a strict rule.</p>
+                        <div class="comp-example">"<span class="highlight-b1">Provided that</span> you study, you will pass." (Con la condición de que estudies...)</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">Unless (Review)</div>
+                        <div class="comp-formula">Unless + Positive Verb, Result</div>
+                        <p style="font-size: 0.9rem; color: #555;">Remember: it means <em>"If not"</em>. Never put "don't" or "doesn't" after it!</p>
+                        <div class="comp-example">"<span class="highlight-b1">Unless</span> you attend the meeting, you won't participate." (A menos que asistas...)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE "ATTEND" vs "ASSIST" TRAP</div>
+                <p>This is a legendary False Friend! In Spanish, "Asistir" means going to a place. In English, <strong>ASSIST</strong> means "Ayudar" (Help). If you want to say "Yo asisto a la escuela", you MUST say <strong>ATTEND</strong>.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">I <strong>assist</strong> to Colegio Fielding every day.</span><br>
+                    ✅ <span style="color: #155724;">I <strong>ATTEND</strong> Colegio Fielding every day.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The SAGMUN 2026 Challenge</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"As the teacher in charge of the Model United Nations (MUN) commission at Colegio Fielding, I have a big project right now. In June, 14 of my students are going to participate in SAGMUN 2026. It is a very prestigious event!"</p>
+                <p>"Because it is a formal debate, I established strict rules. A student can be a delegate <span class="highlight-b1">provided that</span> they <span class="highlight-blue">attend</span> all the preparation meetings on Thursdays. <span class="highlight-b1">Unless</span> they <span class="highlight-blue">research</span> the history of their assigned countries, they won't know how to defend their arguments!"</p>
+                <p>"My students are brilliant, and I know they will win awards <span class="highlight-b1">provided that</span> they speak confidently in English. Meanwhile, Perlita the cat thinks she is a delegate too. But <span class="highlight-b1">unless</span> she learns how to speak human languages, she will have to stay home in Sucre!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('As the teacher in charge of the Model United Nations commission at Colegio Fielding, I have a big project right now. In June, 14 of my students are going to participate in SAGMUN 2026. It is a very prestigious event! Because it is a formal debate, I established strict rules. A student can be a delegate provided that they attend all the preparation meetings on Thursdays. Unless they research the history of their assigned countries, they won\'t know how to defend their arguments! My students are brilliant, and I know they will win awards provided that they speak confidently in English. Meanwhile, Perlita the cat thinks she is a delegate too. But unless she learns how to speak human languages, she will have to stay home in Sucre!')">🔊 Listen to the rules</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> B1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Test your formal English! Score 5/5 to unlock Lesson 6.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Formal Conditionals:</strong> Which connector is the formal version of "As long as"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="unless" class="eval-radio"><label for="q1a" class="eval-label">Unless</label>
+                        <input type="radio" name="q1" id="q1b" value="providedthat" class="eval-radio"><label for="q1b" class="eval-label">Provided that</label>
+                        <input type="radio" name="q1" id="q1c" value="meanwhile" class="eval-radio"><label for="q1c" class="eval-label">Meanwhile</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>The False Friend Trap:</strong> How do you say "Los delegados asisten al evento"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="assist" class="eval-radio"><label for="q2a" class="eval-label">The delegates assist to the event.</label>
+                        <input type="radio" name="q2" id="q2b" value="attend" class="eval-radio"><label for="q2b" class="eval-label">The delegates attend the event.</label>
+                        <input type="radio" name="q2" id="q2c" value="research" class="eval-radio"><label for="q2c" class="eval-label">The delegates research the event.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>Grammar Trap:</strong> "__________ you practice your English, you won't win the debate."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="unless" class="eval-radio"><label for="q3a" class="eval-label">Unless</label>
+                        <input type="radio" name="q3" id="q3b" value="providedthat" class="eval-radio"><label for="q3b" class="eval-label">Provided that</label>
+                        <input type="radio" name="q3" id="q3c" value="unlessdont" class="eval-radio"><label for="q3c" class="eval-label">Unless you don't</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> How many students from Colegio Fielding are going to SAGMUN 2026?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="10" class="eval-radio"><label for="q4a" class="eval-label">10 students</label>
+                        <input type="radio" name="q4" id="q4b" value="14" class="eval-radio"><label for="q4b" class="eval-label">14 students</label>
+                        <input type="radio" name="q4" id="q4c" value="20" class="eval-radio"><label for="q4c" class="eval-label">20 students</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> According to Teacher Ivan's rules, what is the condition to be a delegate?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="attend" class="eval-radio"><label for="q5a" class="eval-label">They must attend the Thursday preparation meetings.</label>
+                        <input type="radio" name="q5" id="q5b" value="pay" class="eval-radio"><label for="q5b" class="eval-label">They must pay for the trip to La Paz.</label>
+                        <input type="radio" name="q5" id="q5c" value="cat" class="eval-radio"><label for="q5c" class="eval-label">They must bring Perlita to the debate.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job with formal conditionals! Moving to Lesson 6.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'providedthat', q2: 'attend', q3: 'unless', q4: '14', q5: 'attend' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fff3e0";
+                resultsDiv.style.color = "#d85c13";
+                resultsDiv.style.border = "1px solid #ffe0b2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully learned how to use formal conditionals.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: "Provided that" is formal for "As long as", and NEVER translate "Asistir" as "Assist" (use Attend). Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
