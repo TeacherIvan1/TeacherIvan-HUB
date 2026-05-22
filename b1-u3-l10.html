@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10: Project - My App Idea - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #F56E1E; /* Color B1 (Naranja Vibrante) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Project Steps */
+        .project-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .step-card {
+            background: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--b1-color); padding: 1.5rem; border-radius: 0 8px 8px 0;
+        }
+        .step-title { font-family: var(--font-titulares); color: var(--b1-color); font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;}
+        
+        .prompt-box {
+            background-color: white; border: 2px solid var(--gris-neutro); padding: 2rem 1.8rem 1.8rem 1.8rem; border-radius: 8px; margin-top: 1.5rem; position: relative; line-height: 1.8; font-size: 1.05rem; color: #333;
+        }
+        .prompt-box::before { content: 'B1 Tech Pitch'; position: absolute; top: -12px; left: 15px; background: var(--azul-primario); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;}
+        
+        .example-box {
+            background-color: #fdf3eb; border-left: 4px solid var(--naranja-vibrante); padding: 1.5rem; border-radius: 4px; margin-top: 1.5rem; font-size: 0.95rem; color: #444; line-height: 1.6;
+        }
+        .highlight-b1 { color: var(--b1-color); font-weight: bold; }
+        .highlight-blue { color: var(--azul-primario); font-weight: bold; }
+
+        /* Text Area for Draft */
+        textarea {
+            width: 100%; height: 320px; padding: 1.5rem; border: 2px dashed var(--gris-neutro); border-radius: 8px;
+            font-family: var(--font-cuerpo); font-size: 1.1rem; resize: vertical; box-sizing: border-box; margin-top: 1rem; line-height: 1.6; color: #333;
+        }
+        textarea:focus { outline: none; border-color: var(--b1-color); background-color: #fffaf5; box-shadow: 0 0 10px rgba(245, 110, 30, 0.1); }
+        
+        .word-count { font-size: 0.95rem; font-weight: bold; color: #666; text-align: right; margin-top: 0.5rem;}
+        .word-count.success { color: #28a745; }
+        .word-count.error { color: #dc3545; }
+
+        /* Checklist */
+        .checklist { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+        .check-item { display: flex; align-items: flex-start; gap: 1rem; font-size: 1.05rem; cursor: pointer; padding: 0.8rem; border-radius: 6px; transition: background-color 0.2s; border: 1px solid transparent;}
+        .check-item:hover { background-color: #f9f9f9; border-color: #eee;}
+        .check-item input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--b1-color); cursor: pointer; margin-top: 0.2rem;}
+        .check-item label { cursor: pointer; flex-grow: 1; line-height: 1.5;}
+
+        /* Submit Button */
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; margin-top: 2.5rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s;
+        }
+        .eval-submit-btn:hover { background-color: #d85c13; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(245, 110, 30, 0.3);}
+        .eval-submit-btn:disabled { background-color: var(--gris-neutro); cursor: not-allowed; transform: none; box-shadow: none;}
+
+        #success-message { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;}
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro);
+            background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        
+        .footer-buttons { display: flex; gap: 1rem; align-items: center; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-success { background-color: #28a745; color: white; border: none; }
+        .btn-success:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 3 • Final Project</span>
+            <h1 class="lesson-title">Project: My App Idea</h1>
+            <p class="lesson-objective">Objective: Write a 100-word pitch for a new application using advanced B1 grammar.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Your Tech Pitch 🚀</h2>
+            <p style="margin-bottom: 1.5rem; color: #555; line-height: 1.6; font-size: 1.05rem;">
+                Imagine you are a software developer. You must pitch (present) a new app idea to an investor. Describe what the app does, who it is for, and what would happen if it becomes successful.
+            </p>
+            
+            <div class="project-steps">
+                <div class="step-card">
+                    <div class="step-title"><span>✍️</span> The Prompt</div>
+                    
+                    <div class="prompt-box">
+                        <p style="font-weight: bold; margin-bottom: 0.5rem; color: var(--azul-primario);">Write a text explaining your app. You must include:</p>
+                        <ul style="margin-bottom: 1.5rem; line-height: 1.8;">
+                            <li><strong>Relative Clauses:</strong> Use <em>Who, Which,</em> or <em>Where</em> to describe the app and the users.</li>
+                            <li><strong>1st Conditional / Unless:</strong> Explain the rules of the app (<em>If users log in... / Unless they pay...</em>).</li>
+                            <li><strong>2nd Conditional:</strong> Imagine what you would do with the app (<em>If I had more time, I would...</em>).</li>
+                            <li><strong>3rd Conditional:</strong> Share a past development story (<em>If I hadn't studied HTML, I wouldn't have built it...</em>).</li>
+                        </ul>
+                        <p style="font-weight: bold; color: var(--b1-color); font-size: 1.1rem;">Write at least 100 words.</p>
+                        
+                        <div class="example-box">
+                            <strong>Teacher Ivan's Example: The Lifestyle Tracker</strong><br><br>
+                            "<span class="highlight-b1">If I hadn't learned</span> HTML and CSS, I <span class="highlight-b1">would never have built</span> 'Teacher Ivan - Lifestyle'. This is an app <span class="highlight-blue">which</span> helps students from Colegio Fielding track their habits and grades.<br><br>
+                            The app is for people <span class="highlight-blue">who</span> want to improve their routines. <span class="highlight-blue">Provided that</span> my students use it every day, they <span class="highlight-blue">will pass</span> the class easily. However, <span class="highlight-blue">unless</span> they complete the 40 points in the 'Hacer' dimension, the app will send an alert.<br><br>
+                            <span class="highlight-b1">If I had</span> unlimited money, I <span class="highlight-b1">would add</span> a CrossFit tracker for my girlfriend Lau and me. Next year, I <span class="highlight-blue">will be launching</span> a special feature for pets, specifically for the sofa <span class="highlight-blue">where</span> Perlita sleeps all day!"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> The Developer's Canvas</h2>
+            <p style="color: #555;">Draft your pitch here. The submit button will unlock when you reach 100 words and check all the boxes.</p>
+            
+            <textarea id="essay-box" placeholder="My app is called... It is an application which..." oninput="countWords()"></textarea>
+            <div class="word-count error" id="word-counter">Word count: 0 / 100 words</div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> The B1 Audit</h2>
+            <p style="color: #666; font-weight: 600;">Check your pitch! Did you use the B1 grammar tools correctly?</p>
+
+            <div class="checklist">
+                <div class="check-item">
+                    <input type="checkbox" id="chk1" onchange="checkReadiness()">
+                    <label for="chk1">
+                        <strong>Relative Clauses:</strong> I used <em>Who</em> for users, <em>Which/That</em> for the app features, or <em>Where</em> for places.
+                    </label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk2" onchange="checkReadiness()">
+                    <label for="chk2">
+                        <strong>Real Conditions:</strong> I used the First Conditional, <em>Unless</em>, or <em>Provided that</em> to explain the app rules.
+                    </label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk3" onchange="checkReadiness()">
+                    <label for="chk3">
+                        <strong>Imaginary Scenarios:</strong> I used the Second Conditional (If + Past Simple, Would) to dream about the app's future.
+                    </label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk4" onchange="checkReadiness()">
+                    <label for="chk4">
+                        <strong>Past Regrets/Stories:</strong> I used the Third Conditional (If + Had V3, Would have V3) to talk about the development process.
+                    </label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="chk5" onchange="checkReadiness()">
+                    <label for="chk5">
+                        <strong>Word Count:</strong> My pitch has at least 100 words (Verify the counter above).
+                    </label>
+                </div>
+            </div>
+
+            <button type="button" id="submit-btn" class="eval-submit-btn" disabled onclick="submitProject()">Submit App Pitch to Teacher Ivan</button>
+
+            <div id="success-message">
+                🎉 PROJECT COMPLETED! You have successfully finished Unit 3 of the B1 Level. Send your text to Teacher Ivan for final feedback. You are officially an advanced B1 communicator!
+            </div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-success" onclick="alert('Congratulations! You conquered B1 Unit 3.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Finish B1 Unit 3 🏆</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Contador de palabras en tiempo real B1 (Min 100 palabras)
+        function countWords() {
+            const text = document.getElementById('essay-box').value;
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const counterDiv = document.getElementById('word-counter');
+            
+            counterDiv.innerText = `Word count: ${words} / 100 words`;
+            
+            if(words >= 100) {
+                counterDiv.className = "word-count success";
+            } else {
+                counterDiv.className = "word-count error";
+            }
+            checkReadiness(); // Re-evaluar botón
+        }
+
+        // Habilitar botón solo cuando todo el checklist y contador estén listos
+        function checkReadiness() {
+            const chk1 = document.getElementById('chk1').checked;
+            const chk2 = document.getElementById('chk2').checked;
+            const chk3 = document.getElementById('chk3').checked;
+            const chk4 = document.getElementById('chk4').checked;
+            const chk5 = document.getElementById('chk5').checked;
+            
+            const text = document.getElementById('essay-box').value;
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const lengthMet = words >= 100;
+
+            const submitBtn = document.getElementById('submit-btn');
+
+            if(chk1 && chk2 && chk3 && chk4 && chk5 && lengthMet) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        function submitProject() {
+            const successDiv = document.getElementById('success-message');
+            const submitBtn = document.getElementById('submit-btn');
+            const continueBtn = document.getElementById('continue-btn');
+
+            // Simular envío
+            submitBtn.style.display = "none";
+            successDiv.style.display = "block";
+            continueBtn.style.display = "block";
+            
+            // Congelar inputs
+            document.querySelectorAll('input[type="checkbox"]').forEach(chk => chk.disabled = true);
+            document.getElementById('essay-box').disabled = true;
+        }
+    </script>
+</body>
+</html>
