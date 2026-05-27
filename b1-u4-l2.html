@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Paper is recycled here - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #F56E1E; /* Color B1 (Naranja Vibrante) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario B1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: Passive Voice Processes */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fff3e0; color: var(--b1-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--b1-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d85c13; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 4 • Lesson 2</span>
+            <h1 class="lesson-title">Paper is recycled here</h1>
+            <p class="lesson-objective">Objective: Describe processes and environmental actions by omitting the agent.</p>
+        </div>
+
+        <!-- Sección 1: Vocabulario -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: The Environment</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn the verbs needed to explain how we process waste and protect the planet.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">♻️</span>
+                    <span class="vocab-en">Recycle</span>
+                    <span class="vocab-es">Reciclar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Recycled</span>
+                    <button class="audio-btn" onclick="playSound('Recycle. Past Participle: Recycled')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🗑️</span>
+                    <span class="vocab-en">Collect</span>
+                    <span class="vocab-es">Recolectar / Recoger</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Collected</span>
+                    <button class="audio-btn" onclick="playSound('Collect. Past Participle: Collected')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🗂️</span>
+                    <span class="vocab-en">Sort</span>
+                    <span class="vocab-es">Clasificar / Separar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Sorted</span>
+                    <button class="audio-btn" onclick="playSound('Sort. Past Participle: Sorted')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🔄</span>
+                    <span class="vocab-en">Reuse</span>
+                    <span class="vocab-es">Reutilizar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Reused</span>
+                    <button class="audio-btn" onclick="playSound('Reuse. Past Participle: Reused')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Gramática -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Omitting the Agent</h2>
+            
+            <div class="grammar-box">
+                <p>When explaining a process (how things are made, grown, or recycled), we usually <strong>omit the agent</strong> (the person doing the action) because it is obvious or unimportant.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">Adding the Agent</div>
+                        <div class="comp-desc">We use "by" if the person is specific and important.</div>
+                        <div class="comp-example">"The HUB is designed <span class="highlight-blue">by Teacher Ivan</span>."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">Omitting the Agent</div>
+                        <div class="comp-desc">Do not say "by people" or "by workers". Just cut it!</div>
+                        <div class="comp-example">"The paper <span class="highlight-b1">is collected</span> every Friday." (We don't need to say 'by the garbage men').</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE "SE" TRANSLATION TRAP</div>
+                <p>In Spanish, we use the pronoun "se" for passive processes: "Aquí <strong>se recicla</strong> papel". Do NOT translate this as "Paper recycles here" (El papel no se recicla a sí mismo). You must use the Passive Voice.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">Paper <strong>recycles</strong> here.</span><br>
+                    ✅ <span style="color: #155724;">Paper <strong>IS RECYCLED</strong> here.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The Green Campaign</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"At Colegio Fielding, we are promoting a new green campaign. Every week, tons of paper are used by the students in their exams and homework. Now, instead of throwing it away, this paper <span class="highlight-b1">is collected</span> every Friday."</p>
+                <p>"After that, the materials <span class="highlight-b1">are sorted</span> into different bins: plastic, glass, and paper. Finally, the paper <span class="highlight-b1">is taken</span> to a special facility in Sucre where it <span class="highlight-b1">is recycled</span> and <span class="highlight-blue">reused</span> for future notebooks."</p>
+                <p>"At home, Lau and I also try to recycle. However, our cardboard boxes <span class="highlight-blue">are completely destroyed</span> by Perlita before we can recycle them! The boxes <span class="highlight-b1">are used</span> as her personal scratching posts. I guess that is also a form of 'reusing'!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('At Colegio Fielding, we are promoting a new green campaign. Every week, tons of paper are used by the students in their exams and homework. Now, instead of throwing it away, this paper is collected every Friday. After that, the materials are sorted into different bins: plastic, glass, and paper. Finally, the paper is taken to a special facility in Sucre where it is recycled and reused for future notebooks. At home, Lau and I also try to recycle. However, our cardboard boxes are completely destroyed by Perlita before we can recycle them! The boxes are used as her personal scratching posts. I guess that is also a form of reusing!')">🔊 Listen to the process</button>
+            </div>
+        </section>
+
+        <!-- Sección 3: Evaluación (Gatekeeper) -->
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> B1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Process the grammar correctly! Score 5/5 to unlock Lesson 3.</p>
+
+            <form id="eval-form">
+                <!-- Q1 -->
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Structure:</strong> "The plastic bottles __________ into different colors."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="sort" class="eval-radio"><label for="q1a" class="eval-label">sort</label>
+                        <input type="radio" name="q1" id="q1b" value="aresorted" class="eval-radio"><label for="q1b" class="eval-label">are sorted</label>
+                        <input type="radio" name="q1" id="q1c" value="issorted" class="eval-radio"><label for="q1c" class="eval-label">is sorted</label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="eval-question">
+                    <p>2. <strong>Rule Check:</strong> Why do we omit the agent ("by people") when describing a recycling process?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="obvious" class="eval-radio"><label for="q2a" class="eval-label">Because it is obvious or not important who does it.</label>
+                        <input type="radio" name="q2" id="q2b" value="grammar" class="eval-radio"><label for="q2b" class="eval-label">Because it is grammatically incorrect to use "by".</label>
+                        <input type="radio" name="q2" id="q2c" value="secret" class="eval-radio"><label for="q2c" class="eval-label">Because it is a secret.</label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="eval-question">
+                    <p>3. <strong>Translation Trap:</strong> How do you correctly say "Aquí se recicla papel"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="recycleshere" class="eval-radio"><label for="q3a" class="eval-label">Paper recycles here.</label>
+                        <input type="radio" name="q3" id="q3b" value="isrecycled" class="eval-radio"><label for="q3b" class="eval-label">Paper is recycled here.</label>
+                        <input type="radio" name="q3" id="q3c" value="recycled" class="eval-radio"><label for="q3c" class="eval-label">Paper recycled here.</label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> What happens to the paper at Colegio Fielding now?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="collected" class="eval-radio"><label for="q4a" class="eval-label">It is collected and sorted into bins.</label>
+                        <input type="radio" name="q4" id="q4b" value="thrown" class="eval-radio"><label for="q4b" class="eval-label">It is thrown away in the garbage.</label>
+                        <input type="radio" name="q4" id="q4c" value="destroyed" class="eval-radio"><label for="q4c" class="eval-label">It is completely destroyed by the students.</label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> What are the cardboard boxes used for at Teacher Ivan's house?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="moving" class="eval-radio"><label for="q5a" class="eval-label">They are used for moving to a new house.</label>
+                        <input type="radio" name="q5" id="q5b" value="scratching" class="eval-radio"><label for="q5b" class="eval-label">They are used as Perlita's personal scratching posts.</label>
+                        <input type="radio" name="q5" id="q5c" value="books" class="eval-radio"><label for="q5c" class="eval-label">They are used to store History books.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <!-- Footer -->
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent job omitting the agent! Moving to Lesson 3.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'aresorted', q2: 'obvious', q3: 'isrecycled', q4: 'collected', q5: 'scratching' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fff3e0";
+                resultsDiv.style.color = "#d85c13";
+                resultsDiv.style.border = "1px solid #ffe0b2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully mastered describing processes with the Passive Voice.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: "The bottles ARE sorted", and DO NOT translate "se recicla" directly. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
