@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Coding Basics - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #F56E1E; /* Color B1 (Naranja Vibrante) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario B1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: Present Perfect Passive */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fff3e0; color: var(--b1-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--b1-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d85c13; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 4 • Lesson 4</span>
+            <h1 class="lesson-title">Coding Basics: App Updates</h1>
+            <p class="lesson-objective">Objective: Report recent progress and updates using the Present Perfect Passive.</p>
+        </div>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Software Development</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these regular verbs to talk about creating and launching digital projects.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🚀</span>
+                    <span class="vocab-en">Develop</span>
+                    <span class="vocab-es">Desarrollar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Developed</span>
+                    <button class="audio-btn" onclick="playSound('Develop. Past Participle: Developed')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🎨</span>
+                    <span class="vocab-en">Design</span>
+                    <span class="vocab-es">Diseñar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Designed</span>
+                    <button class="audio-btn" onclick="playSound('Design. Past Participle: Designed')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🔧</span>
+                    <span class="vocab-en">Fix</span>
+                    <span class="vocab-es">Arreglar / Reparar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Fixed</span>
+                    <button class="audio-btn" onclick="playSound('Fix. Past Participle: Fixed')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⬇️</span>
+                    <span class="vocab-en">Install</span>
+                    <span class="vocab-es">Instalar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Installed</span>
+                    <button class="audio-btn" onclick="playSound('Install. Past Participle: Installed')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: Present Perfect Passive</h2>
+            
+            <div class="grammar-box">
+                <p>When you want to announce that a project is recently finished or updated, but you don't need to say <em>who</em> did it, you use the <strong>Present Perfect Passive</strong>.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">Singular (Has been)</div>
+                        <div class="comp-formula">One Object + HAS BEEN + V3</div>
+                        <div class="comp-example">"The app <span class="highlight-b1">has been developed</span>." (La app ha sido desarrollada).</div>
+                        <div class="comp-example">"The bug <span class="highlight-blue">has been fixed</span>." (El error ha sido arreglado).</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">Plural (Have been)</div>
+                        <div class="comp-formula">Many Objects + HAVE BEEN + V3</div>
+                        <div class="comp-example">"The files <span class="highlight-b1">have been installed</span>."</div>
+                        <div class="comp-example">"The designs <span class="highlight-blue">have been updated</span>."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE FORGOTTEN "BEEN" TRAP</div>
+                <p>Because the Active Present Perfect uses "have/has + V3" (I have finished), students often forget to add the word <strong>BEEN</strong> in the Passive Voice. Without "been", the sentence means the object did the action itself!</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">The app <strong>has launched</strong>.</span> (La app "ha lanzado" a alguien más).<br>
+                    ✅ <span style="color: #155724;">The app <strong>has BEEN launched</strong>.</span> (La app ha sido lanzada).
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The App Launch</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"As a teacher and graphic designer, I have been working on a special project for my students in Sucre. Today, I have great news: my new application, 'Teacher Ivan - Health and Fitness', <span class="highlight-b1">has been developed</span>!"</p>
+                <p>"A lot of work was required. The user interfaces <span class="highlight-b1">have been designed</span> to be friendly and fast. The exercise libraries for CrossFit <span class="highlight-blue">have been added</span> to the database. Last week there were some system errors, but thanks to my research, all the bugs <span class="highlight-b1">have been fixed</span>."</p>
+                <p>"Now, the app <span class="highlight-b1">has been installed</span> by many users. The latest training routines <span class="highlight-blue">have been updated</span>, and new features <span class="highlight-blue">have been requested</span> by Lau. The digital HUB is finally complete!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('As a teacher and graphic designer, I have been working on a special project for my students in Sucre. Today, I have great news: my new application, Teacher Ivan Health and Fitness, has been developed! A lot of work was required. The user interfaces have been designed to be friendly and fast. The exercise libraries for CrossFit have been added to the database. Last week there were some system errors, but thanks to my research, all the bugs have been fixed. Now, the app has been installed by many users. The latest training routines have been updated, and new features have been requested by Lau. The digital HUB is finally complete!')">🔊 Listen to the tech update</button>
+            </div>
+        </section>
+
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> B1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Report the updates correctly! Score 5/5 to unlock Lesson 5.</p>
+
+            <form id="eval-form">
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Singular:</strong> "The new software __________ installed."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="havebeen" class="eval-radio"><label for="q1a" class="eval-label">have been</label>
+                        <input type="radio" name="q1" id="q1b" value="hasbeen" class="eval-radio"><label for="q1b" class="eval-label">has been</label>
+                        <input type="radio" name="q1" id="q1c" value="has" class="eval-radio"><label for="q1c" class="eval-label">has</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>2. <strong>Grammar Plural:</strong> "All the system bugs __________ fixed."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="hasbeen" class="eval-radio"><label for="q2a" class="eval-label">has been</label>
+                        <input type="radio" name="q2" id="q2b" value="have" class="eval-radio"><label for="q2b" class="eval-label">have</label>
+                        <input type="radio" name="q2" id="q2c" value="havebeen" class="eval-radio"><label for="q2c" class="eval-label">have been</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>3. <strong>The Trap Check:</strong> Which sentence is grammatically CORRECT?</p>
+                    <div
