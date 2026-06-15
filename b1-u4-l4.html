@@ -261,4 +261,93 @@
 
                 <div class="eval-question">
                     <p>3. <strong>The Trap Check:</strong> Which sentence is grammatically CORRECT?</p>
-                    <div
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="bad" class="eval-radio"><label for="q3a" class="eval-label">The application has launched.</label>
+                        <input type="radio" name="q3" id="q3b" value="good" class="eval-radio"><label for="q3b" class="eval-label">The application has been launched.</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> What is the name of Teacher Ivan's new application?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="health" class="eval-radio"><label for="q4a" class="eval-label">Teacher Ivan - Health and Fitness</label>
+                        <input type="radio" name="q4" id="q4b" value="history" class="eval-radio"><label for="q4b" class="eval-label">Teacher Ivan - History of Bolivia</label>
+                        <input type="radio" name="q4" id="q4c" value="design" class="eval-radio"><label for="q4c" class="eval-label">Teacher Ivan - Graphic Design</label>
+                    </div>
+                </div>
+
+                <div class="eval-question">
+                    <p>5. <strong>Vocabulary:</strong> What does "Fix" mean in software development?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="delete" class="eval-radio"><label for="q5a" class="eval-label">To delete the code</label>
+                        <input type="radio" name="q5" id="q5b" value="repair" class="eval-radio"><label for="q5b" class="eval-label">To repair or correct an error</label>
+                        <input type="radio" name="q5" id="q5c" value="create" class="eval-radio"><label for="q5c" class="eval-label">To create a new app</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Great job with the Present Perfect Passive! Moving to Lesson 5.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'hasbeen', q2: 'havebeen', q3: 'good', q4: 'health', q5: 'repair' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fff3e0";
+                resultsDiv.style.color = "#d85c13";
+                resultsDiv.style.border = "1px solid #ffe0b2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully mastered the Present Perfect Passive.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: ALWAYS include "BEEN" (has been / have been) to form the passive voice correctly. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
