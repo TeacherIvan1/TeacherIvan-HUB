@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Using By + Agent - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales B1 */
+        :root {
+            --azul-primario: #0A468C; 
+            --naranja-vibrante: #F56E1E; 
+            --azul-claro: #96C8E6; 
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --b1-color: #F56E1E; /* Color B1 (Naranja Vibrante) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--b1-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--b1-color); }
+
+        /* Vocabulario B1 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--azul-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--b1-color); box-shadow: 0 5px 15px rgba(245, 110, 30, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--b1-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--b1-color); }
+
+        /* Gramática: By + Agent */
+        .grammar-box {
+            background-color: rgba(245, 110, 30, 0.05); border-left: 5px solid var(--b1-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.2rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: #fff3e0; color: var(--b1-color); font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--b1-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-b1 { color: var(--b1-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--azul-claro); background-color: rgba(150, 200, 230, 0.1); }
+        .eval-radio:checked + .eval-label { background-color: var(--b1-color); color: white; border-color: var(--b1-color); box-shadow: 0 3px 10px rgba(245, 110, 30, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--b1-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #d85c13; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--b1-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level B1 • Unit 4 • Lesson 5</span>
+            <h1 class="lesson-title">Using "By" + Agent</h1>
+            <p class="lesson-objective">Objective: Mention who performed the action in a passive sentence using "by".</p>
+        </div>
+
+        <!-- Sección 1: Vocabulario -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Creators and Actions</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">These irregular verbs are very common when we talk about who created a piece of work.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">✍️</span>
+                    <span class="vocab-en">Write</span>
+                    <span class="vocab-es">Escribir</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Written</span>
+                    <button class="audio-btn" onclick="playSound('Write. Past Participle: Written')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🎬</span>
+                    <span class="vocab-en">Direct</span>
+                    <span class="vocab-es">Dirigir (película)</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Directed</span>
+                    <button class="audio-btn" onclick="playSound('Direct. Past Participle: Directed')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🎨</span>
+                    <span class="vocab-en">Paint</span>
+                    <span class="vocab-es">Pintar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Painted</span>
+                    <button class="audio-btn" onclick="playSound('Paint. Past Participle: Painted')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">🎵</span>
+                    <span class="vocab-en">Sing</span>
+                    <span class="vocab-es">Cantar</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:var(--b1-color);">V3: Sung</span>
+                    <button class="audio-btn" onclick="playSound('Sing. Past Participle: Sung')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Gramática -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The Agent with "BY"</h2>
+            
+            <div class="grammar-box">
+                <p>In the Passive Voice, the person or thing that does the action is called the <strong>Agent</strong>. If we want to mention the Agent because it is important or interesting, we use the word <strong>BY</strong> at the end of the sentence.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">Important Agent (Use BY)</div>
+                        <p style="font-size: 0.9rem; color: #555;">Use it when the creator is famous, specific, or surprising.</p>
+                        <div class="comp-example">"Harry Potter was written <span class="highlight-b1">by J.K. Rowling</span>."</div>
+                        <div class="comp-example">"The app was designed <span class="highlight-blue">by Teacher Ivan</span>."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">Obvious/Unknown Agent (Omit it)</div>
+                        <p style="font-size: 0.9rem; color: #555;">Do NOT use "by" if the agent is obvious or unknown (like "by people" or "by someone").</p>
+                        <div class="comp-example">"English is spoken in Australia." <br><span style="font-size:0.8rem; color:red;">(Not: by people)</span></div>
+                        <div class="comp-example">"My car was stolen!" <br><span style="font-size:0.8rem; color:red;">(Not: by someone)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE "FOR" VS "BY" TRAP</div>
+                <p>In Spanish, we translate both "por" and "para" in confusing ways. Remember: <strong>BY</strong> means who did it. <strong>FOR</strong> means who received it.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">The poem was written <strong>for</strong> Shakespeare.</span> (Esto significa que alguien le escribió un poema a él).<br>
+                    ✅ <span style="color: #155724;">The poem was written <strong>BY</strong> Shakespeare.</span> (Él es el autor).
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>The School App Project</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"This semester at Colegio Fielding, the evaluation criteria have been completely updated <span class="highlight-b1">by me</span>. To make things easier, the 'Fielding School App' was developed <span class="highlight-blue">by my team</span> and hosted on GitHub."</p>
+                <p>"The new grading system is very clear. The points are distributed like this: 45 points are given for 'Saber', and 40 points are evaluated for 'Hacer'. The remaining points are assigned <span class="highlight-b1">by the teacher</span> for 'Ser' (10 points), and finally, 5 points are calculated <span class="highlight-blue">by the students themselves</span> in their self-evaluation."</p>
+                <p>"All these automated calculation scripts were written <span class="highlight-b1">by Teacher Ivan</span> in Google Apps Script. Now, my grades are perfectly organized. And my cat El Michi? He contributes nothing. A lot of tuna is eaten <span class="highlight-b1">by him</span>, but zero code is written!"</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('This semester at Colegio Fielding, the evaluation criteria have been completely updated by me. To make things easier, the Fielding School App was developed by my team and hosted on GitHub. The new grading system is very clear. The points are distributed like this: 45 points are given for Saber, and 40 points are evaluated for Hacer. The remaining points are assigned by the teacher for Ser, 10 points, and finally, 5 points are calculated by the students themselves in their self-evaluation. All these automated calculation scripts were written by Teacher Ivan in Google Apps Script. Now, my grades are perfectly organized. And my cat El Michi? He contributes nothing. A lot of tuna is eaten by him, but zero code is written!')">🔊 Listen to the school updates</button>
+            </div>
+        </section>
+
+        <!-- Sección 3: Evaluación (Gatekeeper) -->
+        <section class="lesson-section" style="border: 2px solid var(--b1-color);">
+            <h2 class="section-title"><span>3.</span> B1 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Identify the Agent! Score 5/5 to unlock the Unit 4 Final Project.</p>
+
+            <form id="eval-form">
+                <!-- Q1 -->
+                <div class="eval-question">
+                    <p>1. <strong>Grammar Choice:</strong> "The song 'Thriller' was sung __________ Michael Jackson."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="for" class="eval-radio"><label for="q1a" class="eval-label">for</label>
+                        <input type="radio" name="q1" id="q1b" value="by" class="eval-radio"><label for="q1b" class="eval-label">by</label>
+                        <input type="radio" name="q1" id="q1c" value="from" class="eval-radio"><label for="q1c" class="eval-label">from</label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="eval-question">
+                    <p>2. <strong>Omitting the Agent:</strong> Which sentence is the most natural in English?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="bad1" class="eval-radio"><label for="q2a" class="eval-label">My wallet was stolen by someone.</label>
+                        <input type="radio" name="q2" id="q2b" value="bad2" class="eval-radio"><label for="q2b" class="eval-label">My wallet was stolen by a person.</label>
+                        <input type="radio" name="q2" id="q2c" value="good" class="eval-radio"><label for="q2c" class="eval-label">My wallet was stolen.</label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="eval-question">
+                    <p>3. <strong>Vocabulary:</strong> What is the Past Participle of "Write"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="wrote" class="eval-radio"><label for="q3a" class="eval-label">Wrote</label>
+                        <input type="radio" name="q3" id="q3b" value="written" class="eval-radio"><label for="q3b" class="eval-label">Written</label>
+                        <input type="radio" name="q3" id="q3c" value="writed" class="eval-radio"><label for="q3c" class="eval-label">Writed</label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> In Teacher Ivan's new evaluation criteria, how many points are evaluated for "Hacer"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="45" class="eval-radio"><label for="q4a" class="eval-label">45 points</label>
+                        <input type="radio" name="q4" id="q4b" value="10" class="eval-radio"><label for="q4b" class="eval-label">10 points</label>
+                        <input type="radio" name="q4" id="q4c" value="40" class="eval-radio"><label for="q4c" class="eval-label">40 points</label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> Who calculates the 5 points for self-evaluation?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="students" class="eval-radio"><label for="q5a" class="eval-label">The students</label>
+                        <input type="radio" name="q5" id="q5b" value="teacher" class="eval-radio"><label for="q5b" class="eval-label">Teacher Ivan</label>
+                        <input type="radio" name="q5" id="q5c" value="michis" class="eval-radio"><label for="q5c" class="eval-label">El Michi</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <!-- Footer -->
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Congratulations! You finished the Grammar for Unit 4. Moving to the Final Project.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'by', q2: 'good', q3: 'written', q4: '40', q5: 'students' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#fff3e0";
+                resultsDiv.style.color = "#d85c13";
+                resultsDiv.style.border = "1px solid #ffe0b2";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully learned how to use BY to introduce the Agent.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: We use BY (not for) to say who did the action, and we don't use it if the agent is obvious or unknown! Try again.`;
+            }
+        }
+    </script>
+</body>
+</html>
