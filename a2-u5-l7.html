@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Don't have to vs Mustn't - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --verde-a2: #28A745; 
+            --verde-claro: #d4edda;
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a2-color: #28A745; /* Color A2 (Verde Esmeralda) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a2-color); }
+
+        /* Vocabulario A2 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--verde-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a2-color); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a2-color); }
+
+        /* Gramática: Don't have to vs Mustn't */
+        .grammar-box {
+            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: var(--verde-claro); color: #155724; font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--a2-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-a2 { color: var(--a2-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--verde-claro); background-color: rgba(40, 167, 69, 0.05); }
+        .eval-radio:checked + .eval-label { background-color: var(--a2-color); color: white; border-color: var(--a2-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #218838; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A2 • Unit 5 • Lesson 7</span>
+            <h1 class="lesson-title">Don't have to vs Mustn't</h1>
+            <p class="lesson-objective">Objective: Distinguish between things that are optional and things that are strictly prohibited.</p>
+        </div>
+
+        <!-- Sección 1: Vocabulario -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: Rules and Choices</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these words to understand the severity of the instructions you receive.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">🤷‍♂️</span>
+                    <span class="vocab-en">Optional</span>
+                    <span class="vocab-es">Opcional</span>
+                    <button class="audio-btn" onclick="playSound('Optional')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⛔</span>
+                    <span class="vocab-en">Prohibited</span>
+                    <span class="vocab-es">Prohibido</span>
+                    <button class="audio-btn" onclick="playSound('Prohibited')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⚖️</span>
+                    <span class="vocab-en">Choose</span>
+                    <span class="vocab-es">Elegir</span>
+                    <button class="audio-btn" onclick="playSound('Choose')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">❌</span>
+                    <span class="vocab-en">Break a rule</span>
+                    <span class="vocab-es">Romper una regla</span>
+                    <button class="audio-btn" onclick="playSound('Break a rule')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Gramática -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The Final Showdown</h2>
+            
+            <div class="grammar-box">
+                <p>This is one of the most important lessons in English. <strong>Don't have to</strong> means you have a choice. <strong>Mustn't</strong> means you have NO choice; it is forbidden.</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">Don't / Doesn't Have To</div>
+                        <div class="comp-formula">It is NOT necessary</div>
+                        <p style="font-size: 0.9rem; color: #555;">You can do it if you want, but it's optional.</p>
+                        <div class="comp-example">"You <span class="highlight-a2">don't have to</span> wear a tie to the party." (You can, but it's okay if you don't).</div>
+                        <div class="comp-example">"He <span class="highlight-a2">doesn't have to</span> work on Sunday."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">Mustn't</div>
+                        <div class="comp-formula">It is STRICTLY PROHIBITED</div>
+                        <p style="font-size: 0.9rem; color: #555;">Do NOT do it. It is dangerous or against the law.</p>
+                        <div class="comp-example">"You <span class="highlight-blue">mustn't</span> park your car here." (The police will take it).</div>
+                        <div class="comp-example">"She <span class="highlight-blue">mustn't</span> touch the fire."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE DANGEROUS TRANSLATION TRAP</div>
+                <p>If you see a sign that says "No fumar", do not say "You don't have to smoke". That sounds like a friendly suggestion! If it is a rule or a law, you <strong>must</strong> use <strong>Mustn't</strong>.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">You <strong>don't have to</strong> cheat on the exam.</span> (¡Suena a que copiar es opcional!)<br>
+                    ✅ <span style="color: #155724;">You <strong>MUSTN'T</strong> cheat on the exam.</span> (¡Está totalmente prohibido!)
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>Options vs Rules</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"In my classroom at Colegio Fielding, the instructions are clear. During an exam, you <span class="highlight-a2">don't have to finish</span> in 10 minutes; you can take your time. However, you <span class="highlight-blue">mustn't use</span> your phone. If you break the rule, you fail."</p>
+                <p>"It is the same at the CrossFit box in Sucre. Lau and I know the safety rules. You <span class="highlight-a2">don't have to lift</span> 140 kg today if you are tired. It is optional. But you <span class="highlight-blue">mustn't drop</span> the barbell directly on the floor. It is prohibited because it ruins the equipment."</p>
+                <p>"And what about El Michi? Well, he <span class="highlight-a2">doesn't have to do</span> anything. He has zero obligations. But there is one strict rule in the house: He <span class="highlight-blue">mustn't scratch</span> the sofa! (Does he listen? Of course not!)."</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('In my classroom at Colegio Fielding, the instructions are clear. During an exam, you don\'t have to finish in 10 minutes; you can take your time. However, you mustn\'t use your phone. If you break the rule, you fail. It is the same at the CrossFit box in Sucre. Lau and I know the safety rules. You don\'t have to lift 140 kilograms today if you are tired. It is optional. But you mustn\'t drop the barbell directly on the floor. It is prohibited because it ruins the equipment. And what about El Michi? Well, he doesn\'t have to do anything. He has zero obligations. But there is one strict rule in the house: He mustn\'t scratch the sofa! Does he listen? Of course not!')">🔊 Listen to the rules and options</button>
+            </div>
+        </section>
+
+        <!-- Sección 3: Evaluación (Gatekeeper) -->
+        <section class="lesson-section" style="border: 2px solid var(--a2-color);">
+            <h2 class="section-title"><span>3.</span> A2 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Choose the correct level of strictness! Score 5/5 to complete Lesson 7.</p>
+
+            <form id="eval-form">
+                <!-- Q1 -->
+                <div class="eval-question">
+                    <p>1. <strong>Context (Optional):</strong> "Tomorrow is Sunday! We __________ wake up early."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="mustnt" class="eval-radio"><label for="q1a" class="eval-label">mustn't</label>
+                        <input type="radio" name="q1" id="q1b" value="donthaveto" class="eval-radio"><label for="q1b" class="eval-label">don't have to</label>
+                        <input type="radio" name="q1" id="q1c" value="doesnthaveto" class="eval-radio"><label for="q1c" class="eval-label">doesn't have to</label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="eval-question">
+                    <p>2. <strong>Context (Prohibition):</strong> "You __________ smoke inside the hospital."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="mustnt" class="eval-radio"><label for="q2a" class="eval-label">mustn't</label>
+                        <input type="radio" name="q2" id="q2b" value="donthaveto" class="eval-radio"><label for="q2b" class="eval-label">don't have to</label>
+                        <input type="radio" name="q2" id="q2c" value="shouldntto" class="eval-radio"><label for="q2c" class="eval-label">shouldn't to</label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="eval-question">
+                    <p>3. <strong>Vocabulary:</strong> What does "Prohibited" mean?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="opcional" class="eval-radio"><label for="q3a" class="eval-label">Algo opcional</label>
+                        <input type="radio" name="q3" id="q3b" value="recomendado" class="eval-radio"><label for="q3b" class="eval-label">Algo recomendado</label>
+                        <input type="radio" name="q3" id="q3c" value="prohibido" class="eval-radio"><label for="q3c" class="eval-label">Algo estrictamente prohibido</label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> What is OPTIONAL during Teacher Ivan's exams?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="finish" class="eval-radio"><label for="q4a" class="eval-label">You don't have to finish in 10 minutes.</label>
+                        <input type="radio" name="q4" id="q4b" value="phone" class="eval-radio"><label for="q4b" class="eval-label">You don't have to use your phone.</label>
+                        <input type="radio" name="q4" id="q4c" value="cheat" class="eval-radio"><label for="q4c" class="eval-label">You don't have to cheat.</label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> What is El Michi strictly prohibited from doing?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="sleep" class="eval-radio"><label for="q5a" class="eval-label">He mustn't sleep on the sofa.</label>
+                        <input type="radio" name="q5" id="q5b" value="scratch" class="eval-radio"><label for="q5b" class="eval-label">He mustn't scratch the sofa.</label>
+                        <input type="radio" name="q5" id="q5c" value="eat" class="eval-radio"><label for="q5c" class="eval-label">He mustn't eat tuna.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <!-- Footer -->
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Excellent job mastering the rules! Moving forward.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete & Continue →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'donthaveto', q2: 'mustnt', q3: 'prohibido', q4: 'finish', q5: 'scratch' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#d4edda";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully learned the difference between optional and prohibited.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: "Mustn't" is for strong rules (forbidden). "Don't have to" is for things you don't need to do (optional). Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
