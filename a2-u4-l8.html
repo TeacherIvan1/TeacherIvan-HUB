@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: Good Better Best - Teacher Ivan HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables Institucionales A2 */
+        :root {
+            --azul-primario: #0A468C; 
+            --verde-a2: #28A745; 
+            --verde-claro: #d4edda;
+            --gris-neutro: #C8CDD2; 
+            --blanco-nieve: #FAFAF0; 
+            --a2-color: #28A745; /* Color A2 (Verde Esmeralda) */
+            --font-titulares: 'Montserrat', sans-serif; 
+            --font-cuerpo: 'Open Sans', sans-serif; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: var(--font-cuerpo);
+            background-color: var(--blanco-nieve);
+            color: var(--azul-primario);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: var(--font-titulares); margin: 0; }
+        button { cursor: pointer; border: none; font-family: var(--font-cuerpo); transition: all 0.2s ease; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 4rem; background-color: var(--azul-primario); color: var(--blanco-nieve);
+        }
+        .header-branding { display: flex; align-items: center; gap: 1rem; }
+        .header-logo-img { height: 40px; width: auto; }
+        .header-title { font-family: var(--font-titulares); font-size: 1.2rem; font-weight: 800; }
+        
+        .back-btn {
+            background-color: transparent; border: 1px solid var(--blanco-nieve);
+            color: var(--blanco-nieve); padding: 0.5rem 1.2rem;
+            font-size: 0.9rem; font-weight: 600; border-radius: 4px;
+        }
+        .back-btn:hover { background-color: rgba(250, 250, 240, 0.1); }
+
+        main {
+            padding: 3rem; max-width: 900px; margin: 0 auto;
+            flex-grow: 1; width: 100%; box-sizing: border-box;
+        }
+
+        .lesson-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px dashed var(--gris-neutro); }
+        .lesson-badge {
+            display: inline-block; background-color: var(--a2-color); 
+            color: white; padding: 0.4rem 1rem; border-radius: 50px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .lesson-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: #333; }
+        .lesson-objective { font-size: 1.1rem; opacity: 0.8; }
+
+        .lesson-section {
+            background-color: #ffffff; border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #E8ECEF;
+        }
+        .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title span { color: var(--a2-color); }
+
+        /* Vocabulario A2 */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .vocab-card {
+            border: 2px solid var(--verde-claro); border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease; background-color: #fff;
+        }
+        .vocab-card:hover { transform: translateY(-5px); border-color: var(--a2-color); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15); }
+        .vocab-icon { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--a2-color); }
+        .vocab-en { font-family: var(--font-titulares); font-size: 1.1rem; font-weight: 700; color: var(--azul-primario); }
+        .vocab-es { font-size: 0.85rem; color: #666; }
+        
+        .audio-btn {
+            background-color: var(--azul-primario); color: var(--blanco-nieve);
+            width: 35px; height: 35px; border-radius: 50%; font-size: 1rem; margin-top: 0.5rem;
+        }
+        .audio-btn:hover { background-color: var(--a2-color); }
+
+        /* Gramática: Irregular Adjectives */
+        .grammar-box {
+            background-color: rgba(40, 167, 69, 0.05); border-left: 5px solid var(--a2-color);
+            padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem;
+        }
+
+        .comparison-container {
+            display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap;
+        }
+        .comp-card {
+            flex: 1; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--gris-neutro); background: white; min-width: 250px;
+        }
+        .comp-title { font-family: var(--font-titulares); font-size: 1.1rem; color: var(--azul-primario); margin-bottom: 0.5rem; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;}
+        .comp-formula { background: var(--verde-claro); color: #155724; font-family: monospace; font-weight: bold; padding: 0.5rem; border-radius: 4px; text-align: center; margin-bottom: 1rem;}
+        .comp-example { font-style: italic; color: #333; font-weight: 600; padding-left: 10px; border-left: 3px solid var(--a2-color); margin-bottom: 0.5rem;}
+
+        .alert-box {
+            background-color: #fdf0f0; border-left: 5px solid #dc3545;
+            padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; color: #721c24;
+        }
+        .alert-title { font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-titulares); text-transform: uppercase;}
+
+        .highlight-a2 { color: var(--a2-color); font-weight: 800; }
+        .highlight-blue { color: var(--azul-primario); font-weight: 800; }
+
+        /* Evaluación */
+        .eval-question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+        .eval-question p { font-weight: 600; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem;}
+        .eval-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .eval-label {
+            padding: 1rem 1.5rem; border: 2px solid var(--gris-neutro); border-radius: 6px;
+            cursor: pointer; font-weight: 600; transition: all 0.2s; flex: 1; text-align: center; min-width: 140px;
+            background-color: #fff;
+        }
+        .eval-label:hover { border-color: var(--verde-claro); background-color: rgba(40, 167, 69, 0.05); }
+        .eval-radio:checked + .eval-label { background-color: var(--a2-color); color: white; border-color: var(--a2-color); box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3); }
+        .eval-radio { display: none; }
+        
+        .eval-submit-btn {
+            background-color: var(--a2-color); color: white; padding: 1.2rem 2rem;
+            font-size: 1.1rem; font-weight: bold; border-radius: 6px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .eval-submit-btn:hover { background-color: #218838; }
+        
+        #eval-results { margin-top: 1.5rem; padding: 1.5rem; border-radius: 6px; font-weight: bold; text-align: center; display: none; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Footer */
+        .lesson-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; padding: 2rem 4rem; border-top: 2px solid var(--gris-neutro); background-color: #fff;
+        }
+        .footer-logo-branding { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .footer-logo-img-large { height: 90px; width: auto; }
+        .footer-brand-text { font-family: var(--font-titulares); font-weight: 800; color: var(--azul-primario); font-size: 1.1rem; }
+        .action-btn { padding: 1rem 2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; display: none; }
+        .btn-primary { background-color: var(--a2-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-branding">
+            <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="header-logo-img">
+            <div class="header-title">TEACHER IVAN HUB</div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">← Back to Contents</button>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-badge">Level A2 • Unit 4 • Lesson 8</span>
+            <h1 class="lesson-title">Good, Better, Best</h1>
+            <p class="lesson-objective">Objective: Master the irregular adjectives that don't follow the normal rules.</p>
+        </div>
+
+        <!-- Sección 1: Vocabulario -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>1.</span> Vocabulary: The Irregulars</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">Learn these three special words. They change completely when comparing!</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="vocab-icon">👍</span>
+                    <span class="vocab-en">Good</span>
+                    <span class="vocab-es">Bueno</span>
+                    <button class="audio-btn" onclick="playSound('Good')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">👎</span>
+                    <span class="vocab-en">Bad</span>
+                    <span class="vocab-es">Malo</span>
+                    <button class="audio-btn" onclick="playSound('Bad')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">📍</span>
+                    <span class="vocab-en">Far</span>
+                    <span class="vocab-es">Lejos</span>
+                    <button class="audio-btn" onclick="playSound('Far')">▶</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="vocab-icon">⭐</span>
+                    <span class="vocab-en">Well</span>
+                    <span class="vocab-es">Bien (Salud/Acción)</span>
+                    <button class="audio-btn" onclick="playSound('Well')">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Gramática -->
+        <section class="lesson-section">
+            <h2 class="section-title"><span>2.</span> Grammar: The Irregular Table</h2>
+            
+            <div class="grammar-box">
+                <p>The rules of "-er" and "-est" DO NOT WORK for these adjectives. You must memorize their new forms for <strong>Comparatives</strong> (2 things) and <strong>Superlatives</strong> (the number 1).</p>
+                
+                <div class="comparison-container">
+                    <div class="comp-card">
+                        <div class="comp-title">The "Good" Family</div>
+                        <div class="comp-formula">Good ➔ Better ➔ The best</div>
+                        <div class="comp-example">"This book is <span class="highlight-a2">better than</span> that one."</div>
+                        <div class="comp-example">"He is <span class="highlight-a2">the best</span> student."</div>
+                    </div>
+
+                    <div class="comp-card">
+                        <div class="comp-title">The "Bad" Family</div>
+                        <div class="comp-formula">Bad ➔ Worse ➔ The worst</div>
+                        <div class="comp-example">"The weather is <span class="highlight-blue">worse than</span> yesterday."</div>
+                        <div class="comp-example">"This is <span class="highlight-blue">the worst</span> movie ever."</div>
+                    </div>
+                    
+                    <div class="comp-card" style="min-width: 100%; margin-top: 0;">
+                        <div class="comp-title">The "Far" Family (Distance)</div>
+                        <div class="comp-formula">Far ➔ Further ➔ The furthest</div>
+                        <div class="comp-example">"La Paz is <span class="highlight-a2">further than</span> Potosí from Sucre."</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <div class="alert-title">🚨 THE "GOODER" TRAP</div>
+                <p>Because you learned to say "faster" and "taller", your brain wants to say "gooder" and "badder". These words <strong>DO NOT EXIST</strong> in English! Erase them from your mind.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #721c24;">
+                    ❌ <span style="text-decoration: line-through;">My English is <strong>gooder</strong> than before.</span><br>
+                    ❌ <span style="text-decoration: line-through;">He is the <strong>baddest</strong> player.</span><br>
+                    ✅ <span style="color: #155724;">My English is <strong>BETTER</strong>. / He is the <strong>WORST</strong> player.</span>
+                </p>
+            </div>
+            
+            <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;">Reading Context: <em>End of Unit Reviews</em></h3>
+            <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
+                <p>"As we finish Unit 4, I am very happy with my students at Colegio Fielding. Their English is getting <span class="highlight-a2">better</span> every day! For example, Leonardo is <span class="highlight-a2">better</span> at HTML coding now, and Tatiana and Santiago are <span class="highlight-a2">the best</span> participants in our conversation clubs."</p>
+                <p>"In my personal life, Lau continues to impress me. In her last CrossFit competition, she had <span class="highlight-a2">the best</span> score of the day! My lifting form was a little <span class="highlight-blue">worse than</span> hers, but I am practicing to get <span class="highlight-a2">better</span>."</p>
+                <p>"And El
