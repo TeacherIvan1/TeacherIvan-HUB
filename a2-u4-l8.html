@@ -236,4 +236,131 @@
             <div class="grammar-box" style="background-color: #fafafa; border-left-color: var(--azul-primario); line-height: 1.8;">
                 <p>"As we finish Unit 4, I am very happy with my students at Colegio Fielding. Their English is getting <span class="highlight-a2">better</span> every day! For example, Leonardo is <span class="highlight-a2">better</span> at HTML coding now, and Tatiana and Santiago are <span class="highlight-a2">the best</span> participants in our conversation clubs."</p>
                 <p>"In my personal life, Lau continues to impress me. In her last CrossFit competition, she had <span class="highlight-a2">the best</span> score of the day! My lifting form was a little <span class="highlight-blue">worse than</span> hers, but I am practicing to get <span class="highlight-a2">better</span>."</p>
-                <p>"And El
+                <p>"And El Michi? Well... he is <span class="highlight-blue">the worst</span> hunter in Sucre. If he sees a mouse, he runs away! But when it is time to sleep, he is definitely <span class="highlight-a2">the best</span>. His sofa is his kingdom."</p>
+                <button class="audio-btn" style="width: auto; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold;" onclick="playSound('As we finish Unit 4, I am very happy with my students at Colegio Fielding. Their English is getting better every day! For example, Leonardo is better at HTML coding now, and Tatiana and Santiago are the best participants in our conversation clubs. In my personal life, Lau continues to impress me. In her last CrossFit competition, she had the best score of the day! My lifting form was a little worse than hers, but I am practicing to get better. And El Michi? Well... he is the worst hunter in Sucre. If he sees a mouse, he runs away! But when it is time to sleep, he is definitely the best. His sofa is his kingdom.')">🔊 Listen to the review</button>
+            </div>
+        </section>
+
+        <!-- Sección 3: Evaluación (Gatekeeper) -->
+        <section class="lesson-section" style="border: 2px solid var(--a2-color);">
+            <h2 class="section-title"><span>3.</span> A2 Checkpoint</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-weight: 600;">Destroy the irregular traps! Score 5/5 to complete Unit 4.</p>
+
+            <form id="eval-form">
+                <!-- Q1 -->
+                <div class="eval-question">
+                    <p>1. <strong>Comparative of Bad:</strong> "The weather today is __________ than yesterday."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q1" id="q1a" value="badder" class="eval-radio"><label for="q1a" class="eval-label">badder</label>
+                        <input type="radio" name="q1" id="q1b" value="morebad" class="eval-radio"><label for="q1b" class="eval-label">more bad</label>
+                        <input type="radio" name="q1" id="q1c" value="worse" class="eval-radio"><label for="q1c" class="eval-label">worse</label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="eval-question">
+                    <p>2. <strong>Superlative of Good:</strong> "She is __________ athlete in the gym."</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q2" id="q2a" value="thebest" class="eval-radio"><label for="q2a" class="eval-label">the best</label>
+                        <input type="radio" name="q2" id="q2b" value="thegoodest" class="eval-radio"><label for="q2b" class="eval-label">the goodest</label>
+                        <input type="radio" name="q2" id="q2c" value="themostgood" class="eval-radio"><label for="q2c" class="eval-label">the most good</label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="eval-question">
+                    <p>3. <strong>The Trap Check:</strong> Which sentence is completely CORRECT?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q3" id="q3a" value="bad1" class="eval-radio"><label for="q3a" class="eval-label">My English is gooder now.</label>
+                        <input type="radio" name="q3" id="q3b" value="better" class="eval-radio"><label for="q3b" class="eval-label">My English is better now.</label>
+                        <input type="radio" name="q3" id="q3c" value="bad2" class="eval-radio"><label for="q3c" class="eval-label">My English is more better now.</label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="eval-question">
+                    <p>4. <strong>Reading Comprehension:</strong> Who is getting better at HTML coding?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q4" id="q4a" value="ivan" class="eval-radio"><label for="q4a" class="eval-label">Teacher Ivan</label>
+                        <input type="radio" name="q4" id="q4b" value="michi" class="eval-radio"><label for="q4b" class="eval-label">El Michi</label>
+                        <input type="radio" name="q4" id="q4c" value="leonardo" class="eval-radio"><label for="q4c" class="eval-label">Leonardo</label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="eval-question">
+                    <p>5. <strong>Reading Comprehension:</strong> Why is El Michi "the worst hunter"?</p>
+                    <div class="eval-options">
+                        <input type="radio" name="q5" id="q5a" value="runaway" class="eval-radio"><label for="q5a" class="eval-label">Because if he sees a mouse, he runs away!</label>
+                        <input type="radio" name="q5" id="q5b" value="crossfit" class="eval-radio"><label for="q5b" class="eval-label">Because he prefers to do CrossFit.</label>
+                        <input type="radio" name="q5" id="q5c" value="tuna" class="eval-radio"><label for="q5c" class="eval-label">Because he only hunts tuna.</label>
+                    </div>
+                </div>
+
+                <button type="button" class="eval-submit-btn" onclick="checkEvaluation()">Check Answers</button>
+            </form>
+            <div id="eval-results"></div>
+        </section>
+
+        <!-- Footer -->
+        <div class="lesson-footer">
+            <div class="footer-logo-branding">
+                <img src="https://i.imgur.com/s05NqFM.png" alt="Teacher Ivan Logo" class="footer-logo-img-large">
+                <span class="footer-brand-text">Teacher Ivan</span>
+            </div>
+            
+            <div class="footer-buttons">
+                <button class="back-btn" style="color: var(--azul-primario); border-color: var(--azul-primario);" onclick="window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/contenido.html'">Save and Exit</button>
+                <button id="continue-btn" class="action-btn btn-primary" onclick="alert('Congratulations! You completed Unit 4. Moving to Unit 5.'); window.location.href='https://teacherivan1.github.io/TeacherIvan-HUB/index.html'">Complete Unit 4 →</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playSound(text) {
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkEvaluation() {
+            // Respuestas correctas (5 preguntas)
+            const answers = { q1: 'worse', q2: 'thebest', q3: 'better', q4: 'leonardo', q5: 'runaway' };
+            let score = 0;
+            let total = 5;
+
+            for(let key in answers) {
+                let selected = document.querySelector(`input[name="${key}"]:checked`);
+                if(selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultsDiv = document.getElementById('eval-results');
+            const continueBtn = document.getElementById('continue-btn');
+            const submitBtn = document.querySelector('.eval-submit-btn');
+
+            resultsDiv.style.display = "block";
+
+            if(score === total) {
+                resultsDiv.style.backgroundColor = "#e8f5e9";
+                resultsDiv.style.color = "#155724";
+                resultsDiv.style.border = "1px solid #c3e6cb";
+                resultsDiv.innerHTML = "🏆 PERFECT SCORE (5/5)! You successfully mastered the irregular adjectives.";
+                
+                submitBtn.style.display = "none";
+                continueBtn.style.display = "block";
+                
+                document.querySelectorAll('.eval-radio').forEach(radio => radio.disabled = true);
+            } else {
+                resultsDiv.style.backgroundColor = "#fdf0f0";
+                resultsDiv.style.color = "#721c24";
+                resultsDiv.style.border = "1px solid #f5c6cb";
+                resultsDiv.innerHTML = `⚠️ You scored ${score}/${total}. You need 5/5 to pass. Remember: "Gooder" and "Badder" DO NOT exist! Use Better/The best and Worse/The worst. Try again!`;
+            }
+        }
+    </script>
+</body>
+</html>
