@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway B1+ | Unit 7 Worksheet (Oficio)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --azul-primario: #0A468C;
+            --naranja-vibrante: #F56E1E;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #1e293b;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            font-size: 0.83rem;
+            line-height: 1.25;
+        }
+
+        h1, h2, h3, .font-title {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .page-oficio {
+            width: 215mm;
+            min-height: 330mm;
+            max-height: 330mm;
+            margin: 15px auto;
+            background: #ffffff;
+            padding: 10mm 12mm;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sec-head {
+            border-bottom: 2px solid var(--azul-primario);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--azul-primario);
+            margin: 5px 0 3px 0;
+            padding-bottom: 2px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sec-desc {
+            font-size: 0.71rem;
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 3px;
+        }
+
+        .w-in {
+            border: 1px solid #94a3b8;
+            border-radius: 3px;
+            padding: 1px 4px;
+            font-size: 0.79rem;
+            font-weight: 600;
+            color: var(--azul-primario);
+            background: #fff;
+            outline: none;
+        }
+
+        .w-in:focus {
+            border-color: var(--naranja-vibrante);
+        }
+
+        .correct {
+            border-color: #16a34a !important;
+            background-color: #dcfce7 !important;
+            color: #15803d !important;
+        }
+
+        .wrong {
+            border-color: #dc2626 !important;
+            background-color: #fee2e2 !important;
+            color: #b91c1c !important;
+        }
+
+        .ruled-line {
+            height: 22px;
+            border-bottom: 1px solid #cbd5e1;
+            width: 100%;
+        }
+
+        .toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--azul-primario);
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            @page {
+                size: 215mm 330mm;
+                margin: 8mm 10mm;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-size: 7.8pt !important;
+                line-height: 1.2 !important;
+            }
+
+            .toolbar, .no-print {
+                display: none !important;
+            }
+
+            .page-oficio {
+                width: 100% !important;
+                height: 314mm !important;
+                max-height: 314mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                page-break-after: always !important;
+                overflow: hidden !important;
+            }
+
+            .sec-head {
+                border-bottom: 1.5px solid #000 !important;
+                color: #000 !important;
+                margin: 4px 0 2px 0 !important;
+                font-size: 7.8pt !important;
+            }
+
+            .sec-desc {
+                color: #333 !important;
+                font-size: 6.8pt !important;
+            }
+
+            .w-in {
+                border: none !important;
+                border-bottom: 1.2px dotted #000 !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+                color: transparent !important;
+                display: inline-block !important;
+                height: 15px !important;
+            }
+
+            select.w-in {
+                border: 1px solid #444 !important;
+                appearance: none;
+                -webkit-appearance: none;
+            }
+
+            .ruled-line {
+                border-bottom: 1px dashed #666 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toolbar de control interactivo -->
+    <div class="toolbar no-print">
+        <div class="flex items-center gap-2">
+            <span class="material-icons-round text-amber-400">print</span>
+            <span class="font-bold text-sm">Gateway B1+ Unit 7 | In it to win it! (Oficio 21.5 x 33 cm)</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="window.print()" class="bg-[#F56E1E] hover:bg-orange-600 text-white font-bold px-3 py-1 rounded text-xs transition">
+                🖨️ Imprimir Formato Oficio
+            </button>
+            <button onclick="checkAnswers()" class="bg-white text-[#0A468C] font-bold px-3 py-1 rounded text-xs hover:bg-slate-100 transition">
+                ✓ Corregir Digital
+            </button>
+            <button onclick="resetAnswers()" class="bg-blue-900 border border-blue-400 text-white font-bold px-3 py-1 rounded text-xs transition">
+                ↻ Limpiar
+            </button>
+            <span id="score-display" class="hidden text-xs bg-green-500 text-white font-bold px-2 py-0.5 rounded"></span>
+        </div>
+    </div>
+
+    <!-- ==================== PÁGINA 1 DE 2 ==================== -->
+    <div class="page-oficio">
+        <div>
+            <!-- ENCABEZADO INSTITUCIONAL -->
+            <header class="border-b-2 border-[#0A468C] pb-1.5 mb-2">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-base font-extrabold text-[#0A468C] leading-none">GATEWAY TO THE WORLD B1+</h1>
+                        <span class="text-[0.68rem] font-bold text-[#F56E1E] uppercase tracking-wider">Unit 7: In it to win it! (Sports, Venues, Phrasal Verbs & Relative Clauses)</span>
+                    </div>
+                    <div class="text-right text-[0.68rem] font-semibold text-gray-500">
+                        <span>Evaluation Sheet | Teacher Ivan E. Mancilla C.</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-12 gap-2 mt-2 pt-1 border-t border-dashed border-gray-300 text-[0.72rem]">
+                    <div class="col-span-6">Student: <span class="border-b border-gray-400 inline-block w-4/5 h-3"></span></div>
+                    <div class="col-span-3">Grade/Sec: <span class="border-b border-gray-400 inline-block w-2/3 h-3"></span></div>
+                    <div class="col-span-3 text-right">Date: <span class="border-b border-gray-400 inline-block w-2/3 h-3"></span></div>
+                </div>
+            </header>
+
+            <!-- SECTION 1: SPORTS, EQUIPMENT & VENUES (1-10) -->
+            <section class="mb-2">
+                <div class="sec-head">
+                    <span>1. Sports Equipment & Venues</span>
+                    <span>10 pts</span>
+                </div>
+                <p class="sec-desc">Fill in the blank with the correct sports venue or equipment from the box.</p>
+                <div class="border border-gray-200 bg-gray-50 rounded px-2 py-0.5 mb-1.5 text-[0.67rem] flex justify-between font-semibold text-[#0A468C]">
+                    <span>course</span>•<span>court</span>•<span>gym</span>•<span>pitch</span>•<span>pool</span>•<span>ring</span>•<span>slopes</span>•<span>stadium</span>•<span>track</span>•<span>goggles</span>
+                </div>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
+                    <div><strong>1.</strong> Football matches are played on a grass <input type="text" id="q1" data-ans="pitch" class="w-in w-20">.</div>
+                    <div><strong>2.</strong> Tennis and basketball are played on an indoor or outdoor <input type="text" id="q2" data-ans="court" class="w-in w-20">.</div>
+                    <div><strong>3.</strong> Athletes run around a running <input type="text" id="q3" data-ans="track" class="w-in w-20"> in athletics competitions.</div>
+                    <div><strong>4.</strong> Skiers race down snowy mountain <input type="text" id="q4" data-ans="slopes" class="w-in w-20"> in winter.</div>
+                    <div><strong>5.</strong> Swimmers train in an Olympic-size swimming <input type="text" id="q5" data-ans="pool" class="w-in w-20">.</div>
+                    <div><strong>6.</strong> Boxers fight opponents inside a squared boxing <input type="text" id="q6" data-ans="ring" class="w-in w-20">.</div>
+                    <div><strong>7.</strong> Golf players walk across a large outdoor golf <input type="text" id="q7" data-ans="course" class="w-in w-20">.</div>
+                    <div><strong>8.</strong> A massive arena where football teams play: a <input type="text" id="q8" data-ans="stadium" class="w-in w-20">.</div>
+                    <div><strong>9.</strong> Indoor facility with weights and fitness gear: a <input type="text" id="q9" data-ans="gym" class="w-in w-20">.</div>
+                    <div><strong>10.</strong> Protective eyewear worn for swimming or skiing: <input type="text" id="q10" data-ans="goggles" class="w-in w-20">.</div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: THINGS YOU CAN DO WITH A BALL / PLAYING & SCORING (11-18) -->
+            <section class="mb-2">
+                <div class="sec-head">
+                    <span>2. Playing, Scoring & Ball Actions</span>
+                    <span>8 pts</span>
+                </div>
+                <p class="sec-desc">Choose the correct verb for scoring and ball control in sports.</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
+                    <div><strong>11.</strong> Our team managed to <select id="q11" data-ans="beat" class="w-in w-20"><option value=""></option><option value="beat">beat</option><option value="win">win</option></select> the champions 3-1.</div>
+                    <div><strong>12.</strong> Did Brazil <select id="q12" data-ans="win" class="w-in w-20"><option value=""></option><option value="win">win</option><option value="beat">beat</option></select> the World Cup final last night?</div>
+                    <div><strong>13.</strong> Both teams played well and the match ended in a <select id="q13" data-ans="draw" class="w-in w-20"><option value=""></option><option value="draw">draw</option><option value="score">score</option></select>.</div>
+                    <div><strong>14.</strong> Who managed to <select id="q14" data-ans="score" class="w-in w-20"><option value=""></option><option value="score">score</option><option value="kick">kick</option></select> the winning goal in injury time?</div>
+                    <div><strong>15.</strong> Players must <select id="q15" data-ans="pass" class="w-in w-20"><option value=""></option><option value="pass">pass</option><option value="throw">throw</option></select> the ball to teammates in rugby.</div>
+                    <div><strong>16.</strong> You can <select id="q16" data-ans="throw" class="w-in w-20"><option value=""></option><option value="throw">throw</option><option value="hit">hit</option></select> the basketball into the hoop.</div>
+                    <div><strong>17.</strong> In football, players <select id="q17" data-ans="kick" class="w-in w-20"><option value=""></option><option value="kick">kick</option><option value="bounce">bounce</option></select> the ball across the pitch.</div>
+                    <div><strong>18.</strong> Basketball players dribble and <select id="q18" data-ans="bounce" class="w-in w-20"><option value=""></option><option value="bounce">bounce</option><option value="shoot">shoot</option></select> the ball on the court floor.</div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: PHRASAL VERBS CONNECTED WITH SPORT (19-26) -->
+            <section class="mb-2">
+                <div class="sec-head">
+                    <span>3. Phrasal Verbs Connected with Sport</span>
+                    <span>8 pts</span>
+                </div>
+                <p class="sec-desc">Complete each sentence with the correct particle (up, out, in, down, into).</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
+                    <div><strong>19.</strong> I decided to take <input type="text" id="q19" data-ans="up" class="w-in w-12"> tennis and joined a local club.</div>
+                    <div><strong>20.</strong> Athletes work <input type="text" id="q20" data-ans="out" class="w-in w-12"> at the fitness gym three times a week.</div>
+                    <div><strong>21.</strong> Our team was knocked <input type="text" id="q21" data-ans="out" class="w-in w-12"> in the semi-finals.</div>
+                    <div><strong>22.</strong> Never give <input type="text" id="q22" data-ans="in" class="w-in w-12">; keep fighting until the final whistle!</div>
+                    <div><strong>23.</strong> Why don't you join <input type="text" id="q23" data-ans="in" class="w-in w-12"> with our volleyball match?</div>
+                    <div><strong>24.</strong> She trained hard and ended <input type="text" id="q24" data-ans="up" class="w-in w-12"> winning the gold medal.</div>
+                    <div><strong>25.</strong> How did you get <input type="text" id="q25" data-ans="into" class="w-in w-14"> extreme mountain climbing?</div>
+                    <div><strong>26.</strong> He ran fast to catch <input type="text" id="q26" data-ans="up" class="w-in w-12"> with the leading runners.</div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: DEFINING RELATIVE CLAUSES (27-36) -->
+            <section>
+                <div class="sec-head">
+                    <span>4. Grammar: Defining Relative Clauses (who, which, that, whose, where, when)</span>
+                    <span>10 pts</span>
+                </div>
+                <p class="sec-desc">Complete with the correct relative pronoun or adverb.</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[0.74rem]">
+                    <div><strong>27.</strong> A referee is an official <input type="text" id="q27" data-ans="who" class="w-in w-16"> controls sports matches.</div>
+                    <div><strong>28.</strong> This is the stadium <input type="text" id="q28" data-ans="where" class="w-in w-16"> the final match took place.</div>
+                    <div><strong>29.</strong> That is the tennis racket <input type="text" id="q29" data-ans="which" class="w-in w-16"> I bought yesterday.</div>
+                    <div><strong>30.</strong> She is the gymnast <input type="text" id="q30" data-ans="whose" class="w-in w-16"> routine won first place.</div>
+                    <div><strong>31.</strong> Summer is the season <input type="text" id="q31" data-ans="when" class="w-in w-16"> outdoor sports are most popular.</div>
+                    <div><strong>32.</strong> A whistle is an object <input type="text" id="q32" data-ans="that" class="w-in w-16"> makes a loud sound.</div>
+                    <div><strong>33.</strong> He's the coach <input type="text" id="q33" data-ans="who" class="w-in w-16"> trained the Olympic champions.</div>
+                    <div><strong>34.</strong> Is this the pitch <input type="text" id="q34" data-ans="where" class="w-in w-16"> the local team trains?</div>
+                    <div><strong>35.</strong> Show me the ball <input type="text" id="q35" data-ans="that" class="w-in w-16"> was signed by the captain.</div>
+                    <div><strong>36.</strong> 2024 was the year <input type="text" id="q36" data-ans="when" class="w-in w-16"> Paris hosted the Olympic Games.</div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="border-t border-gray-300 pt-1 flex justify-between text-[0.65rem] text-gray-500">
+            <span>Gateway to the World B1+ | Unit 7 Assessment Sheet</span>
+            <span>Page 1 of 2 (Turn over for Page 2)</span>
+        </footer>
+    </div>
+
+    <!-- ==================== PÁGINA 2 DE 2 ==================== -->
+    <div class="page-oficio">
+        <div>
+            <!-- MINI HEADER PÁGINA 2 -->
+            <div class="flex justify-between items-center border-b border-gray-400 pb-1 mb-2">
+                <span class="font-bold text-[0.72rem] text-[#0A468C]">GATEWAY B1+ | UNIT 7 (PAGE 2)</span>
+                <span class="text-[0.68rem] text-gray-500 font-semibold">Student: _____________________________________________</span>
+            </div>
+
+            <!-- SECTION 5: NON-DEFINING RELATIVE CLAUSES (37-44) -->
+            <section class="mb-2">
+                <div class="sec-head">
+                    <span>5. Grammar: Non-Defining Relative Clauses (Extra Information with commas)</span>
+                    <span>8 pts</span>
+                </div>
+                <p class="sec-desc">Complete with who, which, where, or whose and remember commas are used.</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
+                    <div><strong>37.</strong> Madrid, <select id="q37" data-ans="where" class="w-in w-20"><option value=""></option><option value="where">where</option><option value="which">which</option></select> the stadium is located, is very hot.</div>
+                    <div><strong>38.</strong> My uncle, <select id="q38" data-ans="who" class="w-in w-20"><option value=""></option><option value="who">who</option><option value="whose">whose</option></select> is 60, still runs marathons.</div>
+                    <div><strong>39.</strong> Wembley Stadium, <select id="q39" data-ans="which" class="w-in w-20"><option value=""></option><option value="which">which</option><option value="where">where</option></select> opened in 2007, holds 90,000 fans.</div>
+                    <div><strong>40.</strong> Elena, <select id="q40" data-ans="whose" class="w-in w-20"><option value=""></option><option value="whose">whose</option><option value="who">who</option></select> brother plays rugby, is a great swimmer.</div>
+                    <div><strong>41.</strong> London, <select id="q41" data-ans="where" class="w-in w-20"><option value=""></option><option value="where">where</option><option value="which">which</option></select> the marathon finishes, is very busy.</div>
+                    <div><strong>42.</strong> Basketball, <select id="q42" data-ans="which" class="w-in w-20"><option value=""></option><option value="which">which</option><option value="who">who</option></select> was invented in the US, is global.</div>
+                    <div><strong>43.</strong> Coach Smith, <select id="q43" data-ans="who" class="w-in w-20"><option value=""></option><option value="who">who</option><option value="whose">whose</option></select> has retired, won many trophies.</div>
+                    <div><strong>44.</strong> Tennis, <select id="q44" data-ans="which" class="w-in w-20"><option value=""></option><option value="which">which</option><option value="where">where</option></select> requires great agility, is popular.</div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: READING COMPREHENSION (45-52) -->
+            <section class="mb-2">
+                <div class="sec-head">
+                    <span>6. Reading Comprehension: Football... But Not As You Know It!</span>
+                    <span>8 pts</span>
+                </div>
+                <div class="border border-gray-300 rounded p-1.5 bg-gray-50 text-[0.71rem] leading-snug mb-1.5 text-justify">
+                    <strong>[Reading Text]:</strong> Alternative sports are growing rapidly worldwide. Freestyle football allows individual athletes to perform incredible acrobatic tricks with a ball, mixing dance and gymnastics. Liv Cooke, a world champion freestyler, started practicing after a severe injury stopped her playing standard football. Another emerging sensation is teqball, a sport played on a curved table combining elements of football and table tennis. Meanwhile, horseball combines polo, rugby, and basketball on horseback, requiring extraordinary teamwork and riding skills.
+                </div>
+
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
+                    <div class="space-y-1">
+                        <span class="font-bold text-[0.7rem] text-[#0A468C] block">True (T) or False (F):</span>
+                        <div><strong>45.</strong> Freestyle football combines football with dance and gymnastics. [<select id="q45" data-ans="T" class="w-in w-10"><option value=""></option><option value="T">T</option><option value="F">F</option></select>]</div>
+                        <div><strong>46.</strong> Liv Cooke started freestyling after winning a football cup. [<select id="q46" data-ans="F" class="w-in w-10"><option value=""></option><option value="T">T</option><option value="F">F</option></select>]</div>
+                        <div><strong>47.</strong> Teqball is played on a flat traditional ping-pong table. [<select id="q47" data-ans="F" class="w-in w-10"><option value=""></option><option value="T">T</option><option value="F">F</option></select>]</div>
+                        <div><strong>48.</strong> Horseball combines polo, rugby, and basketball on horseback. [<select id="q48" data-ans="T" class="w-in w-10"><option value=""></option><option value="T">T</option><option value="F">F</option></select>]</div>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="font-bold text-[0.7rem] text-[#0A468C] block">Context Vocabulary Match:</span>
+                        <div><strong>49.</strong> <em>Acronym</em>: <select id="q49" data-ans="trick" class="w-in w-36"><option value=""></option><option value="trick">An acrobatic stunt or trick</option><option value="rule">A penalty rule</option></select></div>
+                        <div><strong>50.</strong> <em>Injury</em>: <select id="q50" data-ans="physical damage" class="w-in w-36"><option value=""></option><option value="physical damage">Physical harm or damage</option><option value="medal">A victory prize</option></select></div>
+                        <div><strong>51.</strong> <em>Curved</em>: <select id="q51" data-ans="bent shape" class="w-in w-36"><option value=""></option><option value="bent shape">Not straight; bending shape</option><option value="flat">Completely flat</option></select></div>
+                        <div><strong>52.</strong> <em>Teamwork</em>: <select id="q52" data-ans="cooperation" class="w-in w-36"><option value=""></option><option value="cooperation">Cooperation between members</option><option value="isolation">Playing alone</option></select></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: QUANTIFIERS (53-60) -->
+            <section class="mb-2">
+                <div class="sec-head">
+                    <span>7. Grammar: Quantifiers (all, none, few, little, many, much, lots)</span>
+                    <span>8 pts</span>
+                </div>
+                <p class="sec-desc">Choose the correct quantifier for countable and uncountable nouns.</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
+                    <div><strong>53.</strong> There is very <select id="q53" data-ans="little" class="w-in wp-16"><option value=""></option><option value="little">little</option><option value="few">few</option></select> time left before the final whistle.</div>
+                    <div><strong>54.</strong> Very <select id="q54" data-ans="few" class="w-in w-16"><option value=""></option><option value="few">few</option><option value="little">little</option></select> athletes manage to break world records.</div>
+                    <div><strong>55.</strong> <select id="q55" data-ans="All" class="w-in w-16"><option value=""></option><option value="all">All</option><option value="none">None</option></select> of the players on our team played brilliantly.</div>
+                    <div><strong>56.</strong> Unfortunately, <select id="q56" data-ans="none" class="w-in w-16"><option value=""></option><option value="none">none</option><option value="all">all</option></select> of our tickets were left for the match.</div>
+                    <div><strong>57.</strong> We have got <select id="q57" data-ans="lots of" class="w-in w-20"><option value=""></option><option value="lots of">lots of</option><option value="much">much</option></select> time to warm up before training.</div>
+                    <div><strong>58.</strong> Are there <select id="q58" data-ans="many" class="w-in w-16"><option value=""></option><option value="many">many</option><option value="much">much</option></select> supporters attending today's game?</div>
+                    <div><strong>59.</strong> He doesn't have <select id="q59" data-ans="much" class="w-in w-16"><option value=""></option><option value="much">much</option><option value="many">many</option></select> experience playing professional tennis.</div>
+                    <div><strong>60.</strong> <select id="q60" data-ans="A few" class="w-in w-20"><option value=""></option><option value="a few">A few</option><option value="a little">A little</option></select> fans stayed behind to cheer the team.</div>
+                </div>
+            </section>
+
+            <!-- SECTION 8: EXTENDED WRITING (WITH AMPLE SPACE) -->
+            <section class="mt-2">
+                <div class="sec-head">
+                    <span>8. Writing Task: A Magazine Article About a Sport</span>
+                    <span>Writing Practice</span>
+                </div>
+                <p class="text-[0.71rem] text-gray-700 mb-1">
+                    <strong>Task:</strong> Write a magazine article (80–100 words) about your favourite sport or free-time activity. Include: <strong>1)</strong> Introduction to the sport and where it is played, <strong>2)</strong> Why you enjoy it so much, <strong>3)</strong> Use relative clauses (<em>who, which, where</em>) to give extra details.
+                </p>
+                <div class="w-full border border-gray-300 rounded p-1.5 bg-white">
+                    <div class="ruled-line text-[0.7rem] text-gray-400">My favourite sport is basketball, which is a fast-moving game played where...</div>
+                    <div class="ruled-line"></div>
+                    <div class="ruled-line"></div>
+                    <div class="ruled-line"></div>
+                    <div class="ruled-line"></div>
+                    <div class="ruled-line"></div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="border-t border-gray-300 pt-1 flex justify-between text-[0.65rem] text-gray-500 mt-2">
+            <span>Gateway to the World B1+ | Unit 7 Assessment Sheet</span>
+            <span>Page 2 of 2 | Total Items: 60 + Writing Task</span>
+        </footer>
+    </div>
+
+    <!-- SCRIPT DE CORRECCIÓN DIGITAL -->
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            const total = 60;
+
+            for (let i = 1; i <= total; i++) {
+                const el = document.getElementById('q' + i);
+                if (!el) continue;
+
+                const userVal = el.value.trim().toLowerCase().replace(/\s+/g, ' ');
+                const correctVal = el.getAttribute('data-ans').trim().toLowerCase();
+
+                el.classList.remove('correct', 'wrong');
+
+                if (userVal === correctVal) {
+                    el.classList.add('correct');
+                    score++;
+                } else {
+                    el.classList.add('wrong');
+                }
+            }
+
+            const disp = document.getElementById('score-display');
+            disp.classList.remove('hidden');
+            disp.innerText = `Score: ${score} / ${total}`;
+        }
+
+        function resetAnswers() {
+            for (let i = 1; i <= 60; i++) {
+                const el = document.getElementById('q' + i);
+                if (!el) continue;
+                el.value = '';
+                el.classList.remove('correct', 'wrong');
+            }
+            document.getElementById('score-display').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
