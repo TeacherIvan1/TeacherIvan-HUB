@@ -1,448 +1,471 @@
-<style>
-    :root {
-        --azul-primario: #0F2A4A;
-        --rojo-alerta: #C2410C;
-        --acento-dorado: #D97706;
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario Documental | Punto de Inflexión: La Bomba (Capítulo 1)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    body {
-        font-family: 'Open Sans', sans-serif;
-        color: #1e293b;
-        background-color: #f1f5f9;
-        margin: 0;
-        padding: 0;
-        font-size: 0.82rem;
-        line-height: 1.25;
-    }
+    <style>
+        :root {
+            --azul-primario: #0A468C;
+            --naranja-vibrante: #F56E1E;
+            --gris-linea: #cbd5e1;
+        }
 
-    h1, h2, h3, .font-title {
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .page-oficio {
-        width: 215mm;
-        min-height: 330mm;
-        max-height: 330mm;
-        margin: 15px auto;
-        background: #ffffff;
-        padding: 10mm 12mm;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .sec-head {
-        border-bottom: 2px solid var(--azul-primario);
-        font-family: 'Montserrat', sans-serif;
-        font-size: 0.8rem;
-        font-weight: 800;
-        color: var(--azul-primario);
-        margin: 5px 0 3px 0;
-        padding-bottom: 2px;
-        text-transform: uppercase;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .sec-desc {
-        font-size: 0.71rem;
-        font-style: italic;
-        color: #475569;
-        margin-bottom: 3px;
-    }
-
-    .w-in {
-        border: 1px solid #94a3b8;
-        border-radius: 3px;
-        padding: 1px 4px;
-        font-size: 0.77rem;
-        font-weight: 600;
-        color: var(--azul-primario);
-        background: #fff;
-        outline: none;
-    }
-
-    .w-in:focus {
-        border-color: var(--rojo-alerta);
-    }
-
-    .correct {
-        border-color: #16a34a !important;
-        background-color: #dcfce7 !important;
-        color: #15803d !important;
-    }
-
-    .wrong {
-        border-color: #dc2626 !important;
-        background-color: #fee2e2 !important;
-        color: #b91c1c !important;
-    }
-
-    .ruled-line {
-        height: 20px;
-        border-bottom: 1px solid #cbd5e1;
-        width: 100%;
-    }
-
-    .toolbar {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: var(--azul-primario);
-        color: white;
-        padding: 8px 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    @media print {
-        @page {
-            size: 215mm 330mm;
-            margin: 8mm 10mm;
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            background: #fff !important;
-            color: #000 !important;
-            font-size: 7.8pt !important;
-            line-height: 1.2 !important;
+            font-family: 'Open Sans', sans-serif;
+            color: #0f172a;
+            background-color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+            font-size: 0.8rem;
+            line-height: 1.25;
         }
 
-        .toolbar, .no-print {
-            display: none !important;
+        h1, h2, h3, .font-title {
+            font-family: 'Montserrat', sans-serif;
         }
 
+        /* Página tamaño Oficio estándar (215 x 330 mm) */
         .page-oficio {
-            width: 100% !important;
-            height: 314mm !important;
-            max-height: 314mm !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            box-shadow: none !important;
-            page-break-after: always !important;
-            overflow: hidden !important;
+            width: 215mm;
+            height: 330mm;
+            max-height: 330mm;
+            margin: 15px auto;
+            background: #ffffff;
+            padding: 10mm 13mm;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
         }
 
-        .sec-head {
-            border-bottom: 1.5px solid #000 !important;
-            color: #000 !important;
-            margin: 4px 0 2px 0 !important;
-            font-size: 7.8pt !important;
+        .header-inst {
+            border-bottom: 2px solid var(--azul-primario);
+            padding-bottom: 4px;
+            margin-bottom: 6px;
         }
 
-        .sec-desc {
-            color: #333 !important;
-            font-size: 6.8pt !important;
+        .q-card {
+            background-color: #fafbfd;
+            border-left: 3px solid var(--azul-primario);
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 3px;
+            padding: 4px 8px;
+            margin-bottom: 5px;
         }
 
-        .w-in {
-            border: none !important;
-            border-bottom: 1.2px dotted #000 !important;
-            border-radius: 0 !important;
-            background: transparent !important;
-            color: transparent !important;
-            display: inline-block !important;
-            height: 15px !important;
+        .q-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+            line-height: 1.2;
         }
 
-        select.w-in {
-            border: 1px solid #444 !important;
-            appearance: none;
-            -webkit-appearance: none;
+        .q-textarea {
+            width: 100%;
+            height: 38px;
+            resize: none;
+            background: #ffffff;
+            border: 1px solid var(--gris-linea);
+            border-radius: 3px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.73rem;
+            color: #1e293b;
+            padding: 3px 6px;
+            line-height: 1.25;
+            outline: none;
+            transition: border-color 0.15s ease-in-out;
         }
 
-        .ruled-line {
-            border-bottom: 1px dashed #666 !important;
+        .q-textarea:focus {
+            border-color: var(--naranja-vibrante);
+            background-color: #fffdfa;
         }
-    }
-</style>
 
+        /* Renglones punteados para cuando se imprima vacío */
+        .print-lines {
+            display: none;
+            width: 100%;
+            margin-top: 2px;
+        }
 
-<!-- TOOLBAR INTERACTIVA -->
-<div class="toolbar no-print">
-    <div class="flex items-center gap-2">
-        <span class="material-icons-round text-amber-400">history_edu</span>
-        <span class="font-bold text-sm">3° Secundaria | Punto de inflexión: La bomba y la Guerra Fría (Cap. 1)</span>
+        .p-line {
+            height: 18px;
+            border-bottom: 1px dashed #94a3b8;
+            width: 100%;
+        }
+
+        .toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--azul-primario);
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        @media print {
+            @page {
+                size: 215mm 330mm;
+                margin: 0;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .toolbar, .no-print {
+                display: none !important;
+            }
+
+            .page-oficio {
+                width: 215mm !important;
+                height: 330mm !important;
+                max-height: 330mm !important;
+                margin: 0 auto !important;
+                padding: 8mm 11mm !important;
+                box-shadow: none !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                border: none !important;
+            }
+
+            .q-card {
+                background: transparent !important;
+                border: 1px solid #cbd5e1 !important;
+                border-left: 3px solid #000 !important;
+                padding: 3px 6px !important;
+                margin-bottom: 4px !important;
+            }
+
+            .q-title {
+                color: #000 !important;
+                font-size: 7.2pt !important;
+            }
+
+            /* Si el alumno escribió en el textarea, se imprime el texto */
+            .q-textarea {
+                border: none !important;
+                background: transparent !important;
+                color: #000 !important;
+                font-size: 7.2pt !important;
+                height: auto !important;
+                padding: 0 !important;
+                display: block !important;
+            }
+
+            /* Si está vacío el textarea para resolver a mano */
+            .empty-textarea {
+                display: none !important;
+            }
+
+            .show-lines-on-empty {
+                display: block !important;
+            }
+
+            .p-line {
+                border-bottom: 1px dashed #64748b !important;
+                height: 16px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR DE ACCIONES -->
+    <div class="toolbar no-print">
+        <div class="flex items-center gap-2">
+            <span class="material-icons-round text-amber-400">menu_book</span>
+            <span class="font-bold text-sm">Historia Universal | Cuestionario: Punto de Inflexión (Cap. 1 - La bomba)</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="preparePrint()" class="bg-[#F56E1E] hover:bg-orange-600 text-white font-bold px-3 py-1 rounded text-xs transition flex items-center gap-1">
+                <span class="material-icons-round text-sm">print</span> Imprimir Oficio (2 Páginas)
+            </button>
+            <button onclick="clearAll()" class="bg-blue-900 border border-blue-400 text-white font-bold px-3 py-1 rounded text-xs transition flex items-center gap-1">
+                <span class="material-icons-round text-sm">restart_alt</span> Borrar Respuestas
+            </button>
+            <span id="saved-notice" class="hidden text-xs bg-green-500 text-white font-bold px-2 py-0.5 rounded">Guardado</span>
+        </div>
     </div>
-    <div class="flex items-center gap-3">
-        <button onclick="window.print()" class="bg-[#C2410C] hover:bg-orange-700 text-white font-bold px-3 py-1 rounded text-xs transition">
-            🖨️ Imprimir Oficio
-        </button>
-        <button onclick="checkAnswers()" class="bg-white text-[#0F2A4A] font-bold px-3 py-1 rounded text-xs hover:bg-slate-100 transition">
-            ✓ Corregir Digital
-        </button>
-        <button onclick="resetAnswers()" class="bg-slate-700 border border-slate-400 text-white font-bold px-3 py-1 rounded text-xs transition">
-            ↻ Limpiar
-        </button>
-        <span id="score-display" class="hidden text-xs bg-emerald-600 text-white font-bold px-2 py-0.5 rounded"></span>
-    </div>
-</div>
 
-<!-- ==================== PÁGINA 1 DE 2 ==================== -->
-<div class="page-oficio">
-    <div>
-        <!-- ENCABEZADO INSTITUCIONAL -->
-        <header class="border-b-2 border-[#0F2A4A] pb-1.5 mb-2">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-base font-extrabold text-[#0F2A4A] leading-none uppercase">Ciencias Sociales e Historia Universal</h1>
-                    <span class="text-[0.68rem] font-bold text-[#C2410C] uppercase tracking-wider">Documental: Punto de inflexión - Cap. 1: "Fue como si saliera un enorme sol"</span>
+    <!-- ==========================================
+         PÁGINA 1: PREGUNTAS 1 A 10 (OFICIO 215x330mm)
+         ========================================== -->
+    <div class="page-oficio">
+        <div>
+            <!-- ENCABEZADO -->
+            <header class="header-inst">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-sm font-extrabold text-[#0A468C] tracking-tight leading-none uppercase">
+                            CIENCIAS SOCIALES • 3° DE SECUNDARIA
+                        </h1>
+                        <span class="text-[0.66rem] font-bold text-[#F56E1E] uppercase tracking-wider block mt-0.5">
+                            CUESTIONARIO AUDIOVISUAL: «PUNTO DE INFLEXIÓN: LA BOMBA Y LA GUERRA FRÍA» (CAP. 1)
+                        </span>
+                    </div>
+                    <div class="text-right text-[0.65rem] font-bold text-slate-500">
+                        <span>Puntaje: _____ / 100 pts</span>
+                    </div>
                 </div>
-                <div class="text-right text-[0.68rem] font-semibold text-gray-500">
-                    <span>Guía de Análisis Fílmico e Histórico | 3° de Secundaria</span>
+
+                <div class="grid grid-cols-12 gap-2 mt-1.5 pt-1 border-t border-dashed border-gray-300 text-[0.7rem]">
+                    <div class="col-span-6 font-semibold">Estudiante: <span class="border-b border-gray-400 inline-block w-3/4 h-3"></span></div>
+                    <div class="col-span-3 font-semibold">Curso / Paralelo: <span class="border-b border-gray-400 inline-block w-1/2 h-3"></span></div>
+                    <div class="col-span-3 text-right font-semibold">Fecha: <span class="border-b border-gray-400 inline-block w-2/3 h-3"></span></div>
+                </div>
+            </header>
+
+            <div class="text-[0.68rem] bg-blue-50 border border-blue-200 text-blue-900 rounded px-2 py-1 mb-2 font-medium">
+                <strong>Instrucciones:</strong> Responde con claridad, fundamentando tus argumentos en los testimonios históricos y análisis expuestos en el primer capítulo del documental. Puedes responder en pantalla o imprimir en blanco para llenarlo a mano.
+            </div>
+
+            <!-- PREGUNTAS 1 A 10 -->
+            <div class="space-y-1">
+                <!-- P1 -->
+                <div class="q-card">
+                    <div class="q-title">1. ¿Qué motivó a Albert Einstein y Leó Szilárd a escribir la famosa carta a Roosevelt en 1939 y qué consecuencias trajo?</div>
+                    <textarea class="q-textarea" id="q1" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P2 -->
+                <div class="q-card">
+                    <div class="q-title">2. ¿Qué fue el Proyecto Manhattan y por qué se eligió el desierto de Los Álamos bajo la dirección de Oppenheimer y Groves?</div>
+                    <textarea class="q-textarea" id="q2" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P3 -->
+                <div class="q-card">
+                    <div class="q-title">3. ¿Cómo operó el espionaje soviético dentro del Proyecto Manhattan y qué papel tuvo Klaus Fuchs en Moscú?</div>
+                    <textarea class="q-textarea" id="q3" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P4 -->
+                <div class="q-card">
+                    <div class="q-title">4. Tras la rendición nazi en mayo de 1945, ¿por qué Estados Unidos continuó con el desarrollo y ensamblaje de la bomba?</div>
+                    <textarea class="q-textarea" id="q4" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P5 -->
+                <div class="q-card">
+                    <div class="q-title">5. ¿Qué representó el ensayo nuclear Trinity (julio 1945) y qué sentido cobró la cita de Oppenheimer: <em>«Ahora me he convertido en la muerte»</em>?</div>
+                    <textarea class="q-textarea" id="q5" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P6 -->
+                <div class="q-card">
+                    <div class="q-title">6. ¿Cómo influyó el informe del éxito de Trinity en la actitud de Truman frente a Stalin durante la Conferencia de Potsdam?</div>
+                    <textarea class="q-textarea" id="q6" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P7 -->
+                <div class="q-card">
+                    <div class="q-title">7. ¿Cuál era el cálculo de bajas que preveía el ejército estadounidense ante una eventual invasión terrestre (Operación Downfall)?</div>
+                    <textarea class="q-textarea" id="q7" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P8 -->
+                <div class="q-card">
+                    <div class="q-title">8. ¿Qué criterios utilizó el comité militar para seleccionar a Hiroshima como blanco y descartar una demostración en terreno deshabitado?</div>
+                    <textarea class="q-textarea" id="q8" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P9 -->
+                <div class="q-card">
+                    <div class="q-title">9. Describe el vuelo del <em>Enola Gay</em> el 6 de agosto de 1945 y la reacción de los pilotos al detonar «Little Boy».</div>
+                    <textarea class="q-textarea" id="q9" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P10 -->
+                <div class="q-card">
+                    <div class="q-title">10. ¿Qué describen los testimonios de los sobrevivientes sobre la onda expansiva, las quemaduras y la «lluvia negra» en Hiroshima?</div>
+                    <textarea class="q-textarea" id="q10" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
                 </div>
             </div>
-            <div class="grid grid-cols-12 gap-2 mt-2 pt-1 border-t border-dashed border-gray-300 text-[0.72rem]">
-                <div class="col-span-6">Estudiante: <span class="border-b border-gray-400 inline-block w-4/5 h-3"></span></div>
-                <div class="col-span-3">Curso/Paralelo: <span class="border-b border-gray-400 inline-block w-2/3 h-3"></span></div>
-                <div class="col-span-3 text-right">Fecha: <span class="border-b border-gray-400 inline-block w-2/3 h-3"></span></div>
-            </div>
-        </header>
-
-        <!-- SECCIÓN 1: CONCEPTOS Y VOCABULARIO CLAVE (1-10) -->
-        <section class="mb-2">
-            <div class="sec-head">
-                <span>1. Vocabulario y Conceptos de la Era Nuclear</span>
-                <span>10 pts</span>
-            </div>
-            <p class="sec-desc">Escribe la palabra exacta de la caja de opciones que corresponde a cada definición o hecho del documental.</p>
-            <div class="border border-gray-200 bg-gray-50 rounded px-2 py-0.5 mb-1.5 text-[0.67rem] flex justify-between font-semibold text-[#0F2A4A]">
-                <span>Trinidad</span>•<span>Oppenheimer</span>•<span>Potsdam</span>•<span>Manhattan</span>•<span>Hiroshima</span>•<span>Nagasaki</span>•<span>Hibakusha</span>•<span>Fisión</span>•<span>Enola Gay</span>•<span>Stalin</span>
-            </div>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
-                <div><strong>1.</strong> Nombre del proyecto ultrasecreto estadounidense para construir el arma atómica: Proyecto <input type="text" id="q1" data-ans="manhattan" class="w-in w-24">.</div>
-                <div><strong>2.</strong> Físico teórico conocido como el director científico de Los Álamos: J. Robert <input type="text" id="q2" data-ans="oppenheimer" class="w-in w-24">.</div>
-                <div><strong>3.</strong> Primer ensayo nuclear exitoso de la historia en el desierto de Nuevo México: Prueba <input type="text" id="q3" data-ans="trinidad" class="w-in w-24">.</div>
-                <div><strong>4.</strong> Conferencia de 1945 donde Truman le insinuó a los soviéticos una nueva arma: Conferencia de <input type="text" id="q4" data-ans="potsdam" class="w-in w-24">.</div>
-                <div><strong>5.</strong> Primera ciudad japonesa atacada con una bomba atómica de uranio (6 de agosto de 1945): <input type="text" id="q5" data-ans="hiroshima" class="w-in w-24">.</div>
-                <div><strong>6.</strong> Segunda ciudad bombardeada con una bomba de plutonio (9 de agosto de 1945): <input type="text" id="q6" data-ans="nagasaki" class="w-in w-24">.</div>
-                <div><strong>7.</strong> Término japonés que identifica a los sobrevivientes directos de las bombas atómicas: <input type="text" id="q7" data-ans="hibakusha" class="w-in w-24">.</div>
-                <div><strong>8.</strong> Proceso físico de división del núcleo de un átomo pesado que libera enorme energía: <input type="text" id="q8" data-ans="fision" class="w-in w-24">.</div>
-                <div><strong>9.</strong> Bombardero B-29 que despegó hacia Japón transportando la bomba llamada "Little Boy": <input type="text" id="q9" data-ans="enola gay" class="w-in w-24">.</div>
-                <div><strong>10.</strong> Líder soviético que aceleró en secreto su propio programa atómico tras ser informado: Iósif <input type="text" id="q10" data-ans="stalin" class="w-in w-24">.</div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 2: HECHOS Y DECISIONES CLAVE (11-18) -->
-        <section class="mb-2">
-            <div class="sec-head">
-                <span>2. Decisiones Estratégicas y Cronología del Capítulo 1</span>
-                <span>8 pts</span>
-            </div>
-            <p class="sec-desc">Selecciona la opción correcta en base a los hechos relatados por los historiadores en el documental.</p>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
-                <div><strong>11.</strong> El Proyecto Manhattan se originó originalmente por el temor a que <select id="q11" data-ans="alemania" class="w-in w-28"><option value=""></option><option value="alemania">Alemania nazi</option><option value="urss">la URSS</option></select> fabricara primero la bomba.</div>
-                <div><strong>12.</strong> Tras la rendición nazi en mayo de 1945, el blanco del arma atómica fue desviado hacia el Imperio de <select id="q12" data-ans="japon" class="w-in w-24"><option value=""></option><option value="japon">Japón</option><option value="italia">Italia</option></select>.</div>
-                <div><strong>13.</strong> El presidente que asumió el cargo en EE.UU. y autorizó el lanzamiento fue <select id="q13" data-ans="truman" class="w-in w-24"><option value=""></option><option value="truman">Harry S. Truman</option><option value="roosevelt">F. D. Roosevelt</option></select>.</div>
-                <div><strong>14.</strong> La bomba detonada en Hiroshima fue llamada <select id="q14" data-ans="little boy" class="w-in w-24"><option value=""></option><option value="little boy">Little Boy</option><option value="fat man">Fat Man</option></select>, construida a base de uranio.</div>
-                <div><strong>15.</strong> El documental señala que la explosión nuclear alcanzó temperaturas superiores a la superficie del <select id="q15" data-ans="sol" class="w-in w-20"><option value=""></option><option value="sol">Sol</option><option value="volcan">Volcán</option></select>.</div>
-                <div><strong>16.</strong> El título del episodio se debe a testimonios que describen la luz como un <select id="q16" data-ans="sol tremendo" class="w-in w-28"><option value=""></option><option value="sol tremendo">sol tremendo</option><option value="relampago azul">relámpago azul</option></select>.</div>
-                <div><strong>17.</strong> Aparte de los bombardeos, la entrada en guerra de <select id="q17" data-ans="la urss" class="w-in w-24"><option value=""></option><option value="la urss">la URSS</option><option value="reino unido">Reino Unido</option></select> precipitó la capitulación nipona.</div>
-                <div><strong>18.</strong> El fin de la Segunda Guerra Mundial marcó inmediatamente el inicio de la <select id="q18" data-ans="guerra fria" class="w-in w-24"><option value=""></option><option value="guerra fria">Guerra Fría</option><option value="guerra de corea">Guerra de Corea</option></select>.</div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 3: VERDADERO O FALSO (19-26) -->
-        <section class="mb-2">
-            <div class="sec-head">
-                <span>3. Juicio Crítico sobre los Acontecimientos</span>
-                <span>8 pts</span>
-            </div>
-            <p class="sec-desc">Determina si cada afirmación es Verdadera (V) o Falsa (F) de acuerdo con los argumentos del capítulo.</p>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
-                <div><strong>19.</strong> Oppenheimer citó textos hindúes diciendo: «Ahora me he convertido en la muerte». [<select id="q19" data-ans="V" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-                <div><strong>20.</strong> Stalin no tenía idea del arma atómica hasta que Truman se lo confesó detalladamente. [<select id="q20" data-ans="F" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-                <div><strong>21.</strong> Espías infiltrados en Los Álamos pasaban secretos científicos directamente a Moscú. [<select id="q21" data-ans="V" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-                <div><strong>22.</strong> Las dos bombas causaron de inmediato la firma de paz sin causar daños por radiación. [<select id="q22" data-ans="F" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-                <div><strong>23.</strong> El documental argumenta que las bombas se usaron también como advertencia geopolítica hacia la URSS. [<select id="q23" data-ans="V" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-                <div><strong>24.</strong> Los efectos de la lluvia radiactiva negra fueron ocultados y censurados por el mando militar de ocupación. [<select id="q24" data-ans="V" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-                <div><strong>25.</strong> Todos los científicos que crearon la bomba estuvieron contentos de su uso en ciudades pobladas. [<select id="q25" data-ans="F" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-                <div><strong>26.</strong> El ensayo Trinity se llevó a cabo con certeza matemática absoluta de que no destruiría la atmósfera. [<select id="q26" data-ans="F" class="w-in w-10"><option value=""></option><option value="V">V</option><option value="F">F</option></select>]</div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 4: CAUSA Y EFECTO EN LA HISTORIA (27-36) -->
-        <section>
-            <div class="sec-head">
-                <span>4. Causa y Efecto: El Quiebre del Orden Mundial</span>
-                <span>10 pts</span>
-            </div>
-            <p class="sec-desc">Relaciona la Causa histórica con su respectivo Efecto o Consecuencia inmediata (escribe la letra correspondiente: A, B, C, D, E, F, G, H, I, J).</p>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.72rem] bg-slate-50 p-1.5 border border-slate-200 rounded mb-1">
-                <div><strong>[A]</strong> Temor a una invasión terrestre con miles de bajas aliadas.</div>
-                <div><strong>[B]</strong> Carta de Einstein y Szilárd al presidente Roosevelt.</div>
-                <div><strong>[C]</strong> Detonación exitosa del ensayo Trinity en julio de 1945.</div>
-                <div><strong>[D]</strong> Lanzamiento de la bomba sobre Nagasaki tres días después.</div>
-                <div><strong>[E]</strong> Intervención y espionaje soviético en Los Álamos.</div>
-                <div><strong>[F]</strong> Onda expansiva e incendio total de Hiroshima.</div>
-                <div><strong>[G]</strong> Muestreo de poder destructivo en Potsdam.</div>
-                <div><strong>[H]</strong> Radiación ionizante absorbida por la población civil.</div>
-                <div><strong>[I]</strong> Capitulación incondicional del emperador Hirohito.</div>
-                <div><strong>[J]</strong> Monopolio nuclear momentáneo de Estados Unidos.</div>
-            </div>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
-                <div><strong>27.</strong> Origen formal de la financiación del Proyecto Manhattan: <input type="text" id="q27" data-ans="B" class="w-in w-8 uppercase"></div>
-                <div><strong>28.</strong> Justificación militar de Truman para evitar la "Operación Downfall": <input type="text" id="q28" data-ans="A" class="w-in w-8 uppercase"></div>
-                <div><strong>29.</strong> Notificación de Truman a Churchill de que el arma estaba lista: <input type="text" id="q29" data-ans="C" class="w-in w-8 uppercase"></div>
-                <div><strong>30.</strong> Postura más desafiante de Truman frente a Stalin en negociaciones: <input type="text" id="q30" data-ans="G" class="w-in w-8 uppercase"></div>
-                <div><strong>31.</strong> Desaparición instantánea de más de 70.000 vidas y la ciudad: <input type="text" id="q31" data-ans="F" class="w-in w-8 uppercase"></div>
-                <div><strong>32.</strong> Destrucción del segundo objetivo industrial y militar japonés: <input type="text" id="q32" data-ans="D" class="w-in w-8 uppercase"></div>
-                <div><strong>33.</strong> Aparición de leucemia, cáncer y quemaduras deformantes: <input type="text" id="q33" data-ans="H" class="w-in w-8 uppercase"></div>
-                <div><strong>34.</strong> La URSS acelera el desarrollo de su propia bomba para 1949: <input type="text" id="q34" data-ans="E" class="w-in w-8 uppercase"></div>
-                <div><strong>35.</strong> Desbalance geopolítico global entre agosto de 1945 y 1949: <input type="text" id="q35" data-ans="J" class="w-in w-8 uppercase"></div>
-                <div><strong>36.</strong> Anuncio transmitido por radio de la rendición final de Japón: <input type="text" id="q36" data-ans="I" class="w-in w-8 uppercase"></div>
-            </div>
-        </section>
-    </div>
-
-    <footer class="border-t border-gray-300 pt-1 flex justify-between text-[0.65rem] text-gray-500">
-        <span>Punto de Inflexión: La bomba y la Guerra Fría | Cap. 1: "Fue como si saliera un enorme sol"</span>
-        <span>Página 1 de 2 (Continúa al reverso)</span>
-    </footer>
-</div>
-
-<!-- ==================== PÁGINA 2 DE 2 ==================== -->
-<div class="page-oficio">
-    <div>
-        <!-- MINI HEADER PÁGINA 2 -->
-        <div class="flex justify-between items-center border-b border-gray-400 pb-1 mb-2">
-            <span class="font-bold text-[0.72rem] text-[#0F2A4A]">3° DE SECUNDARIA | CIENCIAS SOCIALES - EVALUACIÓN DOCUMENTAL (PÁG. 2)</span>
-            <span class="text-[0.68rem] text-gray-500 font-semibold">Estudiante: _____________________________________________</span>
         </div>
 
-        <!-- SECCIÓN 5: ACTORES HISTÓRICOS Y ROLES (37-44) -->
-        <section class="mb-2">
-            <div class="sec-head">
-                <span>5. Identificación de Protagonistas y su Posición Histórica</span>
-                <span>8 pts</span>
-            </div>
-            <p class="sec-desc">Selecciona el papel o dilema que desempeñó cada figura histórica destacada en el episodio 1.</p>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
-                <div><strong>37.</strong> J. Robert Oppenheimer sintió <select id="q37" data-ans="culpa y asombro" class="w-in w-36"><option value=""></option><option value="culpa y asombro">asombro y profunda culpa</option><option value="indiferencia">total indiferencia</option></select> al ver la detonación en Trinity.</div>
-                <div><strong>38.</strong> El gral. Leslie Groves buscaba <select id="q38" data-ans="velocidad y secreto" class="w-in w-36"><option value=""></option><option value="velocidad y secreto">máxima velocidad y secreto</option><option value="consenso global">consenso democrático</option></select> en el mando militar del proyecto.</div>
-                <div><strong>39.</strong> Klaus Fuchs fue un científico que actuó como <select id="q39" data-ans="espia sovietico" class="w-in w-36"><option value=""></option><option value="espia sovietico">espía para la URSS</option><option value="diplomatico">diplomático de paz</option></select> dentro de Los Álamos.</div>
-                <div><strong>40.</strong> Harry S. Truman utilizó la bomba para <select id="q40" data-ans="terminar la guerra rapido" class="w-in w-36"><option value=""></option><option value="terminar la guerra rapido">forzar el fin de la guerra</option><option value="apoyar a la urss">ceder control a la URSS</option></select> sin invasión militar costosa.</div>
-                <div><strong>41.</strong> Iósif Stalin reaccionó ante la noticia ordenando <select id="q41" data-ans="acelerar su propia bomba" class="w-in w-36"><option value=""></option><option value="acelerar su propia bomba">acelerar su propia bomba</option><option value="desarme total">el desarme de su ejército</option></select> inmediatamente.</div>
-                <div><strong>42.</strong> El emperador Hirohito decidió rendirse para evitar la <select id="q42" data-ans="destruccion de su pueblo" class="w-in w-36"><option value=""></option><option value="destruccion de su pueblo">aniquilación de la nación</option><option value="victoria aliada">división de Europa</option></select>.</div>
-                <div><strong>43.</strong> Los pilotos del Enola Gay creían que su misión <select id="q43" data-ans="salvaria vidas aliadas" class="w-in w-36"><option value=""></option><option value="salvaria vidas aliadas">salvaría vidas al parar la guerra</option><option value="era un simple ejercicio">era una práctica de rutina</option></select>.</div>
-                <div><strong>44.</strong> Los sobrevivientes (Hibakusha) sufrieron el rechazo por <select id="q44" data-ans="miedo al contagio" class="w-in w-36"><option value=""></option><option value="miedo al contagio">desconocimiento y miedo</option><option value="ser criminales">ser soldados activos</option></select> de la radiación.</div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 6: ANÁLISIS DE TESTIMONIOS Y FUENTES PRIMARIAS (45-52) -->
-        <section class="mb-2">
-            <div class="sec-head">
-                <span>6. Análisis de Fuentes Audiovisuales y Testimonios</span>
-                <span>8 pts</span>
-            </div>
-            <div class="border border-gray-300 rounded p-1.5 bg-gray-50 text-[0.71rem] leading-snug mb-1.5 text-justify">
-                <strong>[Cita del Documental]:</strong> <em>«El destello fue cegador, más brillante que mil soles juntos. En cuestión de segundos, la presión del aire golpeó como un muro de hierro y luego el silencio dio paso a un tornado de fuego. Vimos cómo los niños de la escuela tenían la ropa fundida en la piel... No entendíamos qué clase de infierno había caído del cielo limpio de la mañana.»</em> — Testimonio de una sobreviviente en Hiroshima recopilado en el documental.
-            </div>
-
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
-                <div class="space-y-1">
-                    <span class="font-bold text-[0.7rem] text-[#0F2A4A] block">Comprensión de la Fuente:</span>
-                    <div><strong>45.</strong> La frase «más brillante que mil soles» hace alusión a: <select id="q45" data-ans="destello" class="w-in w-32"><option value=""></option><option value="destello">El destello atómico inicial</option><option value="incendio">El sol del mediodía</option></select></div>
-                    <div><strong>46.</strong> El «muro de hierro» al que se refiere la testigo describe: <select id="q46" data-ans="onda" class="w-in w-32"><option value=""></option><option value="onda">La potente onda de choque</option><option value="metralla">Aviones chocando</option></select></div>
-                    <div><strong>47.</strong> La ropa fundida en la piel es prueba física de: <select id="q47" data-ans="calor" class="w-in w-32"><option value=""></option><option value="calor">Radiación térmica extrema</option><option value="gas">Ataque químico</option></select></div>
-                    <div><strong>48.</strong> Para los civiles, el bombardeo fue una sorpresa porque: <select id="q48" data-ans="cielo" class="w-in w-32"><option value=""></option><option value="cielo">No hubo alarma masiva previa</option><option value="noche">Era de noche cerrada</option></select></div>
-                </div>
-                <div class="space-y-1">
-                    <span class="font-bold text-[0.7rem] text-[#0F2A4A] block">Perspectiva Historiográfica:</span>
-                    <div><strong>49.</strong> El documental muestra que la bomba atómica fue el <select id="q49" data-ans="inicio" class="w-in w-32"><option value=""></option><option value="inicio">Inicio de la carrera armamentista</option><option value="fin">Fin definitivo de la guerra</option></select>.</div>
-                    <div><strong>50.</strong> La censura militar de EE.UU. sobre las fotos de heridos buscaba <select id="q50" data-ans="evitar rechazo" class="w-in w-32"><option value=""></option><option value="evitar rechazo">Evitar rechazo público mundial</option><option value="proteger secretos">Proteger a los japoneses</option></select>.</div>
-                    <div><strong>51.</strong> La rivalidad Truman-Stalin convirtió a la bomba en un <select id="q51" data-ans="instrumento politico" class="w-in w-32"><option value=""></option><option value="instrumento politico">Instrumento de presión política</option><option value="juguete">Objeto sin relevancia</option></select>.</div>
-                    <div><strong>52.</strong> El concepto de "Punto de Inflexión" significa que la historia <select id="q52" data-ans="cambio de rumbo" class="w-in w-32"><option value=""></option><option value="cambio de rumbo">Cambió de rumbo irreversiblemente</option><option value="se repitio">Se mantuvo intacta</option></select>.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 7: INTERPRETACIÓN Y DILEMAS ÉTICOS (53-60) -->
-        <section class="mb-2">
-            <div class="sec-head">
-                <span>7. Dilemas Morales y la Nueva Geopolítica Mundial</span>
-                <span>8 pts</span>
-            </div>
-            <p class="sec-desc">Completa cada análisis seleccionando la interpretación histórica más adecuada según los expertos del episodio.</p>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[0.74rem]">
-                <div><strong>53.</strong> El debate moral principal radica en que los blancos eran centros con alta población <select id="q53" data-ans="civil" class="w-in w-20"><option value=""></option><option value="civil">civil</option><option value="militar">militar</option></select>.</div>
-                <div><strong>54.</strong> Científicos como Leo Szilárd pidieron una demostración previa en un área <select id="q54" data-ans="deshabitada" class="w-in w-24"><option value=""></option><option value="deshabitada">deshabitada</option><option value="naval">naval armada</option></select>.</div>
-                <div><strong>55.</strong> La posesión del arma atómica cambió el equilibrio diplomático en la Conferencia de <select id="q55" data-ans="potsdam" class="w-in w-20"><option value=""></option><option value="potsdam">Potsdam</option><option value="yalta">Yalta</option></select>.</div>
-                <div><strong>56.</strong> Con la bomba atómica, la humanidad adquirió la capacidad técnica de su propia <select id="q56" data-ans="autodestruccion" class="w-in w-24"><option value=""></option><option value="autodestruccion">autodestrucción</option><option value="defensa">defensa global</option></select>.</div>
-                <div><strong>57.</strong> Para la Unión Soviética, romper el monopolio atómico de EE.UU. se convirtió en su máxima <select id="q57" data-ans="prioridad" class="w-in w-20"><option value=""></option><option value="prioridad">prioridad</option><option value="duda">duda</option></select>.</div>
-                <div><strong>58.</strong> El bombardeo de Nagasaki suele criticarse porque ocurrió muy pocos <select id="q58" data-ans="dias" class="w-in w-16"><option value=""></option><option value="dias">días</option><option value="meses">meses</option></select> después de Hiroshima.</div>
-                <div><strong>59.</strong> El inicio de la Guerra Fría enfrentó a dos superpotencias con modelos ideológicos <select id="q59" data-ans="opuestos" class="w-in w-20"><option value=""></option><option value="opuestos">opuestos</option><option value="similares">similares</option></select>.</div>
-                <div><strong>60.</strong> El documental concluye que la sombra de la bomba nuclear todavía sigue <select id="q60" data-ans="vigente" class="w-in w-20"><option value=""></option><option value="vigente">vigente</option><option value="olvidada">olvidada</option></select> hoy.</div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 8: ENSAYO DE REFLEXIÓN HISTÓRICA -->
-        <section class="mt-2">
-            <div class="sec-head">
-                <span>8. Pregunta de Reflexión y Juicio Crítico (Redacción de 3° de Secundaria)</span>
-                <span>Producción Escrita</span>
-            </div>
-            <p class="text-[0.71rem] text-gray-700 mb-1 leading-tight">
-                <strong>Consigna:</strong> A partir de lo visto en el documental, responde: <em>¿Fue el uso de la bomba atómica el acto final de la Segunda Guerra Mundial o el primer golpe de la Guerra Fría?</em> Fundamenta tu postura mencionando al menos un argumento militar (la rendición de Japón) y un argumento político frente a la Unión Soviética (60–80 palabras).
-            </p>
-            <div class="w-full border border-gray-300 rounded p-1.5 bg-white">
-                <div class="ruled-line text-[0.7rem] text-gray-400">Considero que el lanzamiento de la bomba nuclear representó principalmente...</div>
-                <div class="ruled-line"></div>
-                <div class="ruled-line"></div>
-                <div class="ruled-line"></div>
-                <div class="ruled-line"></div>
-                <div class="ruled-line"></div>
-            </div>
-        </section>
+        <footer class="border-t border-gray-300 pt-1 flex justify-between text-[0.63rem] text-gray-500">
+            <span>Punto de Inflexión: La Bomba y la Guerra Fría • Docuserie Netflix</span>
+            <span>Página 1 de 2 (Continúa al reverso)</span>
+        </footer>
     </div>
 
-    <footer class="border-t border-gray-300 pt-1 flex justify-between text-[0.65rem] text-gray-500 mt-2">
-        <span>Punto de Inflexión: La bomba y la Guerra Fría | Cap. 1: "Fue como si saliera un enorme sol"</span>
-        <span>Página 2 de 2 | Total de Ítems: 60 + Producción Crítica</span>
-    </footer>
-</div>
+    <!-- ==========================================
+         PÁGINA 2: PREGUNTAS 11 A 20 (OFICIO 215x330mm)
+         ========================================== -->
+    <div class="page-oficio">
+        <div>
+            <!-- ENCABEZADO CORTO PÁGINA 2 -->
+            <div class="flex justify-between items-center border-b border-[#0A468C] pb-1 mb-2">
+                <span class="font-bold text-[0.7rem] text-[#0A468C] uppercase">
+                    EVALUACIÓN CONTINUA | HISTORIA Y GEOPOLÍTICA (PÁG. 2)
+                </span>
+                <span class="text-[0.65rem] text-gray-500 font-semibold">
+                    Estudiante: __________________________________________________
+                </span>
+            </div>
 
-<!-- SCRIPT DE EVALUACIÓN DIGITAL -->
-<script>
-    function checkAnswers() {
-        let score = 0;
-        const total = 60;
+            <!-- PREGUNTAS 11 A 20 -->
+            <div class="space-y-1">
+                <!-- P11 -->
+                <div class="q-card">
+                    <div class="q-title">11. ¿Por qué se decidió detonar una segunda bomba («Fat Man») sobre Nagasaki apenas tres días después de Hiroshima?</div>
+                    <textarea class="q-textarea" id="q11" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
 
-        for (let i = 1; i <= total; i++) {
-            const el = document.getElementById('q' + i);
-            if (!el) continue;
+                <!-- P12 -->
+                <div class="q-card">
+                    <div class="q-title">12. ¿Qué impacto provocó la declaración de guerra y la invasión soviética a Manchuria en la decisión de rendición del emperador Hirohito?</div>
+                    <textarea class="q-textarea" id="q12" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
 
-            const userVal = el.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            const correctVal = el.getAttribute('data-ans').trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                <!-- P13 -->
+                <div class="q-card">
+                    <div class="q-title">13. ¿Quiénes son los <em>Hibakusha</em> y qué estigma médico y social tuvieron que enfrentar en Japón después de la catástrofe?</div>
+                    <textarea class="q-textarea" id="q13" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
 
-            el.classList.remove('correct', 'wrong');
+                <!-- P14 -->
+                <div class="q-card">
+                    <div class="q-title">14. ¿De qué forma las fuerzas de ocupación aliadas comandadas por Douglas MacArthur censuraron los efectos de la radiación nuclear?</div>
+                    <textarea class="q-textarea" id="q14" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
 
-            if (userVal === correctVal) {
-                el.classList.add('correct');
-                score++;
-            } else {
-                el.classList.add('wrong');
+                <!-- P15 -->
+                <div class="q-card">
+                    <div class="q-title">15. Explica el debate histórico: ¿Fueron los bombardeos el último acto de la Segunda Guerra Mundial o el primer acto de la Guerra Fría?</div>
+                    <textarea class="q-textarea" id="q15" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P16 -->
+                <div class="q-card">
+                    <div class="q-title">16. ¿Por qué el monopolio nuclear estadounidense duró mucho menos de lo anticipado (hasta la detonación soviética de 1949)?</div>
+                    <textarea class="q-textarea" id="q16" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P17 -->
+                <div class="q-card">
+                    <div class="q-title">17. ¿Qué postura adoptaron los científicos del Proyecto Manhattan tras comprobar el devastador poder destructivo de sus invenciones?</div>
+                    <textarea class="q-textarea" id="q17" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P18 -->
+                <div class="q-card">
+                    <div class="q-title">18. ¿Cómo redefinió la tecnología atómica el concepto de «guerra» y la posterior doctrina de la Destrucción Mutua Asegurada (MAD)?</div>
+                    <textarea class="q-textarea" id="q18" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P19 -->
+                <div class="q-card">
+                    <div class="q-title">19. Según los analistas del documental, ¿cómo se conecta la memoria de Hiroshima con las amenazas nucleares del mundo contemporáneo?</div>
+                    <textarea class="q-textarea" id="q19" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+
+                <!-- P20 -->
+                <div class="q-card">
+                    <div class="q-title">20. Juicio crítico personal: ¿Consideras justificado el uso de armas nucleares sobre poblaciones civiles bajo el pretexto de acortar un conflicto bélico?</div>
+                    <textarea class="q-textarea" id="q20" placeholder="Escribe aquí tu respuesta..."></textarea>
+                    <div class="print-lines"><div class="p-line"></div><div class="p-line"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="border-t border-gray-300 pt-1 flex justify-between text-[0.63rem] text-gray-500">
+            <span>Cuestionario Pedagógico de Análisis Documental • 3° de Secundaria</span>
+            <span>Página 2 de 2 • Fin del Cuestionario (Total: 20 preguntas)</span>
+        </footer>
+    </div>
+
+    <!-- SCRIPT DE MANEJO DIGITAL E IMPRESIÓN LIMPIA -->
+    <script>
+        // Cargar respuestas guardadas en localStorage si existen
+        window.addEventListener('DOMContentLoaded', () => {
+            for (let i = 1; i <= 20; i++) {
+                const saved = localStorage.getItem('punto_inflexion_q' + i);
+                const area = document.getElementById('q' + i);
+                if (saved && area) {
+                    area.value = saved;
+                }
+                if (area) {
+                    area.addEventListener('input', () => {
+                        localStorage.setItem('punto_inflexion_q' + i, area.value);
+                    });
+                }
+            }
+        });
+
+        function clearAll() {
+            if (confirm('¿Deseas borrar todas las respuestas del cuestionario?')) {
+                for (let i = 1; i <= 20; i++) {
+                    const area = document.getElementById('q' + i);
+                    if (area) area.value = '';
+                    localStorage.removeItem('punto_inflexion_q' + i);
+                }
             }
         }
 
-        const disp = document.getElementById('score-display');
-        disp.classList.remove('hidden');
-        disp.innerText = `Puntaje: ${score} / ${total} pts`;
-    }
+        // Antes de imprimir, verifica si el alumno escribió para mantener su texto,
+        // o si dejó el campo vacío, activa las líneas punteadas para resolver a mano.
+        function preparePrint() {
+            for (let i = 1; i <= 20; i++) {
+                const area = document.getElementById('q' + i);
+                const parent = area.parentElement;
+                const printLines = parent.querySelector('.print-lines');
 
-    function resetAnswers() {
-        for (let i = 1; i <= 60; i++) {
-            const el = document.getElementById('q' + i);
-            if (!el) continue;
-            el.value = '';
-            el.classList.remove('correct', 'wrong');
+                if (!area.value.trim()) {
+                    area.classList.add('empty-textarea');
+                    if (printLines) printLines.classList.add('show-lines-on-empty');
+                } else {
+                    area.classList.remove('empty-textarea');
+                    if (printLines) printLines.classList.remove('show-lines-on-empty');
+                }
+            }
+            window.print();
         }
-        document.getElementById('score-display').classList.add('hidden');
-    }
-</script>
+    </script>
+</body>
+</html>
